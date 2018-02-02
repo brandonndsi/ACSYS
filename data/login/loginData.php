@@ -30,7 +30,7 @@
 			}
 		}
 		if($bandera){
-			header('Location: ../../view/productor/verProductorView.php');
+			header('Location: ../../view/productor/verProductorSocioView.php');
 
 		}else{
 			header('Location: ../../index.php');

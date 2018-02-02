@@ -1,10 +1,10 @@
 <?php
 
-class dataProductor {
+class dataProductorSocio {
 
     private $conexion;
 
-    function dataProductor() {
+    function dataProductorSocio() {
         require_once '../../data/conexion/conexion.php';
         $this->conexion = new conexion();
     }
@@ -31,6 +31,35 @@ class dataProductor {
 
         }else{
             return "false";
+
+        }
+
+    }
+
+    function productorRegistrar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo){
+        $con=$this->conexion->crearConexion();
+        $registrarProductor = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
+        if($registrarProductor==1){
+            $registrarProductor = $con->query("CALL registrarproductorsocio()");
+            return "true";
+
+        }else{
+            return "false";
+
+        }
+
+    }
+
+    function productorEliminar($id){
+        
+        $con=$this->conexion->crearConexion();
+        $eliminarProductor = $con->query("CALL eliminarproductorsocio('$id')");
+        if($eliminarProductor==1){
+            return "true";
+
+        }else{
+            return "false";
+
 
         }
 

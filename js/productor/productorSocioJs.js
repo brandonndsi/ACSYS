@@ -19,7 +19,7 @@ function modalModificarSocio(socio){
 function modificarSocio(id){
 
   $(document).ready(function() {
-      $.post('../../business/productor/actionProductor.php', {
+      $.post('../../business/productor/actionProductorSocio.php', {
               action : 'modificarproductor' ,
               cedula: document.getElementById("documentoidentidad").value,
               nombre: document.getElementById("nombre").value,
@@ -46,10 +46,62 @@ function modificarSocio(id){
 
 }
 
+function modalRegistrarSocio(){
+  botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
+  botones+="<button onclick='registrarSocio()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
+  $("#botonesRegistrar").html(botones);
+  $("#modalRegistrar").modal();
+
+
+}
+
+function registrarSocio(){
+  cedula=document.getElementById("documentoidentidadr").value;
+  nombre=document.getElementById("nombrer").value;
+  apellido1=document.getElementById("primerapellidor").value;
+  apellido2=document.getElementById("segundoapellidor").value;
+  telefono=document.getElementById("telefonor").value;
+  direccion=document.getElementById("direccionr").value;
+  correo=document.getElementById("correor").value;
+  $(document).ready(function() {
+      $.post('../../business/productor/actionProductorSocio.php', {
+              action : 'registrarproductor' ,
+              cedula: cedula,
+              nombre: nombre,
+              apellido1: apellido1,
+              apellido2: apellido2,
+              telefono: telefono,
+              direccion: direccion,
+              correo: correo,
+              
+
+      }, function(responseText) {
+          respuesta="";
+          if(responseText=="true"){
+              respuesta="<h4>Se ha registrado el productor satisfactoriamente</h4>";
+              mostrarProductores();
+
+          }else{
+              respuesta="<h4>Ocurrió un error al registrar el productor</h4>";
+          }     
+          $("#mensaje").html(respuesta);
+          $("#modalRespuesta").modal();
+          document.getElementById("documentoidentidadr").value="";
+          document.getElementById("nombrer").value="";
+          document.getElementById("primerapellidor").value="";
+          document.getElementById("segundoapellidor").value="";
+          document.getElementById("telefonor").value="";
+          document.getElementById("direccionr").value="";
+          document.getElementById("correor").value="";
+      });
+  });
+
+}
+
 function mostrarProductores(){
   $('#listaProductores').dataTable().fnDestroy();
   $(document).ready(function() {
-      $.post('../../business/productor/actionProductor.php', {
+      $.post('../../business/productor/actionProductorSocio.php', {
               action : 'consultarproductores'
       }, function(responseText) {
         json = JSON.parse(responseText);
@@ -80,7 +132,7 @@ function mostrarProductores(){
 
           html+='<td><a href="javascript:modalModificarSocio('+socio+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
           html+='<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
-          html+='<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-trash"></span></a></td>';
+          html+='<td><a href="javascript:modalEliminarSocio('+socio+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -101,3 +153,38 @@ function mostrarProductores(){
       });
   });
 }
+
+function modalEliminarSocio(socio){
+    string=socio.split('-');
+    id='"'+string[7]+'"';
+
+    botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
+    botones+="<button onclick='eliminarSocio("+id+")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
+    $("#botonesEliminar").html(botones);
+    $("#modalEliminar").modal();
+ }
+
+ function eliminarSocio(id){
+    $(document).ready(function() {
+      $.post('../../business/productor/actionProductorSocio.php', {
+              action : 'eliminarproductor' ,
+              id:id,
+              
+
+      }, function(responseText) {
+      
+          respuesta="";
+          if(responseText=="true"){
+              respuesta="<h4>Se ha eliminado el productor satisfactoriamente</h4>";
+              mostrarProductores();
+
+          }else{
+              respuesta="<h4>Ocurrió un error al eliminar el productor</h4>";
+          }     
+          $("#mensaje").html(respuesta);
+          $("#modalRespuesta").modal();
+         
+      });
+  });
+}
+
