@@ -19,14 +19,14 @@ class businessProductoLacteo {
     	return $this->dataProductoLacteo->productoModificar($codigo,$nombre,$precio,$cantidad,$unidad);
     }
 
-     public function productorRegistrar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo){
+     public function productoRegistrar($codigo,$nombre,$precio,$cantidad,$unidad){
 
     	return $this->dataProductoLacteo->productoRegistrar($codigo,$nombre,$precio,$cantidad,$unidad);
     }
 
-    public function productorEliminar($id){
+    public function productoEliminar($codigo){
 
-        return $this->dataProductoLacteo->productorEliminar($id);
+        return $this->dataProductoLacteo->productoEliminar($codigo);
     }
 
 }

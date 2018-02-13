@@ -1,31 +1,39 @@
-function mostrarProductoLacteo(){
+function mostrarProductoVeterinario(){
   $('#listaProductos').dataTable().fnDestroy();
   $(document).ready(function() {
-      $.post('../../business/producto/actionProductoLacteo.php', {
+      $.post('../../business/producto/actionProductoVeterinario.php', {
               action : 'consultarproductos'
       }, function(responseText) {
+        alert(responseText);
         json = JSON.parse(responseText);
         html = "";
 
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
-          html+="<td>"+json[i].codigoproductoslacteos+"</td>";
-          html+="<td>"+json[i].nombreproductolacteo+"</td>";
-          html+="<td>"+json[i].preciounitarioproductolacteo+"</td>";
-          html+="<td>"+json[i].cantidadinventarioproductolacteo+"</td>";
-          html+="<td>"+json[i].unidad+"</td>";
-        
-          codigo=json[i].codigoproductoslacteos;
-          nombre=json[i].nombreproductolacteo;
-          precio=json[i].preciounitarioproductolacteo;
-          cantidad=json[i].cantidadinventarioproductolacteo;
-          unidad=json[i].unidad;
+          html+="<td>"+json[i].codigoproductoveterinario+"</td>";
+          html+="<td>"+json[i].nombreproductoveterinario+"</td>";
+          html+="<td>"+json[i].descripcionproductoveterinario+"</td>";
+          html+="<td>"+json[i].precioproductoveterinario+"</td>";
+          html+="<td>"+json[i].dosisproductoveterinario+"</td>";
+          html+="<td>"+json[i].diasretencionlecheproductoveterinario+"</td>";
+          html+="<td>"+json[i].viaaplicacionveterinarios+"</td>";
+          html+="<td>"+json[i].funcionveterinarios+"</td>";
           
+          codigo=json[i].codigoproductoveterinario;
+          nombre=json[i].nombreproductoveterinario;
+          descripcion=json[i].descripcionproductoveterinario;
+          precio=json[i].precioproductoveterinario;
+          dosis=json[i].dosisproductoveterinario;
+          dias=json[i].diasretencionlecheproductoveterinario;
+          via=json[i].viaaplicacionveterinarios;
+          funcion=json[i].funcionveterinarios;
+         
+          
+          veterinario="'"+codigo+"-"+nombre +"-"+descripcion+"-"+precio+"-"+dosis+"-"+dias+"-"+via+"-"+funcion+"'";
+       
 
-          lacteo="'"+codigo+"-"+nombre +"-"+precio+"-"+cantidad+"-"+unidad+"'";
-
-          html+='<td><a href="javascript:modalModificarProducto('+lacteo+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-          html+='<td><a href="javascript:modalEliminarProducto('+lacteo+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
+          html+='<td><a href="javascript:modalModificarProducto('+veterinario+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
+          html+='<td><a href="javascript:modalEliminarProducto('+veterinario+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -47,14 +55,14 @@ function mostrarProductoLacteo(){
   });
 }
 
-function modalModificarProducto(lacteo){
-  string=lacteo.split('-');
+function modalModificarProducto(veterinario){
+  string=veterinario.split('-');
   document.getElementById("codigo").value=string[0];
   document.getElementById("nombre").value=string[1];
   document.getElementById("precio").value=string[2];
   document.getElementById("cantidad").value=string[3];
   document.getElementById("unidad").value=string[4];
-  mostrarUnidades("unidad");
+ 
   codigo='"'+string[0]+'"';
   botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
   botones+="<button onclick='modificarProducto("+codigo+")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";

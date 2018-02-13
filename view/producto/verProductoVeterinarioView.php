@@ -24,7 +24,7 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductores()">
+        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductoVeterinario()">
 
             <!-- Import the file menu.php -->
           <?php
@@ -43,6 +43,7 @@
                                     <th>Código</th>
                                     <th>Nombre</th>
                                     <th>Descripción </th>
+                                    <th>Precio</th>
                                     <th>Dosis</th>
                                     <th>Días de retención de leche</th>
                                     <th>Vía de aplicación</th>
@@ -81,7 +82,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigor" id="codigor" placeholder="Código"></p>
+                                            <p><input type="text" class="span12" name="codigo" id="codigo" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -89,7 +90,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombrer" id="nombrer" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" name="nombre" id="nombre" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -97,7 +98,15 @@
                                             <label>Descripción:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="descripcionr" id="descripcionr" placeholder="Descripción"></p>
+                                            <p><input type="text" class="span12" name="descripcion" id="descripcion" placeholder="Descripción"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label>Precio:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p><input type="text" class="span12" name="precio" id="precio" placeholder="Descripción"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -105,7 +114,7 @@
                                             <label>Dosis:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="dosisr" id="dosisr" placeholder="Dosis"></p>
+                                            <p><input type="text" class="span12" name="dosis" id="dosis" placeholder="Dosis"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -113,7 +122,7 @@
                                             <label>Días de retención de leche:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="diasr" id="diasr" placeholder="Días"></p>
+                                            <p><input type="text" class="span12" name="dias" id="dias" placeholder="Días"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -121,7 +130,7 @@
                                             <label>Vía de aplicación:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="viar" id="viar" placeholder="Vía"></p>
+                                           <p><input type="text" class="span12" name="via" id="via" placeholder="Vía"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -129,7 +138,7 @@
                                             <label>Función:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="funcionr" id="funcionr" placeholder="Función"></p>
+                                            <p><input type="text" class="span12" name="funcion" id="funcion" placeholder="Función"></p>
                                         </div>
                                     </div>
                                         
@@ -220,6 +229,14 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <p><input type="text" class="span12" name="descripcionr" id="descripcionr" placeholder="Descripción"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label>Precio:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <p><input type="text" class="span12" name="precior" id="precior" placeholder="Descripción"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">

@@ -61,11 +61,12 @@
                     </div>
                       
                 
-        <!--Comienzan los modales-->
+        
             <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarSocio()" class="btn btn-primary">Registrar Producto</button></p>
+                 <p><button onclick="modalRegistrarProducto()" class="btn btn-primary">Registrar Producto</button></p>
             </div>
-           <!--Modal de modificar socio-->
+            <!--Comienzan los modales-->
+           <!--Modal de modificar producto-->
             <div id="modalModificar" class="modal fade in">
                 <div  class="modal-dialog">
                     <div class="modal-content">
@@ -127,7 +128,7 @@
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
 
-            <!--Modal de eliminar socio-->
+            <!--Modal de eliminar producto-->
             <div id="modalEliminar" class="modal fade in">
                 <div  class="modal-dialog">
                     <div class="modal-content">
@@ -148,7 +149,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
-             <!--Modal de respuesta socio-->
+             <!--Modal de respuesta producto-->
             <div id="modalRespuesta" class="modal fade in">
                 <div  class="modal-dialog">
                     <div class="modal-content">
@@ -185,7 +186,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigor" id="codigor placeholder="Código"></p>
+                                            <p><input type="text" class="span12" name="codigor" id="codigor" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -217,7 +218,7 @@
                                             <label>Unidad:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="unidadr" id="unidadr" placeholder="Unidad"></p>
+                                            <p><select class="btn btn-info" style="padding-right:21%;margin-left:-1,5%" name="registrarunidad" id="registrarunidad" placeholder="Unidad"></select></p>
                                         </div>
                                     </div>
                                 </form>

@@ -38,8 +38,8 @@
 
 	}else if($action=="eliminarproducto"){
 
-            $id=$_POST['id'];
-            echo $businessProductoLacteo->productorEliminar($id);
+            $codigo=$_POST['codigo'];
+            echo $businessProductoLacteo->productoEliminar($codigo);
 
       }     	
 

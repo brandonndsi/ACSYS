@@ -1,10 +1,10 @@
 <?php
 
-class dataProductoLacteo {
+class dataProductoVeterinario {
 
     private $conexion;
 
-    function dataProductoLacteo() {
+    function dataProductoVeterinario() {
         require_once '../../data/conexion/conexion.php';
         $this->conexion = new conexion();
     }
@@ -13,19 +13,21 @@ class dataProductoLacteo {
     // mostrar todo
     function productoMostrar() {
         $con=$this->conexion->crearConexion();
-        $mostrarProducto = $con->query("CALL mostrarproductolacteo()");
+        $mostrarProducto = $con->query("CALL mostrarproductoveterinario()");
         $datos=array();
         while($result=$mostrarProducto->fetch_assoc()){
-            array_push($datos,$result);  
+            array_push($datos,$result);
+            echo json_encode($result);  
         }
+
         return json_encode($datos);
 
     
     }
 
-    function productoModificar($codigo,$nombre,$precio,$cantidad,$unidad){
+    function productoModificar($codigo,$nombre,$descripcion,$precio,$dosis,$dias,$via,$funcion){
         $con=$this->conexion->crearConexion();
-        $modificarProducto = $con->query("CALL modificarproductolacteo('$codigo','$nombre','$precio','$cantidad','$unidad')");
+        $modificarProducto = $con->query("CALL modificarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')");
         if($modificarProducto==1){
             return "true";
 
@@ -33,12 +35,12 @@ class dataProductoLacteo {
             return "falsee";
 
         }
-
+          
     }
 
-    function productoRegistrar($codigo,$nombre,$precio,$cantidad,$unidad){
+    function productoRegistrar($codigo,$nombre,$descripcion,$precio,$dosis,$dias,$via,$funcion){
         $con=$this->conexion->crearConexion();
-        $registrarProducto = $con->query("CALL registrarproductolacteo('$codigo','$nombre','$precio','$cantidad','$unidad')");
+        $registrarProducto = $con->query("CALL registrarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')");
         if($registrarProducto==1){
             return "true";
 
@@ -52,7 +54,7 @@ class dataProductoLacteo {
     function productoEliminar($codigo){
         
         $con=$this->conexion->crearConexion();
-        $eliminarProducto = $con->query("CALL eliminarproductolacteo('$codigo')");
+        $eliminarProducto = $con->query("CALL eliminarproductoveterinario('$codigo')");
         if($eliminarProducto==1){
             return "true";
 

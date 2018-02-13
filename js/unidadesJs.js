@@ -1,4 +1,4 @@
-function mostrarUnidades(){
+function mostrarUnidades(id){
 
   $(document).ready(function() {
       $.post('../../business/producto/actionUnidades.php', {
@@ -13,7 +13,7 @@ function mostrarUnidades(){
           html+="<option >"+json[i].unidad+"</option>";
           
         }
-        $("#unidad").html(html);
+        $("#"+id).html(html);
         
       });
   });
