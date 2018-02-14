@@ -86,7 +86,7 @@ function registrarEmpleado() {
     correo = $("#correor").val();
     password = $("#passwordempleador").val();
     tipoEmpleado = $("#tipoempleador").val();
-    
+
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {
             action: 'registrarempleado',
@@ -99,7 +99,7 @@ function registrarEmpleado() {
             correo: correo,
             clave: password,
             tipo:tipoEmpleado
-            
+
         }, function (responseText) {
             respuesta = "";
             if (responseText === "true") {
@@ -124,7 +124,7 @@ function registrarEmpleado() {
 
 function modalRegistrarEmpleado() {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='registrarEmpleado()' data-dismiss='modal' class='btn btn-success'>Registrar</button></p>";
+    botones += "<button onclick='registrarEmpleado()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
     $("#botonesRegistrar").html(botones);
     $("#modalRegistrar").modal();
 }
@@ -182,7 +182,7 @@ function modalModificarEmpleado(empleado) {
     id = '"' + string[8] + '"';
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-success'>Modificar</button></p>";
+    botones += "<button onclick='modificarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
     $("#modalModificar").modal();
 }
@@ -190,7 +190,6 @@ function modalModificarEmpleado(empleado) {
 // eliminar empleado//
 function eliminarEmpleado(id) {
     $(document).ready(function () {
-        alert(id);
         $.post('../../business/empleado/actionEmpleado.php', {
             action: 'eliminarempleado',
             id: id
@@ -214,7 +213,7 @@ function modalEliminarEmpleado(empleado) {
     id = '"' + string[8] + '"';
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='eliminarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-success'>Aceptar</button></p>";
+    botones += "<button onclick='eliminarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
     $("#botonesEliminar").html(botones);
     $("#modalEliminar").modal();
 }

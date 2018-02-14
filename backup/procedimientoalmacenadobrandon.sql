@@ -7,6 +7,19 @@ SELECT tbpersona.idpersona,tbpersona.documentoidentidadpersona,tbpersona.nombrep
 END$$
 DELIMITER ;
 
+/*insertar empleado*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado`(IN `clave` VARCHAR(30), IN `tipo` TEXT)
+    NO SQL
+INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,"activo")$$
+DELIMITER ;
+
+/*modificar empleados*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarempleados`(IN `cedula` VARCHAR(30), IN `nombre` TEXT, IN `apellido1` TEXT, IN `apellido2` TEXT, IN `telefono` VARCHAR(15), IN `direccion` TEXT, IN `correo` TEXT, IN `id` INT(11))
+    NO SQL
+UPDATE tbpersona SET documentoidentidadpersona=cedula, nombrepersona=nombre,apellido1persona=apellido1,apellido2persona=apellido2,telefonopersona=telefono,direccionpersona=direccion,correopersona=correo WHERE idpersona=id$$
+DELIMITER ;
 
 /* eliminar empleado*/
 DELIMITER $$
@@ -14,35 +27,5 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarempleado`(IN `id` VARCHAR(2
     NO SQL
 BEGIN
 UPDATE tbempleado set estadoempleado='inactivo' WHERE idpersonaempleado=id AND estadoempleado='activo';
-END$$
-DELIMITER ;
-
-/*insertar persona*/
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarpersona`(IN `cedula` VARCHAR(30), IN `nombre` TEXT, IN `apellido1` TEXT, IN `apellido2` TEXT, IN `telefono` VARCHAR(15), IN `direccion` TEXT, IN `correo` TEXT)
-    NO SQL
-BEGIN
-INSERT INTO tbpersona(documentoidentidadpersona, nombrepersona, apellido1persona, apellido2persona, telefonopersona, direccionpersona, correopersona) VALUES (cedula,nombre,apellido1,apellido2,telefono,direccion,correo);
-END$$
-DELIMITER ;
-
-/*insertar empleado*/
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertarempleado`(IN `id` VARCHAR(30), IN `clave` TEXT, IN `tipo` TEXT, IN `estado` TEXT)
-    NO SQL
-BEGIN
-INSERT INTO tbempleado(idpersonaempleado, passwordempleado,  tipoempleado, estadoempleado)
-VALUES (id, clave, tipo, estado);
-END$$
-DELIMITER ;
-
-/* buscar id de persona*/
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarPersonaID`(IN `cedula` VARCHAR(30))
-    NO SQL
-BEGIN
-SELECT idpersona
-FROM tbpersona 
-WHERE documentoidentidadpersona = cedula;
 END$$
 DELIMITER ;

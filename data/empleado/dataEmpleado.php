@@ -26,11 +26,11 @@ class dataEmpleado {
 
         $con = $this->conexion->crearConexion();
         /* registra la persona */
-        $registrarEmpleado = $con->query("CALL insertarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
+        $registrarEmpleado = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
 
         $pass = password_hash($clave, PASSWORD_DEFAULT);
         if ($registrarEmpleado == 1) {
-            $registrarEmpleado = $con->query("CALL insertarempleado('8','$pass',,'$tipo','activo')");
+            $registrarEmpleado = $con->query("CALL registrarempleado('$pass','$tipo')");
             return "true";
         } else {
             return "false";
