@@ -19,9 +19,9 @@ class businessEmpleado {
         return $this->dataEmpleado->empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo);
     }
 
-    public function empleadoModificar($id, $cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo) {
+    public function empleadoModificar($id, $cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo) {
 
-        return $this->dataEmpleado->empleadoModificar($id, $cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo);
+        return $this->dataEmpleado->empleadoModificar($id, $cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo);
     }
 
     public function empleadoEliminar($id) {

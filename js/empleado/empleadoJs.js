@@ -139,6 +139,7 @@ function modificarEmpleado(id) {
     telefono = $("#telefonom").val();
     direccion = $("#direccionm").val();
     correo = $("#correom").val();
+    password = $("#passwordempleadom").val();
     tipoEmpleado = $("#tipoempleadom").val();
 
     $(document).ready(function () {
@@ -151,6 +152,7 @@ function modificarEmpleado(id) {
             telefono: telefono,
             direccion: direccion,
             correo: correo,
+            clave:password,
             tipo: tipoEmpleado,
             id: id
         }, function (responseText) {
