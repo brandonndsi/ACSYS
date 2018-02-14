@@ -25,11 +25,12 @@ function mostrarEmpleados() {
                 telefono = json[i].telefonopersona;
                 direccion = json[i].direccionpersona;
                 correo = json[i].correopersona;
+                clave = json[i].passwordempleado;
                 tipo = json[i].tipoempleado;
                 id = json[i].idpersona;
 
                 empleado = "'" + documentoidentidad + "," + nombre + "," + primerapellido + "," + segundoapellido + "," +
-                        telefono + "," + direccion + "," + correo + "," + tipo + "," + id + "'";
+                        telefono + "," + direccion + "," + correo + "," + clave + "," + tipo + "," + id + "'";
 
                 html += '<td><a href="javascript:modalModificarEmpleado(' + empleado + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
                 html += '<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
@@ -98,7 +99,7 @@ function registrarEmpleado() {
             direccion: direccion,
             correo: correo,
             clave: password,
-            tipo:tipoEmpleado
+            tipo: tipoEmpleado
 
         }, function (responseText) {
             respuesta = "";
@@ -130,7 +131,7 @@ function modalRegistrarEmpleado() {
 }
 
 //modificar empleado//
-function modificarEmpleado(id) {
+function modificarEmpleado(id,clave) {
 
     cedula = $("#documentoidentidadm").val();
     nombre = $("#nombrem").val();
@@ -139,7 +140,6 @@ function modificarEmpleado(id) {
     telefono = $("#telefonom").val();
     direccion = $("#direccionm").val();
     correo = $("#correom").val();
-    password = $("#passwordempleadom").val();
     tipoEmpleado = $("#tipoempleadom").val();
 
     $(document).ready(function () {
@@ -152,7 +152,7 @@ function modificarEmpleado(id) {
             telefono: telefono,
             direccion: direccion,
             correo: correo,
-            clave:password,
+            clave: clave,
             tipo: tipoEmpleado,
             id: id
         }, function (responseText) {
@@ -180,11 +180,14 @@ function modalModificarEmpleado(empleado) {
     $("#telefonom").val(string[4]);
     $("#direccionm").val(string[5]);
     $("#correom").val(string[6]);
-    $("#tipoempleadom").val(string[7]);
-    id = '"' + string[8] + '"';
+    
+    clave = '"' + string[7] + '"';
+    id = '"' + string[9] + '"';
+    
+    document.ready = document.getElementById("tipoempleadom").value = string[8];
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
+    botones += "<button onclick='modificarEmpleado(" + id + "," + clave + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
     $("#modalModificar").modal();
 }

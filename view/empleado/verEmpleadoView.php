@@ -271,7 +271,6 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "tipoempleadom" id ="tipoempleadom">
-                                                <option></option>
                                                 <option value = "Administrador">Administrador/a</option>
                                                 <option value = "Bodega">Bodega/a</option>
                                                 <option value = "Cajero">Cajero/a</option>

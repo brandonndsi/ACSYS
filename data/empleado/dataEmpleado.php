@@ -36,16 +36,18 @@ class dataEmpleado {
             return "false";
         }
     }
-
+    
     //modificar
-    function empleadoModificar($id, $cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo,$clave,$tipo) {
+    
+    function empleadoModificar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo,$id, $clave, $tipo) {
 
         $con = $this->conexion->crearConexion();
+
         $modificarEmpleado = $con->query("CALL modificarempleadopersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo','$id')");
-        
         $pass = password_hash($clave, PASSWORD_DEFAULT);
+
         if ($modificarEmpleado == 1) {
-            $modificarEmpleado = $con->query("CALL modificarempleados('$id''$pass','$tipo')");
+            $modificarEmpleado = $con->query("CALL modificarempleados('$id','$pass','$tipo')");
             return "true";
         } else {
             return "false";
