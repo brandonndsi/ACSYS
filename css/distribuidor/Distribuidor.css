@@ -1,0 +1,49 @@
+*{
+top:0;
+left:0;
+}
+body{
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover; 
+ background-image: url('../../image/fondo.jpg');
+}
+.container{
+margin-top: 2%;	
+}
+#distribuidores{
+top:0;
+left:0;
+width: 100%;
+height: 100vh;
+}
+#distribuidor_titulo{
+margin:auto;
+display: flex;
+flex-wrap: wrap;
+box-sizing: border-box;
+width: 90%;
+padding: 10px;
+
+}
+#distribuidor_titulo label{
+width: 100%;
+text-align: center;
+font-size: 20px;
+}
+#tabla_principal_distribuidor{
+margin:auto;
+display: flex;
+flex-wrap: wrap;
+box-sizing: border-box;
+width: 90%;
+padding: 10px;
+border-top: 2px solid #A8A0A0;
+border-bottom: 2px solid #A8A0A0;
+height: auto;
+}
+#tabla_distribuidor{
+width: 90%;
+margin: auto;
+}
