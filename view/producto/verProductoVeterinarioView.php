@@ -13,6 +13,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
             <!--Javascript--> 
+            <script src="../../js/unidadesJs.js"></script>   
             <script src="../../js/jquery.dataTables.min.js"></script>         
             <script src="../../js/producto/productoVeterinarioJs.js"></script>  
             <script src="../../js/menuJs.js"></script>   
@@ -119,7 +120,7 @@
                                     </div>
                                      <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Días de retención de leche:</label>
+                                            <label>DRL:</label>
                                         </div>
                                         <div class="col-sm-8">
                                             <p><input type="text" class="span12" name="dias" id="dias" placeholder="Días"></p>
@@ -127,10 +128,10 @@
                                     </div>
                                      <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Vía de aplicación:</label>
+                                            <label>Vía aplicación:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="via" id="via" placeholder="Vía"></p>
+                                         <p><select  class="span12" id="via" ></select></p></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -138,7 +139,7 @@
                                             <label>Función:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="funcion" id="funcion" placeholder="Función"></p>
+                                          <p><select  class="span12" id="funcion" ></select></p></p>
                                         </div>
                                     </div>
                                         
@@ -149,6 +150,7 @@
                             <div id="botones">
                                 
                             </div>
+                             <h5>DRL: Días de retención de leche</h5>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->
@@ -249,7 +251,7 @@
                                     </div>
                                      <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Días de retención de leche:</label>
+                                            <label>DRL:</label>
                                         </div>
                                         <div class="col-sm-8">
                                             <p><input type="text" class="span12" name="diasr" id="diasr" placeholder="Días"></p>
@@ -257,10 +259,10 @@
                                     </div>
                                      <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Vía de aplicación:</label>
+                                            <label>Vía aplicación:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="viar" id="viar" placeholder="Vía"></p>
+                                           <p><select  class="span12" id="viar" ></select></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -268,7 +270,7 @@
                                             <label>Función:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="funcionr" id="funcionr" placeholder="Función"></p>
+                                            <p><select  class="span12" id="funcionr" ></select></p>
                                         </div>
                                     </div>
                                         
@@ -276,9 +278,11 @@
                             </center>
                         </div>
                          <div class="modal-footer">
+                            
                             <div id="botonesRegistrar">
                                 
                             </div>
+                            <h5>DRL: Días de retención de leche</h5>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->

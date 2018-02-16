@@ -13,21 +13,22 @@ class dataProductoVeterinario {
     // mostrar todo
     function productoMostrar() {
         $con=$this->conexion->crearConexion();
+        $con->set_charset("UTF8");
         $mostrarProducto = $con->query("CALL mostrarproductoveterinario()");
-        $datos=array();
+        $productos = array();
         while($result=$mostrarProducto->fetch_assoc()){
-            array_push($datos,$result);
-            echo json_encode($result);  
+            $productos[] = $result;
         }
-
-        return json_encode($datos);
+       return $productos;
 
     
     }
-
     function productoModificar($codigo,$nombre,$descripcion,$precio,$dosis,$dias,$via,$funcion){
         $con=$this->conexion->crearConexion();
-        $modificarProducto = $con->query("CALL modificarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')");
+        $con->set_charset("UTF8");
+       
+        $modificarProducto = $con->query("CALL modificarproductoveterinario('$codigo','$nombre','$descripcion','$dosis','$dias','$via','$funcion','$precio')");
+                                                                          
         if($modificarProducto==1){
             return "true";
 
@@ -40,7 +41,9 @@ class dataProductoVeterinario {
 
     function productoRegistrar($codigo,$nombre,$descripcion,$precio,$dosis,$dias,$via,$funcion){
         $con=$this->conexion->crearConexion();
-        $registrarProducto = $con->query("CALL registrarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')");
+        $con->set_charset("UTF8");
+        $registrarProducto = $con->query("CALL registrarproductoveterinario('$codigo','$nombre','$descripcion','$dosis','$dias','$via','$funcion','$precio')");
+
         if($registrarProducto==1){
             return "true";
 

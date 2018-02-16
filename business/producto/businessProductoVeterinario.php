@@ -12,7 +12,7 @@ class businessProductoVeterinario {
 
     public function productosMostrar() {
      
-        return $this->dataProductoVeterinario->productoMostrar();
+        return json_encode($this->dataProductoVeterinario->productoMostrar());
     }
 
     public function productoModificar($codigo,$nombre,$descripcion,$precio,$dosis,$dias,$via,$funcion){

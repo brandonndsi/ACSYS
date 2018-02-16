@@ -4,7 +4,7 @@ function mostrarProductoVeterinario(){
       $.post('../../business/producto/actionProductoVeterinario.php', {
               action : 'consultarproductos'
       }, function(responseText) {
-        alert(responseText);
+        
         json = JSON.parse(responseText);
         html = "";
 
@@ -16,8 +16,8 @@ function mostrarProductoVeterinario(){
           html+="<td>"+json[i].precioproductoveterinario+"</td>";
           html+="<td>"+json[i].dosisproductoveterinario+"</td>";
           html+="<td>"+json[i].diasretencionlecheproductoveterinario+"</td>";
-          html+="<td>"+json[i].viaaplicacionveterinarios+"</td>";
-          html+="<td>"+json[i].funcionveterinarios+"</td>";
+          html+="<td>"+json[i].nombreviaaplicacion+"</td>";
+          html+="<td>"+json[i].nombrefuncion+"</td>";
           
           codigo=json[i].codigoproductoveterinario;
           nombre=json[i].nombreproductoveterinario;
@@ -25,8 +25,8 @@ function mostrarProductoVeterinario(){
           precio=json[i].precioproductoveterinario;
           dosis=json[i].dosisproductoveterinario;
           dias=json[i].diasretencionlecheproductoveterinario;
-          via=json[i].viaaplicacionveterinarios;
-          funcion=json[i].funcionveterinarios;
+          via=json[i].nombreviaaplicacion;
+          funcion=json[i].nombrefuncion;
          
           
           veterinario="'"+codigo+"-"+nombre +"-"+descripcion+"-"+precio+"-"+dosis+"-"+dias+"-"+via+"-"+funcion+"'";
@@ -34,6 +34,7 @@ function mostrarProductoVeterinario(){
 
           html+='<td><a href="javascript:modalModificarProducto('+veterinario+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
           html+='<td><a href="javascript:modalEliminarProducto('+veterinario+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
+          html+="</tr>";
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -59,10 +60,14 @@ function modalModificarProducto(veterinario){
   string=veterinario.split('-');
   document.getElementById("codigo").value=string[0];
   document.getElementById("nombre").value=string[1];
-  document.getElementById("precio").value=string[2];
-  document.getElementById("cantidad").value=string[3];
-  document.getElementById("unidad").value=string[4];
- 
+  document.getElementById("descripcion").value=string[2];
+  document.getElementById("precio").value=string[3];
+  document.getElementById("dosis").value=string[4];
+  document.getElementById("dias").value=string[5];
+  document.getElementById("via").value=string[6];
+  document.getElementById("funcion").value=string[7];
+  mostrarFuncion("funcion");
+  mostrarVias("via");
   codigo='"'+string[0]+'"';
   botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
   botones+="<button onclick='modificarProducto("+codigo+")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
@@ -74,25 +79,28 @@ function modalModificarProducto(veterinario){
 function modificarProducto(codigo){
 
   $(document).ready(function() {
-      $.post('../../business/producto/actionProductoLacteo.php', {
+      $.post('../../business/producto/actionProductoVeterinario.php', {
               action : 'modificarproducto' ,
-              codigo: document.getElementById("codigo").value,
-              nombre: document.getElementById("nombre").value,
-              precio: document.getElementById("precio").value,
-              cantidad: document.getElementById("cantidad").value,
-              unidad: document.getElementById("unidad").selectedIndex+1,
+              codigo:document.getElementById("codigo").value,
+              nombre:document.getElementById("nombre").value,
+              descripcion:document.getElementById("descripcion").value,
+              precio:document.getElementById("precio").value,
+              dosis:document.getElementById("dosis").value,
+              dias:document.getElementById("dias").value,
+              via:document.getElementById("via").selectedIndex+1,
+              funcion:document.getElementById("funcion").selectedIndex+1,
+              
               
 
       }, function(responseText){
           respuesta="";
-          alert(responseText);
+          
           if(responseText=="true"){
               respuesta="<h4>Se ha modificado el producto satisfactoriamente</h4>";
-              mostrarProductoLacteo();
-
+              mostrarProductoVeterinario();
           }else{
               respuesta="<h4>Ocurrió un error al modificar el producto</h4>";
-              mostrarProductores();
+              mostrarProductoVeterinario();
           }     
           $("#mensaje").html(respuesta);
           $("#modalRespuesta").modal();
@@ -114,7 +122,7 @@ function modalEliminarProducto(lacteo){
 
  function eliminarProducto(codigo){
     $(document).ready(function() {
-      $.post('../../business/producto/actionProductoLacteo.php', {
+      $.post('../../business/producto/actionProductoVeterinario.php', {
               action : 'eliminarproducto' ,
               codigo:codigo,
               
@@ -124,7 +132,7 @@ function modalEliminarProducto(lacteo){
           respuesta="";
           if(responseText=="true"){
               respuesta="<h4>Se ha eliminado el producto satisfactoriamente</h4>";
-              mostrarProductoLacteo();
+              mostrarProductoVeterinario();
 
           }else{
               respuesta="<h4>Ocurrió un error al eliminar el producto</h4>";
@@ -140,7 +148,9 @@ function modalEliminarProducto(lacteo){
   
     botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones+="<button onclick='registrarProducto()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
-    mostrarUnidades("registrarunidad");
+    //mostrarUnidades("registrarunidad");
+    mostrarFuncion("funcionr");
+    mostrarVias("viar");
     $("#botonesRegistrar").html(botones);
     $("#modalRegistrar").modal();
 
@@ -149,33 +159,37 @@ function modalEliminarProducto(lacteo){
 function registrarProducto(){
    
     $(document).ready(function() {
-       $.post('../../business/producto/actionProductoLacteo.php', {
+       $.post('../../business/producto/actionProductoVeterinario.php', {
           action : 'registrarproducto' ,
-          codigo: document.getElementById("codigor").value,
-          nombre: document.getElementById("nombrer").value,
-          precio: document.getElementById("precior").value,
-          cantidad: document.getElementById("cantidadr").value,
-          unidad: document.getElementById("registrarunidad").selectedIndex+1,
-          
-              
+          codigo:document.getElementById("codigor").value,
+          nombre:document.getElementById("nombrer").value,
+          descripcion:document.getElementById("descripcionr").value,
+          precio:document.getElementById("precior").value,
+          dosis:document.getElementById("dosisr").value,
+          dias:document.getElementById("diasr").value,
+          via:document.getElementById("viar").selectedIndex+1,
+          funcion:document.getElementById("funcionr").selectedIndex+1,
 
       }, function(responseText) {
           
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha registrado el producto satisfactoriamente</h4>";
-              mostrarProductoLacteo();
+            respuesta="<h4>Se ha registrado el producto satisfactoriamente</h4>";
+            mostrarProductoVeterinario();
 
           }else{
               respuesta="<h4>Ocurrió un error al registrar el producto</h4>";
           }     
           $("#mensaje").html(respuesta);
           $("#modalRespuesta").modal();
-          document.getElementById("codigor").value="";
-          document.getElementById("nombrer").value="";
-          document.getElementById("precior").value="";
-          document.getElementById("cantidadr").value="";
-          document.getElementById("registrarunidad").selectedIndex=0;
+          document.getElementById("codigor").value;
+          document.getElementById("nombrer").value;
+          document.getElementById("descripcionr").value;
+          document.getElementById("precior").value;
+          document.getElementById("dosisr").value;
+          document.getElementById("diasr").value;
+          document.getElementById("viar").value;
+          document.getElementById("funcionr").selectedIndex=0;
       });
   });
 

@@ -4,6 +4,7 @@ function mostrarProductoLacteo(){
       $.post('../../business/producto/actionProductoLacteo.php', {
               action : 'consultarproductos'
       }, function(responseText) {
+        alert(responseText);
         json = JSON.parse(responseText);
         html = "";
 

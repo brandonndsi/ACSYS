@@ -14,6 +14,13 @@ class businessUnidades{
         return $this->dataUnidades->unidadesMostrar();
     }
 
+     public function funcionesMostrar() {
+        return $this->dataUnidades->funcionesMostrar();
+    }
+
+     public function viasMostrar() {
+        return $this->dataUnidades->viasMostrar();
+    }
    
 }
 
