@@ -140,7 +140,12 @@ function modificarEmpleado(id,clave) {
     telefono = $("#telefonom").val();
     direccion = $("#direccionm").val();
     correo = $("#correom").val();
+    password = $("#passwordempleadom").val();
     tipoEmpleado = $("#tipoempleadom").val();
+
+    if(password == "pass"){
+      password = clave;
+    }
 
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {
@@ -152,7 +157,7 @@ function modificarEmpleado(id,clave) {
             telefono: telefono,
             direccion: direccion,
             correo: correo,
-            clave: clave,
+            clave: password,
             tipo: tipoEmpleado,
             id: id
         }, function (responseText) {
@@ -180,10 +185,10 @@ function modalModificarEmpleado(empleado) {
     $("#telefonom").val(string[4]);
     $("#direccionm").val(string[5]);
     $("#correom").val(string[6]);
-    
+
     clave = '"' + string[7] + '"';
     id = '"' + string[9] + '"';
-    
+
     document.ready = document.getElementById("tipoempleadom").value = string[8];
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";

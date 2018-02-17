@@ -36,9 +36,9 @@ class dataEmpleado {
             return "false";
         }
     }
-    
+
     //modificar
-    
+
     function empleadoModificar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo,$id, $clave, $tipo) {
 
         $con = $this->conexion->crearConexion();

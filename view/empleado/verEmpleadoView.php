@@ -89,6 +89,14 @@
                                 <input type="hidden" name="idpersonaempleador" ><!--este es el campo que está como llave primaria en la base de datos-->
                                 <div class="form-group">
                                     <div class="col-sm-5">
+                                        <label>Cédula:</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-5">
                                         <label>Nombre:</label>
                                     </div>
                                     <div class="col-sm-7">
@@ -113,21 +121,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-5">
-                                        <label>Cédula:</label>
+                                        <label>Email:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label>Contraseña:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleador" id ="passwordempleador" placeholder="Contraseña" required><p>
-                                                <option></option>
-                                                <option value = "11111">Por Defecto</option>
-                                            </select> </p>
+                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
                                     </div>
                                 </div>
                             </div>
@@ -150,10 +147,13 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Email:</label>
+                                        <label>Contraseña:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
+                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleador" id ="passwordempleador" placeholder="Contraseña" required>
+                                          <option></option>
+                                          <option value = "asoprolesa">.......default.......</option>
+                                      </select> </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -198,6 +198,14 @@
                                 <input type="hidden" name="idpersonaempleadom" ><!--este es el campo que está como llave primaria en la base de datos-->
                                 <div class="form-group">
                                     <div class="col-sm-5">
+                                        <label>Cédula:</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadm" id="documentoidentidadm" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-5">
                                         <label>Nombre:</label>
                                     </div>
                                     <div class="col-sm-7">
@@ -222,21 +230,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-5">
-                                        <label>Cédula:</label>
+                                        <label>Email:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadm" id="documentoidentidadm" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label>Contraseña:</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleadom" id ="passwordempleadom" placeholder="Contraseña" required><p>
-                                                <option></option>
-                                                <option value = "11111">Por Defecto</option>
-                                            </select> </p>
+                                        <p><input type="email" class="form-control" class="span12" name="correom" id="correom" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
                                     </div>
                                 </div>
                             </div>
@@ -259,10 +256,13 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Email:</label>
+                                        <label>Contraseña:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="email" class="form-control" class="span12" name="correom" id="correom" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
+                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleadom" id ="passwordempleadom" placeholder="Contraseña" required><p>
+                                                <option value="pass">La misma</option>
+                                                <option value = "asoprolesa">.......default.......</option>
+                                            </select></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
