@@ -151,7 +151,6 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleador" id ="passwordempleador" placeholder="Contraseña" required>
-                                          <option></option>
                                           <option value = "asoprolesa">.......default.......</option>
                                       </select> </p>
                                     </div>

@@ -199,6 +199,7 @@ function modalModificarEmpleado(empleado) {
 
 // eliminar empleado//
 function eliminarEmpleado(id) {
+
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {
             action: 'eliminarempleado',
@@ -220,7 +221,7 @@ function eliminarEmpleado(id) {
 function modalEliminarEmpleado(empleado) {
     string = empleado.split(',');
 
-    id = '"' + string[8] + '"';
+    id = '"' + string[9] + '"';
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button onclick='eliminarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
