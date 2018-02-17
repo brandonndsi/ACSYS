@@ -6,16 +6,18 @@
 	if ($action=="consultarDistribuidor") {
 	    echo json_encode($DistribuidorBusiness->DistribuidorMostrar());
 	}else if($action=="modificarDistribuidor"){
-		$cedula=$_POST['cedula'] ;
-      	$nombre=$_POST['nombre'] ;
-      	$apellido1=$_POST['apellido1'];
-      	$apellido2=$_POST['apellido2'] ;
-      	$telefono=$_POST['telefono'] ;
-      	$direccion=$_POST['direccion'] ;
-      	$correo=$_POST['correo'] ;
-      	$id=$_POST['id'];
+		$cedula=htmlentities($_POST['cedula'] );
+      	$nombre=htmlentities($_POST['nombre'] );
+      	$apellido1=htmlentities($_POST['apellido1']);
+      	$apellido2=htmlentities($_POST['apellido2'] );
+      	$telefono=htmlentities($_POST['telefono'] );
+      	$direccion=htmlentities($_POST['direccion'] );
+      	$correo=htmlentities($_POST['correo'] );
+      	$id=htmlentities($_POST['id']);
 
-      	if(empty($cedula)||empty($nombre)||empty($apellido1)||empty($apellido2)||empty($telefono)||empty($direccion)){
+      	if(empty($cedula)||empty($nombre)||empty($apellido1)
+            ||empty($apellido2)||empty($telefono)||empty($direccion)
+            ||empty($correo) || empty($id)){
                   echo("false");
 
             }else{
@@ -28,13 +30,13 @@
       	}
 
 	}else if($action=="registrarDistribuidor") {
-		$cedula=$_POST['cedula'] ;
-      	$nombre=$_POST['nombre'] ;
-      	$apellido1=$_POST['apellido1'];
-      	$apellido2=$_POST['apellido2'] ;
-      	$telefono=$_POST['telefono'] ;
-      	$direccion=$_POST['direccion'] ;
-      	$correo=$_POST['correo'] ;
+		$cedula=htmlentities($_POST['cedula'] );
+      	$nombre=htmlentities($_POST['nombre'] );
+      	$apellido1=htmlentities($_POST['apellido1']);
+      	$apellido2=htmlentities($_POST['apellido2'] );
+      	$telefono=htmlentities($_POST['telefono'] );
+      	$direccion=htmlentities($_POST['direccion'] );
+      	$correo=htmlentities($_POST['correo'] );
       	if(empty($cedula)||empty($nombre)||empty($apellido1)||empty($apellido2)||empty($telefono)||empty($direccion)){
                   echo("false");
 
@@ -49,7 +51,7 @@
 
 	}else if($action=="eliminarDistribuidor"){
 
-            $id=$_POST['id'];
+            $id=htmlentities($_POST['id']);
             echo $DistribuidorBusiness->DistribuidorEliminar($id);
 
       }	
