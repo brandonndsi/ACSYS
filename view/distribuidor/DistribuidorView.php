@@ -29,6 +29,7 @@
           <?php
             include '../menuView.php';
            ?>
+
         <div class="col-md-8 col-md-offset-2">
             <h4>Lista de Distribuidor</h4>
         </div>
