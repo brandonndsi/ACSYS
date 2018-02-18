@@ -10,38 +10,50 @@
     </button>
     <a class="navbar-brand" href="#">ASOPROLESA</a>
   </div>
-  
+
   <div class="collapse navbar-collapse js-navbar-collapse">
     <ul class="nav navbar-nav">
       <li>
-        
+
         <li><a href="#">Empleados</a></li>
         <li><a href="#">Distribuidores</a></li>
-       
+
          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productores<span class="caret"></span></a>        
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productores<span class="caret"></span></a>
         <ul class="dropdown-menu mega-dropdown-menu">
           <li>
               <ul>
                 <li><a href="#">Productor Cliente</a></li>
                 <li><a href="#">Producto Socio</a></li>
-              
+
             </ul>
           </li>
-        </ul>       
+        </ul>
       </li>
             <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productos<span class="caret"></span></a>        
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productos<span class="caret"></span></a>
         <ul class="dropdown-menu mega-dropdown-menu">
           <li>
               <ul>
                 <li><a href="#">Productos Lacteos</a></li>
                 <li><a href="#">Productos Veterinarios</a></li>
-              
+
             </ul>
           </li>
-        </ul>       
+        </ul>
       </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas<span class="caret"></span></a>
+      <ul class="dropdown-menu mega-dropdown-menu">
+        <li>
+            <ul>
+              <li><a href="#">Ventanilla</a></li>
+              <li><a href="#">Distribuidor</a></li>
+              <li><a href="../ventas/veterinario.php">Veterinario</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -55,4 +67,3 @@
   </div><!-- /.nav-collapse -->
   </nav>
 </div>
-
