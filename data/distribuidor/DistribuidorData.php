@@ -18,9 +18,9 @@
         }
         return $datos;
     }
-    function DistribuidorModificar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo,$idpersona){
+    function DistribuidorModificar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo,$id){
         $con=$this->conexion->crearConexion();
-        $modificarDistribuidor = $con->query("CALL modificarDistribuidor('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direcion','$correo','$idpersona')");
+        $modificarDistribuidor = $con->query("CALL modificarDistribuidor('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo','$id')");
         $con = $this->conexion->cerrarConexion();
         if($modificarDistribuidor==1){
             return "true";
