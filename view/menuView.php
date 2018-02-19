@@ -1,4 +1,10 @@
+<?php 
+    session_start();
+    if(@!$_SESSION['user']){
 
+      header("Location:../index.php");
+    }
+?>
 <div class="container">
   <nav class="navbar navbar-inverse">
     <div class="navbar-header">
@@ -15,16 +21,20 @@
     <ul class="nav navbar-nav">
       <li>
 
-        <li><a href="#">Empleados</a></li>
-        <li><a href="#">Distribuidores</a></li>
+        <li><a href="../empleado/verEmpleadoView.php">Empleados</a></li>
+        <li><a href="../distribuidor/verDistribuidorView.php">Distribuidores</a></li>
+
 
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productores<span class="caret"></span></a>
         <ul class="dropdown-menu mega-dropdown-menu">
           <li>
               <ul>
-                <li><a href="#">Productor Cliente</a></li>
-                <li><a href="#">Producto Socio</a></li>
+                <li><a href="../productor/verProductorClienteView.php">Productor Cliente</a></li>
+                <li><a href="../productor/verProductorSocioView.php">Producto Socio</a></li>
+                <li><a href="#">Pago entrega de leche</a></li>
+                <li><a href="#">Ahorros</a></li>
+                <li><a href="#">Recepción de leche</a></li>
 
             </ul>
           </li>
@@ -35,13 +45,14 @@
         <ul class="dropdown-menu mega-dropdown-menu">
           <li>
               <ul>
-                <li><a href="#">Productos Lacteos</a></li>
-                <li><a href="#">Productos Veterinarios</a></li>
+                <li><a href="../producto/verProductoLacteoView.php">Productos Lacteos</a></li>
+                <li><a href="../producto/verProductoVeterinarioView.php">Productos Veterinarios</a></li>
 
             </ul>
           </li>
         </ul>
       </li>
+     
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas<span class="caret"></span></a>
       <ul class="dropdown-menu mega-dropdown-menu">
@@ -54,13 +65,45 @@
         </li>
       </ul>
     </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Préstamos<span class="caret"></span></a>
+      <ul class="dropdown-menu mega-dropdown-menu">
+        <li>
+            <ul>
+              <li><a href="#">Ventas</a></li>
+              <li><a href="#">Pagos</a></li>
+              
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#">Procesos</a></li>
+
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<span class="caret"></span></a>
+      <ul class="dropdown-menu mega-dropdown-menu">
+        <li>
+            <ul>
+              <li><a href="#">Ventas</a></li>
+              <li><a href="#">Pagos</a></li>
+              <li><a href="#">Préstamos</a></li>
+              <li><a href="#">Procesos</a></li>
+              <li><a href="#">Ahorros</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php session_start(); echo $_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo $_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Mi perfil</a></li>
-            <li><a href="#">Salir</a></li>
+            <li><a href="#">Actualizar precio de leche</a></li>
+            <li><a href="#">Junta Directiva</a></li>
+            <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>
+
           </ul>
         </li>
       </ul>

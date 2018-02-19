@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<?php 
+    session_start();
+    error_reporting(0);
+    if($_SESSION['user']!=null){
+
+        header("Location:view/productor/verProductorSocioView.php");
+
+    }
+
+?>
 <html>
   <head>
     <title>Sistema de planilla</title>
