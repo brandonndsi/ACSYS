@@ -34,7 +34,7 @@
                 <li><a href="../productor/verProductorSocioView.php">Producto Socio</a></li>
                 <li><a href="#">Pago entrega de leche</a></li>
                 <li><a href="#">Ahorros</a></li>
-                <li><a href="#">Recepción de leche</a></li>
+                <li><a href="../productor/recepcionLeche.php">Recepción de leche</a></li>
 
             </ul>
           </li>

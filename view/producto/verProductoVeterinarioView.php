@@ -131,7 +131,7 @@
                                             <label>Vía aplicación:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                         <p><select  class="span12" id="via" ></select></p></p>
+                                         <p><select class="btn btn-info" style="padding-right:18%;margin-left:2%" id="via" ></select></p></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -139,7 +139,7 @@
                                             <label>Función:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                          <p><select  class="span12" id="funcion" ></select></p></p>
+                                          <p><select class="btn btn-info" style="padding-left:1%;margin-left:13%" id="funcion" ></select></p></p>
                                         </div>
                                     </div>
                                         
