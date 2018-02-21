@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-02-2018 a las 21:53:13
+-- Tiempo de generación: 21-02-2018 a las 23:13:21
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -102,11 +102,16 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarempleados` ()  NO SQL
 BEGIN
-SELECT tbpersona.idpersona,tbpersona.documentoidentidadpersona,tbpersona.nombrepersona,tbpersona.apellido1persona, tbpersona.apellido2persona,tbpersona.telefonopersona,tbpersona.direccionpersona,tbpersona.correopersona, tbempleado.tipoempleado FROM tbempleado INNER JOIN tbpersona ON tbempleado.idpersonaempleado=tbpersona.idpersona WHERE tbempleado.estadoempleado="activo";
+SELECT tbpersona.idpersona,tbpersona.documentoidentidadpersona,tbpersona.nombrepersona,tbpersona.apellido1persona, tbpersona.apellido2persona,tbpersona.telefonopersona,tbpersona.direccionpersona,tbpersona.correopersona, tbempleado.tipoempleado, tbempleado.passwordempleado FROM tbempleado INNER JOIN tbpersona ON tbempleado.idpersonaempleado=tbpersona.idpersona WHERE tbempleado.estadoempleado="activo";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarfunciones` ()  BEGIN
 SELECT  tbfuncion.nombrefuncion FROM tbfuncion;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarJuntaDirectiva` ()  NO SQL
+BEGIN
+SELECT tbjuntadirectiva.idjuntadirectiva,tbjuntadirectiva.fechainicioperiodo,tbjuntadirectiva.fechafinalperiodo,tbjuntadirectiva.presidente, tbjuntadirectiva.vicepresidente,tbjuntadirectiva.secretario,tbjuntadirectiva.tesorero,tbjuntadirectiva.fiscal, tbjuntadirectiva.vocal1, tbjuntadirectiva.vocal2 FROM tbjuntadirectiva;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarproductolacteo` ()  BEGIN
@@ -342,6 +347,13 @@ CREATE TABLE `tbjuntadirectiva` (
   `vocal1` text NOT NULL,
   `vocal2` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbjuntadirectiva`
+--
+
+INSERT INTO `tbjuntadirectiva` (`idjuntadirectiva`, `fechainicioperiodo`, `fechafinalperiodo`, `presidente`, `vicepresidente`, `secretario`, `tesorero`, `fiscal`, `vocal1`, `vocal2`) VALUES
+(1, '2018-02-01', '2018-02-28', 'Gorge', 'Allan', 'Genesis', 'Lucas', 'Sofia', 'Raquel', 'Marcos');
 
 -- --------------------------------------------------------
 
@@ -958,7 +970,7 @@ ALTER TABLE `tbfuncion`
 -- AUTO_INCREMENT de la tabla `tbjuntadirectiva`
 --
 ALTER TABLE `tbjuntadirectiva`
-  MODIFY `idjuntadirectiva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idjuntadirectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tbpagoprestamo`
 --

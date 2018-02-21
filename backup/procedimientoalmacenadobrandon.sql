@@ -37,3 +37,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarempleados`(IN `id` VARCHAR
 UPDATE tbempleado SET passwordempleado=clave,tipoempleado=tipo
 WHERE idpersonaempleado=id and estadoempleado="activo"$$
 DELIMITER ;
+
+/* muestra la junta directiva*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarJuntaDirectiva`()
+    NO SQL
+BEGIN
+SELECT tbjuntadirectiva.idjuntadirectiva,tbjuntadirectiva.fechainicioperiodo,tbjuntadirectiva.fechafinalperiodo,tbjuntadirectiva.presidente, tbjuntadirectiva.vicepresidente,tbjuntadirectiva.secretario,tbjuntadirectiva.tesorero,tbjuntadirectiva.fiscal, tbjuntadirectiva.vocal1, tbjuntadirectiva.vocal2 FROM tbjuntadirectiva;
+END$$
+DELIMITER ;
