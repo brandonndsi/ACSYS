@@ -22,22 +22,31 @@ class dataJuntaDirectiva {
     }
 
     // registrar
-    function juntaDirectivaRegistrar() {
+    function juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final) {
 
+        $con = $this->conexion->crearConexion();
+        /* registra la junta */
+        $registrarJunta = $con->query("CALL registrarjuntadirectiva('$presidente','$vicepresidente','$secretario','$tesorero','$fiscal','$vocal1','$vocal2','$inicio','$final')");
 
+        if ($registrarJunta == 1) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
     //modificar
+    function juntaDirectivaModificar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final, $id) {
 
-    function juntaDirectivaModificar() {
+        $con = $this->conexion->crearConexion();
 
+        $modificarJunta = $con->query("CALL modificarJuntaDirectiva('$presidente','$vicepresidente','$secretario','$tesorero','$fiscal','$vocal1','$vocal2','$inicio','$final','$id')");
 
-    }
-
-    //eliminar
-    function juntaDirectivaEliminar($id) {
-
-
+        if ($modificarJunta == 1) {
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
 }
