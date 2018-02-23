@@ -17,6 +17,7 @@
           <script src="../../js/menuJs.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
+          <script src="../../js/productor/recepcionLecheJs.js"></script>
 
           <script>
             $( function() {
@@ -45,14 +46,17 @@
            <input type="text" id="fecha"  class="btn  caja" readonly="readonly">
            <select id="selectCliente"  style="background:white" class="btn  caja labelCaja"></select></div>
            <div>
-             <label  class="caja" >Entrega de la Mañana:</label>
-             <label  class="caja labelCaja">Entrega de la Tarde:</label> 
+             <label  class="caja" >Turno de entrega:</label>
+             <label  class="caja labelCaja">Peso de entrega:</label> 
            </div>
-           <input type="text" id="manana"   class="btn  caja ">
-           <input id="tarde"   class="btn  caja labelCaja">
+           <select type="text" id="turno" style="background:white"  class="btn  caja ">
+              <option>Mañana</option>
+              <option>Tarde</option>
+           </select>
+           <input id="peso"   class="btn  caja labelCaja">
 
            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <button class="btn btn-primary" onclick="registrarLeche()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
              <!--Modal de respuesta socio-->
             <div id="modalRespuesta" class="modal fade in">

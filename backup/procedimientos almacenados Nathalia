@@ -8,9 +8,7 @@ SELECT tbpersona.idpersona,tbpersona.documentoidentidadpersona,tbpersona.nombrep
 END$$
 DELIMITER $$
 
-UPDATE tbpersona SET documentoidentidadpersona=cedula, nombrepersona=nombre,apellido1persona=apellido1,apellido2persona=apellido2,telefonopersona=telefono,direccionpersona=direccion,correopersona=correo WHERE idpersona=id
 
-INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES (NULL, '305020820', 'Kervin', 'Araya', 'Romero', '84528925', 'El Sauce', 'kervin@gmail.com');
 
 DELIMITER $$
 CREATE PROCEDURE eliminarproductorsocio(id INT)
@@ -36,9 +34,6 @@ END$$
 DELIMITER $$
 
 
-
-
-
 DELIMITER $$
 CREATE PROCEDURE mostrarproductolacteo()
 BEGIN
@@ -61,7 +56,7 @@ SELECT  tbunidades.unidad FROM tbunidades;
 END$$
 DELIMITER $$
 
-eliminarproductolacteo
+
 
 DELIMITER $$
 CREATE PROCEDURE eliminarproductolacteo(codigo INT)
@@ -70,7 +65,7 @@ UPDATE tbproductoslacteos SET estadoproductoslacteos="inactivo" WHERE codigoprod
 END$$
 DELIMITER $$
 
-registrarproductolacteo
+
 
 
 DELIMITER $$
@@ -82,7 +77,7 @@ END$$
 DELIMITER $$ 
 
 
-mostrarproductoveterinario()
+
 
 DELIMITER $$
 CREATE PROCEDURE mostrarproductoveterinario()
@@ -106,10 +101,7 @@ VALUES (codigo,nombre,descripcion,dosis,dias,funcion,precio,"activo");
 END$$
 DELIMITER $$ 
 
- registrarproductoveterinario("3456789","lolita","sirve para curar","2cc","2","2","3","400")
-
- modificarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')
-
+ 
 DELIMITER $$
 CREATE PROCEDURE modificarproductoveterinario(codigo varchar(50),nombre text,descripcion text,dosis text,dias int,via int,funcion int,precio double )
 BEGIN
@@ -118,8 +110,6 @@ nombreproductoveterinario=nombre,descripcionproductoveterinario=descripcion,dosi
 END$$
 DELIMITER $$
 
-
-CALL  modificarproductoveterinario("344567","acetaminofen","sirve para el dolor de cabeza","20 cc",7,2,2,2000);
 
 
 DELIMITER $$
@@ -136,3 +126,72 @@ SELECT  tbviaaplicacion.nombreviaaplicacion FROM tbviaaplicacion;
 END$$
 DELIMITER $$
 
+
+DELIMITER $$
+CREATE PROCEDURE registrarLecheDiaria(cliente int,fecha date,turno text,peso double)
+BEGIN
+INSERT INTO tbpesalechediario (idpersonalechediario,fechaentregalechediario,turnopesolechediario,pesoturno, estadopesalechediario)
+VALUES (cliente,fecha,turno,peso,"activo");
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE ` verificarturno`(IN `fecha` DATE, IN `turno` TEXT) 
+SELECT tbpesalechediario.turnopesolechediario, tbpesalechediario.fechaentregalechediario FROM tbpesalechediario WHERE tbpesalechediario.fechaentregalechediario=fecha AND tbpesalechediario.turnopesolechediario=turno AND tbpesalechediario.idpersonalechediario=cliente
+DELIMITER $$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pruebas
+
+INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES (NULL, '305020820', 'Kervin', 'Araya', 'Romero', '84528925', 'El Sauce', 'kervin@gmail.com');
+
+registrarproductoveterinario("3456789","lolita","sirve para curar","2cc","2","2","3","400")
+
+modificarproductoveterinario('$codigo','$nombre','$descripcion','$precio','$dosis','$dias','$via','$funcion')
+CALL  modificarproductoveterinario("344567","acetaminofen","sirve para el dolor de cabeza","20 cc",7,2,2,2000);
+UPDATE tbpersona SET documentoidentidadpersona=cedula, nombrepersona=nombre,apellido1persona=apellido1,apellido2persona=apellido2,telefonopersona=telefono,direccionpersona=direccion,correopersona=correo WHERE idpersona=id

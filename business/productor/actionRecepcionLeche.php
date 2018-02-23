@@ -1,17 +1,23 @@
-<? php 
+<?php 
 
 	include 'businessRecepcionLeche.php';
 	$businessRecepcionLeche = new businessRecepcionLeche();
+  $action=$_POST['action'];
 	if($action=="registrarLeche") {
-		$cliente=$_POST['cliente'] ;
+		    $cliente=$_POST['cliente'] ;
       	$fecha=$_POST['fecha'] ;
-      	$tarde=$_POST['tarde'];
-      	$manana=$_POST['manana'];
+      	$turno=$_POST['turno'];
+      	$peso=$_POST['peso'];
               
-      	if(empty($tarde)||empty($manana)){
+      	if(empty($peso)){
             echo("false");
+        }else{
+        	echo $businessRecepcionLeche->registrarLeche($cliente,$fecha,$turno,$peso);
         }
-        echo $businessRecepcionLeche->registrarLeche($cliente,$fecha,$tarde,$manana);
+        
+    }if($action=='consultarRecepcion'){
+      $fecha=$_POST['fecha'];
+      echo $businessRecepcionLeche->consultarRecepcion($fecha);
     }
 
 

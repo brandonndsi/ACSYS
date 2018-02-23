@@ -32,9 +32,18 @@
               <ul>
                 <li><a href="../productor/verProductorClienteView.php">Productor Cliente</a></li>
                 <li><a href="../productor/verProductorSocioView.php">Producto Socio</a></li>
-                <li><a href="#">Pago entrega de leche</a></li>
+                
                 <li><a href="#">Ahorros</a></li>
-                <li><a href="../productor/recepcionLeche.php">Recepción de leche</a></li>
+                <li class="dropdown"><a href="../productor/recepcionLeche.php" >Recepción de leche<span class="caret"></span></a>
+                   <ul class="dropdown-menu mega-dropdown-menu">
+                     <li>
+                       <ul>
+                          <li><a href="../productor/verRecepcionLeche.php" >Ver </a></li>
+                          <li><a href="#">Pago entrega de leche</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                </li>
 
             </ul>
           </li>
@@ -70,8 +79,8 @@
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="#">Ventas</a></li>
-              <li><a href="#">Pagos</a></li>
+              <li><a href="#">Solicitud de préstamo</a></li>
+              <li><a href="#">Pago de préstamo</a></li>
               
           </ul>
         </li>
