@@ -1,8 +1,8 @@
-<?php 
+<?php
     session_start();
     if(@!$_SESSION['user']){
 
-      header("Location:../index.php");
+      header("Location:../../index.php");
     }
 ?>
 <div class="container">
@@ -61,7 +61,7 @@
           </li>
         </ul>
       </li>
-     
+
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas<span class="caret"></span></a>
       <ul class="dropdown-menu mega-dropdown-menu">
@@ -81,7 +81,7 @@
             <ul>
               <li><a href="#">Solicitud de préstamo</a></li>
               <li><a href="#">Pago de préstamo</a></li>
-              
+
           </ul>
         </li>
       </ul>
@@ -110,7 +110,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Mi perfil</a></li>
             <li><a href="#">Actualizar precio de leche</a></li>
-            <li><a href="#">Junta Directiva</a></li>
+            <li><a href="../juntaDirectiva/juntaDirectivaView.php">Junta Directiva</a></li>
             <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>
 
           </ul>
