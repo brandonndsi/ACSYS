@@ -62,3 +62,24 @@ BEGIN
 UPDATE tbjuntadirectiva SET presidente=presidente,vicepresidente=vicepresidente,secretario=secretario,tesorero=tesorero,fiscal=fiscal,vocal1=vocal1,vocal2=vocal2,fechainicioperiodo=inicio,fechafinalperiodo=final WHERE idjuntadirectiva = id;
 END$$
 DELIMITER ;
+
+/* loguin actualizado*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login`(IN `documentoidentidad` VARCHAR(50))
+    NO SQL
+SELECT tbempleado.passwordempleado,tbpersona.idpersona,tbpersona.nombrepersona, tbpersona.apellido1persona,tbpersona.apellido2persona,tbpersona.telefonopersona,tbpersona.correopersona FROM tbempleado INNER JOIN tbpersona ON tbempleado.idpersonaempleado=tbpersona.idpersona WHERE tbpersona.documentoidentidadpersona=documentoidentidad AND tbempleado.estadoempleado="activo"$$
+DELIMITER ;
+
+/* modificar contra*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarcontrasenia`(IN `id` VARCHAR(30), IN `pass` TEXT)
+    NO SQL
+UPDATE tbempleado SET  passwordempleado=pass WHERE idpersonaempleado = id$$
+DELIMITER ;
+
+/* login2 */
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login2`(IN `idpersona` VARCHAR(50))
+    NO SQL
+SELECT tbempleado.passwordempleado FROM tbempleado INNER JOIN tbpersona ON tbempleado.idpersonaempleado=tbpersona.idpersona WHERE tbpersona.idpersona=idpersona AND tbempleado.estadoempleado="activo"$$
+DELIMITER ;

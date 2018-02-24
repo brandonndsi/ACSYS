@@ -51,20 +51,6 @@
                 <tbody id="datos">
 
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Primer Apellido </th>
-                        <th>Segundo Apellido</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Correo</th>
-                        <th>Modificar</th>
-                        <th>Ver Imágenes</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
 

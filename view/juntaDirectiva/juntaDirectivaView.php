@@ -46,15 +46,6 @@
                 <tbody id="datos">
 
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>ID </th>
-                        <th>Inicio de Periodo</th>
-                        <th>Final de periodo </th>
-                        <th>Modificar</th>
-                        <th>Ver Miembros</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
 
