@@ -4,7 +4,7 @@ function cargarTabla(){
           "bDeferRender": true,
           "sordering": true,
           "responsive": true,
-          "sPaginationType": "full_numbers",
+          'sDom': 't',
 
           "oLanguage": {
               "sProcessing": "Procesando...",
@@ -63,4 +63,15 @@ function consultarProductorSocio(){
         consultarProductorCliente(html);
       });
     });
+}
+
+function agregarProductoCarritoBuscar(){
+  var codigo = getRadioButtonSelectedValue(document.table.radios);
+  alert(codigo);
+}
+
+
+function getRadioButtonSelectedValue(ctrl){
+    for(i=0;i<ctrl.length;i++)
+        if(ctrl[i].checked) return ctrl[i].value;
 }
