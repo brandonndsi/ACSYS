@@ -32,7 +32,7 @@ class dataRecepcionLeche {
         
 
     }
-
+    //verifica que el registro de leche en x turno no se haya realizado con anterioridad
     function verificarTurno($cliente,$fecha,$turno){
 
         $con=$this->conexion->crearConexion();
@@ -47,6 +47,17 @@ class dataRecepcionLeche {
 
     }
 
-    function consultar
+    function consultarRecepcion($fecha){
+        $con=$this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $consultar=$con->query("CALL consultarRecepcion('$fecha')");
+        $datos=array();
+        while($result=$consultar->fetch_assoc()){
+            $recepcion = array('idpersona' => $result['idpersona'],'idpesalechediario' => $result['idpesalechediario'] ,'nombrepersona' => $result['nombrepersona'],'apellido1persona' => $result['apellido1persona'],'apellido2persona' => $result['apellido2persona'],'turnomanana' => $result['pesoturno'],'turnotarde' =>0,'turno' =>$result['turnopesalechediario'] );
+            array_push($datos,$recepcion);  
+        }
+        return json_encode($datos);
+
+    }
 }
 ?>

@@ -44,9 +44,11 @@ function mostrarRecepcion(){
           html+="<tr>";
           html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+""+json[i].apellido2persona+"</td>";
           html+="<td>"+json[i].fechaentregalechediario+"</td>";
-          html+="<td>"+json[i].turnomañana+"</td>";
+          html+="<td>"+json[i].turnomanana+"</td>";
           html+="<td>"+json[i].turnotarde+"</td>";
-          html+="<td>"+json[i].pesototal+"</td>";
+          pesototal=json[i].turnomanana+json[i].turnotarde;
+
+          html+="<td>"+pesototal+"</td>";
           nombre=json[i].nombrepersona+" "+json[i].apellido1persona+""+json[i].apellido2persona;
           mañana=json[i].pesoturno;
           tarde=json[i].pesoturno;
@@ -92,6 +94,8 @@ function mostrarRecepcion(){
       });
   });
 }
+
+
 
 function modalModificarSocio(socio){
   string=socio.split('-');

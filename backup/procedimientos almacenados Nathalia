@@ -1,4 +1,5 @@
 INSERT INTO tbpersona(documentoidentidadpersona,nombrepersona, apellido1persona,apellido2persona,telefonopersona,direccionpersona,correopersona) VALUES (cedula,nombre,apellido1,apellido2,telefono,direccion,correo); 
+
 INSERT INTO tbproductorsocio(idpersonasocio,estadoproductorsocio) VALUES (SELECT idpersona FROM tbpersona order by idpersona desc limit 1, "activo");
 
 DELIMITER $$
@@ -141,10 +142,12 @@ SELECT tbpesalechediario.turnopesolechediario, tbpesalechediario.fechaentregalec
 DELIMITER $$
 
 
-
-
-
-
+DELIMITER $$
+CREATE PROCEDURE consultarRecepcion(fecha date)
+BEGIN
+SELECT tbpersona.idpesona,tbpesalechediario.idpesalechediario, tbpesalechediario.fechaentregalechediario,tbpesalechediario.turnopesolechediario,tbpesalechediario.pesoturno ,tbpersona.nombrepersona, tbpersona.apellido1persona, tbpersona.apellido2persona FROM tbpesalechediario INNER JOIN tbpersona ON tbpesalechediario.idpersonalechediario=tbpersona.idpersona WHERE tbpesalechediario.estadopesalechediario="activo" AND tbpesalechediario.fechaentregalechediario=fecha ORDER BY tbpesalechediario.idpersonalechediario DESC;    
+END$$
+DELIMITER $$
 
 
 

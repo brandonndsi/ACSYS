@@ -49,18 +49,3 @@ UPDATE `tbclientemayorista` SET `estadoclientemayorista`='Inactivo'
 WHERE idpersonamayorista=id;
 END$$
 DELIMITER ;
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarpersona`(IN `cedula` VARCHAR(30), IN `nombre` VARCHAR(30), IN `apellido1` VARCHAR(30), IN `apellido2` VARCHAR(30), IN `telefono` INT, IN `direccion` VARCHAR(30), IN `correo` VARCHAR(30))
-    NO SQL
-BEGIN
-INSERT INTO `tbpersona`(`documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES 
-(cedula,
-nombre,
-apellido1,
-apellido2,
-telefono,
-direccion,
-correo);
-END$$
-DELIMITER ;
