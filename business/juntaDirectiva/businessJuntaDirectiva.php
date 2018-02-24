@@ -14,19 +14,14 @@ class businessJuntaDirectiva {
         return $this->dataJuntaDirectiva->juntasDirectivasMostrar();
     }
 
-    public function juntaDirectivaRegistrar() {
+    public function juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final) {
 
-        return $this->dataJuntaDirectiva->juntaDirectivaRegistrar();
+        return $this->dataJuntaDirectiva->juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final);
     }
 
-    public function juntaDirectivaModificar() {
+    public function juntaDirectivaModificar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final, $id) {
 
-        return $this->dataJuntaDirectiva->juntaDirectivaModificar();
-    }
-
-    public function juntaDirectivaEliminar($id) {
-
-        return $this->dataJuntaDirectiva->juntaDirectivaEliminar($id);
+        return $this->dataJuntaDirectiva->juntaDirectivaModificar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final, $id);
     }
 
 }
