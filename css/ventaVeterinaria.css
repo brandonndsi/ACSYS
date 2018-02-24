@@ -5,6 +5,9 @@
 .selectCliente{
   width: 100%;
 }
+.selectProduct{
+  width: 83%;
+}
 .btn{
   margin-bottom: 30px;
 }
