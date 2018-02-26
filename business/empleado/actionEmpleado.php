@@ -20,12 +20,17 @@ if ($action == "consultarempleados") {
     $clave = htmlentities($_POST['clave']);
     $tipo = htmlentities($_POST['tipo']);
 
-    if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($apellido2) ||
-            empty($telefono) || empty($direccion) || empty($clave) || empty($tipo)) {
+    if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($direccion) || empty($clave) || empty($tipo)) {
         echo("false");
     } else {
         if (empty($correo)) {
             $correo = "N/A";
+        }
+        if (empty($apellido2)) {
+            $apellido2 = "N/A";
+        }
+        if (empty($telefono)) {
+            $telefono = "N/A";
         }if (!is_numeric($nombre)) {
             echo $businessEmpleado->empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo);
         }
@@ -43,11 +48,17 @@ if ($action == "consultarempleados") {
     $clave = htmlentities($_POST['clave']);
     $tipo = htmlentities($_POST['tipo']);
 
-    if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($apellido2) || empty($telefono) || empty($direccion) || empty($correo) || empty($id)) {
+    if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($direccion) || empty($id)) {
         echo("false");
     } else {
         if (empty($correo)) {
             $correo = "N/A";
+        }
+        if (empty($apellido2)) {
+            $apellido2 = "N/A";
+        }
+        if (empty($telefono)) {
+            $telefono = "N/A";
         }
         if (!is_numeric($nombre)) {
             echo $businessEmpleado->empleadoModificar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $id, $clave, $tipo);

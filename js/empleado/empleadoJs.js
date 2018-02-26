@@ -125,13 +125,14 @@ function registrarEmpleado() {
 
 function modalRegistrarEmpleado() {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='registrarEmpleado()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
+    botones += "<button id='boton' onclick='registrarEmpleado()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
     $("#botonesRegistrar").html(botones);
+    $('#boton').attr("disabled", true);
     $("#modalRegistrar").modal();
 }
 
 //modificar empleado//
-function modificarEmpleado(id,clave) {
+function modificarEmpleado(id, clave) {
 
     cedula = $("#documentoidentidadm").val();
     nombre = $("#nombrem").val();
@@ -143,8 +144,8 @@ function modificarEmpleado(id,clave) {
     password = $("#passwordempleadom").val();
     tipoEmpleado = $("#tipoempleadom").val();
 
-    if(password == "pass"){
-      password = clave;
+    if (password === "pass") {
+        password = clave;
     }
 
     $(document).ready(function () {
@@ -227,4 +228,110 @@ function modalEliminarEmpleado(empleado) {
     botones += "<button onclick='eliminarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
     $("#botonesEliminar").html(botones);
     $("#modalEliminar").modal();
+}
+
+function validarCamposCedula() {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+
+    if (cedula !== "") {
+        $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+function validarCamposNombre() {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+
+    if (nombre !== "") {
+
+        $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon2').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+
+    } else {
+        $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+function validarCamposApellido() {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+
+    if (apellido !== "") {
+
+        $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon3').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+
+    } else {
+        $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+function validarCamposDireccion() {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+
+    if (direccion !== "") {
+
+        $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon4').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+
+    } else {
+        $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposTipo() {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+
+    if (tipo !== "") {
+
+        $("#icon5").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon5').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+
+    } else {
+        $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#icon5').show();
+        $('#boton').attr("disabled", true);
+    }
 }

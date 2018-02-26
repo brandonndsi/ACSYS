@@ -114,7 +114,7 @@
                                 <label>Contraseña Actual:</label>
                             </div>
                             <div class="col-sm-5">
-                                <p><input type="password" class="form-control" name="passwordempleadoa" id="passwordempleadoa"></p>
+                                <p><input type="password" class="form-control" name="passwordempleadoa" id="passwordempleadoa" onkeyup="validarContraNueva()"></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -122,7 +122,7 @@
                                 <label>Nueva Contraseña:</label>
                             </div>
                             <div class="col-sm-5">
-                                <p><input type="password" class="form-control" name="passwordempleadon" id="passwordempleadon"></p>
+                                <p><input type="password" class="form-control" name="passwordempleadon" id="passwordempleadon" onkeyup="validarContraseniaNueva()"></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -130,8 +130,9 @@
                                 <label>Confirmar Contraseña:</label>
                             </div>
                             <div class="col-sm-5">
-                                <p><input type="password" class="form-control" name="passwordempleadoc" id="passwordempleadoc"></p>
-                            </div> 
+                                <p><input type="password" class="form-control" name="passwordempleadoc" id="passwordempleadoc" onkeyup="validarContraseniaNueva()"></p>  
+                            </div> <br><br><br><br>
+                            <div id="icon"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
