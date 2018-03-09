@@ -1,6 +1,6 @@
 INSERT INTO tbpersona(documentoidentidadpersona,nombrepersona, apellido1persona,apellido2persona,telefonopersona,direccionpersona,correopersona) VALUES (cedula,nombre,apellido1,apellido2,telefono,direccion,correo); 
 
-INSERT INTO tbproductorsocio(idpersonasocio,estadoproductorsocio) VALUES (SELECT idpersona FROM tbpersona order by idpersona desc limit 1, "activo");
+INSERT INTO tbproductorsocio(idpersonasocio,estadoproductorsocio,ahorroporlitroproductorsocio) VALUES (SELECT idpersona FROM tbpersona order by idpersona desc limit 1, "activo",0);
 
 DELIMITER $$
 CREATE PROCEDURE mostrarproductoresclientes()
@@ -30,7 +30,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE registrarproductorcliente()
 BEGIN
-INSERT INTO tbproductorcliente(idpersonacliente,estadoproductorcliente) VALUES ((SELECT idpersona FROM tbpersona order by idpersona desc limit 1), "activo");
+BEGIN INSERT INTO tbproductorcliente(idpersonacliente,estadoproductorcliente,ahorroporlitroproductorcliente) VALUES ((SELECT idpersona FROM tbpersona order by idpersona desc limit 1), "activo",0);
 END$$
 DELIMITER $$
 
@@ -152,8 +152,20 @@ DELIMITER $$
 
 
 
+DELIMITER $$
+CREATE PROCEDURE modificarAhorroCliente(id INT, ahorro DOUBLE)
+BEGIN
+UPDATE tbproductorcliente  SET ahorroporlitroproductorcliente=ahorro WHERE idpersonacliente=id AND estadoproductorcliente="activo";
+END$$
+DELIMITER $$
 
 
+DELIMITER $$
+CREATE PROCEDURE modificarAhorroSocio(id INT, ahorro DOUBLE)
+BEGIN
+UPDATE tbproductorsocio  SET ahorroporlitroproductorsocio=ahorro WHERE idpersonasocio=id AND estadoproductorsocio="activo";
+END$$
+DELIMITER $$
 
 
 
