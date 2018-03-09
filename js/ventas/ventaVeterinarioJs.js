@@ -66,8 +66,7 @@ function consultarProductorSocio(){
 }
 
 function agregarProductoCarritoBuscar(){
-  var codigo = getRadioButtonSelectedValue(document.table.radios);
-  alert(codigo);
+  alert($('input:radio[name=radios]:checked').val());
 }
 
 
