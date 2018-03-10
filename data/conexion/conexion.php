@@ -4,7 +4,7 @@
 		private $pass;
 		private $server;
 		private $db;
-		private $link;
+		private  $link;
 		function __construct(){
 			$hostName = gethostname();
       switch ($hostName) {
@@ -31,7 +31,11 @@
 		}
 
 		function crearConexion(){
+			
+				
 			$this->link =mysqli_connect($this->server,$this->user,$this->pass,$this->db);
+			
+			
 			return $this->link;
 		}
 		function cerrarConexion(){

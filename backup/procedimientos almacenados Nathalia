@@ -168,6 +168,27 @@ END$$
 DELIMITER $$
 
 
+DELIMITER $$
+CREATE PROCEDURE retornarMontoAhorroSocio(id INT)
+BEGIN
+SELECT tbproductorsocio.ahorroporlitroproductorsocio FROM tbproductorsocio WHERE idpersonasocio=id AND estadoproductorsocio="activo";
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE retornarMontoAhorroCliente(id INT)
+BEGIN
+SELECT tbproductorcliente.ahorroporlitroproductorsocio FROM tbproductorcliente WHERE idpersonacliente=id AND estadoproductorcliente="activo";
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE registrarAhorroTotalSemanal(id INT,montoAhorro DOUBLE,litrosEntregados DOUBLE,fecha DATE)
+BEGIN
+INSERT INTO tbahorrosemanal(idpersonaahorro,montoahorrosemanalporlitro,litrosentregadosahorrosemanal,fechaentregapago,estadoahorrosemanal) VALUES(id,montoAhorro,litrosEntregados,fecha,"activo");
+END$$
+DELIMITER $$
+
 
 
 
