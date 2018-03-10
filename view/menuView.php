@@ -68,7 +68,7 @@
         <li>
             <ul>
               <li><a href="#">Ventanilla</a></li>
-              <li><a href="#">Distribuidor</a></li>
+              <li><a href="../ventas/distribuidor.php">Distribuidor</a></li>
               <li><a href="../ventas/veterinario.php">Veterinario</a></li>
           </ul>
         </li>
