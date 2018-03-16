@@ -67,7 +67,7 @@
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="#">Ventanilla</a></li>
+              <li><a href="../ventas/ventanilla.php">Ventanilla</a></li>
               <li><a href="../ventas/distribuidor.php">Distribuidor</a></li>
               <li><a href="../ventas/veterinario.php">Veterinario</a></li>
           </ul>

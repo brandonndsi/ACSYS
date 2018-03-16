@@ -9,7 +9,7 @@ DELIMITER ;
 
 /*insertar empleado*/
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado`(IN `clave` VARCHAR(30), IN `tipo` TEXT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado`(IN `clave` TEXT, IN `tipo` TEXT)
     NO SQL
 INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,"activo")$$
 DELIMITER ;
@@ -32,7 +32,7 @@ DELIMITER ;
 
 /* actualiza la tabla empleado de un empleado*/
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarempleados`(IN `id` VARCHAR(30), IN `clave` VARCHAR(15), IN `tipo` TEXT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarempleados`(IN `id` VARCHAR(30), IN `clave` TEXT, IN `tipo` TEXT)
     NO SQL
 UPDATE tbempleado SET passwordempleado=clave,tipoempleado=tipo
 WHERE idpersonaempleado=id and estadoempleado="activo"$$
