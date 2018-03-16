@@ -19,6 +19,7 @@
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
           <script src="../../js/autocomplete.js"></script>
             <script>
+                localStorage.clear();
                 $(document).ready(function () {
                 $('[data-toggle="tooltip"]');
                 });
@@ -41,7 +42,6 @@
                      <tr>
                          <th>Codigo</th>
                          <th>Articulo</th>
-                         <th>Stock</th>
                          <th>P. Venta</th>
                          <th>Cantidad</th>
                          <th>Descuento</th>
