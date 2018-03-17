@@ -73,7 +73,7 @@
                                             <label>Cédula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidad" placeholder="Documento de identidad"></p>
+                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidad"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -81,7 +81,7 @@
                                             <label>Nombre Completo:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" id="nombre" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" name="nombre" id="nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -89,16 +89,16 @@
                                             <label>Monto de Ahorro:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="ahorro" id="ahorro" placeholder="Teléfono"></p>
+                                            <p><input type="text" class="span12" name="ahorro" id="ahorro"></p>
                                         </div>
                                     </div>      
                                 </form>
                             </center>
                         </div>
                         <div class="modal-footer">
-                            <div id="botones">
-                                
-                            </div>
+                            <div class="col-sm-8" id="btn">
+                            <div id="botones"></div>
+                        </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->

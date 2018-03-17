@@ -16,7 +16,7 @@
           <script src="../../js/jquery.dataTables.js"></script>
           <script src="../../js/menuJs.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-          <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
+          <script src="../../js/ventas/ventaDistribuidor.js"></script>
           <script src="../../js/ventas/autocompleteDistribuidor.js"></script>
             <script>
                 $(document).ready(function () {
@@ -82,10 +82,10 @@
                           </tbody>
                       </table>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="foo">
                         <p>
                           <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar">Cancelar</button>
-                          <button data-dismiss='modal' onclick="agregarProductoCarritoBuscar()" class="btn btn-primary" id="btn-enviar">Agregar</button>
+                          <button data-dismiss='modal' onclick="agregarProductoCarritoBuscar();" class="btn btn-primary" id="btn-enviar">Agregar</button>
                         </p>
                     </div>
                 </div><!-- /.modal-content -->
