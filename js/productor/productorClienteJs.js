@@ -129,7 +129,7 @@ function mostrarProductores(){
           cliente="'"+documentoidentidad+"-"+nombre +"-"+primerapellido+"-"+segundoapellido+"-"+telefono+"-"+direccion+"-"+correo+"-"+id+"'";
 
           html+='<td><a href="javascript:modalModificarCliente('+cliente+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-          html+='<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+          html+='<td><a href="javascript:mostrarImagenes('+json[i].documentoidentidadpersona+')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
           html+='<td><a href="javascript:modalEliminarCliente('+cliente+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
         }
         $("#datos").html(html);
@@ -202,4 +202,7 @@ function modalEliminarCliente(cliente){
          
       });
   });
+}
+function mostrarImagenes(id){
+  location.href="../../view/productor/verImagenProductorView.php";
 }

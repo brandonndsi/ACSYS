@@ -119,6 +119,16 @@ function registrarJunta() {
             document.getElementById("vocal2r").value = "";
             document.getElementById("fechainicioperiodor").value = "";
             document.getElementById("fechafinalperiodor").value = "";
+            
+            $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
         });
     });
 }
@@ -126,9 +136,12 @@ function registrarJunta() {
 function modalRegistrarJunta() {
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='registrarJunta()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
+    botones += "<button id='boton' onclick='registrarJunta()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
     $("#botonesRegistrar").html(botones);
+    $('#boton').attr("disabled", true);
     $("#modalRegistrar").modal();
+
+
 }
 
 //modificar empleado//
@@ -210,4 +223,229 @@ function modalVerJunta(miembros) {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     $("#botonesVer").html(botones);
     $("#modalVer").modal();
+}
+
+function validarCamposPresidente() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (presidente !== "") {
+        $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarVicepresidente() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (vicepresidente !== "") {
+        $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon2').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposSecretario() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (secretario !== "") {
+        $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon3').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposTesorero() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (tesorero !== "") {
+        $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon4').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposFiscal() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (fiscal !== "") {
+        $("#icon5").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon5').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposVocal1() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (vocal1 !== "") {
+        $("#icon6").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon6').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposVocal2() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (vocal2 !== "") {
+        $("#icon7").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon7').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposInicio() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (inicio !== "") {
+        $("#icon8").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon8').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposFinal() {
+
+    presidente = $("#presidenter").val();
+    vicepresidente = $("#vicepresidenter").val();
+    secretario = $("#secretarior").val();
+    tesorero = $("#tesoreror").val();
+    fiscal = $("#fiscalr").val();
+    vocal1 = $("#vocal1r").val();
+    vocal2 = $("#vocal2r").val();
+    inicio = $("#fechainicioperiodor").val();
+    final = $("#fechafinalperiodor").val();
+
+    if (final !== "") {
+        $("#icon9").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon9').show();
+        if (presidente !== "" && vicepresidente !== "" && secretario !== "" && tesorero !== "" && fiscal !== ""
+                && vocal1 !== "" && vocal2 !== "" && inicio !== "" && final !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
 }

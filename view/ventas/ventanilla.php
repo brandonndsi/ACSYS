@@ -17,7 +17,7 @@
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
-          <script src="../../js/autocomplete.js"></script>
+          <script src="../../js/autocompleteVentanilla.js"></script>
             <script>
                 localStorage.clear();
                 $(document).ready(function () {
@@ -30,8 +30,8 @@
         <?php
             include '../menuView.php';
         ?>
-         <div class="ventaVeterinaria">
-           <h4>Ventas veterinarios</h4>
+         <div class="ventaVentanilla">
+           <h4>Ventas ventanilla</h4>
            <label>Cliente:</label>
            <select id="selectCliente"  class="btn btn-info selectCliente">
            </select>
@@ -44,6 +44,7 @@
                          <th>Articulo</th>
                          <th>P. Venta</th>
                          <th>Cantidad</th>
+                         <th>Descuento</th>
                          <th>Total</th>
                          <th>Eliminar</th>
                      </tr>
@@ -56,7 +57,7 @@
            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
            <button class="btn btn-primary">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
-         <!--Modal buscar productos veterinarios-->
+         <!--Modal buscar productos -->
         <div id="modalProductosVeterinarioVenta" class="modal fade in">
             <div  class="modal-dialog">
                 <div class="modal-content">
