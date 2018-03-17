@@ -65,6 +65,21 @@ function consultarProductorSocio(){
     });
 }
 
+function procesarVenta(){
+  $(document).ready(function () {
+      $.post('../../business/ventas/actionVentaVeterinaria.php', {
+            action : 'procesarVenta',
+            productos:localStorage.getItem("listaProductos"),
+            idCliente:document.getElementById('selectCliente').value,
+            totalNeto:document.getElementById('totalPagar').value,
+            totalBruto:document.getElementById('totalPagar').value,
+      }, function(responseText) {
+
+          alert(responseText);
+      });
+    });
+}
+
 function agregarProductoCarritoBuscar(){
   $('#listaProductosVeterinarios').dataTable().fnDestroy();
   var code = $('input:radio[name=radios]:checked').val();
@@ -107,6 +122,7 @@ function agregarProductoCarritoBuscar(){
           html+="</tr>";
           total= total + (listaProductos[i].precio*listaProductos[i].cantidad);
         }
+        document.getElementById('totalPagar').value=total;
         $("#datos").html(html);
         $(document).ready(function() {
             $('#listaProductosVeterinarios').DataTable({

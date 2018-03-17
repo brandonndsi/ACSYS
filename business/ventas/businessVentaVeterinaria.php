@@ -13,7 +13,7 @@
     }
 
     function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
-      return $this->dataVentaVeterinaria->procesarVenta($productos,$idCliente,$total);
+      return $this->dataVentaVeterinaria->procesarVenta($productos,$idCliente,$totalNeto,$totalBruto);
     }
   }
 

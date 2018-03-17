@@ -16,19 +16,22 @@
       return json_encode($query->fetch_assoc());
     }
 
-    function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
-      $con = $this->conexion->crearConexion();
-      $facturaVenta = $this->getFactura();
-      $idVenta = $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
-      $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
-    }
-
     function getFactura(){
       $con = $this->conexion->crearConexion();
       $con->set_charset("UTF8");
       $sqlQuery = $con->query("SELECT ultimafactura FROM tbfacturero");
       $factura = $sqlQuery->fetch_assoc()['ultimafactura'];
       return $factura;
+    }
+
+    function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){
+      $con = $this->conexion->crearConexion();
+      $con->set_charset("UTF8");
+      $tipoVenta = "Veterinaria";
+      $fecha = date('Y-m-d');
+      $hora = date("g:i A");
+      $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
+      return $sqlQuery->fetch_assoc()['idventa'];
     }
 
     function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
@@ -47,23 +50,21 @@
       $con->set_charset("UTF8");
       $productos = json_decode($productos);
       foreach ($productos as $producto) {
+        echo($producto->precio);
         $total = $producto->precio * $producto->cantidad;
-        $con->query("CALL insertarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
+        $con->query("CALL registrarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
       }
     }
 
-    function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){
-      $con = $this->conexion->crearConexion();
-      $con->set_charset("UTF8");
-      $tipoVenta = "Veterinaria";
-      $fecha = date('Y-m-d');
-      $hora = date("g:i A");
-      $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
-      if($sqlQuery == 1){
-        return true;
-      }else{
-        return false;
+    function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
+      $facturaVenta = $this->getFactura();
+      $idVenta = $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
+      if($idVenta != 0){
+        $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
       }
+      $this->registrarProductosVentaVeterinaria($productos,$idVenta);
     }
+
+
   }
  ?>
