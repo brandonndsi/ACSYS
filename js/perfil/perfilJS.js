@@ -23,21 +23,17 @@ function modificarContrasenia() {
             $("#mensaje").html(respuesta);
             $("#modalRespuesta").modal();
 
-            document.getElementById("idpersonaempleado").value = "";
             document.getElementById("passwordempleadoa").value = "";
             document.getElementById("passwordempleadon").value = "";
             document.getElementById("passwordempleadoc").value = "";
+            
+            $('#icon').hide();
         });
     }
     );
 }
 
 function modalModificarContrasenia() {
-
-    document.getElementById("idpersonaempleado").value = "";
-    document.getElementById("passwordempleadoa").value = "";
-    document.getElementById("passwordempleadon").value = "";
-    document.getElementById("passwordempleadoc").value = "";
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button id='boton' onclick='modificarContrasenia()' data-dismiss='modal' class='btn btn-primary'>Cambiar</button></p>";

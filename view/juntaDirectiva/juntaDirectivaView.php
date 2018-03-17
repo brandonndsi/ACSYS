@@ -56,7 +56,7 @@
 
         <!--Modal Registrar-->
         <div id="modalRegistrar" class="modal" role="dialog">
-            <div  class="modal-dialog" role="document">
+            <div  class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Registrar Junta Directiva</h4>
@@ -68,77 +68,105 @@
                         <div style="width:50%; float:left;">
                             <input type="hidden" name="idjuntadirectivar" ><!--este es el campo que está como llave primaria en la base de datos-->
                             <div class="form-group">
-                                <div class="col-sm-5">
-                                    <label>Presidente:</label>
+                                <div class="col-sm-6">
+                                    <label>Presidente:
+                                        <a id="icon">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a>
+                                    </label>
                                 </div>
-                                <div class="col-sm-7">
-                                    <p><input type="text" class="form-control" class="span12" name="presidenter" id="presidenter" placeholder="Presidente"></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    <label>Vicepresidente:</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <p><input type="text" class="form-control" class="span12" name="vicepresidenter" id="vicepresidenter" placeholder="Vicepresidente" ></p>
+                                <div class="col-sm-6">
+                                    <p><input type="text" class="form-control" class="span12" name="presidenter" id="presidenter" placeholder="Presidente" onkeyup="validarCamposPresidente()"></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-5">
-                                    <label>Secretario:</label>
+                                <div class="col-sm-6">
+                                    <label>Vicepresidente:
+                                        <a id="icon2">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
-                                <div class="col-sm-7">
-                                    <p><input type="text" class="form-control" class="span12" name="secretarior" id="secretarior" placeholder="Secretario" ></p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    <label>Tesorero:</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <p><input type="text" class="form-control" class="span12" name="tesoreror" id="tesoreror" placeholder="Tesorero" ></p>
+                                <div class="col-sm-6">
+                                    <p><input type="text" class="form-control" class="span12" name="vicepresidenter" id="vicepresidenter" placeholder="Vicepresidente" onkeyup="validarVicepresidente()"></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-5">
-                                    <label>Fiscal:</label>
+                                <div class="col-sm-6">
+                                    <label>Secretario:
+                                        <a id="icon3">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
-                                <div class="col-sm-7">
-                                    <p><input type="text" class="form-control" class="span12" name="fiscalr" id="fiscalr" placeholder="Fiscal" ></p>
+                                <div class="col-sm-6">
+                                    <p><input type="text" class="form-control" class="span12" name="secretarior" id="secretarior" placeholder="Secretario" onkeyup="validarCamposSecretario()"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label>Tesorero:
+                                        <a id="icon4">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><input type="text" class="form-control" class="span12" name="tesoreror" id="tesoreror" placeholder="Tesorero" onkeyup="validarCamposTesorero()"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label>Fiscal:
+                                        <a id="icon5">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><input type="text" class="form-control" class="span12" name="fiscalr" id="fiscalr" placeholder="Fiscal" onkeyup="validarCamposFiscal()"></p>
                                 </div>
                             </div>
                         </div>
                         <div style="width:50%; float:left;">
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label>Vocal 1:</label>
+                                    <label>Vocal 1:
+                                        <a id="icon6">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="text" class="form-control" class="span12" name="vocal1r" id="vocal1r" placeholder="Vocal 1" ></p>
+                                    <p><input type="text" class="form-control" class="span12" name="vocal1r" id="vocal1r" placeholder="Vocal 1" onkeyup="validarCamposVocal1()" ></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label>Vocal 2:</label>
+                                    <label>Vocal 2:
+                                        <a id="icon7">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="text" class="form-control" class="span12" name="vocal2r" id="vocal2r" placeholder="Vocal 2" ></p>
+                                    <p><input type="text" class="form-control" class="span12" name="vocal2r" id="vocal2r" placeholder="Vocal 2" onkeyup="validarCamposVocal2()"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label>Inicio:</label>
+                                    <label>Inicio:
+                                        <a id="icon8">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="date" class="form-control" class="span12" name="fechainicioperiodor" id="fechainicioperiodor"></p>
+                                    <p><input type="date" class="form-control" class="span12" name="fechainicioperiodor" id="fechainicioperiodor" onchange="validarCamposInicio()"></p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-4">
-                                    <label>Final:</label>
+                                    <label>Final:
+                                        <a id="icon9">
+                                            <span class='glyphicon-asterisk' style= 'color:red'></span>
+                                        </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="date" class="form-control" class="span12" name="fechafinalperiodor" id="fechafinalperiodor"></p>
+                                    <p><input type="date" class="form-control" class="span12" name="fechafinalperiodor" id="fechafinalperiodor" onchange="validarCamposFinal()"></p>
                                 </div>
                             </div>
                         </div>
@@ -252,7 +280,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
-        
+
         <!--Modal de ver miembros de Junta-->
         <div id="modalVer" class="modal fade in">
             <div  class="modal-dialog">

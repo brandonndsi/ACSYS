@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-03-2018 a las 02:55:22
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 17-03-2018 a las 03:28:29
+-- Versión del servidor: 10.1.26-MariaDB
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -351,6 +353,16 @@ INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado
 (1, '$2y$10$PXqIWhFC1PlthoIhvJHL7.8da7cBhjdZg0jZh/KcfCrBxrx0J31jm', '', NULL, NULL, 'activo'),
 (12, '$2y$10$rbKXQbZ.', 'Bodega', NULL, NULL, 'activo'),
 (13, '$2y$10$fT2E4Vs3GYFUmSYV347.pe7FYDensRubdjRs0Nfcn3dTX6YdxANLy', 'Administrador', NULL, NULL, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbfacturero`
+--
+
+CREATE TABLE `tbfacturero` (
+  `ultimafactura` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -756,7 +768,8 @@ CREATE TABLE `tbventa` (
   `horaventa` time NOT NULL,
   `totalbrutoventa` double NOT NULL,
   `totalnetoventa` double NOT NULL,
-  `tipoventa` text NOT NULL
+  `tipoventa` text NOT NULL,
+  `idpersonaventa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -994,7 +1007,8 @@ ALTER TABLE `tbunidades`
 -- Indices de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
-  ADD PRIMARY KEY (`idventa`);
+  ADD PRIMARY KEY (`idventa`),
+  ADD KEY `idpersonaventa` (`idpersonaventa`);
 
 --
 -- Indices de la tabla `tbventaporcobrar`
@@ -1018,121 +1032,145 @@ ALTER TABLE `tbviaaplicacion`
 --
 ALTER TABLE `tbahorrosemanal`
   MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbcobrovacaseca`
 --
 ALTER TABLE `tbcobrovacaseca`
   MODIFY `idcobrovacaseca` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbcompramateriaprima`
 --
 ALTER TABLE `tbcompramateriaprima`
   MODIFY `idcompramateriaprima` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbcuotavacaseca`
 --
 ALTER TABLE `tbcuotavacaseca`
   MODIFY `idcuotavacaseca` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbfuncion`
 --
 ALTER TABLE `tbfuncion`
   MODIFY `idfuncion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `tbjuntadirectiva`
 --
 ALTER TABLE `tbjuntadirectiva`
   MODIFY `idjuntadirectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
   MODIFY `idpagoprestamo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbpagoventa`
 --
 ALTER TABLE `tbpagoventa`
   MODIFY `idpagoventa` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbperiodopagoprestamo`
 --
 ALTER TABLE `tbperiodopagoprestamo`
   MODIFY `idperiodopagoprestamo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbpersona`
 --
 ALTER TABLE `tbpersona`
   MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT de la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
   MODIFY `idpesalechediario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT de la tabla `tbpreciolitroleche`
 --
 ALTER TABLE `tbpreciolitroleche`
   MODIFY `idpreciolitroleche` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
   MODIFY `idprestamo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
   MODIFY `idprestamoporcobrar` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbproceso`
 --
 ALTER TABLE `tbproceso`
   MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbproductoresvacaseca`
 --
 ALTER TABLE `tbproductoresvacaseca`
   MODIFY `idproductoresvacaseca` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
   MODIFY `idproductoveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT de la tabla `tbtasaprestamo`
 --
 ALTER TABLE `tbtasaprestamo`
   MODIFY `idtasaprestamo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbunidades`
 --
 ALTER TABLE `tbunidades`
   MODIFY `idunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
   MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `tbviaaplicacion`
 --
 ALTER TABLE `tbviaaplicacion`
   MODIFY `idviaaplicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -1241,10 +1279,17 @@ ALTER TABLE `tbproductosveterinarios`
   ADD CONSTRAINT `tbproductosveterinarios_ibfk_2` FOREIGN KEY (`viaaplicacionveterinarios`) REFERENCES `tbviaaplicacion` (`idviaaplicacion`);
 
 --
+-- Filtros para la tabla `tbventa`
+--
+ALTER TABLE `tbventa`
+  ADD CONSTRAINT `tbventa_ibfk_1` FOREIGN KEY (`idpersonaventa`) REFERENCES `tbpersona` (`idpersona`);
+
+--
 -- Filtros para la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   ADD CONSTRAINT `tbventaporcobrar_ibfk_1` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

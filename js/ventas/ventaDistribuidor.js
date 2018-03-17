@@ -37,8 +37,8 @@ function cargarTabla(){
 
 function consultarProductorCliente(html){
   $(document).ready(function () {
-      $.post('../../business/productor/actionProductorCliente.php', {
-              action : 'consultarproductores'
+      $.post('../../business/distribuidor/DistribuidorAccion.php', {
+              action : 'consultarDistribuidor'
       }, function(responseText) {
         json = JSON.parse(responseText);
         for(i = 0 ;i<json.length; i++){
@@ -51,8 +51,8 @@ function consultarProductorCliente(html){
 }
 function consultarProductorSocio(){
   $(document).ready(function () {
-      $.post('../../business/productor/actionProductorSocio.php', {
-            action : 'consultarproductores'
+      $.post('../../business/distribuidor/DistribuidorAccion.php', {
+            action : 'consultarDistribuidor'
       }, function(responseText) {
         json = JSON.parse(responseText);
         html = "";
