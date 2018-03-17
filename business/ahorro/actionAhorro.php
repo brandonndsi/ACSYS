@@ -18,6 +18,15 @@
       		echo "false";
       	}
 
+	}else if($action=="consultarMontoAhorroTotal"){
+
+		echo $businessAhorro->ahorroMontoTotalMostrar();
+
+	}else if($action=="pagarAhorro"){
+		$idProductor = $_POST['idProductor'];
+		echo $businessAhorro->pagarAhorro($idProductor);
+
 	}
+
 
 ?>

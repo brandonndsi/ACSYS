@@ -126,17 +126,25 @@
             return $montoTotal['ahorroporlitroproductorsocio'];
         }
 
-         function verAhorroTotal(){
-
-            
-         }
+       
 
          function retornarClienteAhorroTotal(){
             $con=$this->conexion->crearConexion();
             $con->set_charset("UTF8");
             $mostrar= $con->query("CALL mostrarproductoresclientes()");
+
             while($row=$mostrar->fetch_assoc()){
-                $newRow= array('tipo'=>"cliente",'documentoidentidad' => $row['documentoidentidadpersona'],'nombre' =>$row['nombrepersona'],'apellido1'=>$row['apellido1persona'],'apellido2' =>$row['apellido2persona'],'id' =>$row['idpersona'],'ahorro' => $row['ahorroporlitroproductorcliente'] );
+                $idpersona=$row['idpersona'];
+                $con1=$this->conexion->crearConexion();
+                $con1->set_charset("UTF8");
+                $mostrarahorrototal=$con1->query("SELECT montoahorrosemanalporlitro,litrosentregadosahorrosemanal FROM tbahorrosemanal WHERE idpersonaahorro='$idpersona' AND estadoahorrosemanal='activo'");
+                $total=0;
+                while($row2=$mostrarahorrototal->fetch_assoc()){
+                    $total+=($row2['montoahorrosemanalporlitro']*$row2['litrosentregadosahorrosemanal']);
+
+
+                }
+                $newRow= array('tipo'=>"cliente",'documentoidentidad' => $row['documentoidentidadpersona'],'nombre' =>$row['nombrepersona'],'apellido1'=>$row['apellido1persona'],'apellido2' =>$row['apellido2persona'],'id' =>$row['idpersona'],'ahorro' => $total );
                 array_push($this->lista,$newRow);
             }
 
@@ -148,16 +156,40 @@
             $con->set_charset("UTF8");
             $mostrar=$con->query("CALL mostrarproductores()");
             while($row=$mostrar->fetch_assoc()){
-                $newRow= array('tipo'=> "socio",'documentoidentidad' => $row['documentoidentidadpersona'],'nombre' =>$row['nombrepersona'],'apellido1'=>$row['apellido1persona'],'apellido2' =>$row['apellido2persona'],'id' =>$row['idpersona'],'ahorro' => $row['ahorroporlitroproductorsocio'] );
+                $idpersona=$row['idpersona'];
+                $con1=$this->conexion->crearConexion();
+                $con1->set_charset("UTF8");
+                $mostrarahorrototal=$con1->query("SELECT montoahorrosemanalporlitro,litrosentregadosahorrosemanal FROM tbahorrosemanal WHERE idpersonaahorro='$idpersona' AND estadoahorrosemanal='activo'");
+                $total=0;
+                while($row2=$mostrarahorrototal->fetch_assoc()){
+                    $total+=($row2['montoahorrosemanalporlitro']*$row2['litrosentregadosahorrosemanal']);
+
+
+                }
+                $newRow= array('tipo'=> "socio",'documentoidentidad' => $row['documentoidentidadpersona'],'nombre' =>$row['nombrepersona'],'apellido1'=>$row['apellido1persona'],'apellido2' =>$row['apellido2persona'],'id' =>$row['idpersona'],'ahorro' => $total );
                 array_push($this->lista,$newRow);
             }
 
         }
 
+        function ahorroMontoTotalMostrar(){
+            
+            $this->retornarSocioAhorroTotal();
+            $this->retornarClienteAhorroTotal();
+            return json_encode($this->lista);
+        }
+
+        function pagarAhorro($idProductor){
+            $con=$this->conexion->crearConexion();
+            $con->set_charset("UTF8");
+            $sqlQuery=$con->query("CALL pagarAhorro('$idProductor')");
+            if($sqlQuery == 1){
+                return "true";
+            }else{
+                return "false";
+            }
+        }
+
     }
-
-
-
-
 
 ?>

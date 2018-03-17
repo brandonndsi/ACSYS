@@ -220,7 +220,12 @@ END$$
 DELIMITER $$
 
 
-
+DELIMITER $$
+CREATE PROCEDURE  pagarAhorro(idProductor INT)
+BEGIN
+	UPDATE tbahorrosemanal SET estadoahorrosemanal='pagado' WHERE idpersonaahorro=idProductor AND estadoahorrosemanal='activo'; 
+END$$
+DELIMITER $$
 
 
 

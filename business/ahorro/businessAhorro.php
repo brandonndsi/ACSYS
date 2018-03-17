@@ -19,6 +19,16 @@ class businessAhorro {
 
         return $this->dataAhorro->ahorroMontoModificar($id,$ahorro,$tipo);
     }
+
+    function ahorroMontoTotalMostrar(){
+
+        return $this->dataAhorro->ahorroMontoTotalMostrar();
+    }
+
+    function pagarAhorro($idProductor){
+
+        return $this->dataAhorro->pagarAhorro($idProductor);
+    }
      
 }
 

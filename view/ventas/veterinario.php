@@ -37,7 +37,7 @@
            </select>
            <button onclick="$('#modalProductosVeterinarioVenta').modal();cargarTabla1();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
            <label>Total</label>
-           <input type="text" id="totalPagar">
+           <input type="text" readonly="readonly" id="totalPagar">
            <div>
              <table id="listaProductosVeterinarios" class="display" cellspacing="0" >
                  <thead>

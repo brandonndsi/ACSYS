@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 17, 2018 at 05:45 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Servidor: localhost
+-- Tiempo de generación: 17-03-2018 a las 06:41:53
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,12 +17,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbacsys1`
+-- Base de datos: `dbacsys1`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultarRecepcion` (IN `fecha` DATE)  BEGIN
 SELECT  tbpersona.idpesona,tbpesalechediario.idpesalechediario, tbpesalechediario.fechaentregalechediario,tbpesalechediario.turnopesolechediario,tbpesalechediario.pesoturno ,tbpersona.nombrepersona, tbpersona.apellido1persona, tbpersona.apellido2persona FROM tbpesalechediario INNER JOIN tbpersona ON tbpesalechediario.idpersonalechediario=tbpersona.idpersona WHERE tbpesalechediario.estadopesalechediario="activo" AND tbpesalechediario.fechaentregalechediario=fecha ORDER BY tbpesalechediario.idpersonalechediario DESC;    
@@ -168,6 +166,10 @@ BEGIN
 INSERT INTO `tbclientemayorista`(`idpersonamayorista`, `estadoclientemayorista`) VALUES (id,estado);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pagarAhorro` (`idProductor` INT)  BEGIN
+	UPDATE tbahorrosemanal SET estadoahorrosemanal='pagado' WHERE idpersonaahorro=idProductor AND estadoahorrosemanal='activo'; 
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarDetalleVentaVeterinaria` (`preciounitariodetalleventa` DOUBLE, `cantidaddetalleventa` INT, `subtotaldetalleventa` DOUBLE, `codigoproductoslacteos` VARCHAR(50), `idVenta` INT)  BEGIN
   INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
 END$$
@@ -224,7 +226,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbahorrosemanal`
+-- Estructura de tabla para la tabla `tbahorrosemanal`
 --
 
 CREATE TABLE `tbahorrosemanal` (
@@ -236,10 +238,17 @@ CREATE TABLE `tbahorrosemanal` (
   `estadoahorrosemanal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tbahorrosemanal`
+--
+
+INSERT INTO `tbahorrosemanal` (`idpersonaahorro`, `idahorro`, `montoahorrosemanalporlitro`, `litrosentregadosahorrosemanal`, `fechaentregapago`, `estadoahorrosemanal`) VALUES
+(1, 1, 10, 400, '2018-03-16', 'pagado');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbclientedetallista`
+-- Estructura de tabla para la tabla `tbclientedetallista`
 --
 
 CREATE TABLE `tbclientedetallista` (
@@ -250,7 +259,7 @@ CREATE TABLE `tbclientedetallista` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbclientemayorista`
+-- Estructura de tabla para la tabla `tbclientemayorista`
 --
 
 CREATE TABLE `tbclientemayorista` (
@@ -259,7 +268,7 @@ CREATE TABLE `tbclientemayorista` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbclientemayorista`
+-- Volcado de datos para la tabla `tbclientemayorista`
 --
 
 INSERT INTO `tbclientemayorista` (`idpersonamayorista`, `estadoclientemayorista`) VALUES
@@ -268,7 +277,7 @@ INSERT INTO `tbclientemayorista` (`idpersonamayorista`, `estadoclientemayorista`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbcobrovacaseca`
+-- Estructura de tabla para la tabla `tbcobrovacaseca`
 --
 
 CREATE TABLE `tbcobrovacaseca` (
@@ -281,7 +290,7 @@ CREATE TABLE `tbcobrovacaseca` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbcompramateriaprima`
+-- Estructura de tabla para la tabla `tbcompramateriaprima`
 --
 
 CREATE TABLE `tbcompramateriaprima` (
@@ -295,7 +304,7 @@ CREATE TABLE `tbcompramateriaprima` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbcuentabancaria`
+-- Estructura de tabla para la tabla `tbcuentabancaria`
 --
 
 CREATE TABLE `tbcuentabancaria` (
@@ -307,7 +316,7 @@ CREATE TABLE `tbcuentabancaria` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbcuotavacaseca`
+-- Estructura de tabla para la tabla `tbcuotavacaseca`
 --
 
 CREATE TABLE `tbcuotavacaseca` (
@@ -318,7 +327,7 @@ CREATE TABLE `tbcuotavacaseca` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbdetalleventa`
+-- Estructura de tabla para la tabla `tbdetalleventa`
 --
 
 CREATE TABLE `tbdetalleventa` (
@@ -334,7 +343,7 @@ CREATE TABLE `tbdetalleventa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbdetalleventaveterinaria`
+-- Estructura de tabla para la tabla `tbdetalleventaveterinaria`
 --
 
 CREATE TABLE `tbdetalleventaveterinaria` (
@@ -347,7 +356,7 @@ CREATE TABLE `tbdetalleventaveterinaria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbdetalleventaveterinaria`
+-- Volcado de datos para la tabla `tbdetalleventaveterinaria`
 --
 
 INSERT INTO `tbdetalleventaveterinaria` (`iddetalleventa`, `preciounitariodetalleventa`, `cantidaddetalleventa`, `subtotaldetalleventa`, `idventa`, `idproductoveterinario`) VALUES
@@ -356,7 +365,7 @@ INSERT INTO `tbdetalleventaveterinaria` (`iddetalleventa`, `preciounitariodetall
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbempleado`
+-- Estructura de tabla para la tabla `tbempleado`
 --
 
 CREATE TABLE `tbempleado` (
@@ -369,7 +378,7 @@ CREATE TABLE `tbempleado` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbempleado`
+-- Volcado de datos para la tabla `tbempleado`
 --
 
 INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado`, `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`, `estadoempleado`) VALUES
@@ -380,7 +389,7 @@ INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbfacturero`
+-- Estructura de tabla para la tabla `tbfacturero`
 --
 
 CREATE TABLE `tbfacturero` (
@@ -388,7 +397,7 @@ CREATE TABLE `tbfacturero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbfacturero`
+-- Volcado de datos para la tabla `tbfacturero`
 --
 
 INSERT INTO `tbfacturero` (`ultimafactura`) VALUES
@@ -397,7 +406,7 @@ INSERT INTO `tbfacturero` (`ultimafactura`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbfuncion`
+-- Estructura de tabla para la tabla `tbfuncion`
 --
 
 CREATE TABLE `tbfuncion` (
@@ -406,7 +415,7 @@ CREATE TABLE `tbfuncion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbfuncion`
+-- Volcado de datos para la tabla `tbfuncion`
 --
 
 INSERT INTO `tbfuncion` (`idfuncion`, `nombrefuncion`) VALUES
@@ -418,7 +427,7 @@ INSERT INTO `tbfuncion` (`idfuncion`, `nombrefuncion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbimpuestoventa`
+-- Estructura de tabla para la tabla `tbimpuestoventa`
 --
 
 CREATE TABLE `tbimpuestoventa` (
@@ -429,7 +438,7 @@ CREATE TABLE `tbimpuestoventa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbjuntadirectiva`
+-- Estructura de tabla para la tabla `tbjuntadirectiva`
 --
 
 CREATE TABLE `tbjuntadirectiva` (
@@ -446,7 +455,7 @@ CREATE TABLE `tbjuntadirectiva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbjuntadirectiva`
+-- Volcado de datos para la tabla `tbjuntadirectiva`
 --
 
 INSERT INTO `tbjuntadirectiva` (`idjuntadirectiva`, `fechainicioperiodo`, `fechafinalperiodo`, `presidente`, `vicepresidente`, `secretario`, `tesorero`, `fiscal`, `vocal1`, `vocal2`) VALUES
@@ -456,7 +465,7 @@ INSERT INTO `tbjuntadirectiva` (`idjuntadirectiva`, `fechainicioperiodo`, `fecha
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpagoprestamo`
+-- Estructura de tabla para la tabla `tbpagoprestamo`
 --
 
 CREATE TABLE `tbpagoprestamo` (
@@ -472,7 +481,7 @@ CREATE TABLE `tbpagoprestamo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpagoventa`
+-- Estructura de tabla para la tabla `tbpagoventa`
 --
 
 CREATE TABLE `tbpagoventa` (
@@ -488,7 +497,7 @@ CREATE TABLE `tbpagoventa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbperiodopagoprestamo`
+-- Estructura de tabla para la tabla `tbperiodopagoprestamo`
 --
 
 CREATE TABLE `tbperiodopagoprestamo` (
@@ -499,7 +508,7 @@ CREATE TABLE `tbperiodopagoprestamo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpersona`
+-- Estructura de tabla para la tabla `tbpersona`
 --
 
 CREATE TABLE `tbpersona` (
@@ -514,7 +523,7 @@ CREATE TABLE `tbpersona` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbpersona`
+-- Volcado de datos para la tabla `tbpersona`
 --
 
 INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES
@@ -533,7 +542,7 @@ INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombreperson
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpesalechediario`
+-- Estructura de tabla para la tabla `tbpesalechediario`
 --
 
 CREATE TABLE `tbpesalechediario` (
@@ -546,7 +555,7 @@ CREATE TABLE `tbpesalechediario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbpesalechediario`
+-- Volcado de datos para la tabla `tbpesalechediario`
 --
 
 INSERT INTO `tbpesalechediario` (`idpersonalechediario`, `idpesalechediario`, `fechaentregalechediario`, `turnopesolechediario`, `pesoturno`, `estadopesalechediario`) VALUES
@@ -560,7 +569,7 @@ INSERT INTO `tbpesalechediario` (`idpersonalechediario`, `idpesalechediario`, `f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbpreciolitroleche`
+-- Estructura de tabla para la tabla `tbpreciolitroleche`
 --
 
 CREATE TABLE `tbpreciolitroleche` (
@@ -573,7 +582,7 @@ CREATE TABLE `tbpreciolitroleche` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbprestamos`
+-- Estructura de tabla para la tabla `tbprestamos`
 --
 
 CREATE TABLE `tbprestamos` (
@@ -587,7 +596,7 @@ CREATE TABLE `tbprestamos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbprestamosporcobrar`
+-- Estructura de tabla para la tabla `tbprestamosporcobrar`
 --
 
 CREATE TABLE `tbprestamosporcobrar` (
@@ -600,7 +609,7 @@ CREATE TABLE `tbprestamosporcobrar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproceso`
+-- Estructura de tabla para la tabla `tbproceso`
 --
 
 CREATE TABLE `tbproceso` (
@@ -627,7 +636,7 @@ CREATE TABLE `tbproceso` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproductorcliente`
+-- Estructura de tabla para la tabla `tbproductorcliente`
 --
 
 CREATE TABLE `tbproductorcliente` (
@@ -645,7 +654,7 @@ CREATE TABLE `tbproductorcliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbproductorcliente`
+-- Volcado de datos para la tabla `tbproductorcliente`
 --
 
 INSERT INTO `tbproductorcliente` (`idpersonacliente`, `ahorroporlitroproductorcliente`, `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `imagenescrituraproductorcliente`, `imagenreciboluzproductorcliente`, `imagenrecibaguaproductorcliente`, `imagenexamensolidoproductorcliente`, `imagenplanofincaproductorcliente`, `imagendocumentoidentidadproductorcliente`, `estadoproductorcliente`) VALUES
@@ -656,7 +665,7 @@ INSERT INTO `tbproductorcliente` (`idpersonacliente`, `ahorroporlitroproductorcl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproductoresvacaseca`
+-- Estructura de tabla para la tabla `tbproductoresvacaseca`
 --
 
 CREATE TABLE `tbproductoresvacaseca` (
@@ -670,7 +679,7 @@ CREATE TABLE `tbproductoresvacaseca` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproductorsocio`
+-- Estructura de tabla para la tabla `tbproductorsocio`
 --
 
 CREATE TABLE `tbproductorsocio` (
@@ -688,7 +697,7 @@ CREATE TABLE `tbproductorsocio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbproductorsocio`
+-- Volcado de datos para la tabla `tbproductorsocio`
 --
 
 INSERT INTO `tbproductorsocio` (`idpersonasocio`, `ahorroporlitroproductorsocio`, `imagencboproductorsocio`, `imagenexamensangradoproductorsocio`, `imagenescrituraproductorsocio`, `imagenreciboluzproductorsocio`, `imagenrecibaguaproductorsocio`, `imagenexamensolidoproductorsocio`, `imagenplanofincaproductorsocio`, `imagendocumentoidentidadproductorsocio`, `estadoproductorsocio`) VALUES
@@ -701,7 +710,7 @@ INSERT INTO `tbproductorsocio` (`idpersonasocio`, `ahorroporlitroproductorsocio`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproductoslacteos`
+-- Estructura de tabla para la tabla `tbproductoslacteos`
 --
 
 CREATE TABLE `tbproductoslacteos` (
@@ -714,7 +723,7 @@ CREATE TABLE `tbproductoslacteos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbproductoslacteos`
+-- Volcado de datos para la tabla `tbproductoslacteos`
 --
 
 INSERT INTO `tbproductoslacteos` (`unidadproductoslacteos`, `codigoproductoslacteos`, `nombreproductolacteo`, `preciounitarioproductolacteo`, `cantidadinventarioproductolacteo`, `estadoproductoslacteos`) VALUES
@@ -727,7 +736,7 @@ INSERT INTO `tbproductoslacteos` (`unidadproductoslacteos`, `codigoproductoslact
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbproductosveterinarios`
+-- Estructura de tabla para la tabla `tbproductosveterinarios`
 --
 
 CREATE TABLE `tbproductosveterinarios` (
@@ -744,7 +753,7 @@ CREATE TABLE `tbproductosveterinarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbproductosveterinarios`
+-- Volcado de datos para la tabla `tbproductosveterinarios`
 --
 
 INSERT INTO `tbproductosveterinarios` (`idproductoveterinario`, `codigoproductoveterinario`, `nombreproductoveterinario`, `descripcionproductoveterinario`, `dosisproductoveterinario`, `diasretencionlecheproductoveterinario`, `viaaplicacionveterinarios`, `funcionveterinarios`, `precioproductoveterinario`, `estadoproductoveterinario`) VALUES
@@ -757,7 +766,7 @@ INSERT INTO `tbproductosveterinarios` (`idproductoveterinario`, `codigoproductov
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbtasaprestamo`
+-- Estructura de tabla para la tabla `tbtasaprestamo`
 --
 
 CREATE TABLE `tbtasaprestamo` (
@@ -768,7 +777,7 @@ CREATE TABLE `tbtasaprestamo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbunidades`
+-- Estructura de tabla para la tabla `tbunidades`
 --
 
 CREATE TABLE `tbunidades` (
@@ -777,7 +786,7 @@ CREATE TABLE `tbunidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbunidades`
+-- Volcado de datos para la tabla `tbunidades`
 --
 
 INSERT INTO `tbunidades` (`idunidad`, `unidad`) VALUES
@@ -788,7 +797,7 @@ INSERT INTO `tbunidades` (`idunidad`, `unidad`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbventa`
+-- Estructura de tabla para la tabla `tbventa`
 --
 
 CREATE TABLE `tbventa` (
@@ -803,7 +812,7 @@ CREATE TABLE `tbventa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbventa`
+-- Volcado de datos para la tabla `tbventa`
 --
 
 INSERT INTO `tbventa` (`idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa`) VALUES
@@ -816,7 +825,7 @@ INSERT INTO `tbventa` (`idventa`, `numerofactura`, `fechaventa`, `horaventa`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbventaporcobrar`
+-- Estructura de tabla para la tabla `tbventaporcobrar`
 --
 
 CREATE TABLE `tbventaporcobrar` (
@@ -828,7 +837,7 @@ CREATE TABLE `tbventaporcobrar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbventaporcobrar`
+-- Volcado de datos para la tabla `tbventaporcobrar`
 --
 
 INSERT INTO `tbventaporcobrar` (`idventaporcobrar`, `idventa`, `idpersona`, `saldoactualventaporcobrar`, `estadoventaporcobrar`) VALUES
@@ -841,7 +850,7 @@ INSERT INTO `tbventaporcobrar` (`idventaporcobrar`, `idventa`, `idpersona`, `sal
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbviaaplicacion`
+-- Estructura de tabla para la tabla `tbviaaplicacion`
 --
 
 CREATE TABLE `tbviaaplicacion` (
@@ -850,7 +859,7 @@ CREATE TABLE `tbviaaplicacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbviaaplicacion`
+-- Volcado de datos para la tabla `tbviaaplicacion`
 --
 
 INSERT INTO `tbviaaplicacion` (`idviaaplicacion`, `nombreviaaplicacion`) VALUES
@@ -867,54 +876,54 @@ INSERT INTO `tbviaaplicacion` (`idviaaplicacion`, `nombreviaaplicacion`) VALUES
 (11, 'Intrauterina');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `tbahorrosemanal`
+-- Indices de la tabla `tbahorrosemanal`
 --
 ALTER TABLE `tbahorrosemanal`
   ADD PRIMARY KEY (`idahorro`),
   ADD KEY `idpersonaahorro` (`idpersonaahorro`);
 
 --
--- Indexes for table `tbclientedetallista`
+-- Indices de la tabla `tbclientedetallista`
 --
 ALTER TABLE `tbclientedetallista`
   ADD PRIMARY KEY (`idpersonadetallista`);
 
 --
--- Indexes for table `tbclientemayorista`
+-- Indices de la tabla `tbclientemayorista`
 --
 ALTER TABLE `tbclientemayorista`
   ADD PRIMARY KEY (`idpersonamayorista`);
 
 --
--- Indexes for table `tbcobrovacaseca`
+-- Indices de la tabla `tbcobrovacaseca`
 --
 ALTER TABLE `tbcobrovacaseca`
   ADD PRIMARY KEY (`idcobrovacaseca`);
 
 --
--- Indexes for table `tbcompramateriaprima`
+-- Indices de la tabla `tbcompramateriaprima`
 --
 ALTER TABLE `tbcompramateriaprima`
   ADD PRIMARY KEY (`idcompramateriaprima`);
 
 --
--- Indexes for table `tbcuentabancaria`
+-- Indices de la tabla `tbcuentabancaria`
 --
 ALTER TABLE `tbcuentabancaria`
   ADD PRIMARY KEY (`idpersonacuenta`);
 
 --
--- Indexes for table `tbcuotavacaseca`
+-- Indices de la tabla `tbcuotavacaseca`
 --
 ALTER TABLE `tbcuotavacaseca`
   ADD PRIMARY KEY (`idcuotavacaseca`);
 
 --
--- Indexes for table `tbdetalleventa`
+-- Indices de la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
   ADD PRIMARY KEY (`iddetalleventa`),
@@ -922,7 +931,7 @@ ALTER TABLE `tbdetalleventa`
   ADD KEY `idventa` (`idventa`);
 
 --
--- Indexes for table `tbdetalleventaveterinaria`
+-- Indices de la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   ADD PRIMARY KEY (`iddetalleventa`),
@@ -930,116 +939,116 @@ ALTER TABLE `tbdetalleventaveterinaria`
   ADD KEY `idproductoveterinario` (`idproductoveterinario`);
 
 --
--- Indexes for table `tbempleado`
+-- Indices de la tabla `tbempleado`
 --
 ALTER TABLE `tbempleado`
   ADD PRIMARY KEY (`idpersonaempleado`);
 
 --
--- Indexes for table `tbfuncion`
+-- Indices de la tabla `tbfuncion`
 --
 ALTER TABLE `tbfuncion`
   ADD PRIMARY KEY (`idfuncion`);
 
 --
--- Indexes for table `tbimpuestoventa`
+-- Indices de la tabla `tbimpuestoventa`
 --
 ALTER TABLE `tbimpuestoventa`
   ADD PRIMARY KEY (`idimpuestoventa`);
 
 --
--- Indexes for table `tbjuntadirectiva`
+-- Indices de la tabla `tbjuntadirectiva`
 --
 ALTER TABLE `tbjuntadirectiva`
   ADD PRIMARY KEY (`idjuntadirectiva`);
 
 --
--- Indexes for table `tbpagoprestamo`
+-- Indices de la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
   ADD PRIMARY KEY (`idpagoprestamo`),
   ADD KEY `idprestamoporcobrar` (`idprestamoporcobrar`);
 
 --
--- Indexes for table `tbpagoventa`
+-- Indices de la tabla `tbpagoventa`
 --
 ALTER TABLE `tbpagoventa`
   ADD PRIMARY KEY (`idpagoventa`),
   ADD KEY `idventaporcobrar` (`idventaporcobrar`);
 
 --
--- Indexes for table `tbperiodopagoprestamo`
+-- Indices de la tabla `tbperiodopagoprestamo`
 --
 ALTER TABLE `tbperiodopagoprestamo`
   ADD PRIMARY KEY (`idperiodopagoprestamo`);
 
 --
--- Indexes for table `tbpersona`
+-- Indices de la tabla `tbpersona`
 --
 ALTER TABLE `tbpersona`
   ADD PRIMARY KEY (`idpersona`);
 
 --
--- Indexes for table `tbpesalechediario`
+-- Indices de la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
   ADD PRIMARY KEY (`idpesalechediario`),
   ADD KEY `idpersonalechediario` (`idpersonalechediario`);
 
 --
--- Indexes for table `tbpreciolitroleche`
+-- Indices de la tabla `tbpreciolitroleche`
 --
 ALTER TABLE `tbpreciolitroleche`
   ADD PRIMARY KEY (`idpreciolitroleche`);
 
 --
--- Indexes for table `tbprestamos`
+-- Indices de la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
   ADD PRIMARY KEY (`idprestamo`),
   ADD KEY `idpersonaprestamo` (`idpersonaprestamo`);
 
 --
--- Indexes for table `tbprestamosporcobrar`
+-- Indices de la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
   ADD PRIMARY KEY (`idprestamoporcobrar`),
   ADD KEY `idprestamo` (`idprestamo`);
 
 --
--- Indexes for table `tbproceso`
+-- Indices de la tabla `tbproceso`
 --
 ALTER TABLE `tbproceso`
   ADD PRIMARY KEY (`idproceso`);
 
 --
--- Indexes for table `tbproductorcliente`
+-- Indices de la tabla `tbproductorcliente`
 --
 ALTER TABLE `tbproductorcliente`
   ADD PRIMARY KEY (`idpersonacliente`);
 
 --
--- Indexes for table `tbproductoresvacaseca`
+-- Indices de la tabla `tbproductoresvacaseca`
 --
 ALTER TABLE `tbproductoresvacaseca`
   ADD PRIMARY KEY (`idproductoresvacaseca`),
   ADD KEY `idproductorsociovacaseca` (`idproductorsociovacaseca`);
 
 --
--- Indexes for table `tbproductorsocio`
+-- Indices de la tabla `tbproductorsocio`
 --
 ALTER TABLE `tbproductorsocio`
   ADD PRIMARY KEY (`idpersonasocio`);
 
 --
--- Indexes for table `tbproductoslacteos`
+-- Indices de la tabla `tbproductoslacteos`
 --
 ALTER TABLE `tbproductoslacteos`
   ADD PRIMARY KEY (`codigoproductoslacteos`),
   ADD KEY `unidadproductoslacteos` (`unidadproductoslacteos`);
 
 --
--- Indexes for table `tbproductosveterinarios`
+-- Indices de la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
   ADD PRIMARY KEY (`idproductoveterinario`),
@@ -1047,26 +1056,26 @@ ALTER TABLE `tbproductosveterinarios`
   ADD KEY `viaaplicacionveterinarios` (`viaaplicacionveterinarios`);
 
 --
--- Indexes for table `tbtasaprestamo`
+-- Indices de la tabla `tbtasaprestamo`
 --
 ALTER TABLE `tbtasaprestamo`
   ADD PRIMARY KEY (`idtasaprestamo`);
 
 --
--- Indexes for table `tbunidades`
+-- Indices de la tabla `tbunidades`
 --
 ALTER TABLE `tbunidades`
   ADD PRIMARY KEY (`idunidad`);
 
 --
--- Indexes for table `tbventa`
+-- Indices de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
   ADD PRIMARY KEY (`idventa`),
   ADD KEY `idpersonaventa` (`idpersonaventa`);
 
 --
--- Indexes for table `tbventaporcobrar`
+-- Indices de la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   ADD PRIMARY KEY (`idventaporcobrar`),
@@ -1074,281 +1083,256 @@ ALTER TABLE `tbventaporcobrar`
   ADD KEY `idpersona` (`idpersona`);
 
 --
--- Indexes for table `tbviaaplicacion`
+-- Indices de la tabla `tbviaaplicacion`
 --
 ALTER TABLE `tbviaaplicacion`
   ADD PRIMARY KEY (`idviaaplicacion`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `tbahorrosemanal`
+-- AUTO_INCREMENT de la tabla `tbahorrosemanal`
 --
 ALTER TABLE `tbahorrosemanal`
-  MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `tbcobrovacaseca`
+-- AUTO_INCREMENT de la tabla `tbcobrovacaseca`
 --
 ALTER TABLE `tbcobrovacaseca`
   MODIFY `idcobrovacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbcompramateriaprima`
+-- AUTO_INCREMENT de la tabla `tbcompramateriaprima`
 --
 ALTER TABLE `tbcompramateriaprima`
   MODIFY `idcompramateriaprima` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbcuotavacaseca`
+-- AUTO_INCREMENT de la tabla `tbcuotavacaseca`
 --
 ALTER TABLE `tbcuotavacaseca`
   MODIFY `idcuotavacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbdetalleventa`
+-- AUTO_INCREMENT de la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbdetalleventaveterinaria`
+-- AUTO_INCREMENT de la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
--- AUTO_INCREMENT for table `tbfuncion`
+-- AUTO_INCREMENT de la tabla `tbfuncion`
 --
 ALTER TABLE `tbfuncion`
   MODIFY `idfuncion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT for table `tbjuntadirectiva`
+-- AUTO_INCREMENT de la tabla `tbjuntadirectiva`
 --
 ALTER TABLE `tbjuntadirectiva`
   MODIFY `idjuntadirectiva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT for table `tbpagoprestamo`
+-- AUTO_INCREMENT de la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
   MODIFY `idpagoprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbpagoventa`
+-- AUTO_INCREMENT de la tabla `tbpagoventa`
 --
 ALTER TABLE `tbpagoventa`
   MODIFY `idpagoventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbperiodopagoprestamo`
+-- AUTO_INCREMENT de la tabla `tbperiodopagoprestamo`
 --
 ALTER TABLE `tbperiodopagoprestamo`
   MODIFY `idperiodopagoprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbpersona`
+-- AUTO_INCREMENT de la tabla `tbpersona`
 --
 ALTER TABLE `tbpersona`
   MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
--- AUTO_INCREMENT for table `tbpesalechediario`
+-- AUTO_INCREMENT de la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
   MODIFY `idpesalechediario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
--- AUTO_INCREMENT for table `tbpreciolitroleche`
+-- AUTO_INCREMENT de la tabla `tbpreciolitroleche`
 --
 ALTER TABLE `tbpreciolitroleche`
   MODIFY `idpreciolitroleche` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbprestamos`
+-- AUTO_INCREMENT de la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
   MODIFY `idprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbprestamosporcobrar`
+-- AUTO_INCREMENT de la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
   MODIFY `idprestamoporcobrar` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbproceso`
+-- AUTO_INCREMENT de la tabla `tbproceso`
 --
 ALTER TABLE `tbproceso`
   MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbproductoresvacaseca`
+-- AUTO_INCREMENT de la tabla `tbproductoresvacaseca`
 --
 ALTER TABLE `tbproductoresvacaseca`
   MODIFY `idproductoresvacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbproductosveterinarios`
+-- AUTO_INCREMENT de la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
   MODIFY `idproductoveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
--- AUTO_INCREMENT for table `tbtasaprestamo`
+-- AUTO_INCREMENT de la tabla `tbtasaprestamo`
 --
 ALTER TABLE `tbtasaprestamo`
   MODIFY `idtasaprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
--- AUTO_INCREMENT for table `tbunidades`
+-- AUTO_INCREMENT de la tabla `tbunidades`
 --
 ALTER TABLE `tbunidades`
   MODIFY `idunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
--- AUTO_INCREMENT for table `tbventa`
+-- AUTO_INCREMENT de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
   MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `tbventaporcobrar`
+-- AUTO_INCREMENT de la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
--- AUTO_INCREMENT for table `tbviaaplicacion`
+-- AUTO_INCREMENT de la tabla `tbviaaplicacion`
 --
 ALTER TABLE `tbviaaplicacion`
   MODIFY `idviaaplicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- Restricciones para tablas volcadas
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tbahorrosemanal`
+-- Filtros para la tabla `tbahorrosemanal`
 --
 ALTER TABLE `tbahorrosemanal`
   ADD CONSTRAINT `tbahorrosemanal_ibfk_1` FOREIGN KEY (`idpersonaahorro`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbclientedetallista`
+-- Filtros para la tabla `tbclientedetallista`
 --
 ALTER TABLE `tbclientedetallista`
   ADD CONSTRAINT `tbclientedetallista_ibfk_1` FOREIGN KEY (`idpersonadetallista`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbclientemayorista`
+-- Filtros para la tabla `tbclientemayorista`
 --
 ALTER TABLE `tbclientemayorista`
   ADD CONSTRAINT `tbclientemayorista_ibfk_1` FOREIGN KEY (`idpersonamayorista`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbcuentabancaria`
+-- Filtros para la tabla `tbcuentabancaria`
 --
 ALTER TABLE `tbcuentabancaria`
   ADD CONSTRAINT `tbcuentabancaria_ibfk_1` FOREIGN KEY (`idpersonacuenta`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbdetalleventa`
+-- Filtros para la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
   ADD CONSTRAINT `tbdetalleventa_ibfk_1` FOREIGN KEY (`codigoproductoslacteos`) REFERENCES `tbproductoslacteos` (`codigoproductoslacteos`),
   ADD CONSTRAINT `tbdetalleventa_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`);
 
 --
--- Constraints for table `tbdetalleventaveterinaria`
+-- Filtros para la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`),
   ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_3` FOREIGN KEY (`idproductoveterinario`) REFERENCES `tbproductosveterinarios` (`idproductoveterinario`);
 
 --
--- Constraints for table `tbempleado`
+-- Filtros para la tabla `tbempleado`
 --
 ALTER TABLE `tbempleado`
   ADD CONSTRAINT `tbempleado_ibfk_1` FOREIGN KEY (`idpersonaempleado`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbpagoprestamo`
+-- Filtros para la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
   ADD CONSTRAINT `tbpagoprestamo_ibfk_1` FOREIGN KEY (`idprestamoporcobrar`) REFERENCES `tbprestamosporcobrar` (`idprestamoporcobrar`);
 
 --
--- Constraints for table `tbpagoventa`
+-- Filtros para la tabla `tbpagoventa`
 --
 ALTER TABLE `tbpagoventa`
   ADD CONSTRAINT `tbpagoventa_ibfk_1` FOREIGN KEY (`idventaporcobrar`) REFERENCES `tbventaporcobrar` (`idventaporcobrar`);
 
 --
--- Constraints for table `tbpesalechediario`
+-- Filtros para la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
   ADD CONSTRAINT `tbpesalechediario_ibfk_1` FOREIGN KEY (`idpersonalechediario`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbprestamos`
+-- Filtros para la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
   ADD CONSTRAINT `tbprestamos_ibfk_1` FOREIGN KEY (`idpersonaprestamo`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbprestamosporcobrar`
+-- Filtros para la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
   ADD CONSTRAINT `tbprestamosporcobrar_ibfk_1` FOREIGN KEY (`idprestamo`) REFERENCES `tbprestamos` (`idprestamo`);
 
 --
--- Constraints for table `tbproductorcliente`
+-- Filtros para la tabla `tbproductorcliente`
 --
 ALTER TABLE `tbproductorcliente`
   ADD CONSTRAINT `tbproductorcliente_ibfk_1` FOREIGN KEY (`idpersonacliente`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbproductoresvacaseca`
+-- Filtros para la tabla `tbproductoresvacaseca`
 --
 ALTER TABLE `tbproductoresvacaseca`
   ADD CONSTRAINT `tbproductoresvacaseca_ibfk_1` FOREIGN KEY (`idproductorsociovacaseca`) REFERENCES `tbproductorsocio` (`idpersonasocio`);
 
 --
--- Constraints for table `tbproductorsocio`
+-- Filtros para la tabla `tbproductorsocio`
 --
 ALTER TABLE `tbproductorsocio`
   ADD CONSTRAINT `tbproductorsocio_ibfk_1` FOREIGN KEY (`idpersonasocio`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbproductoslacteos`
+-- Filtros para la tabla `tbproductoslacteos`
 --
 ALTER TABLE `tbproductoslacteos`
   ADD CONSTRAINT `tbproductoslacteos_ibfk_1` FOREIGN KEY (`unidadproductoslacteos`) REFERENCES `tbunidades` (`idunidad`);
 
 --
--- Constraints for table `tbproductosveterinarios`
+-- Filtros para la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
   ADD CONSTRAINT `tbproductosveterinarios_ibfk_1` FOREIGN KEY (`funcionveterinarios`) REFERENCES `tbfuncion` (`idfuncion`),
   ADD CONSTRAINT `tbproductosveterinarios_ibfk_2` FOREIGN KEY (`viaaplicacionveterinarios`) REFERENCES `tbviaaplicacion` (`idviaaplicacion`);
 
 --
--- Constraints for table `tbventa`
+-- Filtros para la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
   ADD CONSTRAINT `tbventa_ibfk_1` FOREIGN KEY (`idpersonaventa`) REFERENCES `tbpersona` (`idpersona`);
 
 --
--- Constraints for table `tbventaporcobrar`
+-- Filtros para la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   ADD CONSTRAINT `tbventaporcobrar_ibfk_1` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`),
   ADD CONSTRAINT `tbventaporcobrar_ibfk_2` FOREIGN KEY (`idpersona`) REFERENCES `tbpersona` (`idpersona`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
