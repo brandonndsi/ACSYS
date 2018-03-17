@@ -29,15 +29,14 @@
       return $factura;
     }
 
+    function registrarProductosVentaVeterinaria($productos,$idVenta){
+
+    }
+
     function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){
       $con = $this->conexion->crearConexion();
       $con->set_charset("UTF8");
-      $tipoVenta = "";
-      if($idCliente == 1){
-        $tipoVenta = "Contado";
-      }else{
-        $tipoVenta = "Credito";
-      }
+      $tipoVenta = "Veterinaria";
       $fecha = date('Y-m-d');
       $hora = date("g:i A");
       $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");

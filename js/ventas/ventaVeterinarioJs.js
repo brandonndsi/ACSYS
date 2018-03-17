@@ -107,15 +107,6 @@ function agregarProductoCarritoBuscar(){
           html+="</tr>";
           total= total + (listaProductos[i].precio*listaProductos[i].cantidad);
         }
-        html+="<tr>";
-        html+="<td></td>";
-        html+="<td></td>";
-        html+="<td></td>";
-        html+="<td></td>";
-        html+="<td>Total:</td>";
-        total = '"'+total+'"';
-        html+="<td<input type='text' value='"+total+" id='totalPagar'> ></td>";
-        html+="</tr>";
         $("#datos").html(html);
         $(document).ready(function() {
             $('#listaProductosVeterinarios').DataTable({
