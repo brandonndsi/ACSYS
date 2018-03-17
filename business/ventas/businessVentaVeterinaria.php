@@ -11,6 +11,10 @@
     function searchProduct($code){
       return $this->dataVentaVeterinaria->searchProduct($code);
     }
+
+    function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
+      return $this->dataVentaVeterinaria->procesarVenta($productos,$idCliente,$total);
+    }
   }
 
  ?>

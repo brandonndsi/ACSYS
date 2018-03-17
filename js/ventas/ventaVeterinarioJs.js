@@ -76,7 +76,7 @@ function agregarProductoCarritoBuscar(){
         json = JSON.parse(responseText);
         if(localStorage.getItem("listaProductos") == null){
           var listaProductos = [];
-          listaProductos.push({"codigo":code,"nombre":json.nombreproductoveterinario,"precio":json.precioproductoveterinario,"cantidad":1,"descuento":0});
+          listaProductos.push({"codigo":code,"nombre":json.nombreproductoveterinario,"precio":json.precioproductoveterinario,"cantidad":1});
           localStorage.setItem("listaProductos",JSON.stringify(listaProductos));
         }else{
           listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
@@ -88,23 +88,34 @@ function agregarProductoCarritoBuscar(){
             }
           }
           if(!bandera){
-            listaProductos.push({"codigo":code,"nombre":json.nombreproductoveterinario,"precio":json.precioproductoveterinario,"cantidad":1,"descuento":0});
+            listaProductos.push({"codigo":code,"nombre":json.nombreproductoveterinario,"precio":json.precioproductoveterinario,"cantidad":1});
           }
           localStorage.setItem("listaProductos",JSON.stringify(listaProductos));
         }
         listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
         html = "";
+        total = 0;
         for(i = 0 ;i<listaProductos.length; i++){
           html+="<tr>";
           html+="<td>"+listaProductos[i].codigo+"</td>";
           html+="<td>"+listaProductos[i].nombre+"</td>";
           html+="<td>"+listaProductos[i].precio+"</td>";
-          html+="<td><input type='text' value='"+listaProductos[i].cantidad+"'> </td>";
-          html+="<td><input type='text' value='0'> </td>";
-          html+="<td>"+((listaProductos[i].precio*listaProductos[i].cantidad)-listaProductos[i].descuento)+"</td>";
+          codigo = '"'+listaProductos[i].codigo+'"';
+          html+="<td><input id='cantidad"+listaProductos[i].codigo+"' onblur='calcularSubTotal(this,"+codigo+")' type='text' style='border:none;' value='"+listaProductos[i].cantidad+"'> </td>";
+          html+="<td><input id='subtotal"+listaProductos[i].codigo+"' type='text'style='border:none;' readonly='readonly' value='"+(listaProductos[i].precio*listaProductos[i].cantidad)+"'></td>";
           html+="<td><button><span class='glyphicon glyphicon-remove'></span></button></td>";
           html+="</tr>";
+          total= total + (listaProductos[i].precio*listaProductos[i].cantidad);
         }
+        html+="<tr>";
+        html+="<td></td>";
+        html+="<td></td>";
+        html+="<td></td>";
+        html+="<td></td>";
+        html+="<td>Total:</td>";
+        total = '"'+total+'"';
+        html+="<td<input type='text' value='"+total+" id='totalPagar'> ></td>";
+        html+="</tr>";
         $("#datos").html(html);
         $(document).ready(function() {
             $('#listaProductosVeterinarios').DataTable({
@@ -144,6 +155,19 @@ function agregarProductoCarritoBuscar(){
     });
 }
 
+function calcularSubTotal(cantidad,codigoProducto){
+  listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
+  for(i = 0 ;i<listaProductos.length; i++){
+    if(listaProductos[i].codigo == codigoProducto){
+      total = $("#totalPagar").val() - (listaProductos[i].cantidad*listaProductos[i].precio);
+      listaProductos[i].cantidad = cantidad.value;
+      total = total + (listaProductos[i].cantidad*listaProductos[i].precio);
+      $("#subtotal"+codigoProducto).val((listaProductos[i].cantidad*listaProductos[i].precio));
+      $("#totalPagar").val(total)
+    }
+  }
+  localStorage.setItem("listaProductos",JSON.stringify(listaProductos));
+}
 
 function getRadioButtonSelectedValue(ctrl){
     for(i=0;i<ctrl.length;i++)

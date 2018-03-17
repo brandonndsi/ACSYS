@@ -44,7 +44,6 @@
                          <th>Articulo</th>
                          <th>P. Venta</th>
                          <th>Cantidad</th>
-                         <th>Descuento</th>
                          <th>Total</th>
                          <th>Eliminar</th>
                      </tr>
