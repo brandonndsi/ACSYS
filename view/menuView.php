@@ -32,8 +32,8 @@
               <ul>
                 <li><a href="../productor/verProductorClienteView.php">Productor Cliente</a></li>
                 <li><a href="../productor/verProductorSocioView.php">Producto Socio</a></li>
-                <li><a href="../productor/verAhorro.php">Ver Ahorros</a></li>
-                <li><a href="#">Ahorros</a></li>
+                <li><a href="../productor/verAhorro.php">Ver Monto de Ahorros</a></li>
+                <li><a href="../productor/verAhorroTotal.ph">Ver Ahorros Totales</a></li>
                 <li class="dropdown"><a href="../productor/recepcionLeche.php" >Recepción de leche<span class="caret"></span></a>
                    <ul class="dropdown-menu mega-dropdown-menu">
                      <li>
