@@ -19,18 +19,37 @@
     function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
       $con = $this->conexion->crearConexion();
       $facturaVenta = $this->getFactura();
-      $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
+      $idVenta = $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
+      $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
     }
 
     function getFactura(){
       $con = $this->conexion->crearConexion();
+      $con->set_charset("UTF8");
       $sqlQuery = $con->query("SELECT ultimafactura FROM tbfacturero");
       $factura = $sqlQuery->fetch_assoc()['ultimafactura'];
       return $factura;
     }
 
-    function registrarProductosVentaVeterinaria($productos,$idVenta){
+    function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
+      $con = $this->conexion->crearConexion();
+      $con->set_charset("UTF8");
+      $sqlQuery = $con->query("CALL registrarVentaPorCobrar('$idCliente','$idVenta','$totalVenta')");
+      if($sqlQuery == 1){
+        return true;
+      }else{
+        return false;
+      }
+    }
 
+    function registrarProductosVentaVeterinaria($productos,$idVenta){
+      $con = $this->conexion->crearConexion();
+      $con->set_charset("UTF8");
+      $productos = json_decode($productos);
+      foreach ($productos as $producto) {
+        $total = $producto->precio * $producto->cantidad;
+        $con->query("CALL insertarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
+      }
     }
 
     function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){

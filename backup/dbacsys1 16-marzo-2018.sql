@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2018 at 04:22 AM
+-- Generation Time: Mar 17, 2018 at 04:42 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -783,6 +783,7 @@ CREATE TABLE `tbventa` (
 CREATE TABLE `tbventaporcobrar` (
   `idventaporcobrar` int(11) NOT NULL,
   `idventa` int(11) NOT NULL,
+  `idpersona` int(11) NOT NULL,
   `saldoactualventaporcobrar` double NOT NULL,
   `estadoventaporcobrar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1019,7 +1020,8 @@ ALTER TABLE `tbventa`
 --
 ALTER TABLE `tbventaporcobrar`
   ADD PRIMARY KEY (`idventaporcobrar`),
-  ADD KEY `idventa` (`idventa`);
+  ADD KEY `idventa` (`idventa`),
+  ADD KEY `idpersona` (`idpersona`);
 
 --
 -- Indexes for table `tbviaaplicacion`
@@ -1294,7 +1296,8 @@ ALTER TABLE `tbventa`
 -- Constraints for table `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
-  ADD CONSTRAINT `tbventaporcobrar_ibfk_1` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`);
+  ADD CONSTRAINT `tbventaporcobrar_ibfk_1` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`),
+  ADD CONSTRAINT `tbventaporcobrar_ibfk_2` FOREIGN KEY (`idpersona`) REFERENCES `tbpersona` (`idpersona`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
