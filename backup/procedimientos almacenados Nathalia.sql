@@ -196,6 +196,29 @@ BEGIN
 END$$
 DELIMITER $$
 
+DELIMITER $$
+CREATE PROCEDURE registrarVenta(idCliente INT,facturaVenta INT,fecha DATE,hora TIME,totalBruto DOUBLE,totalNeto DOUBLE,tipoVenta TEXT)
+BEGIN
+    INSERT INTO tbventa(numerofactura,fechaventa,horaventa,totalbrutoventa,totalnetoventa,tipoventa,idpersonaventa) VALUES(facturaVenta,fecha,hora,totalBruto,totalNeto,tipoVenta,idCliente);
+    UPDATE tbfacturero SET ultimafactura=facturaVenta+1;
+    SELECT idventa FROM tbventa ORDER BY idventa DESC limit 1;
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE registrarVentaPorCobrar(idCliente INT,idVenta INT,totalVenta DOUBLE)
+BEGIN
+  INSERT INTO tbventaporcobrar(idventa,idpersona,saldoactualventaporcobrar,estadoventaporcobrar) VALUES(idVenta,idCliente,totalVenta,"activo");
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE registrarDetalleVentaVeterinaria(preciounitariodetalleventa DOUBLE,cantidaddetalleventa INT,subtotaldetalleventa DOUBLE,codigoproductoslacteos VARCHAR(50),idVenta INT)
+BEGIN
+  INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
+END$$
+DELIMITER $$
+
 
 
 

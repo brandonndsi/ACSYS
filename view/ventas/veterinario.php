@@ -36,6 +36,8 @@
            <select id="selectCliente"  class="btn btn-info selectCliente">
            </select>
            <button onclick="$('#modalProductosVeterinarioVenta').modal();cargarTabla1();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
+           <label>Total</label>
+           <input type="text" id="totalPagar">
            <div>
              <table id="listaProductosVeterinarios" class="display" cellspacing="0" >
                  <thead>
@@ -54,7 +56,7 @@
              </table>
            </div>
            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <button class="btn btn-primary" onclick="procesarVenta()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
          <!--Modal buscar productos veterinarios-->
         <div id="modalProductosVeterinarioVenta" class="modal fade in">

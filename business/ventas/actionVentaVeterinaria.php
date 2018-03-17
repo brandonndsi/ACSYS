@@ -15,10 +15,10 @@
     $idCliente = $_POST['idCliente'];
     $totalNeto = $_POST['totalNeto'];
     $totalBruto = $_POST['totalBruto'];
-    if(!empty($idCliente) && !empty($total)){
+    if(!empty($idCliente) && !empty($totalNeto)){
       echo $businessVentaVeterinaria->procesarVenta($productos,$idCliente,$totalNeto,$totalBruto);
     }else{
-      echo "false";
+      echo "falsee";
     }
   }
 

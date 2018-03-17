@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2018 at 04:42 AM
+-- Generation Time: Mar 17, 2018 at 05:45 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -168,6 +168,10 @@ BEGIN
 INSERT INTO `tbclientemayorista`(`idpersonamayorista`, `estadoclientemayorista`) VALUES (id,estado);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarDetalleVentaVeterinaria` (`preciounitariodetalleventa` DOUBLE, `cantidaddetalleventa` INT, `subtotaldetalleventa` DOUBLE, `codigoproductoslacteos` VARCHAR(50), `idVenta` INT)  BEGIN
+  INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado` (IN `clave` TEXT, IN `tipo` TEXT)  NO SQL
 INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,"activo")$$
 
@@ -196,6 +200,16 @@ INSERT INTO tbproductorsocio(idpersonasocio,estadoproductorsocio,ahorroporlitrop
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarproductoveterinario` (IN `codigo` VARCHAR(50), IN `nombre` TEXT, IN `descripcion` TEXT, IN `dosis` TEXT, IN `dias` INT, IN `via` INT, IN `funcion` INT, IN `precio` DOUBLE)  BEGIN
 INSERT INTO tbproductosveterinarios (codigoproductoveterinario,nombreproductoveterinario,descripcionproductoveterinario,	dosisproductoveterinario,diasretencionlecheproductoveterinario,viaaplicacionveterinarios,funcionveterinarios,precioproductoveterinario,estadoproductoveterinario)
 VALUES (codigo,nombre,descripcion,dosis,dias,via,funcion,precio,"activo");
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVenta` (`idCliente` INT, `facturaVenta` INT, `fecha` DATE, `hora` TIME, `totalBruto` DOUBLE, `totalNeto` DOUBLE, `tipoVenta` TEXT)  BEGIN
+    INSERT INTO tbventa(numerofactura,fechaventa,horaventa,totalbrutoventa,totalnetoventa,tipoventa,idpersonaventa) VALUES(facturaVenta,fecha,hora,totalBruto,totalNeto,tipoVenta,idCliente);
+    UPDATE tbfacturero SET ultimafactura=facturaVenta+1;
+    SELECT idventa FROM tbventa ORDER BY idventa DESC limit 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaPorCobrar` (`idCliente` INT, `idVenta` INT, `totalVenta` DOUBLE)  BEGIN
+  INSERT INTO tbventaporcobrar(idventa,idpersona,saldoactualventaporcobrar,estadoventaporcobrar) VALUES(idVenta,idCliente,totalVenta,"activo");
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `searchproductveterinario` (`codigo` TEXT)  BEGIN
@@ -328,9 +342,16 @@ CREATE TABLE `tbdetalleventaveterinaria` (
   `preciounitariodetalleventa` double DEFAULT NULL,
   `cantidaddetalleventa` int(11) DEFAULT NULL,
   `subtotaldetalleventa` double DEFAULT NULL,
-  `codigoproductoslacteos` varchar(50) DEFAULT NULL,
-  `idventa` int(11) NOT NULL
+  `idventa` int(11) NOT NULL,
+  `idproductoveterinario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbdetalleventaveterinaria`
+--
+
+INSERT INTO `tbdetalleventaveterinaria` (`iddetalleventa`, `preciounitariodetalleventa`, `cantidaddetalleventa`, `subtotaldetalleventa`, `idventa`, `idproductoveterinario`) VALUES
+(7, 400, 1, 400, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -365,6 +386,13 @@ INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado
 CREATE TABLE `tbfacturero` (
   `ultimafactura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbfacturero`
+--
+
+INSERT INTO `tbfacturero` (`ultimafactura`) VALUES
+(5);
 
 -- --------------------------------------------------------
 
@@ -774,6 +802,17 @@ CREATE TABLE `tbventa` (
   `idpersonaventa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbventa`
+--
+
+INSERT INTO `tbventa` (`idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa`) VALUES
+(1, '0', '2018-03-16', '10:32:00', 400, 400, 'Veterinaria', 1),
+(2, '1', '2018-03-16', '10:35:00', 400, 400, 'Veterinaria', 1),
+(3, '2', '2018-03-16', '10:36:00', 400, 400, 'Veterinaria', 1),
+(4, '3', '2018-03-16', '10:36:00', 400, 400, 'Veterinaria', 1),
+(5, '4', '2018-03-16', '10:44:00', 400, 400, 'Veterinaria', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -787,6 +826,17 @@ CREATE TABLE `tbventaporcobrar` (
   `saldoactualventaporcobrar` double NOT NULL,
   `estadoventaporcobrar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbventaporcobrar`
+--
+
+INSERT INTO `tbventaporcobrar` (`idventaporcobrar`, `idventa`, `idpersona`, `saldoactualventaporcobrar`, `estadoventaporcobrar`) VALUES
+(1, 1, 1, 400, 'activo'),
+(2, 2, 1, 400, 'activo'),
+(3, 3, 1, 400, 'activo'),
+(4, 4, 1, 400, 'activo'),
+(5, 5, 1, 400, 'activo');
 
 -- --------------------------------------------------------
 
@@ -876,8 +926,8 @@ ALTER TABLE `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   ADD PRIMARY KEY (`iddetalleventa`),
-  ADD KEY `codigoproductoslacteos` (`codigoproductoslacteos`),
-  ADD KEY `idventa` (`idventa`);
+  ADD KEY `idventa` (`idventa`),
+  ADD KEY `idproductoveterinario` (`idproductoveterinario`);
 
 --
 -- Indexes for table `tbempleado`
@@ -1067,7 +1117,7 @@ ALTER TABLE `tbdetalleventa`
 -- AUTO_INCREMENT for table `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
-  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbfuncion`
@@ -1163,13 +1213,13 @@ ALTER TABLE `tbunidades`
 -- AUTO_INCREMENT for table `tbventa`
 --
 ALTER TABLE `tbventa`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
-  MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbviaaplicacion`
@@ -1216,8 +1266,8 @@ ALTER TABLE `tbdetalleventa`
 -- Constraints for table `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
-  ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_1` FOREIGN KEY (`codigoproductoslacteos`) REFERENCES `tbproductoslacteos` (`codigoproductoslacteos`),
-  ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`);
+  ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_2` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`),
+  ADD CONSTRAINT `tbdetalleventaveterinaria_ibfk_3` FOREIGN KEY (`idproductoveterinario`) REFERENCES `tbproductosveterinarios` (`idproductoveterinario`);
 
 --
 -- Constraints for table `tbempleado`
