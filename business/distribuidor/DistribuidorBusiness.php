@@ -2,10 +2,13 @@
 	class DistribuidorBusiness{
 
 		private $Distribuidor;
+    private $VentaDistribuidor;
 
 		function DistribuidorBusiness(){
 			include_once '../../data/distribuidor/DistribuidorData.php';
+      include_once '../../data/ventas/dataVentaDistribuidor.php';
 			$this->Distribuidor = new DistribuidorData();
+      $this->VentaDistribuidor = new dataVentaDistribuidor();
 		}
 
 		function DistribuidorMostrar(){
@@ -28,6 +31,14 @@
 
         	return $this->Distribuidor->DistribuidorEliminar($idpersona);
     	}
+
+      public function searchProduct($code){
+      return $this->VentaDistribuidor->searchProduct($code);
+    }
+
+    public function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
+      return $this->VentaDistribuidor->procesarVenta($productos,$idCliente,$totalNeto,$totalBruto);
+    }
 
 	}
     /*
