@@ -63,7 +63,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-danger" onclick="" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
             <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
@@ -121,18 +121,19 @@
                         </div>
                         <div class="form-group">
                             <label  for="contrasena">Factura N°:</label>
-                            <input id="Re_recibo"  style="border: none; background: white" name="contrasenaNueva" type="text">
+                            <input id="Re_recibo"  style="border: none; background: white; padding-left: 40%; margin: auto;" 
+                            name="contrasenaNueva" type="text" readonly>
                         </div>
                         <div class="form-group">
                             <label  for="contrasena">Cliente:</label>
-                            <input id="Re_cliente"  style="border: none; background: white; padding-left: 4%" name="contrasenaNueva" type="text">
+                            <input id="Re_cliente"  style="border: none; background: white;  margin-left: 40%; text-align: right;" name="contrasenaNueva" type="text" readonly>
                         </div>
                         <div class="form-group">
                             <label style="" for="contrasena">Tipo venta:</label>
                             <input id="Re_tipoVenta" style="border: none; background: white" name="contrasenaNueva" type="text" placeholder="">
                         </div>
                         <label>Productos:</label>
-                        <table>
+                        <table align="center">
                             <thead>
                                 <tr>
                                     <th>Codigo</th>
@@ -152,7 +153,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/ventanilla.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
+                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/distribuidor.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
                             <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
                         </div>
                     </div>

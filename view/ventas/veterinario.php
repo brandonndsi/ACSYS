@@ -83,7 +83,7 @@
                           </tbody>
                       </table>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="foo">
                         <p>
                           <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar">Cancelar</button>
                           <button data-dismiss='modal' onclick="agregarProductoCarritoBuscar()" class="btn btn-primary" id="btn-enviar">Agregar</button>

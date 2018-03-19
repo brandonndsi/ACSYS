@@ -24,10 +24,11 @@
         //$this->registrarProductosLacteos($productos, $idVenta);
 
         if ($idCliente != 0) {
-            $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
+            return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } else {
-            $this->registrarProductosLacteos($productos, $idVenta);
+            return   $this->registrarProductosLacteos($productos, $idVenta);
         }
+        
     }
 
     function getFactura(){
@@ -45,12 +46,14 @@
       $fecha = date('Y-m-d');
       $hora = date("g:i A");
        $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
-        if ($sqlQuery == 1) {
-            return true;
-        } else {
-            return false;
+       return $sqlQuery->fetch_assoc()['idventa'];
+        
+         /* $dato=$con->query("SELECT `ultimafactura` FROM `tbfacturero`;");
+          while($row =$dato->fetch_assoc()){
+            $datoss=$row['ultimafactura'];
         }
-
+        $con=$this->conexion->cerrarConexion();
+        return $datoss;*/
     }
 
     function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
@@ -63,7 +66,17 @@
         return false;
       }
     }
+   function nombreCompleto($idCliente){
+      $con=$this->conexion->crearConexion();
+      $con->set_charset("UTF8");
+      $sqlQuery=$con->query("SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona` FROM `tbpersona` WHERE idpersona='".$idCliente."';");
+        $array=array();
+        while($row=$sqlQuery->fetch_assoc()){
+            array_push($array,$row);
+        }
 
+        return $array;
+    }
     /*function registrarProductosVentaVeterinaria($productos,$idVenta){
       $con = $this->conexion->crearConexion();
       $con->set_charset("UTF8");
@@ -87,6 +100,9 @@
 
   }
   /*$d= new dataVentaDistribuidor();
-  $r=$d->searchProduct('1234');
-  print_r($d);*/
+  $r=$d->nombreCompleto('10');
+  foreach( $r as $row) {
+    print_r($row['nombrepersona']);
+  }*/
+ // print_r($d);
  ?>

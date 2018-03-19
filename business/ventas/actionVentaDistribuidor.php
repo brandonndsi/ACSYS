@@ -24,4 +24,15 @@ if ($action == "procesarVenta") {
         echo "false";
     }
 }
+
+if($action == "nombrecompleto"){
+    $idCliente = $_POST['idClient'];
+
+$r = $businessVentaDist->nombreCompleto($idCliente);
+$d;
+  foreach( $r as $row) {
+   $d=$row['nombrepersona']." ".$row['apellido1persona']." ".$row['apellido2persona'];
+  }
+  echo $d;
+}
 ?>
