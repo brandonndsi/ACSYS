@@ -206,6 +206,7 @@ function addCarrito() {
                     "bDeferRender": true,
                     "sordering": true,
                     "responsive": true,
+                    "destroy": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
                         "sProcessing": "Procesando...",
@@ -259,14 +260,13 @@ function getRadioButtonSelectedValue(ctrl) {
 }
 function eliminarArticuloCarrito(code){
     alert(code);
+    $('#listaProductosLacteos').dataTable().fnDestroy();
     if (localStorage.getItem("listaProductos") != null) {
     listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
     for (i = 0; i < listaProductos.length; i++) {
                     if (listaProductos[i].codigo === code) {
                         listaProductos.splice(i,1);
-                        if (index > -1) {
-                                listaProductos.splice(i, 1);
-                                    }
+                       //localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
                     }
                 }
 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
@@ -294,6 +294,7 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                     "bDeferRender": true,
                     "sordering": true,
                     "responsive": true,
+                    "ordering": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
                         "sProcessing": "Procesando...",

@@ -1,0 +1,34 @@
+.ventaVeterinaria{
+  padding-left: 4%;
+  width: 96%;
+}
+.selectCliente{
+  width: 100%;
+}
+.selectProduct{
+  width: 83%;
+}
+.btn{
+  margin-bottom: 30px;
+}
+#foo p{
+width: 100%;
+height: 50px;
+/*border: 2px solid black;*/
+display: flex;
+box-sizing: border-box;
+}
+#btn-cancelar{
+display: flex;
+height: 35px;
+margin-left: 400px;
+/*text-align: right;*/
+}
+#btn-enviar{
+display: flex;
+height: 35px;
+/*text-align: right;*/	
+}
+#modalProductosVeterinarioVenta{
+	min-width: 630px;
+}

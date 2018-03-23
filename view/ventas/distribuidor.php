@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-        <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
+        <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css";
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group">
                             <label  for="contrasena">Cliente:</label>
-                            <input id="Re_cliente"  style="border: none; background: white;  margin-left: 40%; text-align: right;" name="contrasenaNueva" type="text" readonly>
+                            <input id="Re_cliente"  style="border:2px solid red; background: white;  margin-left: 40%;" name="contrasenaNueva" type="text" readonly>
                         </div>
                         <div class="form-group">
                             <label style="" for="contrasena">Tipo venta:</label>
