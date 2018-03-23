@@ -16,20 +16,6 @@
       return json_encode($query->fetch_assoc());
     }
 
-      function procesarVenta($productos, $idCliente, $totalNeto, $totalBruto) {
-        $con = $this->conexion->crearConexion();
-        $con->set_charset("UTF8");
-        $facturaVenta = $this->getFactura();
-        $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
-        //$this->registrarProductosLacteos($productos, $idVenta);
-
-        if ($idCliente != 0) {
-            return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
-        } else {
-            return   $this->registrarProductosLacteos($productos, $idVenta);
-        }
-        
-    }
 
     function getFactura(){
       $con = $this->conexion->crearConexion();
@@ -40,23 +26,16 @@
     }
 
     function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){
-      $con = $this->conexion->crearConexion();
-      $con->set_charset("UTF8");
-      $tipoVenta = "Distribuidor";
-      $fecha = date('Y-m-d');
-      $hora = date("g:i A");
-       $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
+        $con = $this->conexion->crearConexion();
+          $con->set_charset("UTF8");
+            $tipoVenta = "Distribuidor";
+              $fecha = date('Y-m-d');
+                $hora = date("g:i A");
+                 $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
        return $sqlQuery->fetch_assoc()['idventa'];
-        
-         /* $dato=$con->query("SELECT `ultimafactura` FROM `tbfacturero`;");
-          while($row =$dato->fetch_assoc()){
-            $datoss=$row['ultimafactura'];
-        }
-        $con=$this->conexion->cerrarConexion();
-        return $datoss;*/
     }
 
-    function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
+      function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
       $con = $this->conexion->crearConexion();
       $con->set_charset("UTF8");
       $sqlQuery = $con->query("CALL registrarVentaPorCobrar('$idCliente','$idVenta','$totalVenta')");
@@ -66,6 +45,33 @@
         return false;
       }
     }
+
+      function registrarProductosVentaVeterinaria($productos,$idVenta){
+          $con = $this->conexion->crearConexion();
+          $con->set_charset("UTF8");
+          $productos = json_decode($productos);
+            foreach ($productos as $producto) {
+              echo($producto->precio);
+              $total = $producto->precio * $producto->cantidad;
+              $con->query("CALL registrarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
+          }
+      }
+
+      function procesarVenta($productos, $idCliente, $totalNeto, $totalBruto) {
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $facturaVenta = $this->getFactura();
+        $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
+        if ($idCliente != 0) {
+            return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
+        } else {
+            return   $this->registrarProductosLacteos($productos, $idVenta);
+        }
+        
+    }
+
+
+/*************************************************************/
    function nombreCompleto($idCliente){
       $con=$this->conexion->crearConexion();
       $con->set_charset("UTF8");
@@ -77,26 +83,27 @@
 
         return $array;
     }
-    /*function registrarProductosVentaVeterinaria($productos,$idVenta){
-      $con = $this->conexion->crearConexion();
+    
+    function idfactura(){
+      $con=$this->conexion->crearConexion();
       $con->set_charset("UTF8");
-      $productos = json_decode($productos);
-      foreach ($productos as $producto) {
-        echo($producto->precio);
-        $total = $producto->precio * $producto->cantidad;
-        $con->query("CALL registrarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
-      }
-    }*/
+      $sqlQuery=$con->query("SELECT `ultimafactura` FROM `tbfacturero`;");
+      $array;
+        while($row=$sqlQuery->fetch_assoc()){
+            $array=$row['ultimafactura'];
+        }
 
-    /*function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
-      $facturaVenta = $this->getFactura();
-      $idVenta = $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
-      if($idVenta != 0){
-        $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
-      }
-      $this->registrarProductosVentaVeterinaria($productos,$idVenta);
-    }*/
+        return $array;
+    }
 
+/*
+ INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
+
+ INSERT INTO `tbdetalleventadistribuidor`(preciounitariodetalleventa,cantidaddetalleventa, `subtotaldetalleventa`, `idventa`, `idproductolacteo`) VALUES (
+ preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,idVenta,(SELECT unidadproductoslacteos FROM tbproductoslacteos WHERE codigoproductoveterinario=codigoproductoslacteos));
+
+ INSERT INTO `tbproductoslacteos`(`unidadproductoslacteos`, `codigoproductoslacteos`, `nombreproductolacteo`, `preciounitarioproductolacteo`, `cantidadinventarioproductolacteo`, `estadoproductoslacteos`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
+ */
 
   }
   /*$d= new dataVentaDistribuidor();

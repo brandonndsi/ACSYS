@@ -107,33 +107,35 @@
                             <div class="col-sm-1">
                                 <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
-                            <div class="col-sm-2">
-                                <h4 class="modal-title">Recibo</h4>
+                            <div class="col-sm-10">
+                                <h2 id="facTitulo">Resivo</h2>
                             </div>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <center>
-                                <h2>EL SAUCE TICO</h2>
+                            <div id="facLogoInfo">
+                               <h2>EL SAUCE TICO</h2>  
+                            </div>
+                            <div id="faclogo">
                                 <img src="../../image/logo.png" width="100px" height="100px">
-                            </center>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label  for="contrasena">Factura N°:</label>
-                            <input id="Re_recibo"  style="border: none; background: white; padding-left: 40%; margin: auto;" 
-                            name="contrasenaNueva" type="text" readonly>
+                            <label  id="facNumero">Factura N°:</label>
+                            <input id="Re_recibo" name="contrasenaNueva" 
+                            type="text" readonly>
                         </div>
                         <div class="form-group">
-                            <label  for="contrasena">Cliente:</label>
-                            <input id="Re_cliente"  style="border:2px solid red; background: white;  margin-left: 40%;" name="contrasenaNueva" type="text" readonly>
+                            <label  id="facCliente">Cliente:</label>
+                            <input id="Re_cliente"  name="contrasenaNueva" type="text" readonly>
                         </div>
                         <div class="form-group">
-                            <label style="" for="contrasena">Tipo venta:</label>
-                            <input id="Re_tipoVenta" style="border: none; background: white" name="contrasenaNueva" type="text" placeholder="">
+                            <label  id="facTipo">Tipo venta:</label>
+                            <input id="Re_tipoVenta" name="contrasenaNueva" type="text" placeholder="">
                         </div>
-                        <label>Productos:</label>
-                        <table align="center">
+                        <!--<label>Productos:</label>-->
+                        <table align="center" id="factabla">
                             <thead>
                                 <tr>
                                     <th>Codigo</th>
@@ -154,7 +156,7 @@
                     <div class="modal-footer">
                         <div class="btn-group">
                             <button class="btn btn-danger" onclick="location.href = '../../view/ventas/distribuidor.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-                            <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
+                            <button class="btn btn-primary" onclick ="ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->

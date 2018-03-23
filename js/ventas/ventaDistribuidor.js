@@ -395,12 +395,30 @@ function carry() {
             }
             //alert(d);
             //document.getElementById("Re_cliente").value =d;
+            //Re_recibo
 
             document.getElementById("Re_cliente").value = idCliente;
             document.getElementById("Re_tipoVenta").value = tipoVenta;
             
         });
     });
+    /*funcion para obtener lo que es el numero de faltura*/
+    var dato;
+  $.post("../../business/ventas/actionVentaDistribuidor.php",{
+            action: 'idfactura'
+        },function (responseText){
+            console.log(responseText);
+            //alert(responseText);
+            dato=responseText;
+            dato++;
+            document.getElementById("Re_recibo").value =dato;
+            //alert(dato);
+        }); 
+    /*terminacion para poder optener el numero de factura.*/
     $("#modalRecibo").modal();
 }
 
+function ImprimirFactura(){
+numerofactura=document.getElementById("Re_recibo").value;
+window.open("http://localhost/Ingenieria/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}
