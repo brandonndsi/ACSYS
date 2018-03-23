@@ -83,3 +83,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `login2`(IN `idpersona` VARCHAR(50))
     NO SQL
 SELECT tbempleado.passwordempleado FROM tbempleado INNER JOIN tbpersona ON tbempleado.idpersonaempleado=tbpersona.idpersona WHERE tbpersona.idpersona=idpersona AND tbempleado.estadoempleado="activo"$$
 DELIMITER ;
+
+/* obtiene producto lacteo buscado*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searchproductlacteo`(IN `codigo` TEXT)
+    NO SQL
+    DETERMINISTIC
+BEGIN
+  SELECT nombreproductolacteo,preciounitarioproductolacteo
+  FROM tbproductoslacteos
+  WHERE codigoproductoslacteos=codigo LIMIT 1;
+END$$
+DELIMITER ;
