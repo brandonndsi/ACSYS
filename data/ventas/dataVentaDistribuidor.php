@@ -51,9 +51,9 @@
           $con->set_charset("UTF8");
           $productos = json_decode($productos);
             foreach ($productos as $producto) {
-              echo($producto->precio);
+              //echo($producto->precio);
               $total = $producto->precio * $producto->cantidad;
-              $con->query("CALL registrarDetalleVenta('$producto->precio','$producto->cantidad','$total','$producto->codigo','0','$idVenta');");
+              $con->query("CALL registrarDetalleVenta('".$producto->precio."','".$producto->cantidad."','".$total."','".$producto->codigo."','0','".$idVenta."');");
           }
       }
 
@@ -65,7 +65,7 @@
         if ($idCliente != 0) {
             return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } else {
-            return   $this->registrarProductosLacteos($productos, $idVenta,$idCliente);
+            return   $this->registrarProductosLacteos($productos, $idVenta);
         }
         
     }

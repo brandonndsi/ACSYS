@@ -259,7 +259,7 @@ function getRadioButtonSelectedValue(ctrl) {
             return ctrl[i].value;
 }
 function eliminarArticuloCarrito(code){
-    alert(code);
+    //alert(code);
     $('#listaProductosLacteos').dataTable().fnDestroy();
     if (localStorage.getItem("listaProductos") != null) {
     listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
@@ -283,7 +283,7 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                 codigo = '"' + listaProductos[i].codigo + '"';
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
                 html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
-                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";
                 total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
             }
