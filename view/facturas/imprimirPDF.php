@@ -2,9 +2,8 @@
 include_once 'Plantilla.php';
 include_once '../../data/factura/dataFactura.php';
 $op=$_GET['numerofactura'];
-//$lista=$_GET['lista'];
+$tot=$_GET['total'];
 $lista = json_decode($_GET['lista']);
-$total;
 $data= new dataFactura();
 $op=$data->numeroFactura();
 $d=$data->imprimirCliente(24);/*sacando de la base de datos los datos del cliente*/
@@ -70,9 +69,9 @@ $pdf->Cell(30,6,utf8_decode($producto->cantidad),1,0,'C',0);
 $total = $producto->precio * $producto->cantidad;
 }
 $pdf->Ln();
-$pdf->Cell(100,6,'Monto a Pagar.',1,0,'C',0);
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(70,6,utf8_decode('¢'.$total),1,0,'C',0);
+$pdf->Cell(100,6,'Monto a Pagar.',1,0,'C',0);
+$pdf->Cell(70,6,utf8_decode('¢'.$tot),1,0,'C',0);
 /*
 foreach ($fac as $row) {
 $pdf->Ln();

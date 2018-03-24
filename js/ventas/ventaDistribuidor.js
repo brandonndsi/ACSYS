@@ -420,5 +420,6 @@ function carry() {
 
 function ImprimirFactura(){
 numerofactura=document.getElementById("Re_recibo").value;
-window.open("http://localhost/Ingenieria/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos"), "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+totalBB = document.getElementById('totalPagar').value;
+window.open("http://localhost/Ingenieria/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
