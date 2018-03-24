@@ -1,7 +1,10 @@
 <?php 
 include_once 'Plantilla.php';
 include_once '../../data/factura/dataFactura.php';
-//$op=$_GET['numerofactura'];
+$op=$_GET['numerofactura'];
+//$lista=$_GET['lista'];
+$lista = json_decode($_GET['lista']);
+$total;
 $data= new dataFactura();
 $op=$data->numeroFactura();
 $d=$data->imprimirCliente(24);/*sacando de la base de datos los datos del cliente*/
@@ -47,27 +50,35 @@ $pdf->Ln();
 $pdf->Cell(50,6,'Nombre: '.utf8_decode($row['personanombre']),0,0,'C',0);
 $pdf->Cell(50,6,'Apellido 1: '.utf8_decode($row['personaapellido1']),0,0,'C',0);
 $pdf->Cell(70,6,'Apellido 2: '.utf8_decode($row['personaapellido2']),0,0,'C',0);
-}
+}*/
 $pdf->Ln();
-$pdf->Cell(70,6,'Nombre Producto',1,0,'C',1);
+$pdf->Cell(30,6,'Codigo',1,0,'C',1);
+$pdf->Cell(55,6,'Nombre',1,0,'C',1);
+$pdf->Cell(55,6,'Precio',1,0,'C',1);
 $pdf->Cell(30,6,'Cantidad',1,0,'C',1);
-$pdf->Cell(70,6,'Subtotal',1,0,'C',1);*/
 /*
 idproducto	cantidad	precioventa	productonombre
  */
 $pdf->SetFont('Arial','',12);
 /*sacando los productos detalles de la factura*/
-/*foreach ($des as $row) {
+foreach ($lista as $producto) {
 $pdf->Ln();
-$pdf->Cell(70,6,utf8_decode($row['productonombre']),1,0,'C',0);
-$pdf->Cell(30,6,utf8_decode($row['cantidad']),1,0,'C',0);
-$pdf->Cell(70,6,utf8_decode('¢'.$row['precioventa']),1,0,'C',0);
+$pdf->Cell(30,6,utf8_decode($producto->codigo),1,0,'C',0);
+$pdf->Cell(55,6,utf8_decode($producto->nombre),1,0,'C',0);
+$pdf->Cell(55,6,utf8_decode('¢'.$producto->precio),1,0,'C',0);
+$pdf->Cell(30,6,utf8_decode($producto->cantidad),1,0,'C',0);
+$total = $producto->precio * $producto->cantidad;
 }
+$pdf->Ln();
+$pdf->Cell(100,6,'Monto a Pagar.',1,0,'C',0);
+$pdf->SetFont('Arial','B',14);
+$pdf->Cell(70,6,utf8_decode('¢'.$total),1,0,'C',0);
+/*
 foreach ($fac as $row) {
 $pdf->Ln();
 $pdf->Cell(100,6,'Monto a Pagar.',1,0,'C',0);
 $pdf->SetFont('Arial','B',14);
-$pdf->Cell(70,6,utf8_decode('¢'.$row['totalventa']),1,0,'C',0);
+$pdf->Cell(70,6,utf8_decode('¢'.$total),1,0,'C',0);
 }*/
 $pdf->Ln(20);
 $pdf->Cell(170,6,'Gracias por su compra !!',0,0,'C',0);

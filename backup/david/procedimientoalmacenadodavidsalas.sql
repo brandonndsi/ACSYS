@@ -49,3 +49,14 @@ UPDATE `tbclientemayorista` SET `estadoclientemayorista`='Inactivo'
 WHERE idpersonamayorista=id;
 END$$
 DELIMITER ;
+
+
+/*nuevos procedimientos mios*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarcliente`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona` FROM `tbpersona` WHERE idpersona=id;
+
+END$$
+DELIMITER ;
