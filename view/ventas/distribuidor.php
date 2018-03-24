@@ -32,7 +32,7 @@
         ?>
         <div class="ventaVeterinaria">
             <h4>Ventas Distribuidor</h4>
-            <label>Cliente:</label>
+            <label id="selectlabel">Cliente:</label>
             <select id="selectCliente"  class="btn btn-info selectCliente">
             </select>
             <div class="form-group">
