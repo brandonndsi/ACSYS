@@ -46,14 +46,14 @@
       }
     }
 
-      function registrarProductosVentaVeterinaria($productos,$idVenta){
+      function registrarProductosLacteos($productos,$idVenta){
           $con = $this->conexion->crearConexion();
           $con->set_charset("UTF8");
           $productos = json_decode($productos);
             foreach ($productos as $producto) {
               echo($producto->precio);
               $total = $producto->precio * $producto->cantidad;
-              $con->query("CALL registrarDetalleVentaVeterinaria('$producto->precio','$producto->cantidad','$total','$producto->codigo','$idVenta')");
+              $con->query("CALL registrarDetalleVenta('$producto->precio','$producto->cantidad','$total','$producto->codigo','0','$idVenta');");
           }
       }
 
@@ -65,7 +65,7 @@
         if ($idCliente != 0) {
             return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } else {
-            return   $this->registrarProductosLacteos($productos, $idVenta);
+            return   $this->registrarProductosLacteos($productos, $idVenta,$idCliente);
         }
         
     }
@@ -73,8 +73,9 @@
 
 /*************************************************************/
    function nombreCompleto($idCliente){
+      $con=$this->conexion->crearConexion()->set_charset("UTF8");
       $con=$this->conexion->crearConexion();
-      $con->set_charset("UTF8");
+      //$con->set_charset("UTF8");
       $sqlQuery=$con->query("SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona` FROM `tbpersona` WHERE idpersona='".$idCliente."';");
         $array=array();
         while($row=$sqlQuery->fetch_assoc()){
@@ -96,14 +97,6 @@
         return $array;
     }
 
-/*
- INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
-
- INSERT INTO `tbdetalleventadistribuidor`(preciounitariodetalleventa,cantidaddetalleventa, `subtotaldetalleventa`, `idventa`, `idproductolacteo`) VALUES (
- preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,idVenta,(SELECT unidadproductoslacteos FROM tbproductoslacteos WHERE codigoproductoveterinario=codigoproductoslacteos));
-
- INSERT INTO `tbproductoslacteos`(`unidadproductoslacteos`, `codigoproductoslacteos`, `nombreproductolacteo`, `preciounitarioproductolacteo`, `cantidadinventarioproductolacteo`, `estadoproductoslacteos`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
- */
 
   }
   /*$d= new dataVentaDistribuidor();

@@ -10,14 +10,14 @@ class dataFactura {
     }
 
 /*************************************************************/
-    function imprimirCliente($numerofactura){
+    function imprimirCliente($idcliente){
          $this->conexion->crearConexion()->set_charset('utf8');
-         $suk=$this->conexion->crearConexion()->query("SELECT `idpersonaventa` FROM `tbventa` WHERE numerofactura='".$numerofactura."';");
+         /*$suk=$this->conexion->crearConexion()->query("SELECT `idpersonaventa` FROM `tbventa` WHERE numerofactura='".$numerofactura."';");
          $idcliente;
          while ($row = $suk->fetch_assoc()) {
              $idcliente=$row['idpersonaventa'];
-         }
-        $resultado=$this->conexion->crearConexion()->query("CALL buscarcliente('".$idcliente."');");
+         }*/
+        $resultado=$this->conexion->crearConexion()->query("CALL buscarcliente('".$idcliente."')");
         $this->conexion->cerrarConexion();
 
          $array=array();
@@ -77,11 +77,12 @@ class dataFactura {
 
         return $array;
     }
+
 }
 /*alt + 189 para sacar la moneda de colones de costa rica*/
+/*
 
-
-/*$dota= new dataFactura();
-$d=$dota->imprimirCliente('34');
+$dota= new dataFactura();
+$d=$dota->imprimirCliente('4');
 print_r($d);*/
 ?>

@@ -60,3 +60,13 @@ SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apelli
 
 END$$
 DELIMITER ;
+/*Producto modificado para poder hacer el ingreso de los datos**/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarDetalleVenta`(IN `precio` DOUBLE, IN `cantidad` INT, IN `total` DOUBLE, IN `codigo` VARCHAR(50), IN `descuento` DOUBLE, IN `idventa` INT)
+    NO SQL
+    DETERMINISTIC
+BEGIN
+INSERT INTO tbdetalleventa(preciounitariodetalleventa, cantidaddetalleventa, subtotaldetalleventa, codigoproductoslacteos, descuento, idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
+END$$
+DELIMITER ;
+/*Alteracion de mi metodo de datos de el nombre del cliente*/

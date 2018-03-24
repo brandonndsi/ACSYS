@@ -58,7 +58,7 @@ function consultarProductor() {
             html += "<option value='0'</option>";
             for (i = 0; i < json.length; i++) {
                 idPersona = '"' + json[i].idpersona + '"';
-                html += "<option value=" + idPersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
+                //html += "<option value=" + idPersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
             }
             consultarProductorCliente(html);
         });
@@ -421,5 +421,6 @@ function carry() {
 function ImprimirFactura(){
 numerofactura=document.getElementById("Re_recibo").value;
 totalBB = document.getElementById('totalPagar').value;
-window.open("http://localhost/Ingenieria/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+id = document.getElementById('selectCliente').value;
+window.open("http://localhost/Ingenieria/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
