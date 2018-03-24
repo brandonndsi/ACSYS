@@ -27,7 +27,7 @@ $pdf->Cell(55,6,'Fecha',1,0,'C',0);
 $pdf->Cell(30,6,$fecha,0,0,'C',0);
 $pdf->Ln();
 $pdf->Ln();
-$pdf->Cell(40,6,'tipo',1,0,'C',0);
+$pdf->Cell(40,6,'Tipo',1,0,'C',0);
 $pdf->Cell(43,6,utf8_decode($tipoVenta),0,0,'C',0);
 $pdf->Cell(55,6,'Hora',1,0,'C',0);
 $pdf->Cell(30,6,$hora,0,0,'C',0);
