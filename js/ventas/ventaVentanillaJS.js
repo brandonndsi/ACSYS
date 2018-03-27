@@ -376,7 +376,7 @@ function carry() {
     //var d=llenarDatosCliente(idCliente);
     var totalNeto = document.getElementById('totalPagar').value;
     var totalBruto = document.getElementById('totalPagar').value;
-    var tipoVenta = "Distribuidor";
+    var tipoVenta = "Ventanilla";
 
     $(document).ready(function () {
         $.post('../../business/ventas/actionVentaDistribuidor.php', {
