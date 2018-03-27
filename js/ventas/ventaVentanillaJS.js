@@ -257,7 +257,7 @@ function getRadioButtonSelectedValue(ctrl) {
             return ctrl[i].value;
 }
 
-function carry() {
+/*function carry() {
 
     var carrito = [];
     var idCliente = document.getElementById('selectCliente').value;
@@ -294,7 +294,7 @@ function carry() {
             $("#modalRecibo").modal();
         });
     });
-}
+}*/
 /**
  * [eliminarArticuloCarrito descripción]
  * @param  {[entero]} code [Manda el id del articulo a eliminar del array de la lista del carrito]
@@ -367,4 +367,85 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
 
     //alert(codigo+" y el codigo es: "+code);
 
+}
+
+function carry() {
+
+    var carrito = [];
+    var idCliente = document.getElementById('selectCliente').value;
+    //var d=llenarDatosCliente(idCliente);
+    var totalNeto = document.getElementById('totalPagar').value;
+    var totalBruto = document.getElementById('totalPagar').value;
+    var tipoVenta = "Distribuidor";
+
+    $(document).ready(function () {
+        $.post('../../business/ventas/actionVentaDistribuidor.php', {
+            action: 'procesarVenta',
+            idCliente: idCliente,
+            productos:localStorage.getItem("listaProductos"),
+            totalBruto: totalBruto,
+            totalNeto: totalNeto
+        }, function (responseText) {
+            console.log(responseText);
+            datosTabla = "";
+            total = 0;
+            carrito = JSON.parse(localStorage.getItem("listaProductos"));
+            for (i = 0; i < carrito.length; i++) {
+                datosTabla += "<table>";
+                datosTabla += "<tr>";
+                datosTabla += "<td>" + carrito[i].codigo + "</td>";
+                datosTabla += "<td>" + carrito[i].nombre + "</td>";
+                datosTabla += "<td>" + carrito[i].precio + "</td>";
+                datosTabla += "<td>" + carrito[i].cantidad + "</td>";
+                //datosTabla += "<td>" + totalBruto + "</td>";
+                datosTabla += "</tr>";
+            }
+                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
+                datosTabla += "<td>" + totalBruto + "</td>";
+                datosTabla += "</table>";
+            $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
+           // document.getElementById("Re_recibo").value = responseText;
+            if(idCliente!=0){
+                $.post("../../business/ventas/actionVentaDistribuidor.php",{
+                    action: 'nombrecompleto',
+                    idClient: idCliente
+                        },function (responseText){
+                             console.log(responseText);
+                                // alert(responseText);
+                             document.getElementById("Re_cliente").value =responseText;
+                });
+        
+            }else{
+                    document.getElementById("Re_cliente").value =idCliente;
+            }
+            //alert(d);
+            //document.getElementById("Re_cliente").value =d;
+            //Re_recibo
+
+            document.getElementById("Re_cliente").value = idCliente;
+            document.getElementById("Re_tipoVenta").value = tipoVenta;
+            
+        });
+    });
+    /*funcion para obtener lo que es el numero de faltura*/
+    var dato;
+  $.post("../../business/ventas/actionVentaDistribuidor.php",{
+            action: 'idfactura'
+        },function (responseText){
+            console.log(responseText);
+            //alert(responseText);
+            dato=responseText;
+            dato++;
+            document.getElementById("Re_recibo").value =dato;
+            //alert(dato);
+        }); 
+    /*terminacion para poder optener el numero de factura.*/
+    $("#modalRecibo").modal();
+}
+
+function ImprimirFactura(){
+numerofactura=document.getElementById("Re_recibo").value;
+totalBB = document.getElementById('totalPagar').value;
+id = document.getElementById('selectCliente').value;
+window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
