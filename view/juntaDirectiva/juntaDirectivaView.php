@@ -23,7 +23,7 @@
 
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarJuntaDirectiva()">
+    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarJuntaDirectiva(); verProductor();">
         <!-- Import the file menu.php -->
         <?php
         include '../menuView.php';
@@ -36,7 +36,6 @@
             <table id="listaJuntas" class="display" cellspacing="0" >
                 <thead>
                     <tr>
-                        <th>ID </th>
                         <th>Inicio de Periodo</th>
                         <th>Final de periodo </th>
                         <th>Modificar</th>
@@ -64,11 +63,11 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" >
                         <div style="width:50%; float:left;">
                             <input type="hidden" name="idjuntadirectivar" ><!--este es el campo que está como llave primaria en la base de datos-->
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <label>Presidente:
                                         <a id="icon">
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
@@ -76,51 +75,56 @@
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><input type="text" class="form-control" class="span12" name="presidenter" id="presidenter" placeholder="Presidente" onkeyup="validarCamposPresidente()"></p>
+                                    <p><select class="btn btn-info" class="form-control"  name = "presidenter" id ="presidenter" onchange="validarCamposPresidente(this.value);" >
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <label>Vicepresidente:
                                         <a id="icon2">
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><input type="text" class="form-control" class="span12" name="vicepresidenter" id="vicepresidenter" placeholder="Vicepresidente" onkeyup="validarVicepresidente()"></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "vicepresidenter" id ="vicepresidenter" onchange="validarVicepresidente(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <label>Secretario:
                                         <a id="icon3">
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><input type="text" class="form-control" class="span12" name="secretarior" id="secretarior" placeholder="Secretario" onkeyup="validarCamposSecretario()"></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "secretarior" id ="secretarior" onchange="validarCamposSecretario(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <label>Tesorero:
                                         <a id="icon4">
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><input type="text" class="form-control" class="span12" name="tesoreror" id="tesoreror" placeholder="Tesorero" onkeyup="validarCamposTesorero()"></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "tesoreror" id ="tesoreror" onchange="validarCamposTesorero(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <label>Fiscal:
                                         <a id="icon5">
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><input type="text" class="form-control" class="span12" name="fiscalr" id="fiscalr" placeholder="Fiscal" onkeyup="validarCamposFiscal()"></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "fiscalr" id ="fiscalr" onchange="validarCamposFiscal(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +137,8 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="text" class="form-control" class="span12" name="vocal1r" id="vocal1r" placeholder="Vocal 1" onkeyup="validarCamposVocal1()" ></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "vocal1r" id ="vocal1r" onchange="validarCamposVocal1(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -144,7 +149,8 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><input type="text" class="form-control" class="span12" name="vocal2r" id="vocal2r" placeholder="Vocal 2" onkeyup="validarCamposVocal2()"></p>
+                                    <p><select class="btn btn-info" class="form-control" name = "vocal2r" id ="vocal2r" onchange="validarCamposVocal2(this.value)">
+                                        </select></p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -154,8 +160,8 @@
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
-                                <div class="col-sm-8">
-                                    <p><input type="date" class="form-control" class="span12" name="fechainicioperiodor" id="fechainicioperiodor" onchange="validarCamposInicio()"></p>
+                                <div class="col-sm-7">
+                                    <p><input type="date" class="form-control" name="fechainicioperiodor" id="fechainicioperiodor" onchange="validarCamposInicio()"></p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -165,8 +171,8 @@
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
-                                <div class="col-sm-8">
-                                    <p><input type="date" class="form-control" class="span12" name="fechafinalperiodor" id="fechafinalperiodor" onchange="validarCamposFinal()"></p>
+                                <div class="col-sm-7">
+                                    <p><input type="date" class="form-control" name="fechafinalperiodor" id="fechafinalperiodor" onchange="validarCamposFinal()"></p>
                                 </div>
                             </div>
                         </div>
