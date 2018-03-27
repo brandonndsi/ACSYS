@@ -64,7 +64,7 @@
                  </tbody>
              </table>
            </div>
-           <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+           <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
            <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();procesarVenta();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
          <!--Modal buscar productos veterinarios-->
@@ -94,7 +94,7 @@
                     </div>
                     <div class="modal-footer" id="foo">
                         <p>
-                          <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar">Cancelar</button>
+                          <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar</button>
                           <button data-dismiss='modal' onclick="agregarProductoCarritoBuscar()" class="btn btn-primary" id="btn-enviar">Agregar</button>
                         </p>
                     </div>
