@@ -55,7 +55,7 @@ function consultarProductor() {
         }, function (responseText) {
             json = JSON.parse(responseText);
             html = "";
-            html += "<option value='0'</option>";
+            /*html += "<option value='0'</option>";*/
             for (i = 0; i < json.length; i++) {
                 idPersona = '"' + json[i].idpersona + '"';
                 //html += "<option value=" + idPersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
