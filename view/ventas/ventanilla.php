@@ -218,8 +218,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/distribuidor.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-                            <button class="btn btn-primary" onclick ="ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
+                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/ventanilla.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
+                            <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/ventanilla.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
