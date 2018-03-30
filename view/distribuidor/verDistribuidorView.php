@@ -4,9 +4,13 @@
 	<title>Distribuidor</title>
     <meta charset="utf-8">
 	<!-- CSS -->
+    <script type="text/javascript" src="../../js/jquery-2.2.4.js"></script>
 	<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../js/modalImagen/cargar.js"></script>
+
 
 	<link rel="stylesheet" href="../../css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!--<link rel="stylesheet" type="text/css" href="../../css/distribuidor/Distribuidor.css">
@@ -23,8 +27,7 @@
     </script>
               
 </head>
-<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%"
-  onload="mostrarDistribuidor()">
+<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
 	 <!-- Import the file menu.php -->
           <?php
             include '../menuView.php';
@@ -268,7 +271,20 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
-
+<!-- Modal de la imagen del distribuidor. -->
+<div id="contenedorImagen">
+    <div id=contImagen>
+        <div id="imagen">
+           <img src="" id="recibir-imagene"> 
+        </div>
+        <div id="formImagen">
+            <?php 
+                include_once '../modalimagen/modalImagen.php';
+             ?>
+        </div>
+    </div>
+</div>
+<!-- terminando el modal de la imagen del distribuidor.--> 
         <!--Modal de respuesta empleado-->
         <div id="modalRespuesta" class="modal fade in">
             <div  class="modal-dialog">
