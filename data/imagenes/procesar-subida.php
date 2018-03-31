@@ -23,6 +23,10 @@ if(isset($_POST['accion'])){
 	if($_POST['accion']=="imagenesproductorsocio"){
 		llenarDatosImagenesProductorSocio();
 	}
+
+	if($_POST['accion']=="imagenesempleado"){
+		llenarDatosImagenesEmpleado();
+	}
 }
 /**
  * [llenarDatosImagenesProductorCliente para poder llenar los datos de la imagenes del productor cliente]
@@ -128,6 +132,27 @@ echo '<div id="contentImagen">';
 echo '<h2>Cedula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadproductorsocio'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadproductorsocio'].'"/></a>';
+echo '</div>';
+}
+
+}
+
+function llenarDatosImagenesEmpleado(){
+	include_once '../empleado/dataEmpleado.php';
+	$id=$_POST['id'];
+	$dato= new dataEmpleado();
+	$ing=$dato->imagenesEmpleado($id);
+foreach ($ing as $row) {	
+
+echo '<div id="contentImagen">';
+echo '<h2>Manipulaci&oacute;n Alimento</h2>';
+echo '<input type="hidden" value="'.$row['imagentitulomanipulacionalimentosempleado'].'" id="imagenManipulacionAlimento">';
+echo '<a href="javascript:abrirManipulacionAlimento();"><img src="'.$row['imagentitulomanipulacionalimentosempleado'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Copia C&eacute;dula</h2>';
+echo '<input type="hidden" value="'.$row['imagendocumentoidentidadempleado'].'" id="imagenCedula">';
+echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadempleado'].'"/></a>';
 echo '</div>';
 }
 

@@ -116,4 +116,11 @@ SELECT `imagencboproductorsocio`, `imagenexamensangradoproductorsocio`, `imagene
 END$$
 DELIMITER ;
 
-
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenEmpleado`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`
+FROM `tbempleado` WHERE idpersonaempleado=id  AND estadoempleado='activo';
+END$$
+DELIMITER ;

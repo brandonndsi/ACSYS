@@ -9,10 +9,11 @@ left:0px;/*izquierda en el borde se adacte a la pantalla*/
 -webkit-transition: all 0.2s;
 transform: translateY(-150%);
 z-index: 100;
+margin:auto;
 /*display: none;*/
 }
 #contImagen{
-	width: 50%;
+	width: 480px;
 	margin: auto;
 	background: white;/*rgba(0,0,0,0.8);*/
 	padding: 10px 20px;/*para que se ajuste lo adentro del formulario*/
@@ -20,9 +21,10 @@ z-index: 100;
 	margin-top: 100px;/*para separar la parte de arriba del formulario con la del navegador*/
 	border-radius: 10px;/*para ponerle lo que es el borde redondiado al formulario*/
 	height: 450px;
+	margin-bottom: 10px;
 }
 #contImagen img{
-	width:100%;/*para que agarre el 100 del div que lo contiene*/
+	width:430px;/*para que agarre el 100 del div que lo contiene*/
 	height:300px;/*para que agarre el 90px del div que lo contiene*/
 	display: block;/*para que pueda agarrar los parametros de el div*/
 	margin: auto;/*margin auto para que se ajuste a la pantalla*/
@@ -42,5 +44,23 @@ z-index: 100;
 	color:black;
 }
 #filemage{
+	margin-top: 10px;
+	margin-bottom: 10px;
 	color:black;
+	width: 100%;
+	/*border: 2px solid red;*/
+}
+@media (max-width: 480px){
+	#contImagen img{
+	width:200px;/*para que agarre el 100 del div que lo contiene*/
+	height:200px;/*para que agarre el 90px del div que lo contiene*/
+	display: block;/*para que pueda agarrar los parametros de el div*/
+	margin: auto;/*margin auto para que se ajuste a la pantalla*/
+}
+#contImagen{
+	margin: auto;
+	margin-top: 100px;
+	width: 240px;
+	height: 300px;
+}
 }

@@ -8,6 +8,15 @@ class dataEmpleado {
         require_once '../../data/conexion/conexion.php';
         $this->conexion = new conexion();
     }
+     function imagenesEmpleado($id){
+        $con=$this->conexion->crearConexion();
+        $mostrarProductores = $con->query("CALL sacarimagenEmpleado('$id');");
+        $datos=array();
+        while($result=$mostrarProductores->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        return $datos; 
+    }
 
     // mostrar todo
     function empleadosMostrar() {
