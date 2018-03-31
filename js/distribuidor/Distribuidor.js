@@ -1,7 +1,8 @@
-$(document).ready(function() {
- 
+var rutaimagen;
+window.onload=function(){
 cargarTablaDistribuidor();
-});
+//mostrarDistribuidor();
+};
 
 function cargarTablaDistribuidor(){
   $('#listaDistribuidor').dataTable().fnDestroy();
@@ -30,12 +31,12 @@ function cargarTablaDistribuidor(){
                 direccion = json[i].direccionpersona;
                 correo = json[i].correopersona;
                 id = json[i].idpersona;
-
+                rutaimagen=json[i].rutaimagen;
                 distribuidor = "'" + documentoidentidad + "," + nombre + "," + primerapellido + "," + segundoapellido + "," +
-                        telefono + "," + direccion + "," + correo + ","+ id + "'";
+                        telefono + "," + direccion + "," + correo + ","+ id +"'";
 
                 html += '<td><a href="javascript:modalModificarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-                html += '<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+                html += '<td><a href="javascript:modalimagen()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
                 html += '<td><a href="javascript:modalEliminarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
             }
             $("#datos").html(html);
@@ -76,6 +77,27 @@ function cargarTablaDistribuidor(){
         });
     });
  }
+function modalimagen(){
+
+alert(rutaimagen);
+var ruta="<img src='"+rutaimagen+"'>";
+document.getElementById("imagen").innerHTML=ruta;
+document.getElementById("contenedorImagen").style.transform="translateY(0%)";
+}
+
+function probarqueestellenoelfile(){
+      //file type validation
+    $("#file").change(function() {
+        var file = this.files[0];
+        var imagefile = file.type;
+        var match= ["image/jpeg","image/png","image/jpg"];
+        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+            alert('Please select a valid image file (JPEG/JPG/PNG).');
+            $("#file").val('');
+            return false;
+        }
+    });
+}
 // registrar Distribuidor//
 function registrarDistribuidor() {
 

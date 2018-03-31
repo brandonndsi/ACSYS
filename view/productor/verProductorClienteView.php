@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
              <!--Javascript-->
+             <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
             <script src="../../js/jquery-3.2.1.js"></script>
             <script src="../../js/jquery.dataTables.js"></script>
             <script src="../../js/menuJs.js"></script>

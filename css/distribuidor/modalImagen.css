@@ -1,0 +1,46 @@
+#contenedorImagen{
+width: 100%;/*para lo que es de derecha a izquierda*/
+height: 100%;/*anchura de arriba a bajo*/
+color : #fff;/*para el color del texto*/
+position: fixed;
+background-color: rgba(0,0,0,0.09);/*color de fondo de pantalla*/
+top:0px;/*es la parte de arriba que se pocicione al principio*/
+left:0px;/*izquierda en el borde se adacte a la pantalla*/
+-webkit-transition: all 0.2s;
+transform: translateY(-150%);
+z-index: 100;
+/*display: none;*/
+}
+#contImagen{
+	width: 50%;
+	margin: auto;
+	background: white;/*rgba(0,0,0,0.8);*/
+	padding: 10px 20px;/*para que se ajuste lo adentro del formulario*/
+	box-sizing:  border-box;
+	margin-top: 100px;/*para separar la parte de arriba del formulario con la del navegador*/
+	border-radius: 10px;/*para ponerle lo que es el borde redondiado al formulario*/
+	height: 450px;
+}
+#contImagen img{
+	width:100%;/*para que agarre el 100 del div que lo contiene*/
+	height:300px;/*para que agarre el 90px del div que lo contiene*/
+	display: block;/*para que pueda agarrar los parametros de el div*/
+	margin: auto;/*margin auto para que se ajuste a la pantalla*/
+}
+#formImagen{
+	width: 100%;
+}
+.btn_enviar{
+	color:black;
+}
+.btn_cancelar{
+	color:black;
+}
+#mensaje{
+	width: 100%;
+	/*border:2px solid red;*/
+	color:black;
+}
+#filemage{
+	color:black;
+}

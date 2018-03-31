@@ -1,3 +1,4 @@
+@import url(modalImagen.css);
 *{
 top:0;
 left:0;
@@ -46,4 +47,13 @@ height: auto;
 #tabla_distribuidor{
 width: 90%;
 margin: auto;
+}
+#imagenVV img{
+width: 100px;
+height: 100px;
+display: block;
+}
+.recibir-imagene{
+	display: block;
+	margin: auto;
 }

@@ -70,3 +70,42 @@ INSERT INTO tbdetalleventa(preciounitariodetalleventa, cantidaddetalleventa, sub
 END$$
 DELIMITER ;
 /*Alteracion de mi metodo de datos de el nombre del cliente*/
+
+/*fecha 30/03/2018*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenproductorcliente`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `imagenescrituraproductorcliente`, `imagenreciboluzproductorcliente`, `imagenrecibaguaproductorcliente`, `imagenexamensolidoproductorcliente`, `imagenplanofincaproductorcliente`, `imagendocumentoidentidadproductorcliente`
+FROM `tbproductorcliente` WHERE idpersonacliente=id AND estadoproductorcliente='activo';
+END$$
+DELIMITER ;
+/*modificacion de un metodo de la optencion de la imagen del distribuidor para obtener la imagen*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarDistribuidor`()
+    NO SQL
+BEGIN
+SELECT p.idpersona,p.documentoidentidadpersona,
+p.nombrepersona,p.apellido1persona,
+p.apellido2persona, p.telefonopersona,
+p.direccionpersona,p.correopersona,i.rutaimagen
+FROM tbpersona p
+INNER JOIN tbclientemayorista t  ON
+t.idpersonamayorista=p.idpersona 
+INNER JOIN tbimagen i ON
+i.idpersona=t.idpersonamayorista
+WHERE t.estadoclientemayorista='activo';
+END$$
+DELIMITER ;
+/*terminacion de los datos*/
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenproductorcliente`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `imagenescrituraproductorcliente`, `imagenreciboluzproductorcliente`, `imagenrecibaguaproductorcliente`, `imagenexamensolidoproductorcliente`, `imagenplanofincaproductorcliente`, `imagendocumentoidentidadproductorcliente`
+FROM `tbproductorcliente` WHERE idpersonacliente=id AND estadoproductorcliente='activo';
+END$$
+DELIMITER ;
+
+
