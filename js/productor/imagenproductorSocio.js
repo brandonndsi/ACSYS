@@ -32,7 +32,7 @@ function datosAjax(mensaje,contenido){
 function buscarImagenes(){
 	codigo=document.getElementById("far").value;
 	contenido=document.getElementById("gall");
-    mensaje="accion=imagenesproductorcliente&&id="+codigo;
+    mensaje="accion=imagenesproductorsocio&&id="+codigo;
     datosAjax(mensaje,contenido);
 }
 
@@ -222,5 +222,5 @@ document.getElementById("imagen").innerHTML=ruta;
  */
 	$('#btn_cancelar').on("click", function(evt){
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		window.location.href = '../../view/productor/verImagenProductorClienteView.php';
+		window.location.href = '../../view/productor/verImagenProductorSocioView.php';
 	});

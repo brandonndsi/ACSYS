@@ -107,5 +107,13 @@ SELECT `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `ima
 FROM `tbproductorcliente` WHERE idpersonacliente=id AND estadoproductorcliente='activo';
 END$$
 DELIMITER ;
+/***************************************************************/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenproductorsocio`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `imagencboproductorsocio`, `imagenexamensangradoproductorsocio`, `imagenescrituraproductorsocio`, `imagenreciboluzproductorsocio`, `imagenrecibaguaproductorsocio`, `imagenexamensolidoproductorsocio`, `imagenplanofincaproductorsocio`, `imagendocumentoidentidadproductorsocio` FROM `tbproductorsocio` WHERE idpersonasocio=id AND estadoproductorsocio='activo';
+END$$
+DELIMITER ;
 
 

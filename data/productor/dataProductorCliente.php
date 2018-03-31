@@ -9,7 +9,7 @@ class dataProductorCliente {
         $this->conexion = new conexion();
     }
 
-    function imagenesProductorSocio($idproductorcliente){
+    function imagenesProductorCliente($idproductorcliente){
         $con=$this->conexion->crearConexion();
         $mostrarProductores = $con->query("CALL sacarimagenproductorcliente('$idproductorcliente
             ');");

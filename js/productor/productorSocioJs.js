@@ -131,7 +131,7 @@ function mostrarProductores(){
 
 
           html+='<td><a href="javascript:modalModificarSocio('+socio+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-          html+='<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+          html+='<td><a href="javascript:mostrarImagenes('+id+')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
           html+='<td><a href="javascript:modalEliminarSocio('+socio+')"><span class="glyphicon glyphicon-trash"></span></a></td>';
         }
         $("#datos").html(html);
@@ -206,3 +206,10 @@ function modalEliminarSocio(socio){
   });
 }
 
+function mostrarImagenes(id){
+  var dato="";
+  dato=btoa(id);/*encripta la palabra en base 68*/
+  alert(dato);
+  alert(atob(dato));/*desencripta la balabra en base 68*/
+  location.href="../../view/productor/verImagenProductorSocioView.php?id="+dato;
+}

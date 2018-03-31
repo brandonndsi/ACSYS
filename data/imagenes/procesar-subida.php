@@ -15,19 +15,25 @@
 }*/
 
 if(isset($_POST['accion'])){
+
 	if($_POST['accion']=="imagenesproductorcliente"){
-	
-	//echo "id es igual a ".$id;
-	llenarDatosImagenes();
-//imagenesProductorSocio($idproductorcliente);
+	llenarDatosImagenesProductorCliente();
+	}
+
+	if($_POST['accion']=="imagenesproductorsocio"){
+		llenarDatosImagenesProductorSocio();
+	}
 }
-}
-function llenarDatosImagenes(){
+/**
+ * [llenarDatosImagenesProductorCliente para poder llenar los datos de la imagenes del productor cliente]
+ * @return [type] [description]
+ */
+function llenarDatosImagenesProductorCliente(){
 
 include_once '../productor/dataProductorCliente.php';
 $id=$_POST['id'];
 $dato= new dataProductorCliente();
-$ing=$dato->imagenesProductorSocio($id);
+$ing=$dato->imagenesProductorCliente($id);
 foreach ($ing as $row) {	
 echo '<div id="contentImagen">';
 echo '<h2>CBO</h2>';
@@ -68,6 +74,60 @@ echo '<div id="contentImagen">';
 echo '<h2>Cedula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadproductorcliente'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadproductorcliente'].'"/></a>';
+echo '</div>';
+}
+
+}
+/**
+ * [llenarDatosImagenesProductorSocio mandamos a llenar lo que es los datos de productor socio a la imagenes]
+ * @return [type] [description]
+ */
+function llenarDatosImagenesProductorSocio(){
+
+include_once '../productor/dataProductorSocio.php';
+$id=$_POST['id'];
+$dato= new dataProductorSocio();
+$ing=$dato->imagenesProductorSocio($id);
+foreach ($ing as $row) {	
+echo '<div id="contentImagen">';
+echo '<h2>CBO</h2>';
+echo '<input type="hidden" value="'.$row['imagencboproductorsocio'].'" id="imagenCBO">';
+echo '<a href="javascript:abrirCBO();"><img src="'.$row['imagencboproductorsocio'].'" /></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Sangrado</h2>';
+echo '<input type="hidden" value="'.$row['imagenexamensangradoproductorsocio'].'" id="imagenSangrado">';
+echo '<a href="javascript:abrirSangrado();"><img src="'.$row['imagenexamensangradoproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Escritura</h2>';
+echo '<input type="hidden" value="'.$row['imagenescrituraproductorsocio'].'" id="imagenEscritura">';
+echo '<a href="javascript:abrirEscritura();"><img src="'.$row['imagenescrituraproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Luz</h2>';
+echo '<input type="hidden" value="'.$row['imagenreciboluzproductorsocio'].'" id="imagenLuz">';
+echo '<a href="javascript:abrirLuz();"><img src="'.$row['imagenreciboluzproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Agua</h2>';
+echo '<input type="hidden" value="'.$row['imagenrecibaguaproductorsocio'].'" id="imagenAgua">';
+echo '<a href="javascript:abrirAgua();"><img src="'.$row['imagenrecibaguaproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Solido</h2>';
+echo '<input type="hidden" value="'.$row['imagenexamensolidoproductorsocio'].'" id="imagenSolido">';
+echo '<a href="javascript:abrirSolido();"><img src="'.$row['imagenexamensolidoproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Plano</h2>';
+echo '<input type="hidden" value="'.$row['imagenplanofincaproductorsocio'].'" id="imagenPlano">';
+echo '<a href="javascript:abrirPlano();"><img src="'.$row['imagenplanofincaproductorsocio'].'"/></a>';
+echo '</div>';
+echo '<div id="contentImagen">';
+echo '<h2>Cedula</h2>';
+echo '<input type="hidden" value="'.$row['imagendocumentoidentidadproductorsocio'].'" id="imagenCedula">';
+echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadproductorsocio'].'"/></a>';
 echo '</div>';
 }
 
