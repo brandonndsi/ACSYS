@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2018 at 08:40 PM
+-- Generation Time: Apr 01, 2018 at 01:05 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -232,6 +232,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaPorCobrar` (`idClient
   INSERT INTO tbventaporcobrar(idventa,idpersona,saldoactualventaporcobrar,estadoventaporcobrar) VALUES(idVenta,idCliente,totalVenta,"activo");
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenEmpleado` (IN `id` INT)  NO SQL
+BEGIN
+SELECT `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`
+FROM `tbempleado` WHERE idpersonaempleado=id  AND estadoempleado='activo';
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarimagenproductorcliente` (IN `id` INT)  NO SQL
 BEGIN
 SELECT `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `imagenescrituraproductorcliente`, `imagenreciboluzproductorcliente`, `imagenrecibaguaproductorcliente`, `imagenexamensolidoproductorcliente`, `imagenplanofincaproductorcliente`, `imagendocumentoidentidadproductorcliente`
@@ -441,7 +447,7 @@ CREATE TABLE `tbempleado` (
 --
 
 INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado`, `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`, `estadoempleado`) VALUES
-(1, '$2y$10$PXqIWhFC1PlthoIhvJHL7.8da7cBhjdZg0jZh/KcfCrBxrx0J31jm', '', NULL, NULL, 'activo'),
+(1, '$2y$10$PXqIWhFC1PlthoIhvJHL7.8da7cBhjdZg0jZh/KcfCrBxrx0J31jm', '', '../../image/empleado/manipulacion.jpg', '../../image/empleado/cedula.jpg', 'activo'),
 (4, '$2y$10$ssu88Q7mN17EmUoy6h56cuMtKZPG1x9PT7idvyHzyh9Dk.Tr8Asvy', 'Bodega', NULL, NULL, 'activo'),
 (12, '$2y$10$rbKXQbZ.', 'Bodega', NULL, NULL, 'activo'),
 (13, '$2y$10$fT2E4Vs3GYFUmSYV347.pe7FYDensRubdjRs0Nfcn3dTX6YdxANLy', 'Administrador', NULL, NULL, 'activo');
