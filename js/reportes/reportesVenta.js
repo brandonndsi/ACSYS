@@ -106,20 +106,56 @@ $(document).ready(function () {
           idv=json[i].idventa;
           numfactura=json[i].numerofactura;
           idpersona=json[i].idpersonaventa;
-          html+='<td><a href="javascript:modalVer('+idv+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-          html+='<td><a href="javascript:mostrarImprimir('+idv+','+numfactura+','+idpersona+')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+          tipov=json[i].tipoventa;
+          html+='<td><a href="javascript:modalVer('+idv+','+idpersona+',/'+tipov+'/)"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
+          html+='<td><a href="javascript:mostrarImprimir('+idv+','+numfactura+','+idpersona+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           
         }
         destruirTablaPrincipal();
         $("#datos").html(html);
         CargarTablaPrincipal();
 	}
+  /**
+   * [destruirTablaPrincipal lo que hace es destruir todos los atrinutos que se le dieron a la tabla principal]
+   * @return {[type]} [la vuelve a su estado original]
+   */
   function destruirTablaPrincipal(){
     $('#listaVentas').dataTable().fnDestroy();
   }
+  /**
+   * [mostrarImprimir la factura total con los datos]
+   * @param  {[type]} idv        [description]
+   * @param  {[type]} numfactura [description]
+   * @param  {[type]} idpersona  [description]
+   * @return {[type]}            [description]
+   */
 	function mostrarImprimir(idv,numfactura,idpersona){
 		alert("idventa ="+idv+" numero factura="+numfactura+" idpersona = "+idpersona);
 	}
-	function modalVer(idv){
-		alert("id persona = "+idv);
+  /**
+   * [modalVer Lo que hace es poder visualizar la lista de los articulos que se compraron en la factura]
+   * @param  {[type]} idv [description]
+   * @return {[type]}     [description]
+   */
+	function modalVer(idv,idpersona,tipov){
+    $('#modalRecibo').modal();
+    if(tipov=="/Veterinaria/"){
+      alert(" es vetrinaria id persona = "+idv+"id persona="+idpersona+"tipo="+tipov);
+      buscardetallesVeterinario(idv,idpersona);
+   }else{
+      alert(" no es veterinaria id persona = "+idv+"id persona="+idpersona+"tipo="+tipov);
+    }
 	}
+  /*Es traer los datos de la base de datos los detalles de la venta veterinaria que se hizo para poder llenar los datos de ver*/
+  function buscardetallesVeterinario(idv,idpersona){
+
+  }
+/**
+ * [le da la funcionalidad al btn del modal de ver detalles de factura]
+ * @param  {accion} evt){        le da la funcionalidad del modal para que se oculte.        
+ * @return {[modal]}        [modal lo escode]
+ */
+$('#facCancelar').on("click", function(evt){
+    document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
+    window.location.href = '../../view/reportes/ventas.php';
+  });

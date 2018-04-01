@@ -8,6 +8,8 @@
           <link rel="stylesheet" href="../../css/menu.css">
       	  <link rel="stylesheet" type="text/css" href="../../css/reportes/ventas.css">
           <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+          <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
+          <link rel="stylesheet" type="text/css" href="../../css/distribuidor/DistribuidorVenta.css">
          
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
           <!--Javascript-->
@@ -60,28 +62,12 @@ include_once '../menuView.php';
                                
                     </tfoot>
 			</table>
- 	</div>
 
- 	<!--Modal de respuesta socio-->
-            <div id="modalRespuesta" class="modal fade in">
-                <div  class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div id="mensaje"></div>
-                            </center>
-                        </div>
-                        <div class="modal-footer">
-                            
-                            <p><button data-dismiss='modal' class="btn btn-danger">Cerrar</button> </p>
-                           
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dalog -->
-            </div><!-- /.modal -->
+ 	</div>
+<?php 
+include_once '../modalimagen/modalRespuestas.php';
+include_once '../modalimagen/modalVerDetallesDeFacturas.php';
+ ?>
 
  </div>
 

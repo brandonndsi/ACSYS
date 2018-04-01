@@ -1,3 +1,4 @@
+
 #contTitulo{
 	width: 100%;
 	padding: 10px;
@@ -51,4 +52,10 @@ padding-right: 100px;
 }
 #procesar{
 margin-right: 10px;
+}
+#facImprimir{
+	display: none;
+}
+#facCancelar{
+
 }
