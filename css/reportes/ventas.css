@@ -1,0 +1,54 @@
+#contTitulo{
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	font-family: sans-serif;
+	/*border: 2px solid black;*/
+}
+#content{
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	width: 95%;
+	margin: auto;
+	/*border: 2px solid red;*/
+}
+#fechas{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	margin: auto;
+	/**/
+	padding: 10px;
+	/*border:2px solid red;*/
+}
+#fechas label{
+	/*width: 45%;*/
+	width: 10%;
+	text-align:left;
+	/*border: 2px solid black;*/
+	padding: 3px;
+	margin: 2px;
+}
+#fecha input{
+-ms-flex-preferred-size: 24.999%;
+      flex-basis: 24.999%;	
+}
+
+#tablaPrincipal{
+	/*border: 2px solid yellow;*/
+	margin:auto;
+	width: 100%;
+	padding: 10px;
+}
+#tablaPrincipal table{
+	width: 100%;
+}
+#lblfil{
+	/*border:2px solid red;*/
+padding-right: 100px;
+}
+#procesar{
+margin-right: 10px;
+}
