@@ -375,7 +375,7 @@ function carry() {
                 //datosTabla += "<td>" + totalBruto + "</td>";
                 datosTabla += "</tr>";
             }
-                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
+                datosTabla += "<td colspan='3'><b>TOTAL: </b></td>";
                 datosTabla += "<td>" + totalBruto + "</td>";
                 datosTabla += "</table>";
             $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.

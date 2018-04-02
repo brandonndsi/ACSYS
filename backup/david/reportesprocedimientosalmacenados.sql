@@ -6,3 +6,17 @@ SELECT `idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`,
 WHERE fechaventa>=inicial AND fechaventa<=final;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarDetalleVeterinario`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT v.codigoproductoveterinario,
+v.nombreproductoveterinario, 
+d.preciounitariodetalleventa,
+d.cantidaddetalleventa 
+FROM tbdetalleventaveterinaria d 
+INNER JOIN tbproductosveterinarios v ON d.idproductoveterinario=v.idproductoveterinario
+WHERE d.idventa=id;
+END$$
+DELIMITER ;

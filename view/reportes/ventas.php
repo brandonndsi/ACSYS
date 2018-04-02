@@ -49,9 +49,9 @@ include_once '../menuView.php';
 						<th>Hora</th>
 						<th>Total Bruto</th>
 						<th>Total Neto</th>
-                        <th>Tipo venta</th>
-                        <th>Ver</th>
-                        <th>Imprimir</th>
+            <th>Tipo venta</th>
+            <th>Ver</th>
+            <th>Imprimir</th>
 
 					</tr>
 					</thead>
