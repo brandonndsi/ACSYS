@@ -3,6 +3,7 @@ var fechainicial;
 var fechaFinal;
 var totalAPagar;
 var NombreCliente;
+var tipoVENTA;
 
 $(document).ready(function () {
     CargarTablaPrincipal();            
@@ -107,11 +108,18 @@ $(document).ready(function () {
           html+="<td>"+json[i].tipoventa+"</td>";
           idv=json[i].idventa;
           numfactura=json[i].numerofactura;
-          idpersona=json[i].idpersonaventa;
-          tipov=json[i].tipoventa;
+          fecha=json[i].fechaventa;
+          hora=json[i].horaventa;
+          brut=json[i].totalbrutoventa;
           tol=json[i].totalnetoventa;
-          html+='<td><a href="javascript:modalVer('+numfactura+','+tol+','+idv+','+idpersona+',/'+tipov+'/)"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
-          html+='<td><a href="javascript:mostrarImprimir('+idv+','+numfactura+','+idpersona+')"><span class="glyphicon glyphicon-file"></span></a></td>';
+          tipo=json[i].tipoventa;
+          idpersona=json[i].idpersonaventa;
+        
+          facturanueva = "'" + idv + "," + numfactura + "," + fecha + "," + hora + "," +
+                        brut + "," + tol + "," + tipo + ","+ idpersona +"'";
+
+          html+='<td><a href="javascript:modalVer('+facturanueva+')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
+          html+='<td><a href="javascript:mostrarImprimir('+facturanueva+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
         }
         destruirTablaPrincipal();
@@ -127,41 +135,39 @@ $(document).ready(function () {
   }
   /**
    * [mostrarImprimir la factura total con los datos]
-   * @param  {[type]} idv        [description]
-   * @param  {[type]} numfactura [description]
-   * @param  {[type]} idpersona  [description]
+   * @param  {[type]} facturanueva   [es un objeto de la factura nueva la cual se reutiliza]
    * @return {[type]}            [description]
    */
-	function mostrarImprimir(idv,numfactura,idpersona){
-		alert("idventa ="+idv+" numero factura="+numfactura+" idpersona = "+idpersona);
+	function mostrarImprimir(facturanueva){
+    ImprimirFactura(facturanueva);
 	}
   /**
    * [modalVer Lo que hace es poder visualizar la lista de los articulos que se compraron en la factura]
    * @param  {[type]} idv [description]
    * @return {[type]}     [description]
    */
-	function modalVer(numFactura,tol,idv,idpersona,tipov){
+	function modalVer(facturanueva){
+    string = facturanueva.split(",");
+          buscarNombredelClienteDeLaFactura(string[7]);
+        $("#Re_recibo").val(string[1]);
 
-          buscarNombredelClienteDeLaFactura(idpersona);
-        $("#Re_recibo").val(numFactura);
-
-    if(tipov=="/Veterinaria/"){
+    if(string[6]=="Veterinaria"){
 
         $("#Re_tipoVenta").val("Veterinario");
-             buscardetallesVeterinario(tol,idv,idpersona);
+             buscardetallesVeterinario(string[5],string[0]);
                 abrirModalDetalles();
 
-    }else if(tipov=="/Distribuidor/"){
+    }else if(string[6]=="Distribuidor"){
 
       $("#Re_tipoVenta").val("Distribuidor");
           alert("Distribuidor");
-             alert(" no es veterinaria id persona = "+idv+"id persona="+idpersona+"tipo="+tipov);
+             alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
               abrirModalDetalles();
 
     }else{
      $("#Re_tipoVenta").val("Distribuidor");
        alert("Distribuidor");
-          alert(" no es veterinaria id persona = "+idv+"id persona="+idpersona+"tipo="+tipov);
+          alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
             abrirModalDetalles();
         }
 	}
@@ -180,7 +186,7 @@ $(document).ready(function () {
   
   }
   /*Es traer los datos de la base de datos los detalles de la venta veterinaria que se hizo para poder llenar los datos de ver*/
-  function buscardetallesVeterinario(tol,idv,idpersona){
+  function buscardetallesVeterinario(tol,idv){
     //alert(idv+", "+idpersona);
           totalAPagar=tol;
         $.post('../../business/reportes/reportesAccion.php', {
@@ -188,7 +194,7 @@ $(document).ready(function () {
               venta : idv
         }, function(responseText) {
           json = JSON.parse(responseText);
-            console.log(json);
+            //console.log(json);
             llenarTablaDeVerDeTallesFactura(json);
           });
   }
@@ -239,3 +245,50 @@ $('#facCancelar').on("click", function(evt){
   function abrirModalDetalles(){
     $('#modalRecibo').modal();
   }
+
+function ImprimirFactura(facturanueva){
+//console.log(facturanueva);
+/*+ idv + "," + numfactura + "," + fecha + "," + hora + "," +
+                        brut + "," + tol + "," + tipo + ","+ idpersona +"'";*/
+string = facturanueva.split(",");
+idv=string[0];
+tipo=string[6];
+nomfactura=string[1];
+total=string[5];
+idpersona=string[7];
+fe=string[2];
+ho=string[3];
+$.post('../../business/reportes/reportesAccion.php', {
+              action : 'buscarDetalleVeterinario' ,
+              venta : idv
+        }, function(responseText) {
+
+          json = JSON.parse(responseText);
+          console.log(json);
+
+          for(i = 0 ;i<json.length; i++){
+          
+
+if(tipo=="Veterinaria"){
+
+    if (localStorage.getItem("listaProductos") === null) {
+                var listaProductos = [];
+                listaProductos.push({"codigo":json[i].codigoproductoveterinario, "nombre": json[i].nombreproductoveterinario, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
+                localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
+    } else {
+                listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
+                listaProductos.push({"codigo":json[i].codigoproductoveterinario, "nombre": json[i].nombreproductoveterinario, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
+                localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
+          }
+
+window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes.php?numerofactura="+nomfactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+total+"&&tipo="+tipo+"&&id="+idpersona+"&&fecha="+fe+"&&hora="+ho, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+ 
+  }else if(tipo=="Distribuidor"){
+    alert("distribuidor");
+  }else if(tipo=="Ventanilla"){
+    alert("ventanilla");
+  }
+                                        }
+
+        });
+}
