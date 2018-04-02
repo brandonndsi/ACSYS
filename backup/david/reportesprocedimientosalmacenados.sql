@@ -20,3 +20,13 @@ INNER JOIN tbproductosveterinarios v ON d.idproductoveterinario=v.idproductovete
 WHERE d.idventa=id;
 END$$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarDetalleVentaNombre`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT `nombrepersona`, `apellido1persona`, `apellido2persona` FROM `tbpersona` WHERE idpersona=id;
+END$$
+DELIMITER ;
+
