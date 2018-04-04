@@ -64,7 +64,6 @@
       }
       $this->registrarProductosVentaVeterinaria($productos,$idVenta);
     }
-
-
+    
   }
  ?>

@@ -35,4 +35,8 @@ $d;
   }
   echo $d;
 }
+if($action == "idfactura"){
+$idfac = $businessVentaDist->idfactura();
+echo $idfac;
+}
 ?>

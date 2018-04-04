@@ -2,29 +2,28 @@
     <html lang="es">
         <head>
             <meta charset="UTF-8">
+            <!-- JS -->
              <script src="../../js/jquery-1.10.2.js"></script>
-            <!--CSS-->    
+             <script src="../../js/bootstrap.min.js"></script>
 
-           
-            <link rel="stylesheet" href="../../css/menu.css">
-
-           
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-            <!--Javascript--> 
-   
-            <script src="../../js/unidadesJs.js"></script>          
-            <script src="../../js/producto/productoLacteoJs.js"></script>  
-            <script src="../../js/menuJs.js"></script> 
-            <script type="text/javascript" language="javascript" src="../../js/jquery.dataTables.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.min.css">  
-
-            <script>
+             <script src="../../js/unidadesJs.js"></script>          
+             <script src="../../js/producto/productoLacteoJs.js"></script>  
+             <script src="../../js/menuJs.js"></script> 
+             <script type="text/javascript" language="javascript" src="../../js/jquery.dataTables.min.js"></script>
+             <script>
                 $(document).ready(function () {
                 $('[data-toggle="tooltip"]');
                 });
-            </script>   
+            </script> 
+
+            <!--CSS-->    
+            <link rel="stylesheet" href="../../css/menu.css">
+            <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+            <link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.min.css"> 
+           
+            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+     
         </head>
 
         <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductoLacteo()">

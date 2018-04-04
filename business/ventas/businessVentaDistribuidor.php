@@ -20,6 +20,10 @@ class businessVentaDistribuidor {
     function nombreCompleto($idCliente){
         return $this->dataVentaDist->nombreCompleto($idCliente);
     }
+
+    function idfactura(){
+        return $this->dataVentaDist->idfactura();
+    }
 }
 /*$d=new businessVentaDistribuidor();
 $r=$d->nombreCompleto('10');

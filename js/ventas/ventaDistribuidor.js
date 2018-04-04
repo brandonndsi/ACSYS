@@ -55,10 +55,10 @@ function consultarProductor() {
         }, function (responseText) {
             json = JSON.parse(responseText);
             html = "";
-            html += "<option value='0'</option>";
+            /*html += "<option value='0'</option>";*/
             for (i = 0; i < json.length; i++) {
                 idPersona = '"' + json[i].idpersona + '"';
-                html += "<option value=" + idPersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
+                //html += "<option value=" + idPersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
             }
             consultarProductorCliente(html);
         });
@@ -206,6 +206,7 @@ function addCarrito() {
                     "bDeferRender": true,
                     "sordering": true,
                     "responsive": true,
+                    "destroy": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
                         "sProcessing": "Procesando...",
@@ -258,15 +259,14 @@ function getRadioButtonSelectedValue(ctrl) {
             return ctrl[i].value;
 }
 function eliminarArticuloCarrito(code){
-    alert(code);
+    //alert(code);
+    $('#listaProductosLacteos').dataTable().fnDestroy();
     if (localStorage.getItem("listaProductos") != null) {
     listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
     for (i = 0; i < listaProductos.length; i++) {
                     if (listaProductos[i].codigo === code) {
                         listaProductos.splice(i,1);
-                        if (index > -1) {
-                                listaProductos.splice(i, 1);
-                                    }
+                       //localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
                     }
                 }
 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
@@ -283,7 +283,7 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                 codigo = '"' + listaProductos[i].codigo + '"';
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
                 html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
-                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";
                 total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
             }
@@ -294,6 +294,7 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                     "bDeferRender": true,
                     "sordering": true,
                     "responsive": true,
+                    "ordering": true,
                     "sPaginationType": "full_numbers",
                     "oLanguage": {
                         "sProcessing": "Procesando...",
@@ -374,7 +375,7 @@ function carry() {
                 //datosTabla += "<td>" + totalBruto + "</td>";
                 datosTabla += "</tr>";
             }
-                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
+                datosTabla += "<td colspan='3'><b>TOTAL: </b></td>";
                 datosTabla += "<td>" + totalBruto + "</td>";
                 datosTabla += "</table>";
             $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
@@ -394,12 +395,32 @@ function carry() {
             }
             //alert(d);
             //document.getElementById("Re_cliente").value =d;
+            //Re_recibo
 
             document.getElementById("Re_cliente").value = idCliente;
             document.getElementById("Re_tipoVenta").value = tipoVenta;
             
         });
     });
+    /*funcion para obtener lo que es el numero de faltura*/
+    var dato;
+  $.post("../../business/ventas/actionVentaDistribuidor.php",{
+            action: 'idfactura'
+        },function (responseText){
+            console.log(responseText);
+            //alert(responseText);
+            dato=responseText;
+            dato++;
+            document.getElementById("Re_recibo").value =dato;
+            //alert(dato);
+        }); 
+    /*terminacion para poder optener el numero de factura.*/
     $("#modalRecibo").modal();
 }
 
+function ImprimirFactura(){
+numerofactura=document.getElementById("Re_recibo").value;
+totalBB = document.getElementById('totalPagar').value;
+id = document.getElementById('selectCliente').value;
+window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}

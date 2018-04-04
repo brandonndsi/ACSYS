@@ -33,7 +33,7 @@ function mostrarEmpleados() {
                         telefono + "," + direccion + "," + correo + "," + clave + "," + tipo + "," + id + "'";
 
                 html += '<td><a href="javascript:modalModificarEmpleado(' + empleado + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-                html += '<td><a href="javascript:deleteAgentModal()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+                html += '<td><a href="javascript:mostrarImagenes('+id+')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
                 html += '<td><a href="javascript:modalEliminarEmpleado(' + empleado + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
             }
             $("#datos").html(html);
@@ -334,4 +334,12 @@ function validarCamposTipo() {
         $('#icon5').show();
         $('#boton').attr("disabled", true);
     }
+}
+
+function mostrarImagenes(id){
+  var dato="";
+  dato=btoa(id);/*encripta la palabra en base 68*/
+  alert(dato);
+  alert(atob(dato));/*desencripta la balabra en base 68*/
+  location.href="../../view/empleado/verImagenEmpleadoView.php?id="+dato;
 }

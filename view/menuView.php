@@ -94,11 +94,11 @@
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="#">Ventas</a></li>
-              <li><a href="#">Pagos</a></li>
-              <li><a href="#">Préstamos</a></li>
-              <li><a href="#">Procesos</a></li>
-              <li><a href="#">Ahorros</a></li>
+              <li><a href="../../view/reportes/ventas.php">Ventas</a></li>
+              <li><a href="../../view/reportes/pagos.php">Pagos</a></li>
+              <li><a href="../../view/reportes/prestamos.php">Préstamos</a></li>
+              <li><a href="../../view/reportes/procesos.php">Procesos</a></li>
+              <li><a href="../../view/reportes/ahorros.php">Ahorros</a></li>
           </ul>
         </li>
       </ul>
