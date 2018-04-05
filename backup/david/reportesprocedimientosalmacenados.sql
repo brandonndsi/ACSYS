@@ -30,3 +30,14 @@ SELECT `nombrepersona`, `apellido1persona`, `apellido2persona` FROM `tbpersona` 
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarDetalleVentaDistribuidor`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT d.preciounitariodetalleventa, d.cantidaddetalleventa, d.subtotaldetalleventa, d.codigoproductoslacteos, d.descuento,d.idventa, d.iddetalleventa,l.nombreproductolacteo
+FROM tbdetalleventa d INNER JOIN tbproductoslacteos l ON
+l.codigoproductoslacteos=d.codigoproductoslacteos
+WHERE d.idventa=id;
+
+END$$
+DELIMITER ;

@@ -21,13 +21,14 @@
           $id;
            if(isset($_GET['id']) && !empty($_GET['id'])){
           //$dato=$_GET['id'];
-          //$id=$dato;
+          $ids=$_GET['id'];
         $id=base64_decode($_GET['id']);
           //echo $d;
           }
            ?>
 <div class="container">
   <!-- Modal de la imagenes -->
+  <input type="hidden" value="<?php echo $ids ?>" id="encriptado">
   <input type="hidden" value="<?php echo $id ?>" id="far">
 <div id="contenedorImagen">
     <div id=contImagen>

@@ -29,7 +29,17 @@ if($accion=="ventaNombre"){
 	$id=$_POST['id'];
 	echo $business->ventaNombre($id);
 }
-/*ventaNombre*/
+
+if($accion=="buscarDetalleDistribidor"){
+
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$id=$_POST['id'];
+	echo $business->buscarDetalleDistribidor($id);
+
+}
+/*buscarDetalleDistribidor*/
 
 
  ?>

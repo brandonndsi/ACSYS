@@ -51,9 +51,7 @@ $(document).ready(function(){
 });
 
 $('#btn_cancelar').on("click", function(evt){
+		id=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		//location.href = '../../view/distribuidor/verDistribuidorView.php';
+		location.href = '../../view/distribuidor/verDistribuidorView.php?id='+id;
 		});
-$("#filemage").on("change",function(){
-					alert("hola");
-});

@@ -3,16 +3,14 @@
 	$imagenes=$_FILES['imagenes'];
 	$nom=$_POST['nombre'];
 	$ruta_provisional=$imagenes["tmp_name"];
-	$src="../../image/distribuidor/david.jpg";
+	//$src="../../image/distribuidor/david.jpg";
 	if ( ! @move_uploaded_file($ruta_provisional, $nom) ) {
 		echo "Error: No se ha podido mover el fichero enviado a la carpeta de destino";
 		@unlink(ini_get('upload_tmp_dir').$_FILES['imagenes']['tmp_name']);
 		exit;
 	}
 	echo "Fichero subido correctamente a: ".$nom;
-}/*else{
-	echo "El nombre no existe";
-}*/
+}
 
 if(isset($_POST['accion'])){
 

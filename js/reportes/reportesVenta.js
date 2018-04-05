@@ -148,26 +148,29 @@ $(document).ready(function () {
    */
 	function modalVer(facturanueva){
     string = facturanueva.split(",");
+    numeroFactura=string[1];
+    tipo=string[6];
           buscarNombredelClienteDeLaFactura(string[7]);
-        $("#Re_recibo").val(string[1]);
+        $("#Re_recibo").val(numeroFactura);
 
-    if(string[6]=="Veterinaria"){
-
+    if(tipo=="Veterinaria"){
         $("#Re_tipoVenta").val("Veterinario");
              buscardetallesVeterinario(string[5],string[0]);
                 abrirModalDetalles();
 
-    }else if(string[6]=="Distribuidor"){
+    }else if(tipo=="Distribuidor"){
 
       $("#Re_tipoVenta").val("Distribuidor");
-          alert("Distribuidor");
-             alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
+          //alert("Distribuidor");
+          cargarDatosDestribuidor(facturanueva);
+             //alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
               abrirModalDetalles();
 
     }else{
-     $("#Re_tipoVenta").val("Distribuidor");
-       alert("Distribuidor");
-          alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
+     $("#Re_tipoVenta").val("Veterinaria");
+       //alert("Distribuidor");
+          //alert(" no es veterinaria id persona = "+string[7]+"id venta="+string[0]+"tipo="+string[6]);
+            cargarDatosDestribuidor(facturanueva);
             abrirModalDetalles();
         }
 	}
@@ -284,6 +287,7 @@ if(tipo=="Veterinaria"){
 window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes.php?numerofactura="+nomfactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+total+"&&tipo="+tipo+"&&id="+idpersona+"&&fecha="+fe+"&&hora="+ho, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
  
   }else if(tipo=="Distribuidor"){
+
     alert("distribuidor");
   }else if(tipo=="Ventanilla"){
     alert("ventanilla");
@@ -291,4 +295,39 @@ window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes
                                         }
 
         });
+}
+
+function cargarDatosDestribuidor(facturanueva){
+
+  string = facturanueva.split(",");
+  totalAPagar=string[5];
+
+idv=string[0];
+//alert(idv);
+  $.post('../../business/reportes/reportesAccion.php', {
+              action : 'buscarDetalleDistribidor' ,
+              id : idv
+        }, function(responseText) {
+            json=JSON.parse(responseText);
+            console.log(json);
+            cargarTablaDeLosDatosDistribuidor(json);
+        });
+
+}
+
+function cargarTablaDeLosDatosDistribuidor(json){
+    html="";
+    for(i = 0 ;i<json.length; i++){
+          html+="<tr>";
+          html+="<td>"+json[i].codigoproductoslacteos+"</td>";
+          html+="<td>"+json[i].nombreproductolacteo+"</td>";
+          html+="<td>"+json[i].preciounitariodetalleventa+"</td>";
+          html+="<td>"+json[i].cantidaddetalleventa+"</td>";
+          html+="<tr>";
+        }
+          html+="<tr>";
+          html+="<td colspan='3'><b>TOTA:</b></td>";
+          html+="<td>"+totalAPagar+"</td>";
+          html+="<tr>";
+          llenarLaListaDeArticulosYaFinalesParaVerDetalles(html);
 }
