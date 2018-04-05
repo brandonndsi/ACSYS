@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require('../../pdf/fpdf/fpdf.php');
 class PDF extends FPDF

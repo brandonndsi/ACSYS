@@ -4,7 +4,7 @@ function mostrarMontoLecheSemanalTotal(){
       $.post('../../business/productor/actionPagarLeche.php', {
               action : 'consultarMontoLeche',
       }, function(responseText) {
-       
+
         json = JSON.parse(responseText);
         html = "";
 
@@ -23,7 +23,7 @@ function mostrarMontoLecheSemanalTotal(){
           tipo=json[i].tipo;
           productor="'"+id+"-"+cantidadlitros+"-"+tipo+"'" ;
           html+='<td><a href="javascript:modalPagarLeche('+productor+')"><span class="glyphicon glyphicon-credit-card"></span></a></td>';
-          
+
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -87,22 +87,21 @@ function modalPagarLeche(productor){
 }
 
 function pagarMontoLeche(productor){
-  
+
   productorArray=productor.split("-");
   idProductor=productorArray[0];
   tipo=productorArray[2];
   litros=productorArray[1];
-  
+
    $(document).ready(function() {
       $.post('../../business/productor/actionPagarLeche.php', {
 
-              action : 'pagarMontoLeche' , 
+              action : 'pagarMontoLeche' ,
               idProductor:idProductor,
               tipo:tipo,
               litros:litros,
 
       }, function(responseText) {
-          alert(responseText);
           if (responseText=='true') {
             swal("El pago se ha realizado satisfactoriamente", {
               icon: "success",
@@ -113,7 +112,7 @@ function pagarMontoLeche(productor){
             });
           }
           mostrarMontoLecheSemanalTotal();
-        
+
       });
   });
 

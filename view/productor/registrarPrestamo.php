@@ -17,18 +17,15 @@
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
-          <script src="../../js/productor/recepcionLecheJs.js"></script>
+          <script src="../../js/productor/prestamosJS.js"></script>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
           <script>
             $( function() {
-              $( "#fecha" ).datepicker({
-                dateFormat:'dd/mm/yy',
-                maxDate:'+0d',
-              });
               d=new Date();
               document.getElementById("fecha").value=d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear();
             } );
-            
+
           </script>
         </head>
 
@@ -37,46 +34,35 @@
             include '../menuView.php';
         ?>
          <div class="ventaVeterinaria">
-           <h4>Recepción de Leche</h4>
+           <h4>Solicitud de préstamos</h4>
            <div class="principal">
-             <label class="caja">Fecha:</label>
+             <label class="caja">Fecha de solicitud:</label>
              <label  class="caja labelCaja">Cliente:</label>
-             
-           
-           <input type="text" id="fecha"  class="btn  caja" readonly="readonly">
-           <select id="selectCliente"  style="background:white" class="btn  caja labelCaja"></select></div>
-           <div>
-             <label  class="caja" >Turno de entrega:</label>
-             <label  class="caja labelCaja">Peso de entrega:</label> 
+             <input type="text" id="fecha"  class="btn  caja" readonly="readonly">
+             <select id="selectCliente" name="selectCliente" style="background:white" class="btn  caja labelCaja"></select>
            </div>
-           <select type="text" id="turno" style="background:white"  class="btn  caja ">
-              <option>Mañana</option>
-              <option>Tarde</option>
-           </select>
-           <input id="peso"   class="btn  caja labelCaja">
-
-           <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary" onclick="registrarLeche()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <div class="principal">
+             <label  class="caja">% Interes:</label>
+             <label  class="caja labelCaja">Monto del préstamo:</label>
+             <select type="text" id="interes" style="background:white"  class="btn caja" >
+                <option value="10">10%</option>
+                <option value="20">20%</option>
+                <option value="5">5%</option>
+             </select>
+             <input type="text" class="btn caja labelCaja" id="montoPrestamo">
+          </div>
+          <label  class="caja labelCaja">Plazo:</label>
+          <div class="caja">
+             <input type="text" class="btn" id="plazoNumero">
+             <select type="text" id="plazoModo" class="btn" style="background:white">
+                <option value="semana">Semanal</option>
+                <option value="quincena">Quincenal</option>
+                <option value="mes">Mensual</option>
+             </select>
+             <button onclick="consultarCouta();" class="btn btn-primary">Consultar cuota</button>
+          </div>
+           <button class="btn btn-danger" onclick="location.reload();">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+           <button class="btn btn-primary" onclick="registrarSolicitudPrestamoConfirmacion()">Ingresar solicitud <span class="glyphicon glyphicon-cog"></span></button>
          </div>
-             <!--Modal de respuesta socio-->
-            <div id="modalRespuesta" class="modal fade in">
-                <div  class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
-                        </div>
-                        <div class="modal-body">
-                            <center>
-                                <div id="mensaje"></div>
-                            </center>
-                        </div>
-                        <div class="modal-footer">
-
-                            <p><button data-dismiss='modal' class="btn btn-danger">Cerrar</button> </p>
-
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dalog -->
-            </div><!-- /.modal -->
     </body>
 </html>

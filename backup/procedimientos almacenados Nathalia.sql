@@ -223,7 +223,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE  pagarAhorro(idProductor INT)
 BEGIN
-	UPDATE tbahorrosemanal SET estadoahorrosemanal='pagado' WHERE idpersonaahorro=idProductor AND estadoahorrosemanal='activo'; 
+	UPDATE tbahorrosemanal SET estadoahorrosemanal='pagado' WHERE idpersonaahorro=idProductor AND estadoahorrosemanal='activo';
 END$$
 DELIMITER $$
 
@@ -231,7 +231,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE  compraMateriaPrima(idProductor INT,cantidadlitroscompramateriaprima DOUBLE,montopagolitro DOUBLE,totalpagarlitros DOUBLE,fechacompramateriaprima DATE)
 BEGIN
-	INSERT INTO  tbcompramateriaprima(idpersona,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima) VALUES(idProductor,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima); 
+	INSERT INTO  tbcompramateriaprima(idpersona,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima) VALUES(idProductor,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima);
 	UPDATE tbpesalechediario SET estadopesalechediario='inactivo' WHERE idpersonalechediario=idProductor AND fechaentregalechediario!=fechacompramateriaprima AND estadopesalechediario='activo';
 END$$
 DELIMITER $$
@@ -246,7 +246,12 @@ END$$
 DELIMITER $$
 
 
-
+DELIMITER $$
+CREATE PROCEDURE  registrarSolicitudPrestamo(idPersona INT,interes INT, montoPrestamo DOUBLE,plazo INT, modoPlazo INT,fecha DATE)
+BEGIN
+  INSERT INTO tbsolicitudprestamo(idpersona,idinteres,cantidadsolicitud,plazo,idmodoplazo,estado,fecha) VALUES(idPersona,interes,montoPrestamo,plazo,modoPlazo,"Solicitud",fecha);
+END$$
+DELIMITER $$
 
 
 
