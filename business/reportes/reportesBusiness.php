@@ -19,9 +19,14 @@ class reportesBusiness{
 	public function ventaNombre($id){
 			return $this->dataReportes->ventaNombre($id);
 	}
+
+	public function buscarDetalleDistribidor($id){
+		return $this->dataReportes->buscarDetalleDistribidor($id);
+	} 
+	
 }
 /*$datoo= new reportesBusiness();
-$d=$datoo->buscarDetalleVeterinario(5);
+$d=$datoo->buscarDetalleDistribidor('35');
 print_r($d);*/
 
  ?>

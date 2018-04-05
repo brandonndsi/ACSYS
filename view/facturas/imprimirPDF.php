@@ -14,6 +14,9 @@ $data= new dataFactura();
 $op=$data->numeroFactura();
 $d=$data->imprimirCliente($id);/*sacando de la base de datos los
 datos del cliente*/
+/*cedula juridica: 3-002-397122
+Telefono:25590179
+El Sauce, Santa Teresita de Turialba*/
 
 $pdf = new PDF();
 $pdf->AliasNbPages();

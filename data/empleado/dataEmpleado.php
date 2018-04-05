@@ -113,5 +113,9 @@ class dataEmpleado {
     }
 
 }
+/*
+$dat=new dataEmpleado();
+$r=$dat->imagenesEmpleado('1');
+print_r($r);*/
 
 ?>

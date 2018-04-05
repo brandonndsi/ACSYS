@@ -40,8 +40,19 @@ class dataReportes {
         echo $datos;
     }
 
+    public function buscarDetalleDistribidor($id){
+       
+        $con=$this->conexion->crearConexion();
+        $mostrarDetalleVentaDistribuidor = $con->query("CALL sacarDetalleVentaDistribuidor('$id');");
+        $datos=array();
+        while($row=$mostrarDetalleVentaDistribuidor->fetch_assoc()){
+            array_push($datos,$row);  
+        }
+        echo json_encode($datos); 
+    }
+
 }
 /*$dota=new dataReportes();
-$d=$dota->buscarDetalleVeterinario(5);
+$d=$dota->buscarDetalleDistribidor('35');
 print_r($d);*/
  ?>

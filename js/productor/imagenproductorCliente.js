@@ -220,7 +220,14 @@ document.getElementById("imagen").innerHTML=ruta;
  * @param  {Click} evt){[sobre escribe los datos de la posicion Y del modal a visualizar]
  * @return {[Llo que hace es ocultar de nuevo el modal el cual ya no  se ocupa]}                                                                     [description]
  */
+ $(document).ready(function(){
 	$('#btn_cancelar').on("click", function(evt){
+		evt.preventDefault();
+		//alert("sdsadsa");
+		po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		window.location.href = '../../view/productor/verImagenProductorClienteView.php';
-	});
+		location.reload();
+});
+});
+	
+

@@ -339,7 +339,7 @@ function validarCamposTipo() {
 function mostrarImagenes(id){
   var dato="";
   dato=btoa(id);/*encripta la palabra en base 68*/
-  alert(dato);
-  alert(atob(dato));/*desencripta la balabra en base 68*/
+  //alert(dato);
+  //alert(atob(dato));/*desencripta la balabra en base 68*/
   location.href="../../view/empleado/verImagenEmpleadoView.php?id="+dato;
 }
