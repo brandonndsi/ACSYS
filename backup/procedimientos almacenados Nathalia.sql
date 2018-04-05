@@ -178,7 +178,7 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE retornarMontoAhorroCliente(id INT)
 BEGIN
-SELECT tbproductorcliente.ahorroporlitroproductorsocio FROM tbproductorcliente WHERE idpersonacliente=id AND estadoproductorcliente="activo";
+SELECT tbproductorcliente.ahorroporlitroproductorcliente FROM tbproductorcliente WHERE idpersonacliente=id AND estadoproductorcliente="activo";
 END$$
 DELIMITER $$
 
@@ -228,6 +228,22 @@ END$$
 DELIMITER $$
 
 
+DELIMITER $$
+CREATE PROCEDURE  compraMateriaPrima(idProductor INT,cantidadlitroscompramateriaprima DOUBLE,montopagolitro DOUBLE,totalpagarlitros DOUBLE,fechacompramateriaprima DATE)
+BEGIN
+	INSERT INTO  tbcompramateriaprima(idpersona,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima) VALUES(idProductor,cantidadlitroscompramateriaprima,montopagolitro,totalpagarlitros,fechacompramateriaprima); 
+	UPDATE tbpesalechediario SET estadopesalechediario='inactivo' WHERE idpersonalechediario=idProductor AND fechaentregalechediario!=fechacompramateriaprima AND estadopesalechediario='activo';
+END$$
+DELIMITER $$
+
+
+
+DELIMITER $$
+CREATE PROCEDURE  verReporteAhorro(fechaInicio DATE, fechaFinal DATE)
+BEGIN
+	SELECT tbahorrosemanal.idahorro, tbahorrosemanal.montoahorrosemanalporlitro,tbahorrosemanal.litrosentregadosahorrosemanal,tbahorrosemanal.fechaentregapago,tbpersona.nombrepersona,tbpersona.apellido1persona,tbpersona.apellido2persona FROM tbahorrosemanal INNER JOIN tbpersona ON tbahorrosemanal.idpersonaahorro=tbpersona.idpersona WHERE tbahorrosemanal.fechaentregapago BETWEEN fechaInicio AND fechaFinal;
+END$$
+DELIMITER $$
 
 
 

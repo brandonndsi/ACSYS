@@ -39,7 +39,7 @@
                      <li>
                        <ul>
                           <li><a href="../productor/verRecepcionLeche.php" >Ver </a></li>
-                          <li><a href="../productor/recepcionLeche.php">Pago entrega de leche</a></li>
+                          <li><a href="../productor/verPagoLeche.php">Pago entrega de leche</a></li>
                         </ul>
                       </li>
                     </ul>
