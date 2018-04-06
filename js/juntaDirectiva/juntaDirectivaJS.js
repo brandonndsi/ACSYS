@@ -7,14 +7,11 @@ function mostrarJuntaDirectiva() {
         }, function (responseText) {
             json = JSON.parse(responseText);
             html = "";
-
             for (i = 0; i < json.length; i++) {
 
                 html += "<tr>";
-                html += "<td>" + json[i].idjuntadirectiva + "</td>";
                 html += "<td>" + json[i].fechainicioperiodo + "</td>";
                 html += "<td>" + json[i].fechafinalperiodo + "</td>";
-
                 idjunta = json[i].idjuntadirectiva;
                 inicioperiodo = json[i].fechainicioperiodo;
                 finalperiodo = json[i].fechafinalperiodo;
@@ -25,23 +22,18 @@ function mostrarJuntaDirectiva() {
                 fiscal = json[i].fiscal;
                 vocal1 = json[i].vocal1;
                 vocal2 = json[i].vocal2;
-
                 junta = "'" + idjunta + "," + inicioperiodo + "," + finalperiodo + "'";
                 miembros = "'" + presidente + "," + vicepresidente + "," + secretario + "," + tesorero + "," + fiscal + "," + vocal1 + "," + vocal2 + "'";
-
                 html += '<td><a href="javascript:modalModificarJunta(' + junta + ',' + miembros + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
                 html += '<td><a href="javascript:modalVerJunta(' + miembros + ')"><span class="glyphicon glyphicon-user"></span></a></td>';
-
             }
             $("#datos").html(html);
-
             $(document).ready(function () {
                 $('#listaJuntas').DataTable({
                     "bDeferRender": true,
                     "sordering": true,
                     "responsive": true,
                     "sPaginationType": "full_numbers",
-
                     "oLanguage": {
                         "sProcessing": "Procesando...",
                         "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
@@ -85,63 +77,114 @@ function registrarJunta() {
     fechainicioperiodo = document.getElementById("fechainicioperiodor").value;
     fechafinalperiodo = document.getElementById("fechafinalperiodor").value;
 
+    if (presidente !== vicepresidente && presidente !== secretario && presidente !== tesorero && presidente !== fiscal && presidente !== vocal1
+            && presidente !== vocal2 && vicepresidente !== secretario && vicepresidente !== tesorero && vicepresidente !== fiscal
+            && vicepresidente !== vocal1 && vicepresidente !== vocal2 && secretario !== tesorero && secretario !== fiscal
+            && secretario !== vocal1 && secretario !== vocal2 && tesorero !== fiscal
+            && tesorero !== vocal1 && tesorero !== vocal2 && fiscal !== vocal1 && fiscal !== vocal2 && vocal1 !== vocal2
+            && inicio !== "" && final !== "") {
+        $(document).ready(function () {
+            $.post('../../business/juntaDirectiva/actionJuntaDirectiva.php', {
+                action: 'registrarjunta',
+                presidente: presidente,
+                vicepresidente: vicepresidente,
+                secretario: secretario,
+                tesorero: tesorero,
+                fiscal: fiscal,
+                vocal1: vocal1,
+                vocal2: vocal2,
+                inicio: fechainicioperiodo,
+                final: fechafinalperiodo
+            }, function (responseText) {
+                respuesta = "";
+                if (responseText === "true") {
+                    respuesta = "<h4>Se ha registrado la junta directiva satisfactoriamente</h4>";
+                    mostrarJuntaDirectiva();
+                } else {
+                    respuesta = "<h4>Ocurrió un error al registrar la junta directiva</h4>";
+                }
+                $("#mensaje").html(respuesta);
+                $("#modalRespuesta").modal();
+                document.getElementById("presidenter").value = "";
+                document.getElementById("vicepresidenter").value = "";
+                document.getElementById("secretarior").value = "";
+                document.getElementById("tesoreror").value = "";
+                document.getElementById("fiscalr").value = "";
+                document.getElementById("vocal1r").value = "";
+                document.getElementById("vocal2r").value = "";
+                document.getElementById("fechainicioperiodor").value = "";
+                document.getElementById("fechafinalperiodor").value = "";
+                $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+                $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            });
+        });
+    } else {
+        respuesta = "<h4>Ocurrió un error al registrar la junta directiva, alguno de los campos se encuentran repetidos..</h4>";
+        $("#mensaje").html(respuesta);
+        $("#modalRespuesta").modal();
+    }
+
+}
+
+function verProductor() {
     $(document).ready(function () {
         $.post('../../business/juntaDirectiva/actionJuntaDirectiva.php', {
-            action: 'registrarjunta',
-            presidente: presidente,
-            vicepresidente: vicepresidente,
-            secretario: secretario,
-            tesorero: tesorero,
-            fiscal: fiscal,
-            vocal1: vocal1,
-            vocal2: vocal2,
-            inicio: fechainicioperiodo,
-            final: fechafinalperiodo
-
+            action: 'consultarSocio'
         }, function (responseText) {
-            respuesta = "";
-            if (responseText === "true") {
-                respuesta = "<h4>Se ha registrado la junta directiva satisfactoriamente</h4>";
-                mostrarJuntaDirectiva();
-
-            } else {
-                respuesta = "<h4>Ocurrió un error al registrar la junta directiva</h4>";
+            json = JSON.parse(responseText);
+            html = "";
+            html += "<option ></option>";
+            for (i = 0; i < json.length; i++) {
+                idPersona = '"' + json[i].idpersona + '"';
+                html += "<option value=" + json[i].nombrepersona + ">" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</option>";
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
-
-            document.getElementById("presidenter").value = "";
-            document.getElementById("vicepresidenter").value = "";
-            document.getElementById("secretarior").value = "";
-            document.getElementById("tesoreror").value = "";
-            document.getElementById("fiscalr").value = "";
-            document.getElementById("vocal1r").value = "";
-            document.getElementById("vocal2r").value = "";
-            document.getElementById("fechainicioperiodor").value = "";
-            document.getElementById("fechafinalperiodor").value = "";
-            
-            $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-            $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#presidenter").html(html);
+            $("#vicepresidenter").html(html);
+            $("#secretarior").html(html);
+            $("#tesoreror").html(html);
+            $("#fiscalr").html(html);
+            $("#vocal1r").html(html);
+            $("#vocal2r").html(html);
         });
     });
 }
 
+function Limpiar() {
+
+    document.getElementById("presidenter").value = "";
+    document.getElementById("vicepresidenter").value = "";
+    document.getElementById("secretarior").value = "";
+    document.getElementById("tesoreror").value = "";
+    document.getElementById("fiscalr").value = "";
+    document.getElementById("vocal1r").value = "";
+    document.getElementById("vocal2r").value = "";
+    document.getElementById("fechainicioperiodor").value = "";
+    document.getElementById("fechafinalperiodor").value = "";
+    $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+}
+
 function modalRegistrarJunta() {
 
-    botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
+    botones = "<p><button data-dismiss='modal' onclick='Limpiar()' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button id='boton' onclick='registrarJunta()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
     $("#botonesRegistrar").html(botones);
     $('#boton').attr("disabled", true);
     $("#modalRegistrar").modal();
-
-
 }
 
 //modificar empleado//
@@ -156,7 +199,6 @@ function modificarJunta(id) {
     vocal2 = $("#vocal2m").val();
     inicio = $("#fechainicioperiodom").val();
     final = $("#fechafinalperiodom").val();
-
     $(document).ready(function () {
         $.post('../../business/juntaDirectiva/actionJuntaDirectiva.php', {
             action: 'modificarjunta',
@@ -188,7 +230,6 @@ function modalModificarJunta(junta, miembros) {
 
     stringJunta = junta.split(",");
     string = miembros.split(",");
-
     $("#presidentem").val(string[0]);
     $("#vicepresidentem").val(string[1]);
     $("#secretariom").val(string[2]);
@@ -196,11 +237,9 @@ function modalModificarJunta(junta, miembros) {
     $("#fiscalm").val(string[4]);
     $("#vocal1m").val(string[5]);
     $("#vocal2m").val(string[6]);
-
     id = '"' + stringJunta[0] + '"';
     $("#fechainicioperiodom").val(stringJunta[1]);
     $("#fechafinalperiodom").val(stringJunta[2]);
-
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button onclick='modificarJunta(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
@@ -211,7 +250,6 @@ function modalModificarJunta(junta, miembros) {
 function modalVerJunta(miembros) {
 
     string = miembros.split(",");
-
     $("#presidentev").val(string[0]);
     $("#vicepresidentev").val(string[1]);
     $("#secretariov").val(string[2]);
@@ -219,7 +257,6 @@ function modalVerJunta(miembros) {
     $("#fiscalv").val(string[4]);
     $("#vocal1v").val(string[5]);
     $("#vocal2v").val(string[6]);
-
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     $("#botonesVer").html(botones);
     $("#modalVer").modal();
@@ -236,7 +273,6 @@ function validarCamposPresidente() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (presidente !== "") {
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
@@ -261,7 +297,6 @@ function validarVicepresidente() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (vicepresidente !== "") {
         $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon2').show();
@@ -286,7 +321,6 @@ function validarCamposSecretario() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (secretario !== "") {
         $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon3').show();
@@ -311,7 +345,6 @@ function validarCamposTesorero() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (tesorero !== "") {
         $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon4').show();
@@ -336,7 +369,6 @@ function validarCamposFiscal() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (fiscal !== "") {
         $("#icon5").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon5').show();
@@ -361,7 +393,6 @@ function validarCamposVocal1() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (vocal1 !== "") {
         $("#icon6").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon6').show();
@@ -386,7 +417,6 @@ function validarCamposVocal2() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (vocal2 !== "") {
         $("#icon7").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon7').show();
@@ -411,7 +441,6 @@ function validarCamposInicio() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (inicio !== "") {
         $("#icon8").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon8').show();
@@ -436,7 +465,6 @@ function validarCamposFinal() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-
     if (final !== "") {
         $("#icon9").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon9').show();

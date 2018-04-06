@@ -14,6 +14,10 @@ class businessJuntaDirectiva {
         return $this->dataJuntaDirectiva->juntasDirectivasMostrar();
     }
 
+    public function miembrosMostrar() {
+        return $this->dataJuntaDirectiva->miembrosMostrar();
+    }
+    
     public function juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final) {
 
         return $this->dataJuntaDirectiva->juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final);

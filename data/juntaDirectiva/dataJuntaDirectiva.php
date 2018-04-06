@@ -21,6 +21,19 @@ class dataJuntaDirectiva {
         return json_encode($datos);
     }
 
+    // mostrar miembros
+    function miembrosMostrar() {
+
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $mostrarMiembros = $con->query("CALL mostrarproductores()");
+        $datos = array();
+        while ($result = $mostrarMiembros->fetch_assoc()) {
+            array_push($datos, $result);
+        }
+        return json_encode($datos);
+    }
+    
     // registrar
     function juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final) {
 

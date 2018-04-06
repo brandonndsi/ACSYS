@@ -9,6 +9,8 @@ $action = $_POST['action'];
 if ($action == "consultarjuntas") {
 
     echo $businessJuntaDirectiva->juntasDirectivasMostrar();
+} else if ($action == "consultarSocio") {
+    echo $businessJuntaDirectiva->miembrosMostrar();
 } else if ($action == "registrarjunta") {
 
     $presidente = htmlentities($_POST['presidente']);
@@ -28,7 +30,7 @@ if ($action == "consultarjuntas") {
         echo $businessJuntaDirectiva->juntaDirectivaRegistrar($presidente, $vicepresidente, $secretario, $tesorero, $fiscal, $vocal1, $vocal2, $inicio, $final);
     }
 } else if ($action == "modificarjunta") {
-    
+
     $presidente = htmlentities($_POST['presidente']);
     $vicepresidente = htmlentities($_POST['vicepresidente']);
     $secretario = htmlentities($_POST['secretario']);
