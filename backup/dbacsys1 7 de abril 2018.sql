@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 06, 2018 at 12:37 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 07, 2018 at 05:28 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,6 +50,11 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarempleado` (IN `id` VARCHAR(20))  NO SQL
 BEGIN
 UPDATE tbempleado set estadoempleado='inactivo' WHERE idpersonaempleado=id AND estadoempleado='activo';
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarproceso` (IN `id` INT(30))  NO SQL
+BEGIN
+UPDATE tbproceso set estadoproceso='inactivo' WHERE idproceso=id AND estadoproceso='activo';
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarproductolacteo` (IN `codigo` VARCHAR(50))  BEGIN
@@ -115,6 +120,9 @@ BEGIN
 UPDATE tbjuntadirectiva SET presidente=presidente,vicepresidente=vicepresidente,secretario=secretario,tesorero=tesorero,fiscal=fiscal,vocal1=vocal1,vocal2=vocal2,fechainicioperiodo=inicio,fechafinalperiodo=final WHERE idjuntadirectiva = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarproceso` (IN `nombre` TEXT, IN `cantidad` DOUBLE, IN `porcentaje` DOUBLE, IN `entera` DOUBLE, IN `descremada` DOUBLE, IN `cuajo` DOUBLE, IN `cloruro` DOUBLE, IN `sal` DOUBLE, IN `cultivo` TEXT, IN `estabilizador` DOUBLE, IN `colorante` DOUBLE, IN `crema1` DOUBLE, IN `leche1` DOUBLE, IN `crema2` DOUBLE, IN `leche2` DOUBLE, IN `hora` TIME, IN `fecha` DATE, IN `id` INT(30))  NO SQL
+UPDATE tbproceso SET productoproceso= nombre,cantidadproceso=cantidad,porcentajegrasalecheproceso=porcentaje,lecheenteraproceso=entera,lechedescremadaproceso=descremada,cuajoproceso=cuajo,clorurdecalcioproceso=cloruro,salproceso=sal,cultivocodigoproceso=cultivo,estabilizadorcodigo=estabilizador,colorateproceso=colorante,cremaproceso1=crema1,lecheproceso1=leche1,cremaproceso2=crema2,lecheproceso2=leche2,horaproceso=hora,fechaproceso=fecha WHERE idproceso = id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `modificarproductolacteo` (`codigo` VARCHAR(50), `nombre` TEXT, `precio` DOUBLE, `cantidad` DOUBLE, `unidad` INT)  BEGIN
 UPDATE tbproductoslacteos SET nombreproductolacteo=nombre,preciounitarioproductolacteo=precio,cantidadinventarioproductolacteo=cantidad,unidadproductoslacteos=unidad WHERE codigoproductoslacteos=codigo;
 END$$
@@ -158,6 +166,11 @@ BEGIN
 SELECT tbjuntadirectiva.idjuntadirectiva,tbjuntadirectiva.fechainicioperiodo,tbjuntadirectiva.fechafinalperiodo,tbjuntadirectiva.presidente, tbjuntadirectiva.vicepresidente,tbjuntadirectiva.secretario,tbjuntadirectiva.tesorero,tbjuntadirectiva.fiscal, tbjuntadirectiva.vocal1, tbjuntadirectiva.vocal2 FROM tbjuntadirectiva;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarProcesos` ()  NO SQL
+BEGIN
+SELECT * FROM tbproceso WHERE estadoproceso = "activo";
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarproductolacteo` ()  BEGIN
 SELECT tbproductoslacteos.codigoproductoslacteos,tbproductoslacteos.nombreproductolacteo,tbproductoslacteos.preciounitarioproductolacteo,tbproductoslacteos.cantidadinventarioproductolacteo,tbunidades.unidad FROM tbproductoslacteos INNER JOIN tbunidades ON tbproductoslacteos.unidadproductoslacteos=tbunidades.idunidad WHERE tbproductoslacteos.estadoproductoslacteos="activo";    
 END$$
@@ -186,6 +199,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevoclientemayorista` (IN `id` INT
 BEGIN
 INSERT INTO `tbclientemayorista`(`idpersonamayorista`, `estadoclientemayorista`) VALUES (id,estado);
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenercantidadproducto` (IN `id` INT(30))  NO SQL
+SELECT cantidadinventarioproductolacteo FROM tbproductoslacteos WHERE codigoproductoslacteos = id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pagarAhorro` (`idProductor` INT)  BEGIN
 	UPDATE tbahorrosemanal SET estadoahorrosemanal='pagado' WHERE idpersonaahorro=idProductor AND estadoahorrosemanal='activo'; 
@@ -218,6 +234,9 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarpersona` (IN `cedula` VARCHAR(30), IN `nombre` TEXT, IN `apellido1` TEXT, IN `apellido2` TEXT, IN `telefono` VARCHAR(15), IN `direccion` TEXT, IN `correo` TEXT)  INSERT INTO tbpersona(documentoidentidadpersona,nombrepersona, apellido1persona,apellido2persona,telefonopersona,direccionpersona,correopersona) VALUES (cedula,nombre,apellido1,apellido2,telefono,direccion,correo)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarProceso` (IN `nombre` TEXT, IN `cantidad` DOUBLE, IN `porcentaje` DOUBLE, IN `entera` DOUBLE, IN `descremada` DOUBLE, IN `cuajo` DOUBLE, IN `cloruro` DOUBLE, IN `sal` DOUBLE, IN `cultivo` TEXT, IN `estabilizador` DOUBLE, IN `colorante` DOUBLE, IN `crema1` DOUBLE, IN `leche1` DOUBLE, IN `crema2` DOUBLE, IN `leche2` DOUBLE, IN `hora` TIME, IN `fecha` DATE)  NO SQL
+INSERT INTO tbproceso( productoproceso, cantidadproceso, porcentajegrasalecheproceso, lecheenteraproceso, lechedescremadaproceso, cuajoproceso, clorurdecalcioproceso, salproceso, cultivocodigoproceso, estabilizadorcodigo, colorateproceso, cremaproceso1, lecheproceso1, cremaproceso2, lecheproceso2, horaproceso, fechaproceso, estadoproceso) VALUES(nombre,cantidad,porcentaje,entera,descremada,cuajo,cloruro,sal,cultivo,estabilizador,colorante,crema1,leche1,crema2,leche2,hora,fecha,"activo")$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarproductolacteo` (`codigo` VARCHAR(50), `nombre` TEXT, `precio` DOUBLE, `cantidad` DOUBLE, `unidad` INT)  BEGIN
 INSERT INTO tbproductoslacteos (codigoproductoslacteos,nombreproductolacteo,preciounitarioproductolacteo,cantidadinventarioproductolacteo,estadoproductoslacteos,unidadproductoslacteos)
 VALUES (codigo,nombre,precio,cantidad,"activo",unidad);
@@ -248,6 +267,9 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaPorCobrar` (`idCliente` INT, `idVenta` INT, `totalVenta` DOUBLE)  BEGIN
   INSERT INTO tbventaporcobrar(idventa,idpersona,saldoactualventaporcobrar,estadoventaporcobrar) VALUES(idVenta,idCliente,totalVenta,"activo");
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `restastockproceso` (IN `cantidad` DOUBLE, IN `nombre` TEXT)  NO SQL
+UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad WHERE nombreproductolacteo = nombre AND estadoproductoslacteos = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `retornarMontoAhorroCliente` (IN `id` INT)  BEGIN
 SELECT tbproductorcliente.ahorroporlitroproductorcliente FROM tbproductorcliente WHERE idpersonacliente=id AND estadoproductorcliente="activo";
@@ -307,6 +329,9 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `searchproductveterinario` (`codigo` TEXT)  BEGIN
   SELECT nombreproductoveterinario,precioproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigo LIMIT 1;
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sumastockproceso` (IN `cantidad` DOUBLE, IN `nombre` TEXT)  NO SQL
+UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo + cantidad WHERE nombreproductolacteo = nombre AND estadoproductoslacteos = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verificarturno` (IN `fecha` DATE, IN `turno` TEXT, IN `cliente` INT)  NO SQL
 SELECT tbpesalechediario.turnopesolechediario, tbpesalechediario.fechaentregalechediario FROM tbpesalechediario WHERE  tbpesalechediario.fechaentregalechediario=fecha AND tbpesalechediario.turnopesolechediario=turno AND tbpesalechediario.idpersonalechediario=cliente$$
@@ -871,8 +896,17 @@ CREATE TABLE `tbproceso` (
   `cremaproceso2` double DEFAULT NULL,
   `lecheproceso2` double DEFAULT NULL,
   `horaproceso` time NOT NULL,
-  `fechaproceso` date NOT NULL
+  `fechaproceso` date NOT NULL,
+  `estadoproceso` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbproceso`
+--
+
+INSERT INTO `tbproceso` (`idproceso`, `productoproceso`, `cantidadproceso`, `porcentajegrasalecheproceso`, `lecheenteraproceso`, `lechedescremadaproceso`, `cuajoproceso`, `clorurdecalcioproceso`, `salproceso`, `cultivocodigoproceso`, `estabilizadorcodigo`, `colorateproceso`, `cremaproceso1`, `lecheproceso1`, `cremaproceso2`, `lecheproceso2`, `horaproceso`, `fechaproceso`, `estadoproceso`) VALUES
+(1, 'Queso Mozarrella', 4, 12, 111, 111, 11, 11, 11, 'aasss', 11, 11, 11, 11, 11, 11, '09:14:00', '2018-04-07', 'inactivo'),
+(2, 'Queso Mozarrella', 50, 11, 11, 11, 11, 11, 11, '11', 11, 11, 11, 11, 11, 11, '09:16:00', '2018-04-07', 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -1043,7 +1077,8 @@ INSERT INTO `tbsolicitudprestamo` (`idsolicitud`, `idpersona`, `idinteres`, `can
 (3, 1, 2, 150000, 11, 2, 'Solicitud', '2018-04-05'),
 (4, 9, 2, 150000, 11, 2, 'Solicitud', '2018-04-05'),
 (5, 2, 2, 125000, 11, 2, 'Solicitud', '2018-04-05'),
-(6, 8, 2, 200000, 22, 2, 'Solicitud', '2018-04-05');
+(6, 8, 2, 200000, 22, 2, 'Solicitud', '2018-04-05'),
+(7, 1, 2, 100000, 15, 2, 'Solicitud', '2018-04-07');
 
 -- --------------------------------------------------------
 
@@ -1608,7 +1643,7 @@ ALTER TABLE `tbprestamosporcobrar`
 -- AUTO_INCREMENT for table `tbproceso`
 --
 ALTER TABLE `tbproceso`
-  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbproductoresvacaseca`
@@ -1626,7 +1661,7 @@ ALTER TABLE `tbproductosveterinarios`
 -- AUTO_INCREMENT for table `tbsolicitudprestamo`
 --
 ALTER TABLE `tbsolicitudprestamo`
-  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbunidades`

@@ -79,7 +79,7 @@
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="#">Solicitud de préstamo</a></li>
+              <li><a href="../productor/registrarPrestamo.php">Solicitud de préstamo</a></li>
               <li><a href="#">Pago de préstamo</a></li>
 
           </ul>
