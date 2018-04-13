@@ -16,14 +16,13 @@
           <script src="../../js/jquery.dataTables.js"></script>
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
-          <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
           <script src="../../js/productor/pagoCuotaPrestamoJs.js"></script>
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
           
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
+        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="consultarProductorSocio();">
         <?php
             include '../menuView.php';
         ?>
@@ -46,6 +45,7 @@
                           <th>Fecha de Aprobación</th>
                           <th>Monto Cuota</th>
                           <th>Saldo Actual</th>
+                          <th>Última fecha de pago</th>
                           <th>Pagar Cuota</th>
                           
                       </tr>

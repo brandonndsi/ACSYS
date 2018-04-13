@@ -8,8 +8,8 @@
       $this->dataPagoCuota = new dataPagoCuota();
     }
 
-    function registrarPagoCuota($idProductor,$cuota,$saldoAnterior){
-      return $this->dataPagoCuota->registrarPagoCuota($idProductor,$cuota,$saldoAnterior);
+    function registrarPagoCuota($idPrestamoCobrar,$cuota){
+      return $this->dataPagoCuota->registrarPagoCuota($idPrestamoCobrar,$cuota);
     }
 
     function obtenerPrestamosActivosProductor($id){

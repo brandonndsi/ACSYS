@@ -256,18 +256,20 @@ DELIMITER $$
 DELIMITER $$
 CREATE PROCEDURE  obtenerPrestamosActivos(idPersona INT)
 BEGIN
-  SELECT tbprestamos.idprestamo,tbprestamos.fechaprestamo,tbprestamos.montototalprestamo,tbprestamos.montocuota,tbprestamosporcobrar.saldoactualprestamoporcobrar FROM tbprestamos INNER JOIN tbprestamosporcobrar ON tbprestamos.idprestamo=tbprestamosporcobrar.idprestamo WHERE tbprestamosporcobrar.estadoprestamoporcobrar="activo" AND tbprestamos.idpersonaprestamo=idPersona;
+  SELECT tbprestamos.idprestamo,tbprestamos.fechaprestamo,tbprestamos.montototalprestamo,tbprestamos.montocuota,tbprestamosporcobrar.saldoactualprestamoporcobrar,tbprestamosporcobrar.idprestamoporcobrar FROM tbprestamos INNER JOIN tbprestamosporcobrar ON tbprestamos.idprestamo=tbprestamosporcobrar.idprestamo  WHERE tbprestamosporcobrar.estadoprestamoporcobrar="activo" AND tbprestamos.idpersonaprestamo=idPersona;
 END$$
 DELIMITER $$
 
+
 DELIMITER $$
-CREATE PROCEDURE  registrarPagoCuota(idPersona INT,interes INT, montoPrestamo DOUBLE,plazo INT, modoPlazo INT,fecha DATE)
+CREATE PROCEDURE  registrarPagoCuota(idPrestamoCobrar INT,saldoActual DOUBLE,nuevoSaldo DOUBLE,cuota DOUBLE,fecha DATE,hora TIME,estado TEXT)
 BEGIN
-  INSERT INTO tbsolicitudprestamo(idpersona,idinteres,cantidadsolicitud,plazo,idmodoplazo,estado,fecha) VALUES(idPersona,interes,montoPrestamo,plazo,modoPlazo,"Solicitud",fecha);
+  UPDATE  tbprestamosporcobrar SET saldoactualprestamoporcobrar=nuevoSaldo, estadoprestamoporcobrar=estado WHERE idprestamoporcobrar=idPrestamoCobrar;
+  INSERT INTO tbpagoprestamo(idprestamoporcobrar,saldoanteriorpagopretsamo,saldoactualpagoprestamo,montocuotapagoprestamo,fechapagoprestamo,horapagoprestamo) VALUES(idPrestamoCobrar,saldoActual,nuevoSaldo,cuota,fecha,hora);
 END$$
 DELIMITER $$
 
-CALL obtenerPrestamosActivos(1)
+
 
 
 

@@ -4,11 +4,11 @@
 	$businessPagoCuota = new businessPagoCuota();
   $action=$_POST['action'];
 	if($action=="registrarPagoCuota") {
-		 $idProductor= $_POST['idProductor'];
+		 $idPrestamoCobrar= $_POST['idprestamoporcobrar'];
          $cuota= $_POST['cuota'];
-         $saldoAnterior= $_POST['saldoAnterior'];
+        
          
-        echo $businessPagoCuota->registrarPagoCuota($idProductor,$cuota,$saldoAnterior);
+        echo $businessPagoCuota->registrarPagoCuota($idPrestamoCobrar,$cuota);
         
         
     }else if($action=='consultarCuota'){

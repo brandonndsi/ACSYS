@@ -38,21 +38,43 @@ function registrarPagoCuotaConfirmacion(){
     }
   }
 
-function registrarPagoCuota(){
-    idProductor = $("#selectCliente").val();
-    cuota = $("#montoCuota").val();
-    saldoAnterior = $("#saldoActual").val();
+function modalRegistrarPagoCuota(idprestamoporcobrar){
   
-   
+     swal("Digite el monto de la cuota:", {
+      content: "input",
+      })
+    .then((value) => {
+        if (value === false) return false;
+          if (value === "" || !/^[0-9]$/.test(value)) {
+            swal({
+                title: "Error",
+                text: "El dato ingresado no es valido",
+                icon: "error",
+                buttons: {
+                  ok:{
+                    text:"Aceptar",
+                    value:"ok",
+                  }
+                },
+                dangerMode: true,
+            })
+          }else{
+            registrarPagoCuota(idprestamoporcobrar,value);
+
+          }
+    });
+
+}  
+
+function registrarPagoCuota(idprestamoporcobrar,cuota){
+    idprestamoporcobrar=idprestamoporcobrar; 
     $(document).ready(function() {
        $.post('../../business/productor/actionPagoCuota.php', {
            action: 'registrarPagoCuota' ,
-           idProductor: idProductor,
+           idprestamoporcobrar: idprestamoporcobrar,
            cuota: cuota,
-           saldoAnterior: saldoAnterior,
-           
-          
        },function(responseText) {
+       
            if (responseText=="true") {
              swal({
                  title: "¡Se registró el pago correctamente!",
@@ -74,12 +96,9 @@ function registrarPagoCuota(){
                  switch(value){
                    case "ok":
                      imprimir();
-                     $("#montoPrestamo").val("");
-                     $("#plazoNumero").val("");
                      break;
                     case "cancel":
-                      $("#montoPrestamo").val("");
-                      $("#plazoNumero").val("");
+
                       break;
                  }
                });
@@ -88,6 +107,7 @@ function registrarPagoCuota(){
                icon: "error",
              });
            }
+           mostrarCuota();
        });
      });
   }
@@ -101,7 +121,6 @@ function registrarPagoCuota(){
               action : 'consultarCuota',
               id:idProductor,
       }, function(responseText) {
-      
         json = JSON.parse(responseText);
         html = "";
         for(i = 0 ;i<json.length; i++){
@@ -111,7 +130,8 @@ function registrarPagoCuota(){
           html+="<td>"+json[i].fechaprestamo+"</td>";
           html+="<td>"+json[i].montocuota+"</td>";
           html+="<td>"+json[i].saldoactualprestamoporcobrar+"</td>"
-          html+='<td><a href="javascript:modalModificarSocio('+json[i].idprestamo+')"><span class="glyphicon glyphicon-credit-card"></span></a></td>';
+          html+="<td>"+json[i].fechapagoprestamo+"</td>"
+          html+='<td><a href="javascript:modalRegistrarPagoCuota('+json[i].idprestamoporcobrar+')"><span class="glyphicon glyphicon-credit-card"></span></a></td>';
           
         }
         $("#datos").html(html);
@@ -151,3 +171,22 @@ function registrarPagoCuota(){
       });
   });
 }
+
+function consultarProductorSocio(){
+  $(document).ready(function () {
+      $.post('../../business/productor/actionProductorSocio.php', {
+            action : 'consultarproductores'
+      }, function(responseText) {
+        json = JSON.parse(responseText);
+        html = "";
+        for(i = 0 ;i<json.length; i++){
+          idPersona = '"'+json[i].idpersona+'"';
+          html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
+        }
+        //consultarProductorCliente(html);
+        $("#selectCliente").html(html);
+        mostrarCuota();
+      });
+    });
+}
+
