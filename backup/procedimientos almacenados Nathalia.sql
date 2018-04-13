@@ -253,9 +253,21 @@ BEGIN
 END$$
 DELIMITER $$
 
+DELIMITER $$
+CREATE PROCEDURE  obtenerPrestamosActivos(idPersona INT)
+BEGIN
+  SELECT tbprestamos.idprestamo,tbprestamos.fechaprestamo,tbprestamos.montototalprestamo,tbprestamos.montocuota,tbprestamosporcobrar.saldoactualprestamoporcobrar FROM tbprestamos INNER JOIN tbprestamosporcobrar ON tbprestamos.idprestamo=tbprestamosporcobrar.idprestamo WHERE tbprestamosporcobrar.estadoprestamoporcobrar="activo" AND tbprestamos.idpersonaprestamo=idPersona;
+END$$
+DELIMITER $$
 
+DELIMITER $$
+CREATE PROCEDURE  registrarPagoCuota(idPersona INT,interes INT, montoPrestamo DOUBLE,plazo INT, modoPlazo INT,fecha DATE)
+BEGIN
+  INSERT INTO tbsolicitudprestamo(idpersona,idinteres,cantidadsolicitud,plazo,idmodoplazo,estado,fecha) VALUES(idPersona,interes,montoPrestamo,plazo,modoPlazo,"Solicitud",fecha);
+END$$
+DELIMITER $$
 
-
+CALL obtenerPrestamosActivos(1)
 
 
 

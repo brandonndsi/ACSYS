@@ -75,12 +75,12 @@
       </ul>
     </li>
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Préstamos<span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Adelanto de Pago<span class="caret"></span></a>
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="../productor/registrarPrestamo.php">Solicitud de préstamo</a></li>
-              <li><a href="#">Pago de préstamo</a></li>
+              <li><a href="../productor/registrarPrestamo.php">Solicitud de Adelanto</a></li>
+              <li><a href="../productor/pagarCuotaPrestamo.php">Pago de Cuota</a></li>
 
           </ul>
         </li>

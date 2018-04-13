@@ -61,7 +61,7 @@ function registrarSolicitudPrestamoConfirmacion(){
            if (responseText=="true") {
              swal({
                  title: "¡Se registró la solicitud correctamente! ",
-                 text: "¿Desea imprimir el comprobante de la solicitud del préstamo?",
+                 text: "¿Desea imprimir el comprobante de la solicitud del adelanto de pago?",
                  icon: "success",
                  buttons: {
                    cancelar:{
