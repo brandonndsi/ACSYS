@@ -269,7 +269,28 @@ BEGIN
 END$$
 DELIMITER $$
 
+DELIMITER $$
+CREATE PROCEDURE  mostrarSolicitudes()
+BEGIN
+      SELECT tbpersona.nombrepersona,tbpersona.apellido1persona,tbpersona.apellido2persona,tbsolicitudprestamo.idsolicitud,tbsolicitudprestamo.plazo,tbperiodopagoprestamo.tipopagoprestamo,tbsolicitudprestamo.cantidadsolicitud,tbinteresprestamo.porcentaje,tbsolicitudprestamo.fecha FROM tbsolicitudprestamo INNER JOIN tbpersona ON tbsolicitudprestamo.idpersona=tbpersona.idpersona INNER JOIN tbperiodopagoprestamo ON tbperiodopagoprestamo.idperiodopagoprestamo=tbsolicitudprestamo.idmodoplazo INNER JOIN tbinteresprestamo ON tbinteresprestamo.idinteres= tbsolicitudprestamo.idinteres WHERE tbsolicitudprestamo.estado="Solicitud";
+END$$
+DELIMITER $$
 
+DELIMITER $$
+CREATE PROCEDURE  aprobarSolicitud(idsolicitud INT, idpersonaprestamo INT,tasainteres DOUBLE,montototalprestamo DOUBLE, montocuota DOUBLE, fechaprestamo DATE)
+BEGIN
+  INSERT INTO  tbprestamos(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo) VALUES(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo);
+  INSERT INTO  tbprestamosporcobrar(idprestamo,saldoactualprestamoporcobrar,estadoprestamoporcobrar) VALUES((SELECT idprestamo FROM tbprestamos ORDER BY idprestamo DESC LIMIT 1),montototalprestamo,"activo");
+  UPDATE tbsolicitudprestamo SET estado='Aprobado' WHERE tbsolicitudprestamo.idsolicitud=idsolicitud AND estado="Solicitud";  
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE  rechazarSolicitud(idsolicitud INT)
+BEGIN
+  UPDATE tbsolicitudprestamo SET estado='Rechazado' WHERE tbsolicitudprestamo.idsolicitud=idsolicitud AND estado="Solicitud";
+END$$
+DELIMITER $$
 
 
 

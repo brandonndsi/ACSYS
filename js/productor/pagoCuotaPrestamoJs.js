@@ -121,6 +121,7 @@ function registrarPagoCuota(idprestamoporcobrar,cuota){
               action : 'consultarCuota',
               id:idProductor,
       }, function(responseText) {
+       
         json = JSON.parse(responseText);
         html = "";
         for(i = 0 ;i<json.length; i++){

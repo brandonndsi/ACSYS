@@ -80,6 +80,7 @@
         <li>
             <ul>
               <li><a href="../productor/registrarPrestamo.php">Solicitud de Adelanto</a></li>
+              <li><a href="../productor/aprobarPrestamos.php">Aprobar Solicitud</a></li>
               <li><a href="../productor/pagarCuotaPrestamo.php">Pago de Cuota</a></li>
 
           </ul>

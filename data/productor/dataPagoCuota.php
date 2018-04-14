@@ -51,10 +51,7 @@
           return json_encode($array);
         }
 
-        function obtenerSaldoActual(){
-
-
-        }   
+     
           
          
         function consultas($query){
