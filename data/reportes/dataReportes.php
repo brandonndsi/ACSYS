@@ -53,7 +53,19 @@ class dataReportes {
 
     public function ventaPrestamos($fechainicial,$fechafinal){
         /*
-        SELECT `idsolicitud`, `idpersona`, `idinteres`, `cantidadsolicitud`, `plazo`, `idmodoplazo`, `estado`, `fecha` FROM `tbsolicitudprestamo` WHERE 1
+     
+        SELECT s.idsolicitud, p.nombrepersona,
+        p.apellido1persona ,p.apellido2persona,
+        r.porcentaje,s.cantidadsolicitud, s.plazo, t.tipopagoprestamo,
+        s.fecha , s.estado FROM tbsolicitudprestamo s
+        INNER JOIN tbperiodopagoprestamo t ON 
+        t.idperiodopagoprestamo=s.idmodoplazo
+        INNER JOIN tbinteresprestamo r ON
+        r.idinteres=s.idinteres
+        INNER JOIN tbpersona p ON
+        p.idpersona=s.idpersona
+        WHERE s.estado='Solicitud' AND 
+        fecha>=inicial AND fecha<=final;
          */
 
         $con=$this->conexion->crearConexion();
@@ -67,6 +79,6 @@ class dataReportes {
 
 }
 /*$dota=new dataReportes();
-$d=$dota->buscarDetalleDistribidor('35');
+$d=$dota->ventaPrestamos('2018-04-05','2018-04-07');
 print_r($d);*/
  ?>

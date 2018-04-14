@@ -41,3 +41,24 @@ WHERE d.idventa=id;
 
 END$$
 DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreportesPrestamos`(IN `inicial` DATE, IN `final` DATE)
+    NO SQL
+BEGIN
+SELECT s.idsolicitud, p.nombrepersona,
+        p.apellido1persona ,p.apellido2persona,
+        r.porcentaje,s.cantidadsolicitud, s.plazo, 				t.tipopagoprestamo,
+        s.fecha , s.estado FROM tbsolicitudprestamo s
+        INNER JOIN tbperiodopagoprestamo t ON 
+        t.idperiodopagoprestamo=s.idmodoplazo
+        INNER JOIN tbinteresprestamo r ON
+        r.idinteres=s.idinteres
+        INNER JOIN tbpersona p ON
+        p.idpersona=s.idpersona
+        WHERE s.estado='Solicitud' AND 
+        s.fecha>=inicial AND s.fecha<=final;
+END$$
+DELIMITER ;

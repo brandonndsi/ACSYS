@@ -119,31 +119,20 @@ $(document).ready(function () {
 	/**
 	 * [CargarNuevosDatosALaTablaInicial Comnezamos a recorrer los datos de la busqueda y incorporarlos a la tabla principal]
 	 * @param {[array objeto ]} json [resive todos los datos de la busqueda en la base de datos]
+     
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
 		    html = "";
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
-          html+="<td>"+json[i].numerofactura+"</td>";
-          html+="<td>"+json[i].fechaventa+"</td>";
-          html+="<td>"+json[i].horaventa+"</td>";
-          html+="<td>"+json[i].totalbrutoventa+"</td>";
-          html+="<td>"+json[i].totalnetoventa+"</td>";
-          html+="<td>"+json[i].tipoventa+"</td>";
-          idv=json[i].idventa;
-          numfactura=json[i].numerofactura;
-          fecha=json[i].fechaventa;
-          hora=json[i].horaventa;
-          brut=json[i].totalbrutoventa;
-          tol=json[i].totalnetoventa;
-          tipo=json[i].tipoventa;
-          idpersona=json[i].idpersonaventa;
-        
-          facturanueva = "'" + idv + "," + numfactura + "," + fecha + "," + hora + "," +
-                        brut + "," + tol + "," + tipo + ","+ idpersona +"'";
-
-          html+='<td><a href="javascript:modalVer('+facturanueva+')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
-          html+='<td><a href="javascript:mostrarImprimir('+facturanueva+')"><span class="glyphicon glyphicon-file"></span></a></td>';
+          html+="<td>"+json[i].nombrepersona+"</td>";
+          html+="<td>"+json[i].cantidadsolicitud+"</td>";
+          html+="<td>"+json[i].tipopagoprestamo+"</td>";
+          html+="<td>"+json[i].plazo+"</td>";
+          html+="<td>"+json[i].porcentaje+"</td>";
+          html+="<td>"+json[i].fecha+"</td>";
+          html+="<td>"+json[i].estado+"</td>";
+          html+='<td><a href="javascript:mostrarImprimir()"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
         }
         destruirTablaPrincipal();
