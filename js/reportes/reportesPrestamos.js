@@ -136,7 +136,18 @@ $(document).ready(function () {
 	}
 
 	function mostrarImprimir(prestamo){
-
-		console.log(prestamo);
+string = prestamo.split(",");   
+nombreCliente=string[1]+" "+string[2]+" "+string[3];
+fecha=string[8];
+interes=string[7];
+plazo=string[6];
+modoPlazo=string[5];
+montoSolicitado=string[4];
+cuota=string[4]/string[6];
+total=parseFLoat(string[4])+((parseFloat(string[4])*(parseFloat(string[7])/100));
+     
+    window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+		//console.log(cuota);
+    //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
 	}
 
