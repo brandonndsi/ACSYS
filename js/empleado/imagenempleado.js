@@ -13,6 +13,17 @@ function crearAjax(){
     return ajax;
 }
 /*terminado la consulta ajax*/
+function descaragarManipulacionAlimento(){
+	rutaimagen=document.getElementById("imagenManipulacionAlimento").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarCedula(){
+	rutaimagen=document.getElementById("imagendocumentoidentidadempleado").value;
+	mostrarImagenAntesDeImprimir();
+}
+function mostrarImagenAntesDeImprimir(){
+	window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}
 /*estandar de las consultas ajax*/
 function datosAjax(mensaje,contenido){
     var nuevo = crearAjax();

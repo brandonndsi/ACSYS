@@ -163,11 +163,13 @@ echo '<div id="contentImagen">';
 echo '<h2>Manipulaci&oacute;n Alimento</h2>';
 echo '<input type="hidden" value="'.$row['imagentitulomanipulacionalimentosempleado'].'" id="imagenManipulacionAlimento">';
 echo '<a href="javascript:abrirManipulacionAlimento();"><img src="'.$row['imagentitulomanipulacionalimentosempleado'].'"/></a>';
+echo '<a href="javascript:descaragarManipulacionAlimento()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Copia C&eacute;dula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadempleado'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadempleado'].'"/></a>';
+echo '<a href="javascript:descaragarCedula()" >Descargar</a>';
 echo '</div>';
 }
 
