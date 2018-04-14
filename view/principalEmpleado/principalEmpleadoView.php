@@ -49,8 +49,8 @@
                         <h4>Producto</h4>
                     </div>
                     <div class="info-repuesto">
-                        <a href="#"><img src="../../image/prin/perfil.png"></a>
-                        <h4>Perfil</h4>
+                        <a href="#pro"><img src="../../image/prin/perfil.png"></a>
+                        <h4>Productores</h4>
                     </div>
                 </div>
             </section>

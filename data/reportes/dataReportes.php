@@ -62,8 +62,19 @@ class dataReportes {
         echo json_encode($datos); 
     }
 
+    public function ventaPagos($fechainicial,$fechafinal){
+     
+        $con=$this->conexion->crearConexion();
+        $ventabuscar = $con->query("CALL sacarreportesPagos('$fechainicial','$fechafinal');");
+        $datos=array();
+        while($result=$ventabuscar->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
+
 }
-/*$dota=new dataReportes();
-$d=$dota->ventaPrestamos('2018-04-05','2018-04-07');
-print_r($d);*/
+$dota=new dataReportes();
+$d=$dota->ventaPagos('2018-04-01','2018-04-05');
+print_r($d);
  ?>

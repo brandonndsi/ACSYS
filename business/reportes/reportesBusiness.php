@@ -28,6 +28,9 @@ class reportesBusiness{
 		return $this->dataReportes->ventaPrestamos($fechainicial,$fechafinal);
 	}
 	
+	public function ventaPagos($fechainicial,$fechafinal){
+		return $this->dataReportes->ventaPagos($fechainicial,$fechafinal);
+	}
 }
 /*$datoo= new reportesBusiness();
 $d=$datoo->buscarDetalleDistribidor('35');
