@@ -51,6 +51,20 @@ class dataReportes {
         echo json_encode($datos); 
     }
 
+    public function ventaPrestamos($fechainicial,$fechafinal){
+        /*
+        SELECT `idsolicitud`, `idpersona`, `idinteres`, `cantidadsolicitud`, `plazo`, `idmodoplazo`, `estado`, `fecha` FROM `tbsolicitudprestamo` WHERE 1
+         */
+
+        $con=$this->conexion->crearConexion();
+        $ventabuscar = $con->query("CALL sacarreportesPrestamos('$fechainicial','$fechafinal');");
+        $datos=array();
+        while($result=$ventabuscar->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
+
 }
 /*$dota=new dataReportes();
 $d=$dota->buscarDetalleDistribidor('35');

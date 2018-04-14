@@ -23,6 +23,10 @@ class reportesBusiness{
 	public function buscarDetalleDistribidor($id){
 		return $this->dataReportes->buscarDetalleDistribidor($id);
 	} 
+
+	public function ventaPrestamos($fechainicial,$fechafinal){
+		return $this->dataReportes->ventaPrestamos($fechainicial,$fechafinal);
+	}
 	
 }
 /*$datoo= new reportesBusiness();

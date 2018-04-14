@@ -39,6 +39,17 @@ if($accion=="buscarDetalleDistribidor"){
 	echo $business->buscarDetalleDistribidor($id);
 
 }
+
+if($accion=="ventaPrestamos"){
+
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$fechainicial=$_POST['fechai'];
+	$fechafinal=$_POST['fechaf'];
+
+ 	echo  $business->ventaPrestamos($fechainicial,$fechafinal);
+}
 /*buscarDetalleDistribidor*/
 
 
