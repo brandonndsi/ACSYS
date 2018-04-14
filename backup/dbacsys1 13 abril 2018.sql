@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-04-2018 a las 07:50:44
+-- Tiempo de generación: 14-04-2018 a las 15:35:02
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -24,6 +24,9 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarPrecioLeche` (IN `precio` DOUBLE, IN `fecha` DATE, IN `id` INT)  NO SQL
+UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND estadopreciolitroleche = "activo"$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aprobarSolicitud` (IN `idsolicitud` INT, IN `idpersonaprestamo` INT, IN `tasainteres` DOUBLE, IN `montototalprestamo` DOUBLE, IN `montocuota` DOUBLE, IN `fechaprestamo` DATE)  BEGIN
   INSERT INTO  tbprestamos(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo) VALUES(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo);
   INSERT INTO  tbprestamosporcobrar(idprestamo,saldoactualprestamoporcobrar,estadoprestamoporcobrar) VALUES((SELECT idprestamo FROM tbprestamos ORDER BY idprestamo DESC LIMIT 1),montototalprestamo,"activo");
@@ -334,6 +337,12 @@ BEGIN
 SELECT `imagencboproductorsocio`, `imagenexamensangradoproductorsocio`, `imagenescrituraproductorsocio`, `imagenreciboluzproductorsocio`, `imagenrecibaguaproductorsocio`, `imagenexamensolidoproductorsocio`, `imagenplanofincaproductorsocio`, `imagendocumentoidentidadproductorsocio` FROM `tbproductorsocio` WHERE idpersonasocio=id AND estadoproductorsocio='activo';
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarReportesProcesos` (IN `inicio` DATE, IN `final` DATE)  NO SQL
+BEGIN
+SELECT * FROM `tbproceso` 
+WHERE fechaproceso>=inicio AND fechaproceso <=final;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreportesventa` (IN `inicial` DATE, IN `final` DATE)  NO SQL
 BEGIN
 SELECT `idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa` FROM `tbventa` 
@@ -357,6 +366,9 @@ UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventa
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verificarturno` (IN `fecha` DATE, IN `turno` TEXT, IN `cliente` INT)  NO SQL
 SELECT tbpesalechediario.turnopesolechediario, tbpesalechediario.fechaentregalechediario FROM tbpesalechediario WHERE  tbpesalechediario.fechaentregalechediario=fecha AND tbpesalechediario.turnopesolechediario=turno AND tbpesalechediario.idpersonalechediario=cliente$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verPrecioLeche` ()  NO SQL
+SELECT * FROM `tbpreciolitroleche` WHERE estadopreciolitroleche = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `verReporteAhorro` (IN `fechaInicio` DATE, IN `fechaFinal` DATE)  BEGIN
 	SELECT tbahorrosemanal.idahorro, tbahorrosemanal.montoahorrosemanalporlitro,tbahorrosemanal.litrosentregadosahorrosemanal,tbahorrosemanal.fechaentregapago,tbpersona.nombrepersona,tbpersona.apellido1persona,tbpersona.apellido2persona FROM tbahorrosemanal INNER JOIN tbpersona ON tbahorrosemanal.idpersonaahorro=tbpersona.idpersona WHERE tbahorrosemanal.fechaentregapago BETWEEN fechaInicio AND fechaFinal;
@@ -881,7 +893,7 @@ CREATE TABLE `tbpreciolitroleche` (
 --
 
 INSERT INTO `tbpreciolitroleche` (`idpreciolitroleche`, `preciolitroleche`, `fechainicio`, `estadopreciolitroleche`) VALUES
-(1, 285, '2018-04-04', 'activo');
+(1, 300, '2018-04-14', 'activo');
 
 -- --------------------------------------------------------
 

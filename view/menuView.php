@@ -87,7 +87,7 @@
         </li>
       </ul>
     </li>
-    <li><a href="../../view/proceso/procesoView.php">Procesos</a></li>
+    <li><a href="../../view/proceso/procesoView2.php">Procesos</a></li>
 
 
     <li class="dropdown">
@@ -110,7 +110,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo $_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>
-            <li><a href="#">Actualizar precio de leche</a></li>
+            <li><a href="../../view/precioLeche/precioLecheView.php">Actualizar precio de leche</a></li>
             <li><a href="../juntaDirectiva/juntaDirectivaView.php">Junta Directiva</a></li>
             <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>
 

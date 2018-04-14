@@ -75,7 +75,7 @@
                                     </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><select class="btn btn-info" class="form-control"  name = "presidenter" id ="presidenter" onchange="validarCamposPresidente(this.value);" >
+                                    <p><select class="form-control"  name = "presidenter" id ="presidenter" onchange="validarCamposPresidente(this.value);" >
                                         </select></p>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><select class="btn btn-info" class="form-control" name = "vicepresidenter" id ="vicepresidenter" onchange="validarVicepresidente(this.value)">
+                                    <p><select  class="form-control" name = "vicepresidenter" id ="vicepresidenter" onchange="validarVicepresidente(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><select class="btn btn-info" class="form-control" name = "secretarior" id ="secretarior" onchange="validarCamposSecretario(this.value)">
+                                    <p><select class="form-control" name = "secretarior" id ="secretarior" onchange="validarCamposSecretario(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><select class="btn btn-info" class="form-control" name = "tesoreror" id ="tesoreror" onchange="validarCamposTesorero(this.value)">
+                                    <p><select class="form-control" name = "tesoreror" id ="tesoreror" onchange="validarCamposTesorero(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                                         </a></label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><select class="btn btn-info" class="form-control" name = "fiscalr" id ="fiscalr" onchange="validarCamposFiscal(this.value)">
+                                    <p><select class="form-control" name = "fiscalr" id ="fiscalr" onchange="validarCamposFiscal(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -136,8 +136,8 @@
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
-                                <div class="col-sm-8">
-                                    <p><select class="btn btn-info" class="form-control" name = "vocal1r" id ="vocal1r" onchange="validarCamposVocal1(this.value)">
+                                <div class="col-sm-7">
+                                    <p><select class="form-control" name = "vocal1r" id ="vocal1r" onchange="validarCamposVocal1(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -148,8 +148,8 @@
                                             <span class='glyphicon-asterisk' style= 'color:red'></span>
                                         </a></label>
                                 </div>
-                                <div class="col-sm-8">
-                                    <p><select class="btn btn-info" class="form-control" name = "vocal2r" id ="vocal2r" onchange="validarCamposVocal2(this.value)">
+                                <div class="col-sm-7">
+                                    <p><select class="form-control" name = "vocal2r" id ="vocal2r" onchange="validarCamposVocal2(this.value)">
                                         </select></p>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
 
         <!--Modal de modificar Junta-->
         <div id="modalModificar" class="modal" role="dialog">
-            <div  class="modal-dialog" role="document">
+            <div  class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Modificar Junta Directiva</h4>
