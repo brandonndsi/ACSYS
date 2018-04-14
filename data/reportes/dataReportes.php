@@ -51,8 +51,19 @@ class dataReportes {
         echo json_encode($datos); 
     }
 
+    public function ventaPrestamos($fechainicial,$fechafinal){
+
+        $con=$this->conexion->crearConexion();
+        $ventabuscar = $con->query("CALL sacarreportesPrestamos('$fechainicial','$fechafinal');");
+        $datos=array();
+        while($result=$ventabuscar->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
+
 }
 /*$dota=new dataReportes();
-$d=$dota->buscarDetalleDistribidor('35');
+$d=$dota->ventaPrestamos('2018-04-05','2018-04-07');
 print_r($d);*/
  ?>
