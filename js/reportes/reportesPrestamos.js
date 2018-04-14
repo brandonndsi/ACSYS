@@ -8,14 +8,6 @@ $(document).ready(function () {
 });
 
 	/**
-	 * <th>Solicitante</th>
-						<th>Cantidad</th>
-						<th>Tipo</th>
-						<th>Plazo</th>
-						<th>Intereses</th>
-            			<th>Fecha</th>
-            			<th>Estado</th>
-            			<th>Imprimir</th>
 	 * [CargarTablaPrincipal Loque hace es darles los valores del datablable a la table normal del principal]
 	 */
 	function CargarTablaPrincipal(){
@@ -112,30 +104,39 @@ $(document).ready(function () {
               fechaf : fechaFinal
         }, function(responseText) {
       		json = JSON.parse(responseText);
-      		console.log(json);
+      		//console.log(json);
       		CargarNuevosDatosALaTablaInicial(json);
       		});
 	}
 	/**
 	 * [CargarNuevosDatosALaTablaInicial Comnezamos a recorrer los datos de la busqueda y incorporarlos a la tabla principal]
 	 * @param {[array objeto ]} json [resive todos los datos de la busqueda en la base de datos]
-     
+	 * 
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
 		    html = "";
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
-          html+="<td>"+json[i].nombrepersona+"</td>";
+          html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
           html+="<td>"+json[i].cantidadsolicitud+"</td>";
           html+="<td>"+json[i].tipopagoprestamo+"</td>";
           html+="<td>"+json[i].plazo+"</td>";
           html+="<td>"+json[i].porcentaje+"</td>";
           html+="<td>"+json[i].fecha+"</td>";
           html+="<td>"+json[i].estado+"</td>";
-          html+='<td><a href="javascript:mostrarImprimir()"><span class="glyphicon glyphicon-file"></span></a></td>';
+          prestamo = "'"+json[i].idsolicitud+","+json[i].nombrepersona+ "," +json[i].apellido1persona+ "," +json[i].apellido2persona+ "," +json[i].cantidadsolicitud+ "," +
+                        json[i].tipopagoprestamo + "," +json[i].plazo+ ","+json[i].porcentaje+","+
+                        json[i].fecha+","+json[i].estado+"'";
+          html+='<td><a href="javascript:mostrarImprimir('+prestamo+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
         }
         destruirTablaPrincipal();
         $("#datos").html(html);
         CargarTablaPrincipal();
 	}
+
+	function mostrarImprimir(prestamo){
+
+		console.log(prestamo);
+	}
+

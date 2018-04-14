@@ -52,21 +52,6 @@ class dataReportes {
     }
 
     public function ventaPrestamos($fechainicial,$fechafinal){
-        /*
-     
-        SELECT s.idsolicitud, p.nombrepersona,
-        p.apellido1persona ,p.apellido2persona,
-        r.porcentaje,s.cantidadsolicitud, s.plazo, t.tipopagoprestamo,
-        s.fecha , s.estado FROM tbsolicitudprestamo s
-        INNER JOIN tbperiodopagoprestamo t ON 
-        t.idperiodopagoprestamo=s.idmodoplazo
-        INNER JOIN tbinteresprestamo r ON
-        r.idinteres=s.idinteres
-        INNER JOIN tbpersona p ON
-        p.idpersona=s.idpersona
-        WHERE s.estado='Solicitud' AND 
-        fecha>=inicial AND fecha<=final;
-         */
 
         $con=$this->conexion->crearConexion();
         $ventabuscar = $con->query("CALL sacarreportesPrestamos('$fechainicial','$fechafinal');");
