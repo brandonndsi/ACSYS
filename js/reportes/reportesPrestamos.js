@@ -144,10 +144,15 @@ plazo=string[6];
 modoPlazo=string[5];
 montoSolicitado=string[4];
 cuota=string[4]/string[6];
-total=parseFLoat(string[4])+((parseFloat(string[4])*(parseFloat(string[7])/100));
+
+tol=(parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
+tot=string[4];
+total =0;
+total = tot+tol;
      
     window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 		//console.log(cuota);
+    //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
     //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
 	}
 
