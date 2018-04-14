@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-        <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css";
+        <link rel="stylesheet" href="../../css/info.css";
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -30,10 +30,31 @@
         <?php
         include '../menuCliente.php';
         ?>
-        <div class="ventaVeterinaria">
-            <h4>Bienvenido distribuidor</h4>
-            
-        </div><!-- /.modal -->
+        <main>
+        <section id="info">
+                <h3>Asoprolesa productos que se ofresen.</h3>
+                <div class="contenedor">
+                    <div class="info-repuesto">
+                        <a href="#"><img src="../../image/prin/venta.jpg"></a>
+                        <h4>Venta</h4>
+                    </div>
+
+                    <div class="info-repuesto">
+                        <a href="#"><img src="../../image/prin/procesos.jpg"></a> 
+                        <h4>procesos</h4>
+                    </div>
+
+                    <div class="info-repuesto">
+                        <a href="#"><img src="../../image/prin/productos.jpg"></a>
+                        <h4>Producto</h4>
+                    </div>
+                    <div class="info-repuesto">
+                        <a href="#"><img src="../../image/prin/perfil.png"></a>
+                        <h4>Perfil</h4>
+                    </div>
+                </div>
+            </section>
+        </main>
     </body>
 </html>
 

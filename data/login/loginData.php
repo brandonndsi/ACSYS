@@ -39,7 +39,9 @@ class loginData {
             }
         }
         if ($bandera) {
-            if($_SESSION['tipo']=="Administrador"){
+            session_start();
+            $dato=$_SESSION['tipo'];
+            if($dato!='Administrador'){
             header('Location: ../../view/principalEmpleado/principalEmpleadoView.php');  
             }else{
              header('Location: ../../view/productor/verProductorSocioView.php');   
