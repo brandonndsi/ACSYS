@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reporte Pagos</title>
+	<title>Reporte Pagos Leche</title>
 
 			<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
@@ -31,7 +31,7 @@ include_once '../menuView.php';
  <div id="content">
 
  	<div id="contTitulo">
-            <h4>Reporte de Pagos</h4>
+            <h4>Reporte de Pagos de Leche</h4>
  	</div>
 
  	<div id="fechas">
@@ -50,7 +50,7 @@ include_once '../menuView.php';
 						<th>fecha</th>
 						<th>turno</th>
 						<th>peso</th>
-            			<th>estado</th>
+            <th>estado</th>
 
 					</tr>
 					</thead>

@@ -17,13 +17,13 @@ class loginData {
         $consulta = $conn->prepare($sql);
         $consulta->bind_param('s', $user);
         $consulta->execute();
-        $consulta->bind_result($tipo,$passwordQuery, $id, $nombre, $apellido1, $apellido2,$telefono,$email);
+        $consulta->bind_result($passwordQuery, $id, $nombre, $apellido1, $apellido2,$telefono,$email);
         $bandera = false;
         while ($consulta->fetch()) {
             if (password_verify($password, $passwordQuery)) {
                 session_start();
                 $_SESSION['user'] = $user;
-                $_SESSION['tipo'] =$tipo;
+                //$_SESSION['tipo'] =$tipo;
                 $_SESSION['nombreUsuario'] = $nombre . " " . $apellido1;
                 $_SESSION['id'] = $id;
                 $_SESSION['nombre'] = $nombre;
@@ -41,11 +41,11 @@ class loginData {
         if ($bandera) {
             session_start();
             $dato=$_SESSION['tipo'];
-            if($dato!='Administrador'){
+            /*if($dato!='Administrador'){
             header('Location: ../../view/principalEmpleado/principalEmpleadoView.php');  
-            }else{
+            }else{*/
              header('Location: ../../view/productor/verProductorSocioView.php');   
-            }
+           // }
             
         } else {
             header('Location: ../../index.php');

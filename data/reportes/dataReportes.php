@@ -11,6 +11,7 @@ class dataReportes {
     public function ventabuscar($fechainicial,$fechafinal){
     	$con=$this->conexion->crearConexion();
         $ventabuscar = $con->query("CALL sacarreportesventa('$fechainicial','$fechafinal');");
+        $con=$this->conexion->cerrarConexion();
         $datos=array();
         while($result=$ventabuscar->fetch_assoc()){
             array_push($datos,$result);  
@@ -22,6 +23,7 @@ class dataReportes {
         
         $con=$this->conexion->crearConexion();
         $mostrarDetalleVeterinario = $con->query("CALL sacarDetalleVeterinario('$idventa');");
+        $con=$this->conexion->cerrarConexion();
         $datos=array();
         while($result=$mostrarDetalleVeterinario->fetch_assoc()){
             array_push($datos,$result);  
@@ -32,6 +34,7 @@ class dataReportes {
     public function ventaNombre($id){
         $con=$this->conexion->crearConexion();
         $mostrarDetalleVentaNombre = $con->query("CALL sacarDetalleVentaNombre('$id');");
+        $con=$this->conexion->cerrarConexion();
         $datos="";
         while($row=$mostrarDetalleVentaNombre->fetch_assoc()){
             $datos=$row['nombrepersona']." ".$row['apellido1persona']." ".$row['apellido2persona'];
@@ -44,6 +47,7 @@ class dataReportes {
        
         $con=$this->conexion->crearConexion();
         $mostrarDetalleVentaDistribuidor = $con->query("CALL sacarDetalleVentaDistribuidor('$id');");
+        $con=$this->conexion->cerrarConexion();
         $datos=array();
         while($row=$mostrarDetalleVentaDistribuidor->fetch_assoc()){
             array_push($datos,$row);  
@@ -55,6 +59,7 @@ class dataReportes {
 
         $con=$this->conexion->crearConexion();
         $ventabuscar = $con->query("CALL sacarreportesPrestamos('$fechainicial','$fechafinal');");
+        $con=$this->conexion->cerrarConexion();
         $datos=array();
         while($result=$ventabuscar->fetch_assoc()){
             array_push($datos,$result);  
@@ -63,11 +68,12 @@ class dataReportes {
     }
 
     public function ventaPagos($fechainicial,$fechafinal){
-     
+        //print("hola");
         $con=$this->conexion->crearConexion();
-        $ventabuscar = $con->query("CALL sacarreportesPagos('$fechainicial','$fechafinal');");
+        $ventaProto = $con->query("CALL sacarreportespagosll('$fechainicial','$fechafinal');");
+        $con=$this->conexion->cerrarConexion();
         $datos=array();
-        while($result=$ventabuscar->fetch_assoc()){
+        while($result=$ventaProto->fetch_assoc()){
             array_push($datos,$result);  
         }
         echo json_encode($datos); 
@@ -76,5 +82,6 @@ class dataReportes {
 }
 $dota=new dataReportes();
 $d=$dota->ventaPagos('2018-04-01','2018-04-05');
+
 print_r($d);
  ?>

@@ -45,7 +45,7 @@ function modalRegistrarPagoCuota(idprestamoporcobrar){
       })
     .then((value) => {
         if (value === false) return false;
-          if (value === "" || !/^[0-9]$/.test(value)) {
+          if (value === "" ) {
             swal({
                 title: "Error",
                 text: "El dato ingresado no es valido",
