@@ -50,6 +50,17 @@ if($accion=="ventaPrestamos"){
 
  	echo  $business->ventaPrestamos($fechainicial,$fechafinal);
 }
+
+if($accion == "ventaPagos"){
+
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$fechainicial=$_POST['fechai'];
+	$fechafinal=$_POST['fechaf'];
+
+ 	echo  $business->ventaPagos($fechainicial,$fechafinal);
+}
 /*buscarDetalleDistribidor*/
 
 

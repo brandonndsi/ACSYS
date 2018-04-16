@@ -62,3 +62,20 @@ SELECT s.idsolicitud, p.nombrepersona,
         s.fecha>=inicial AND s.fecha<=final;
 END$$
 DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreportesPagos`(IN `inicial` DATE, IN `final` DATE)
+    NO SQL
+BEGIN
+SELECT s.idpersonalechediario, s.idpesalechediario, 
+        s.fechaentregalechediario, s.turnopesolechediario, 
+        s.pesoturno, s.estadopesalechediario, p.nombrepersona,
+        p.apellido1persona,p.apellido2persona 
+        FROM tbpesalechediario s 
+        INNER JOIN tbpersona p ON 
+        p.idpersona=s.idpersonalechediario
+        WHERE s.fechaentregalechediario>=inicial AND
+         s.fechaentregalechediario<=final;
+END$$
+DELIMITER ;
+

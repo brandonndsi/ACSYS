@@ -62,7 +62,7 @@
 
         <!--Modal Registrar-->
         <div id="modalRegistrar" class="modal" role="dialog">
-            <div  class="modal-dialog" role="document">
+            <div  class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Registrar Empleado</h4>
@@ -165,7 +165,7 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:0%;margin-left:-1,5%" name = "tipoempleador" id ="tipoempleador" onchange="validarCamposTipo(this.value)">
+                                        <p><select class="form-control" class="span12" style="padding-right:0%;margin-left:-1,5%" name = "tipoempleador" id ="tipoempleador" onchange="validarCamposTipo(this.value)">
                                                 <option></option>
                                                 <option value = "Administrador">Administrador</option>
                                                 <option value = "Bodega">Bodega</option>
@@ -188,7 +188,7 @@
 
         <!--Modal de modificar empleado-->
         <div id="modalModificar" class="modal" role="dialog">
-            <div  class="modal-dialog" role="document">
+            <div  class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Modificar Empleado</h4>
@@ -263,7 +263,7 @@
                                         <label>Contraseña:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleadom" id ="passwordempleadom" placeholder="Contraseña" required><p>
+                                        <p><select class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "passwordempleadom" id ="passwordempleadom" placeholder="Contraseña" required><p>
                                                 <option value="pass">La misma</option>
                                                 <option value = "asoprolesa">.......Default.......</option>
                                             </select></p>
@@ -274,7 +274,7 @@
                                         <label>Tipo de Empleado:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><select class="btn btn-info" class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "tipoempleadom" id ="tipoempleadom">
+                                        <p><select class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "tipoempleadom" id ="tipoempleadom">
                                                 <option value = "Administrador">Administrador/a</option>
                                                 <option value = "Bodega">Bodega/a</option>
                                                 <option value = "Cajero">Cajero/a</option>

@@ -25,6 +25,7 @@ if(isset($_POST['accion'])){
 	if($_POST['accion']=="imagenesempleado"){
 		llenarDatosImagenesEmpleado();
 	}
+	
 }
 /**
  * [llenarDatosImagenesProductorCliente para poder llenar los datos de la imagenes del productor cliente]
@@ -41,41 +42,49 @@ echo '<div id="contentImagen">';
 echo '<h2>CBO</h2>';
 echo '<input type="hidden" value="'.$row['imagencboproductorcliente'].'" id="imagenCBO">';
 echo '<a href="javascript:abrirCBO();"><img src="'.$row['imagencboproductorcliente'].'" /></a>';
+echo '<a href="javascript:descaragarCBO()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Sangrado</h2>';
 echo '<input type="hidden" value="'.$row['imagenexamensangradoproductorcliente'].'" id="imagenSangrado">';
 echo '<a href="javascript:abrirSangrado();"><img src="'.$row['imagenexamensangradoproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarSangrado()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Escritura</h2>';
 echo '<input type="hidden" value="'.$row['imagenescrituraproductorcliente'].'" id="imagenEscritura">';
 echo '<a href="javascript:abrirEscritura();"><img src="'.$row['imagenescrituraproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarEscritura()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Luz</h2>';
 echo '<input type="hidden" value="'.$row['imagenreciboluzproductorcliente'].'" id="imagenLuz">';
 echo '<a href="javascript:abrirLuz();"><img src="'.$row['imagenreciboluzproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarLuz()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Agua</h2>';
 echo '<input type="hidden" value="'.$row['imagenrecibaguaproductorcliente'].'" id="imagenAgua">';
 echo '<a href="javascript:abrirAgua();"><img src="'.$row['imagenrecibaguaproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarAgua()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Solido</h2>';
 echo '<input type="hidden" value="'.$row['imagenexamensolidoproductorcliente'].'" id="imagenSolido">';
 echo '<a href="javascript:abrirSolido();"><img src="'.$row['imagenexamensolidoproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarSolido()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Plano</h2>';
 echo '<input type="hidden" value="'.$row['imagenplanofincaproductorcliente'].'" id="imagenPlano">';
 echo '<a href="javascript:abrirPlano();"><img src="'.$row['imagenplanofincaproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarPlano()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Cedula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadproductorcliente'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadproductorcliente'].'"/></a>';
+echo '<a href="javascript:descaragarCedula()" >Descargar</a>';
 echo '</div>';
 }
 
@@ -95,41 +104,49 @@ echo '<div id="contentImagen">';
 echo '<h2>CBO</h2>';
 echo '<input type="hidden" value="'.$row['imagencboproductorsocio'].'" id="imagenCBO">';
 echo '<a href="javascript:abrirCBO();"><img src="'.$row['imagencboproductorsocio'].'" /></a>';
+echo '<a href="javascript:descaragarCBO()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Sangrado</h2>';
 echo '<input type="hidden" value="'.$row['imagenexamensangradoproductorsocio'].'" id="imagenSangrado">';
 echo '<a href="javascript:abrirSangrado();"><img src="'.$row['imagenexamensangradoproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarSangrado()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Escritura</h2>';
 echo '<input type="hidden" value="'.$row['imagenescrituraproductorsocio'].'" id="imagenEscritura">';
 echo '<a href="javascript:abrirEscritura();"><img src="'.$row['imagenescrituraproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarEscritura()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Luz</h2>';
 echo '<input type="hidden" value="'.$row['imagenreciboluzproductorsocio'].'" id="imagenLuz">';
 echo '<a href="javascript:abrirLuz();"><img src="'.$row['imagenreciboluzproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarLuz()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Agua</h2>';
 echo '<input type="hidden" value="'.$row['imagenrecibaguaproductorsocio'].'" id="imagenAgua">';
 echo '<a href="javascript:abrirAgua();"><img src="'.$row['imagenrecibaguaproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarAgua()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Solido</h2>';
 echo '<input type="hidden" value="'.$row['imagenexamensolidoproductorsocio'].'" id="imagenSolido">';
 echo '<a href="javascript:abrirSolido();"><img src="'.$row['imagenexamensolidoproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarSolido()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Plano</h2>';
 echo '<input type="hidden" value="'.$row['imagenplanofincaproductorsocio'].'" id="imagenPlano">';
 echo '<a href="javascript:abrirPlano();"><img src="'.$row['imagenplanofincaproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarPlano()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Cedula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadproductorsocio'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadproductorsocio'].'"/></a>';
+echo '<a href="javascript:descaragarCedula()" >Descargar</a>';
 echo '</div>';
 }
 
@@ -146,11 +163,13 @@ echo '<div id="contentImagen">';
 echo '<h2>Manipulaci&oacute;n Alimento</h2>';
 echo '<input type="hidden" value="'.$row['imagentitulomanipulacionalimentosempleado'].'" id="imagenManipulacionAlimento">';
 echo '<a href="javascript:abrirManipulacionAlimento();"><img src="'.$row['imagentitulomanipulacionalimentosempleado'].'"/></a>';
+echo '<a href="javascript:descaragarManipulacionAlimento()" >Descargar</a>';
 echo '</div>';
 echo '<div id="contentImagen">';
 echo '<h2>Copia C&eacute;dula</h2>';
 echo '<input type="hidden" value="'.$row['imagendocumentoidentidadempleado'].'" id="imagenCedula">';
 echo '<a href="javascript:abrirCedula();"><img src="'.$row['imagendocumentoidentidadempleado'].'"/></a>';
+echo '<a href="javascript:descaragarCedula()" >Descargar</a>';
 echo '</div>';
 }
 

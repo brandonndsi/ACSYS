@@ -49,3 +49,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenercantidadproducto`(IN `id` IN
     NO SQL
 SELECT cantidadinventarioproductolacteo FROM tbproductoslacteos WHERE codigoproductoslacteos = id$$
 DELIMITER ;
+
+/* muestra el precio de leche actual*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verPrecioLeche`()
+    NO SQL
+SELECT * FROM `tbpreciolitroleche` WHERE estadopreciolitroleche = "activo"$$
+DELIMITER ;
+
+/* actualiza el precio de leche actual*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarPrecioLeche`(IN `precio` DOUBLE, IN `fecha` DATE, IN `id` INT)
+    NO SQL
+UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND estadopreciolitroleche = "activo"$$
+DELIMITER ;

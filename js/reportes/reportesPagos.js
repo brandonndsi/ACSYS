@@ -89,7 +89,7 @@ $(document).ready(function () {
    * @return {[type]} [retorna un simple mensaje inicial]
    */
   function temporalErrorBusqueda(){
-  	html="<td colspan='8' align='center'>Seleccione la fecha para la busqueda</th>";
+  	html="<td colspan='6' align='center'>Seleccione la fecha para la busqueda</th>";
   	$("#datos").html(html);
   }
 
@@ -99,10 +99,11 @@ $(document).ready(function () {
 	 */
 	function buscarPeticion(){
 		 $.post('../../business/reportes/reportesAccion.php', {
-              action : 'ventaPrestamos' ,
+              action : 'ventaPagos' ,
               fechai : fechainicial,
               fechaf : fechaFinal
         }, function(responseText) {
+          alert(responseText);
       		json = JSON.parse(responseText);
       		//console.log(json);
       		CargarNuevosDatosALaTablaInicial(json);
@@ -114,20 +115,27 @@ $(document).ready(function () {
 	 * 
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
+    /*
+    <th>Socio</th>
+            <th>peso</th>
+            <th>fecha</th>
+            <th>turno</th>
+            <th>peso</th>
+            <th>estado</th>
+     */
 		    html = "";
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
           html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
-          html+="<td>"+json[i].cantidadsolicitud+"</td>";
-          html+="<td>"+json[i].tipopagoprestamo+"</td>";
-          html+="<td>"+json[i].plazo+"</td>";
-          html+="<td>"+json[i].porcentaje+"</td>";
-          html+="<td>"+json[i].fecha+"</td>";
-          html+="<td>"+json[i].estado+"</td>";
-          prestamo = "'"+json[i].idsolicitud+","+json[i].nombrepersona+ "," +json[i].apellido1persona+ "," +json[i].apellido2persona+ "," +json[i].cantidadsolicitud+ "," +
+          html+="<td>"+json[i].pesoturno+"</td>";
+          html+="<td>"+json[i].fechaentregalechediario+"</td>";
+          html+="<td>"+json[i].turnopesolechediario+"</td>";
+          html+="<td>"+json[i].pesoturno+"</td>";
+          html+="<td>"+json[i].estadopesalechediario+"</td>";
+          /*prestamo = "'"+json[i].idsolicitud+","+json[i].nombrepersona+ "," +json[i].apellido1persona+ "," +json[i].apellido2persona+ "," +json[i].cantidadsolicitud+ "," +
                         json[i].tipopagoprestamo + "," +json[i].plazo+ ","+json[i].porcentaje+","+
-                        json[i].fecha+","+json[i].estado+"'";
-          html+='<td><a href="javascript:mostrarImprimir('+prestamo+')"><span class="glyphicon glyphicon-file"></span></a></td>';
+                        json[i].fecha+","+json[i].estado+"'";*/
+          html+='<td><a href="javascript:mostrarImprimir()"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
         }
         destruirTablaPrincipal();
@@ -136,7 +144,7 @@ $(document).ready(function () {
 	}
 
 	function mostrarImprimir(prestamo){
-string = prestamo.split(",");   
+/*string = prestamo.split(",");   
 nombreCliente=string[1]+" "+string[2]+" "+string[3];
 fecha=string[8];
 interes=string[7];
@@ -151,7 +159,7 @@ total =0;
 total = tot+tol;
      
     window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-		//console.log(cuota);
+		*///console.log(cuota);
     //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
     //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
 	}

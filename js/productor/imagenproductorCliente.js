@@ -13,6 +13,41 @@ function crearAjax(){
     return ajax;
 }
 /*terminado la consulta ajax*/
+function descaragarCBO(){
+	rutaimagen=document.getElementById("imagenCBO").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarSangrado(){
+	rutaimagen=document.getElementById("imagenSangrado").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarEscritura(){
+	rutaimagen=document.getElementById("imagenEscritura").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarLuz(){
+	rutaimagen=document.getElementById("imagenLuz").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarAgua(){
+	rutaimagen=document.getElementById("imagenAgua").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarSolido(){
+	rutaimagen=document.getElementById("imagenSolido").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarPlano(){
+	rutaimagen=document.getElementById("imagenPlano").value;
+	mostrarImagenAntesDeImprimir();
+}
+function descaragarCedula(){
+	rutaimagen=document.getElementById("imagenCedula").value;
+	mostrarImagenAntesDeImprimir();
+}
+function mostrarImagenAntesDeImprimir(){
+	window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}
 /*estandar de las consultas ajax*/
 function datosAjax(mensaje,contenido){
     var nuevo = crearAjax();

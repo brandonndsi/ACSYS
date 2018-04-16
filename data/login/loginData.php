@@ -23,6 +23,7 @@ class loginData {
             if (password_verify($password, $passwordQuery)) {
                 session_start();
                 $_SESSION['user'] = $user;
+                //$_SESSION['tipo'] =$tipo;
                 $_SESSION['nombreUsuario'] = $nombre . " " . $apellido1;
                 $_SESSION['id'] = $id;
                 $_SESSION['nombre'] = $nombre;
@@ -38,7 +39,14 @@ class loginData {
             }
         }
         if ($bandera) {
-            header('Location: ../../view/productor/verProductorSocioView.php');
+            session_start();
+            $dato=$_SESSION['tipo'];
+            /*if($dato!='Administrador'){
+            header('Location: ../../view/principalEmpleado/principalEmpleadoView.php');  
+            }else{*/
+             header('Location: ../../view/productor/verProductorSocioView.php');   
+           // }
+            
         } else {
             header('Location: ../../index.php');
         }
