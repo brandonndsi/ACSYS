@@ -9,9 +9,9 @@ DELIMITER ;
 
 /*insertar empleado*/
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado`(IN `clave` TEXT, IN `tipo` TEXT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado`(IN `clave` TEXT, IN `tipo` TEXT, IN `manipulacion` TEXT, IN `identidad` TEXT)
     NO SQL
-INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,"activo")$$
+INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,   imagentitulomanipulacionalimentosempleado, imagendocumentoidentidadempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,manipulacion,identidad,"activo")$$
 DELIMITER ;
 
 /* eliminar empleado*/
@@ -171,4 +171,11 @@ BEGIN
 SELECT * FROM `tbproceso` 
 WHERE fechaproceso>=inicio AND fechaproceso <=final;
 END$$
+DELIMITER ;
+
+/* muestra una persona*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarPersona`(IN `id` INT(30))
+    NO SQL
+SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona` FROM `tbpersona` WHERE idpersona= id$$
 DELIMITER ;

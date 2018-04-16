@@ -87,7 +87,7 @@
         </li>
       </ul>
     </li>
-    <li><a href="../../view/proceso/procesoView2.php">Procesos</a></li>
+    <li><a href="../../view/proceso/procesoView.php">Procesos</a></li>
 
 
     <li class="dropdown">

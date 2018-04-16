@@ -14,7 +14,7 @@
         <script src="../../js/empleado/empleadoJs.js"></script>
         <script src="../../js/menuJs.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
-        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <script>
             $(document).ready(function () {
@@ -290,56 +290,6 @@
                         </div>
                     </div>
 
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dalog -->
-        </div><!-- /.modal -->
-
-        <!--Modal de eliminar empleado-->
-        <div id="modalEliminar" class="modal" role="dialog">
-            <div  class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title glyphicon glyphicon glyphicon-warning-sign" > Advertencia</h4>
-                        <button type="button" class="close" data-dismiss='modal'>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div>
-                                <h4>¿Desea eliminar este empleado?</h4>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div id="botonesEliminar">
-
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dalog -->
-        </div><!-- /.modal -->
-
-        <!--Modal de respuesta empleado-->
-        <div id="modalRespuesta" class="modal fade in">
-            <div  class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
-                        <button type="button" class="close" data-dismiss='modal'>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <div id="mensaje"></div>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <p>
-                            <button data-dismiss='modal' class="btn btn-danger">Cerrar</button>
-                        </p>
-                    </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->

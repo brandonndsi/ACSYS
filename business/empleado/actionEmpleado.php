@@ -19,6 +19,8 @@ if ($action == "consultarempleados") {
     $correo = htmlentities($_POST['correo']);
     $clave = htmlentities($_POST['clave']);
     $tipo = htmlentities($_POST['tipo']);
+    $manipulacionalimentos = htmlentities($_POST['manipulacionalimentos']);
+    $identidad = htmlentities($_POST['identidad']);
 
     if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($direccion) || empty($clave) || empty($tipo)) {
         echo("false");
@@ -31,8 +33,8 @@ if ($action == "consultarempleados") {
         }
         if (empty($telefono)) {
             $telefono = "N/A";
-        }if (!is_numeric($nombre)) {
-            echo $businessEmpleado->empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo);
+        }if ( is_numeric($cedula) || !is_numeric($nombre) ) {
+            echo $businessEmpleado->empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo, $manipulacionalimentos, $identidad);
         }
     }
 } else if ($action == "modificarempleado") {

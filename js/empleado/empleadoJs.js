@@ -1,3 +1,5 @@
+/* global swal */
+
 //mostrar empleados//
 function mostrarEmpleados() {
     $('#listaEmpleados').dataTable().fnDestroy();
@@ -33,7 +35,7 @@ function mostrarEmpleados() {
                         telefono + "," + direccion + "," + correo + "," + clave + "," + tipo + "," + id + "'";
 
                 html += '<td><a href="javascript:modalModificarEmpleado(' + empleado + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-                html += '<td><a href="javascript:mostrarImagenes('+id+')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+                html += '<td><a href="javascript:mostrarImagenes(' + id + ')"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
                 html += '<td><a href="javascript:modalEliminarEmpleado(' + empleado + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
             }
             $("#datos").html(html);
@@ -87,6 +89,10 @@ function registrarEmpleado() {
     correo = $("#correor").val();
     password = $("#passwordempleador").val();
     tipoEmpleado = $("#tipoempleador").val();
+    manipulacionalimentos = "../../image/empleado/vacioManipulacion.jpg";
+    identidad = "../../image/empleado/vacioCedula.jpg";
+    //manipulacionalimentos = "../../image/empleado/"+ cedula + "manipulacion.jpg";
+    //identidad = "../../image/empleado/"+ cedula + "cedula.jpg";
 
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {
@@ -99,18 +105,37 @@ function registrarEmpleado() {
             direccion: direccion,
             correo: correo,
             clave: password,
-            tipo: tipoEmpleado
-
+            tipo: tipoEmpleado,
+            manipulacionalimentos: manipulacionalimentos,
+            identidad: identidad
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha registrado el empleado satisfactoriamente</h4>";
-                mostrarEmpleados();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha registrado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al registrar el empleado</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al registrar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
 
             document.getElementById("documentoidentidadr").value = "";
             document.getElementById("nombrer").value = "";
@@ -119,6 +144,14 @@ function registrarEmpleado() {
             document.getElementById("telefonor").value = "";
             document.getElementById("direccionr").value = "";
             document.getElementById("correor").value = "";
+
+            $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+            $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+
+            mostrarEmpleados();
         });
     });
 }
@@ -129,6 +162,20 @@ function modalRegistrarEmpleado() {
     $("#botonesRegistrar").html(botones);
     $('#boton').attr("disabled", true);
     $("#modalRegistrar").modal();
+
+    document.getElementById("documentoidentidadr").value = "";
+    document.getElementById("nombrer").value = "";
+    document.getElementById("primerapellidor").value = "";
+    document.getElementById("segundoapellidor").value = "";
+    document.getElementById("telefonor").value = "";
+    document.getElementById("direccionr").value = "";
+    document.getElementById("correor").value = "";
+
+    $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+    $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
 }
 
 //modificar empleado//
@@ -162,15 +209,35 @@ function modificarEmpleado(id, clave) {
             tipo: tipoEmpleado,
             id: id
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha modificado el empleado satisfactoriamente</h4>";
-                mostrarEmpleados();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha modificado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al modificar el empleado</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al modificar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
+
+            mostrarEmpleados();
         });
     });
 }
@@ -206,28 +273,69 @@ function eliminarEmpleado(id) {
             action: 'eliminarempleado',
             id: id
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha eliminado el empleado satisfactoriamente</h4>";
-                mostrarEmpleados();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha eliminado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al eliminar el empleado</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al eliminar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
+            mostrarEmpleados();
         });
     });
 }
 
 function modalEliminarEmpleado(empleado) {
+
     string = empleado.split(',');
 
-    id = '"' + string[9] + '"';
+    id = string[9];
 
-    botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='eliminarEmpleado(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
-    $("#botonesEliminar").html(botones);
-    $("#modalEliminar").modal();
+    swal({
+        title: "Confirmación",
+        text: "¿Desea aprobar la solicitud?",
+        icon: "warning",
+        buttons: {
+            cancelar: {
+                text: "Cancelar",
+                value: "cancel"
+            },
+            ok: {
+                text: "Aceptar",
+                value: "ok"
+            }
+        },
+        dangerMode: true
+    })
+            .then((value) => {
+                switch (value) {
+                    case "ok":
+                        eliminarEmpleado(id);
+                        break;
+                    case "cancel":
+                        break;
+                }
+            });
 }
 
 function validarCamposCedula() {
@@ -237,8 +345,9 @@ function validarCamposCedula() {
     apellido = $("#primerapellidor").val();
     direccion = $("#direccionr").val();
     tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (cedula !== "") {
+    if (cedula !== "" && cedula.length === 9 && !cedula.match(caracteres)) {
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
@@ -256,8 +365,9 @@ function validarCamposNombre() {
     apellido = $("#primerapellidor").val();
     direccion = $("#direccionr").val();
     tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (nombre !== "") {
+    if (nombre !== "" && nombre.length > 3 && nombre.match(caracteres)) {
 
         $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon2').show();
@@ -277,8 +387,9 @@ function validarCamposApellido() {
     apellido = $("#primerapellidor").val();
     direccion = $("#direccionr").val();
     tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (apellido !== "") {
+    if (apellido !== "" && apellido.length > 3 && apellido.match(caracteres)) {
 
         $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon3').show();
@@ -298,8 +409,9 @@ function validarCamposDireccion() {
     apellido = $("#primerapellidor").val();
     direccion = $("#direccionr").val();
     tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (direccion !== "") {
+    if (direccion !== "" && direccion.length > 3 && direccion.match(caracteres)) {
 
         $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon4').show();
@@ -336,10 +448,10 @@ function validarCamposTipo() {
     }
 }
 
-function mostrarImagenes(id){
-  var dato="";
-  dato=btoa(id);/*encripta la palabra en base 68*/
-  //alert(dato);
-  //alert(atob(dato));/*desencripta la balabra en base 68*/
-  location.href="../../view/empleado/verImagenEmpleadoView.php?id="+dato;
+function mostrarImagenes(id) {
+    var dato = "";
+    dato = btoa(id);/*encripta la palabra en base 68*/
+    //alert(dato);
+    //alert(atob(dato));/*desencripta la balabra en base 68*/
+    location.href = "../../view/empleado/verImagenEmpleadoView.php?id=" + dato;
 }
