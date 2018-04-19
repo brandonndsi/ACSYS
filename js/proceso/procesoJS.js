@@ -282,10 +282,10 @@ function registrarProceso() {
 }
 
 //modificar //
-function modificarProceso(id) {
+function modificarProceso(id, cantidadVieja) {
 
     nombre = $("#productom").val();
-    cantidad = $("#cantidadm").val();
+    cantidadNueva = $("#cantidadm").val();
     porcentaje = $("#porcentajem").val();
     entera = $("#lecheEnteram").val();
     descremada = $("#lecheDescremadam").val();
@@ -306,7 +306,8 @@ function modificarProceso(id) {
         $.post('../../business/proceso/actionProceso.php', {
             action: 'modificarproceso',
             nombre: nombre,
-            cantidad: cantidad,
+            cantidadNueva: cantidadNueva,
+            cantidadVieja: cantidadVieja,
             porcentaje: porcentaje,
             entera: entera,
             descremada: descremada,
@@ -380,9 +381,10 @@ function modalModificarProceso(proceso) {
     $("#fechaprocesom").val(string[16]);
 
     id = '"' + string[17] + '"';
-
+    cantidadVieja = '"' + string[1] + '"';
+    
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarProceso(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
+    botones += "<button onclick='modificarProceso(" + id + "," + cantidadVieja + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
     $("#modalModificar").modal();
 }

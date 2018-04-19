@@ -75,96 +75,96 @@
                             <div style="width:50%; float:left;">
                                 <input type="hidden" name="idpersonaempleador" ><!--este es el campo que está como llave primaria en la base de datos-->
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Cédula:
                                             <a id="icon">
                                                 <span class='glyphicon-asterisk' style= 'color:red'></span>
                                             </a>
                                         </label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" onkeyup="validarCamposCedula()" required pattern="[0-9]{9}"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Nombre:
                                             <a id="icon2">
                                                 <span class='glyphicon-asterisk' style= 'color:red'></span>
                                             </a>
                                         </label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text"  class="form-control" class="span12" name="nombrer"  id="nombrer" placeholder="Nombre" onkeyup="validarCamposNombre()" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>1°Apellido:
                                             <a id="icon3">
                                                 <span class='glyphicon-asterisk' style= 'color:red'></span>
                                             </a>
                                         </label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="primerapellidor" id="primerapellidor" placeholder="1° Apellido" onkeyup="validarCamposApellido()" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>2°Apellido:</label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="segundoapellidor" id="segundoapellidor" placeholder="2° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Email:</label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
                                     </div>
                                 </div>
                             </div>
                             <div style="width:50%; float:left;">
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Teléfono:</label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" placeholder="Teléfono" required pattern="[0-9]{8}" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Dirección:
                                             <a id="icon4">
                                                 <span class='glyphicon-asterisk' style= 'color:red'></span>
                                             </a>
                                         </label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="direccionr" id="direccionr" placeholder="Dirección" onkeyup="validarCamposDireccion()" required /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Contraseña:</label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" name="passwordempleador" id="passwordempleador" placeholder="Default" value = "asoprolesa" readonly/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label>Tipo de Empleado:
                                             <a id="icon5">
                                                 <span class='glyphicon-asterisk' style= 'color:red'></span>
                                             </a>
                                         </label>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <p><select class="form-control" class="span12" style="padding-right:0%;margin-left:-1,5%" name = "tipoempleador" id ="tipoempleador" onchange="validarCamposTipo(this.value)">
                                                 <option></option>
                                                 <option value = "Administrador">Administrador</option>
@@ -201,42 +201,42 @@
                             <div style="width:50%; float:left;">
                                 <input type="hidden" name="idpersonaempleadom" ><!--este es el campo que está como llave primaria en la base de datos-->
                                 <div class="form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label>Cédula:</label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="documentoidentidadm" id="documentoidentidadm" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label>Nombre:</label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <p><input type="text"  class="form-control" class="span12" name="nombrem"  id="nombrem" placeholder="Nombre" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label>1° Apellido:</label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="primerapellidom" id="primerapellidom" placeholder="1° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label>2° Apellido:</label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <p><input type="text" class="form-control" class="span12" name="segundoapellidom" id="segundoapellidom" placeholder="2° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label>Email:</label>
                                     </div>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-8">
                                         <p><input type="email" class="form-control" class="span12" name="correom" id="correom" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
                                     </div>
                                 </div>
@@ -275,9 +275,9 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <p><select class="form-control" class="span12" style="padding-right:21%;margin-left:-1,5%" name = "tipoempleadom" id ="tipoempleadom">
-                                                <option value = "Administrador">Administrador/a</option>
-                                                <option value = "Bodega">Bodega/a</option>
-                                                <option value = "Cajero">Cajero/a</option>
+                                                <option value = "Administrador">Administrador</option>
+                                                <option value = "Bodega">Bodega</option>
+                                                <option value = "Cajero">Caja</option>
                                             </select> </p>
                                     </div>
                                 </div>

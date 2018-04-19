@@ -52,39 +52,44 @@ class dataProceso {
     }
 
     function procesoEliminar($cantidad, $nombre, $id) {
-
-        $con = $this->conexion->crearConexion();
-        $eliminarProceso = $con->query("CALL eliminarproceso('$id')");
-
-        if ($eliminarProceso == 1) {
-            $conen = $this->conexion->crearConexion();
-            $conen->set_charset("utf8");
-            $producto = $conen->query("CALL obtenercantidadproducto('$id')");
-
-            $maxStock = $producto;
-
-            if ($cantidad > $maxStock) {
-                return "false";
-            } else {
-                $cox = $this->conexion->crearConexion();
-                $cox->set_charset("utf8");
-                $restatock = $cox->query("CALL restastockproceso('$cantidad','$nombre')");
-                return "true";
-            }
+        $cox = $this->conexion->crearConexion();
+        $cox->set_charset("utf8");
+        $restatock = $cox->query("CALL restastockproceso('$cantidad','$nombre')");
+        
+        if ($restatock == 1) {
+            $con = $this->conexion->crearConexion();
+            $eliminarProceso = $con->query("CALL eliminarproceso('$id')");
+            return "true";
         } else {
             return "false";
         }
     }
 
     // modifica
-    function procesoModificar($nombre, $cantidad, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2, $hora, $fecha, $id) {
+    function procesoModificar($nombre, $nuevo, $viejo, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2, $hora, $fecha, $id) {
 
         $con = $this->conexion->crearConexion();
         /* modifica */
-        $registrarProceso = $con->query("CALL modificarProceso('$nombre','$cantidad','$porcentaje','$entera','$descremada','$cuajo','$cloruro','$sal','$cultivo','$estabilizador','$colorante','$crema1','$leche1','$crema2','$leche2','$hora','$fecha','$id')");
+        $registrarProceso = $con->query("CALL modificarProceso('$nombre','$nuevo','$porcentaje','$entera','$descremada','$cuajo','$cloruro','$sal','$cultivo','$estabilizador','$colorante','$crema1','$leche1','$crema2','$leche2','$hora','$fecha','$id')");
 
         if ($registrarProceso == 1) {
-            return "true";
+            if ($nuevo > $viejo) {
+
+                $cantidad = $nuevo - $viejo;
+                $cox = $this->conexion->crearConexion();
+                $cox->set_charset("utf8");
+                $sumastock = $cox->query("CALL sumastockproceso('$cantidad','$nombre')");
+
+                return "true";
+            } else {
+
+                $cantidad = $viejo - $nuevo;
+                $cox = $this->conexion->crearConexion();
+                $cox->set_charset("utf8");
+                $restatock = $cox->query("CALL restastockproceso('$cantidad','$nombre')");
+
+                return "true";
+            }
         } else {
             return "false";
         }
