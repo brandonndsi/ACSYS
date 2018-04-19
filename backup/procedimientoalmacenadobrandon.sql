@@ -139,15 +139,9 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `restastockproceso`(IN `cantidad` DOUBLE, IN `nombre` TEXT)
     NO SQL
-UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad WHERE nombreproductolacteo = nombre AND estadoproductoslacteos = "activo"$$
+UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad WHERE nombreproductolacteo = nombre AND cantidadinventarioproductolacteo >= cantidad AND estadoproductoslacteos = "activo"$$
 DELIMITER ;
 
-/* obtiene la cantidad del producto*/
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `obtenercantidadproducto`(IN `id` INT(30))
-    NO SQL
-SELECT cantidadinventarioproductolacteo FROM tbproductoslacteos WHERE codigoproductoslacteos = id$$
-DELIMITER ;
 
 /* muestra el precio de leche actual*/
 DELIMITER $$
