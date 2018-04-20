@@ -1,5 +1,4 @@
 <?php
-
 class dataRecepcionLeche {
 
     private $conexion;
@@ -53,8 +52,28 @@ class dataRecepcionLeche {
         $consultar=$con->query("CALL consultarRecepcion('$fecha')");
         $datos=array();
         while($result=$consultar->fetch_assoc()){
-            $recepcion = array('idpersona' => $result['idpersona'],'idpesalechediario' => $result['idpesalechediario'] ,'nombrepersona' => $result['nombrepersona'],'apellido1persona' => $result['apellido1persona'],'apellido2persona' => $result['apellido2persona'],'turnomanana' => $result['pesoturno'],'turnotarde' =>0,'turno' =>$result['turnopesalechediario'] );
-            array_push($datos,$recepcion);  
+            $bandera = false;
+            $i = 0;
+            foreach ($datos as $dato => $value) {
+                if($value['idpersona'] == $result['idpersona']){
+                    if($result['turnopesolechediario']=="Mañana"){
+                        $datos[$i]['turnomanana'] = $result['pesoturno'];
+                    }else{
+                        $datos[$i]['turnotarde'] = $result['pesoturno'];
+                    }
+                    $bandera = true;
+                }
+                $i++;
+            }
+            if(!$bandera){
+                if($result['turnopesolechediario']=="Mañana"){
+                    $recepcion = array('idpersona' => $result['idpersona'],'idpesalechediario' => $result['idpesalechediario'] ,'nombrepersona' => $result['nombrepersona'],'apellido1persona' => $result['apellido1persona'],'apellido2persona' => $result['apellido2persona'],'turnomanana' => $result['pesoturno'],'turnotarde' =>0,'turno' =>$result['turnopesolechediario'],'fechaentregalechediario'=>$fecha);
+                }else{
+                    $recepcion = array('idpersona' => $result['idpersona'],'idpesalechediario' => $result['idpesalechediario'] ,'nombrepersona' => $result['nombrepersona'],'apellido1persona' => $result['apellido1persona'],'apellido2persona' => $result['apellido2persona'],'turnomanana' => 0,'turnotarde' =>$result['pesoturno'],'turno' =>$result['turnopesolechediario'],'fechaentregalechediario'=>$fecha );
+                }
+                array_push($datos,$recepcion);
+            }
+            
         }
         return json_encode($datos);
 

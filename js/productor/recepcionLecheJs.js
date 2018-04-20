@@ -31,22 +31,25 @@ function registrarLeche(){
 }
 
 function mostrarRecepcion(){
+  fecha = document.getElementById("fecha").value.split("/");
+  fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
   $('#listaProductores').dataTable().fnDestroy();
   $(document).ready(function() {
       $.post('../../business/productor/actionRecepcionLeche.php', {
               action : 'consultarRecepcion',
-              fecha:document.getElementById("fecha").value,
+              fecha:fecha,
       }, function(responseText) {
+        console.log(responseText);  
         json = JSON.parse(responseText);
         html = "";
-
         for(i = 0 ;i<json.length; i++){
+          fecha = json[i].fechaentregalechediario.split("-");
           html+="<tr>";
-          html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+""+json[i].apellido2persona+"</td>";
-          html+="<td>"+json[i].fechaentregalechediario+"</td>";
+          html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
+          html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
           html+="<td>"+json[i].turnomanana+"</td>";
           html+="<td>"+json[i].turnotarde+"</td>";
-          pesototal=json[i].turnomanana+json[i].turnotarde;
+          pesototal=parseFloat(json[i].turnomanana)+parseFloat(json[i].turnotarde);
 
           html+="<td>"+pesototal+"</td>";
           nombre=json[i].nombrepersona+" "+json[i].apellido1persona+""+json[i].apellido2persona;
@@ -54,7 +57,7 @@ function mostrarRecepcion(){
           tarde=json[i].pesoturno;
           fecha=json[i].fechaentregalechediario;
           id=json[i].idpesalechediario;
-          html+='<td><a href="javascript:modalModificarSocio('+socio+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
+          html+='<td><a href="javascript:modalModificarSocio('+id+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
           
         }
         $("#datos").html(html);

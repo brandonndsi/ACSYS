@@ -32,11 +32,11 @@
           </script>  
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarRecepcion();">
         <?php
             include '../menuView.php';
            ?>
-           <center><input type="text" id="fecha"  class="btn" readonly="readonly"></center>
+           <center><input type="text" id="fecha"  class="btn" readonly="readonly"><button style="margin-left: 10px"  class="btn" onclick="mostrarRecepcion();">Cargar datos</button></center>
             <div>
                 <table id="listaProductores" class="display" cellspacing="0" >
                
