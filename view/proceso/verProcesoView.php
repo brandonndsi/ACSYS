@@ -27,7 +27,8 @@
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProcesos();">
         <!-- Import the file menu.php -->
         <?php
-        include '../menuView.php';
+        //include '../menuView.php';
+        include '../InterumtorDeMenus.php';
         ?>
         <div class="col-md-8">
             <h4>Lista de Procesos</h4>

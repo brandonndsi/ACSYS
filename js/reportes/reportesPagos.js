@@ -115,14 +115,6 @@ $(document).ready(function () {
 	 * 
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
-    /*
-    <th>Socio</th>
-            <th>peso</th>
-            <th>fecha</th>
-            <th>turno</th>
-            <th>peso</th>
-            <th>estado</th>
-     */
 		    html = "";
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
@@ -143,24 +135,10 @@ $(document).ready(function () {
         CargarTablaPrincipal();
 	}
 
-	function mostrarImprimir(prestamo){
-/*string = prestamo.split(",");   
-nombreCliente=string[1]+" "+string[2]+" "+string[3];
-fecha=string[8];
-interes=string[7];
-plazo=string[6];
-modoPlazo=string[5];
-montoSolicitado=string[4];
-cuota=string[4]/string[6];
+	function mostrarImprimir(){
+    alert("imprimir");
 
-tol=(parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
-tot=string[4];
-total =0;
-total = tot+tol;
-     
-    window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-		*///console.log(cuota);
-    //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
-    //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
+    //window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+		
 	}
 

@@ -25,7 +25,8 @@
 
         <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductores()">
         <?php
-            include '../menuView.php';
+            //include '../menuView.php';
+            include '../InterumtorDeMenus.php';
            ?>
             <div class="col-md-8 col-md-offset-2">
                 <h4>Lista de Productores Clientes</h4>  

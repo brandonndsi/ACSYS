@@ -27,7 +27,8 @@
 
             <!-- Import the file menu.php -->
           <?php
-            include '../menuView.php';
+            //include '../menuView.php';
+            include '../InterumtorDeMenus.php';
            ?>
              
 

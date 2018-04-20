@@ -11,11 +11,25 @@ class reportesBusiness{
 	public function ventabuscar($fechainicial,$fechafinal){
 			return $this->dataReportes->ventabuscar($fechainicial,$fechafinal);
 	}
+	/************************************************************************************/
+	public function ventabuscarDistribuidor($fechainicial,$fechafinal){
+		return $this->dataReportes->ventabuscarDistribuidor($fechainicial,$fechafinal);
+	}
 
+	public function ventabuscarVentanilla($fechainicial,$fechafinal){
+		return $this->dataReportes->ventabuscarVentanilla($fechainicial,$fechafinal);
+	}
+/*********************************************************************************************/
 	public function buscarDetalleVeterinario($idventa){
 			return $this->dataReportes->buscarDetalleVeterinario($idventa);
 	}
-
+	public function buscarDetalleVentanilla($idventa){
+		return $this->dataReportes->buscarDetalleVentanilla($idventa);
+	}
+	public function buscarDetalleDistribuidor($idventa){
+		return $this->dataReportes->buscarDetalleDistribuidor($idventa);
+	}
+	/*********************************************************************************************/
 	public function ventaNombre($id){
 			return $this->dataReportes->ventaNombre($id);
 	}

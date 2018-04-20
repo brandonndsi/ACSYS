@@ -34,7 +34,8 @@
 
         <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
         <?php
-            include '../menuView.php';
+            //include '../menuView.php';
+          include '../InterumtorDeMenus.php';
         ?>
          <div class="ventaVeterinaria">
            <h4>Recepción de Leche</h4>

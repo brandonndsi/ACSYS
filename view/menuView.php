@@ -1,9 +1,9 @@
 <?php
-    session_start();
+   /* session_start();
     if(@!$_SESSION['user']){
 
       header("Location:../../index.php");
-    }
+    }*/
 ?>
 <div class="container">
   <nav class="navbar navbar-inverse">
@@ -96,7 +96,9 @@
       <ul class="dropdown-menu mega-dropdown-menu">
         <li>
             <ul>
-              <li><a href="../../view/reportes/ventas.php">Ventas</a></li>
+              <li><a href="../../view/reportes/ventas.php">Venta veterinaria</a></li>
+              <li><a href="../../view/reportes/ventaDistribuidor.php">Venta Distribuidor</a></li>
+              <li><a href="../../view/reportes/ventaVentanilla.php">Venta Ventanilla</a></li>
               <li><a href="../../view/reportes/pagos.php">Pagos de Préstamos</a></li>
               <li><a href="../../view/reportes/pagoLeche.php">Pagos de Leche</a></li>
               <li><a href="../../view/reportes/prestamos.php">Préstamos</a></li>
@@ -109,7 +111,7 @@
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo $_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo @$_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>
             <li><a href="../../view/precioLeche/precioLecheView.php">Actualizar precio de leche</a></li>

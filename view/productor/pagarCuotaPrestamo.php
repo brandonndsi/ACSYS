@@ -24,7 +24,8 @@
 
         <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="consultarProductorSocio();">
         <?php
-            include '../menuView.php';
+            //include '../menuView.php';
+          include '../InterumtorDeMenus.php';
         ?>
          <div class="ventaVeterinaria">
            <h4>Pago de Cuota de Adelanto de Pago</h4>

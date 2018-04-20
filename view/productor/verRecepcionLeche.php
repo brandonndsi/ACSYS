@@ -34,7 +34,8 @@
 
         <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarRecepcion();">
         <?php
-            include '../menuView.php';
+            //include '../menuView.php';
+            include '../InterumtorDeMenus.php';
            ?>
            <center><input type="text" id="fecha"  class="btn" readonly="readonly"><button style="margin-left: 10px"  class="btn" onclick="mostrarRecepcion();">Cargar datos</button></center>
             <div>

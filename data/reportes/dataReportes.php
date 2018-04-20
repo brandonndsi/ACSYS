@@ -9,6 +9,7 @@ class dataReportes {
     }
 
     public function ventabuscar($fechainicial,$fechafinal){
+       
     	$con=$this->conexion->crearConexion();
         $ventabuscar = $con->query("CALL sacarreportesventa('$fechainicial','$fechafinal');");
         $con=$this->conexion->cerrarConexion();
@@ -18,7 +19,27 @@ class dataReportes {
         }
         echo json_encode($datos); 
 	}
-
+    public function ventabuscarDistribuidor($fechainicial,$fechafinal){
+      
+        $con=$this->conexion->crearConexion();
+        $ventabuscar = $con->query("CALL sacarreporteventadistribuidor('$fechainicial','$fechafinal');");
+        $con=$this->conexion->cerrarConexion();
+        $datos=array();
+        while($result=$ventabuscar->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
+    public function ventabuscarVentanilla($fechainicial,$fechafinal){
+        $con=$this->conexion->crearConexion();
+        $ventabuscar = $con->query("CALL sacarreporteventaventanilla('$fechainicial','$fechafinal');");
+        $con=$this->conexion->cerrarConexion();
+        $datos=array();
+        while($result=$ventabuscar->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
     public function buscarDetalleVeterinario($idventa){
         
         $con=$this->conexion->crearConexion();
@@ -30,7 +51,17 @@ class dataReportes {
         }
         echo json_encode($datos); 
     }
+    public function buscarDetalleVentanilla($idventa){
+        $con=$this->conexion->crearConexion();
+        $mostrarDetalleVeterinario = $con->query("CALL sacarDetalleVentaVentanilla('$idventa');");
+        $con=$this->conexion->cerrarConexion();
+        $datos=array();
+        while($result=$mostrarDetalleVeterinario->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
 
+    }
     public function ventaNombre($id){
         $con=$this->conexion->crearConexion();
         $mostrarDetalleVentaNombre = $con->query("CALL sacarDetalleVentaNombre('$id');");
@@ -54,7 +85,17 @@ class dataReportes {
         }
         echo json_encode($datos); 
     }
-
+    public function buscarDetalleDistribuidor($idventa){
+        
+        $con=$this->conexion->crearConexion();
+        $mostrarDetalleVeterinario = $con->query("CALL sacarDetalleVentaDistribuidor('$idventa');");
+        $con=$this->conexion->cerrarConexion();
+        $datos=array();
+        while($result=$mostrarDetalleVeterinario->fetch_assoc()){
+            array_push($datos,$result);  
+        }
+        echo json_encode($datos); 
+    }
     public function ventaPrestamos($fechainicial,$fechafinal){
 
         $con=$this->conexion->crearConexion();
@@ -80,8 +121,8 @@ class dataReportes {
     }
 
 }
-$dota=new dataReportes();
-$d=$dota->ventaPagos('2018-04-01','2018-04-05');
+/*$dota=new dataReportes();
+$d=$dota->buscarDetalleVentanilla('35');
 
-print_r($d);
+print_r($d);*/
  ?>

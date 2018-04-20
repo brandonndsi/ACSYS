@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    /*session_start();
     if(@!$_SESSION['user']){
 
       header("Location:../../index.php");
-    }
+    }*/
 ?>
 <div class="container">
   <nav class="navbar navbar-inverse">
@@ -72,7 +72,7 @@
     </ul>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo $_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php  echo @$_SESSION['nombreUsuario'] ?> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>
             <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>

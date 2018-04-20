@@ -102,3 +102,13 @@ width: 40%;
 #selectlabel{
 	width: 100%;
 }
+#reporte_pago_leche_imprimir{
+	margin: auto;
+	width: 93%;
+	/*border: 2px solid red;*/
+}
+#reporte_pago_leche_imprimir input{
+	color:white;
+	padding: 7px;
+	border-radius: 10px;
+}

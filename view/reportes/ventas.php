@@ -25,7 +25,8 @@
 </head>
 <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
 <?php 
-include_once '../menuView.php';
+//include_once '../menuView.php';
+ include '../InterumtorDeMenus.php';
  ?>
  
  <div id="content">
@@ -71,7 +72,10 @@ include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  ?>
 
  </div>
-
+<div id="reporte_pago_leche_imprimir">
+    
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
+</div>
   
 
 </body>

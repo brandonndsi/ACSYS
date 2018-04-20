@@ -84,7 +84,7 @@ $(document).ready(function () {
 	 */
 	function buscarPeticion(){
 		 $.post('../../business/reportes/reportesAccion.php', {
-              action : 'ventabuscar' ,
+              action : 'ventabuscarDistribuidor' ,
               fechai : fechainicial,
               fechaf : fechaFinal
         }, function(responseText) {
@@ -153,9 +153,9 @@ $(document).ready(function () {
           buscarNombredelClienteDeLaFactura(string[7]);
         $("#Re_recibo").val(numeroFactura);
 
-    if(tipo=="Veterinaria"){
-        $("#Re_tipoVenta").val("Veterinario");
-             buscardetallesVeterinario(string[5],string[0]);
+    if(tipo=="Distribuidor"){
+        $("#Re_tipoVenta").val("Distribuidor");
+             buscardetallesDistribuidor(string[5],string[0]);
                 abrirModalDetalles();
 
     }
@@ -175,11 +175,11 @@ $(document).ready(function () {
   
   }
   /*Es traer los datos de la base de datos los detalles de la venta veterinaria que se hizo para poder llenar los datos de ver*/
-  function buscardetallesVeterinario(tol,idv){
+  function buscardetallesDistribuidor(tol,idv){
     //alert(idv+", "+idpersona);
           totalAPagar=tol;
         $.post('../../business/reportes/reportesAccion.php', {
-              action : 'buscarDetalleVeterinario' ,
+              action : 'buscarDetalleDistribuidor' ,
               venta : idv
         }, function(responseText) {
           json = JSON.parse(responseText);
@@ -196,8 +196,8 @@ $(document).ready(function () {
           html = "";
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
-          html+="<td>"+json[i].codigoproductoveterinario+"</td>";
-          html+="<td>"+json[i].nombreproductoveterinario+"</td>";
+          html+="<td>"+json[i].codigoproductoslacteos+"</td>";
+          html+="<td>"+json[i].nombreproductolacteo+"</td>";
           html+="<td>"+json[i].preciounitariodetalleventa+"</td>";
           html+="<td>"+json[i].cantidaddetalleventa+"</td>";
           html+="<tr>";
@@ -225,7 +225,7 @@ $(document).ready(function () {
  */
 $('#facCancelar').on("click", function(evt){
     document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-    window.location.href = '../../view/reportes/ventas.php';
+    window.location.href = '../../view/reportes/ventaDistribuidor.php';
   });
 /**
  * [abrirModalDetalles se encarga de darles las funcionalidades del modal]
@@ -248,7 +248,7 @@ idpersona=string[7];
 fe=string[2];
 ho=string[3];
 $.post('../../business/reportes/reportesAccion.php', {
-              action : 'buscarDetalleVeterinario' ,
+              action : 'buscarDetalleDistribuidor' ,
               venta : idv
         }, function(responseText) {
 
@@ -258,15 +258,15 @@ $.post('../../business/reportes/reportesAccion.php', {
           for(i = 0 ;i<json.length; i++){
           
 
-if(tipo=="Veterinaria"){
+if(tipo=="Distribuidor"){
 
-    if (localStorage.getItem("listaProductos") === null) {
+   if (localStorage.getItem("listaProductos") === null) {
                 var listaProductos = [];
-                listaProductos.push({"codigo":json[i].codigoproductoveterinario, "nombre": json[i].nombreproductoveterinario, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
+                listaProductos.push({"codigo":json[i].codigoproductoslacteos, "nombre": json[i].nombreproductolacteo, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
                 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
     } else {
                 listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
-                listaProductos.push({"codigo":json[i].codigoproductoveterinario, "nombre": json[i].nombreproductoveterinario, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
+                listaProductos.push({"codigo":json[i].codigoproductoslacteos, "nombre": json[i].nombreproductolacteo, "precio": json[i].preciounitariodetalleventa, "cantidad": json[i].cantidaddetalleventa});
                 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
           }
 

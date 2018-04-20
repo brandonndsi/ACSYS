@@ -20,7 +20,8 @@
 
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarTabla();consultarProduct();">
         <?php
-        include '../menuView.php';
+        //include '../menuView.php';
+        include '../InterumtorDeMenus.php';
         ?>
 
         <div class='col-md-3' >

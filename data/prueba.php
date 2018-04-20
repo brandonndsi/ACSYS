@@ -4,7 +4,7 @@
   $conn = $Conexion_data->crearConexion();
   $conn->set_charset("utf8");
   $password = password_hash("123", PASSWORD_DEFAULT);
-  $sqlQuery = $conn->query("UPDATE `tbempleado` SET `passwordempleado`='$password' WHERE idpersonaempleado=4;");
+  $sqlQuery = $conn->query("UPDATE `tbempleado` SET `passwordempleado`='$password' WHERE idpersonaempleado=13;");
   if($sqlQuery == 1){
       return "true";
   }else{

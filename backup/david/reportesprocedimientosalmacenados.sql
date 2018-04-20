@@ -79,3 +79,70 @@ SELECT s.idpersonalechediario, s.idpesalechediario,
 END$$
 DELIMITER ;
 
+
+
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreporteventadistribuidor`(IN `inicial` DATE, IN `final` DATE)
+    NO SQL
+BEGIN
+SELECT `idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa` FROM `tbventa` 
+WHERE fechaventa>=inicial AND fechaventa<=final AND tipoventa='Distribuidor';
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreporteventaventanilla`(IN `inicial` DATE, IN `final` DATE)
+    NO SQL
+BEGIN
+SELECT `idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa` FROM `tbventa` 
+WHERE fechaventa>=inicial AND fechaventa<=final AND tipoventa='Ventanilla';
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarDetalleVentaDistribuidor`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT d.codigoproductoslacteos,
+l.nombreproductolacteo,
+d.preciounitariodetalleventa,
+ d.cantidaddetalleventa, 
+ d.subtotaldetalleventa, 
+ d.descuento,
+ d.idventa, 
+ d.iddetalleventa
+ 
+FROM tbdetalleventa d INNER JOIN tbproductoslacteos l ON
+l.codigoproductoslacteos=d.codigoproductoslacteos
+WHERE d.idventa=id;
+
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarDetalleVentaVentanilla`(IN `id` INT)
+    NO SQL
+BEGIN
+SELECT d.codigoproductoslacteos,
+l.nombreproductolacteo,
+d.preciounitariodetalleventa,
+ d.cantidaddetalleventa, 
+ d.subtotaldetalleventa, 
+ d.descuento,
+ d.idventa, 
+ d.iddetalleventa
+ 
+FROM tbdetalleventa d INNER JOIN tbproductoslacteos l ON
+l.codigoproductoslacteos=d.codigoproductoslacteos
+WHERE d.idventa=id;
+
+END$$
+DELIMITER ;

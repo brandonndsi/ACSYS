@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reporte Prestamo</title>
+	<title>Reporte Venta Ventanilla</title>
 
 			<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
@@ -19,20 +19,20 @@
           <script src="../../js/jquery.dataTables.js"></script>
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
-          <script type="text/javascript" src="../../js/reportes/reportesPrestamos.js"></script>
+          <script type="text/javascript" src="../../js/reportes/reporteventaventanilla.js"></script>
          
         </script>
 </head>
 <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
 <?php 
-//include_once '../menuView.php';
-include '../InterumtorDeMenus.php';
+include_once '../menuView.php';
+ //include '../InterumtorDeMenus.php';
  ?>
  
  <div id="content">
 
  	<div id="contTitulo">
-            <h4>Reporte de Prestamos</h4>
+            <h4>Reporte de ventas Ventanilla</h4>
  	</div>
 
  	<div id="fechas">
@@ -46,14 +46,14 @@ include '../InterumtorDeMenus.php';
  		<table id="listaVentas" class="display" cellspacing="0">
 				<thead>
 					<tr>
-						<th>Solicitante</th>
-						<th>Cantidad</th>
-						<th>Tipo</th>
-						<th>Plazo</th>
-						<th>Intereses</th>
-            			<th>Fecha</th>
-            			<th>Estado</th>
-            			<th>Imprimir</th>
+						<th>NO factura</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Total Bruto</th>
+						<th>Total Neto</th>
+            <th>Tipo venta</th>
+            <th>Ver</th>
+            <th>Imprimir</th>
 
 					</tr>
 					</thead>
@@ -72,7 +72,10 @@ include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  ?>
 
  </div>
-
+<div id="reporte_pago_leche_imprimir">
+    
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
+</div>
   
 
 </body>

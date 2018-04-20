@@ -21,6 +21,15 @@ if($accion=="buscarDetalleVeterinario"){
 	echo $business->buscarDetalleVeterinario($idventa);
 }
 
+if($accion=="buscarDetalleVentanilla"){
+
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$idventa=$_POST['venta'];
+	echo $business->buscarDetalleVentanilla($idventa);
+}
+
 if($accion=="ventaNombre"){
 
 	include_once 'reportesBusiness.php';
@@ -30,13 +39,13 @@ if($accion=="ventaNombre"){
 	echo $business->ventaNombre($id);
 }
 
-if($accion=="buscarDetalleDistribidor"){
+if($accion=="buscarDetalleDistribuidor"){
 
 	include_once 'reportesBusiness.php';
 
 	$business = new reportesBusiness();
-	$id=$_POST['id'];
-	echo $business->buscarDetalleDistribidor($id);
+	$idventa=$_POST['venta'];
+	echo $business->buscarDetalleDistribuidor($idventa);
 
 }
 
@@ -61,7 +70,29 @@ if($accion == "ventaPagos"){
 
  	echo  $business->ventaPagos($fechainicial,$fechafinal);
 }
-/*buscarDetalleDistribidor*/
+
+if($accion == "ventabuscarDistribuidor"){
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$fechainicial=$_POST['fechai'];
+	$fechafinal=$_POST['fechaf'];
+
+ 	echo  $business->ventabuscarDistribuidor($fechainicial,$fechafinal);
+
+}
+
+if($accion == "ventabuscarVentanilla"){
+	include_once 'reportesBusiness.php';
+
+	$business = new reportesBusiness();
+	$fechainicial=$_POST['fechai'];
+	$fechafinal=$_POST['fechaf'];
+
+ 	echo  $business->ventabuscarVentanilla($fechainicial,$fechafinal);
+
+}
+/*ventabuscarVentanilla*/
 
 
  ?>

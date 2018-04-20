@@ -25,7 +25,8 @@
 </head>
 <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
 <?php 
-include_once '../menuView.php';
+//include_once '../menuView.php';
+ include '../InterumtorDeMenus.php';
  ?>
  
  <div id="content">

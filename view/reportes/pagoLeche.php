@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reporte de Pago de Leche</title>
+  <title>Reporte de Pago de Leche</title>
 
-			<!--CSS-->
+      <!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
           <link rel="stylesheet" href="../../css/menu.css">
-      	  <link rel="stylesheet" type="text/css" href="../../css/reportes/ventas.css">
+          <link rel="stylesheet" type="text/css" href="../../css/reportes/ventas.css">
           <link rel="stylesheet" href="../../css/bootstrap.min.css" >
           <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
           <link rel="stylesheet" type="text/css" href="../../css/distribuidor/DistribuidorVenta.css">
@@ -30,46 +30,46 @@ include_once '../menuView.php';
  
  <div id="content">
 
- 	<div id="contTitulo">
+  <div id="contTitulo">
             <h4>Reporte de Pago de Leche</h4>
- 	</div>
+  </div>
 
- 	<div id="fechas">
- 		<label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on">
- 		<label id="lblfil">Fecha Final</label><input type="date" id="fechafinal" autocomplete="on">
- 		<input type="submit" id="procesar" value="Cargar Busqueda" onclick="mostrarTotalPago();">
- 	</div>
+  <div id="fechas">
+    <label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>" step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
+    <label id="lblfil">Fecha Final</label><input type="date" id="fechafinal" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>" step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
+    <input type="submit" id="procesar" value="Cargar Busqueda" onclick="mostrarTotalPago();">
+  </div>
 
 
- 	<div id="tablaPrincipal">
- 		<table id="listaAhorro" class="display" cellspacing="0">
-				<thead>
-					<tr>
-						<th>N° de Pago</th>
-						<th>Nombre Completo</th>
-						<th>Total Litros</th>
-						<th>Monto por Litro</th>
-						<th>Monto Total</th>
-						<th>Fecha</th>
-			      <th>Imprimir</th>
+  <div id="tablaPrincipal">
+    <table id="listaAhorro" class="display" cellspacing="0">
+        <thead>
+          <tr>
+            <th>N° de Pago</th>
+            <th>Nombre Completo</th>
+            <th>Total Litros</th>
+            <th>Monto por Litro</th>
+            <th>Monto Total</th>
+            <th>Fecha</th>
+            <th>Imprimir</th>
 
-					</tr>
-					</thead>
-					<tbody id="datos">
+          </tr>
+          </thead>
+          <tbody id="datos">
 
-        	</tbody>
+          </tbody>
             <tfoot>
                        
             </tfoot>
-			</table>
+      </table>
 
- 	</div>
+  </div>
 
 
  </div>
-  <div >
+  <div id="reporte_pago_leche_imprimir">
     
-    <input type="submit" id="imprimir" value="Imprimir Reporte" onclick="imprimirReporte();">
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
   </div>
   
 

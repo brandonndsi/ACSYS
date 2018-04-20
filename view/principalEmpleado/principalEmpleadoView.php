@@ -28,7 +28,8 @@
 
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
         <?php
-        include '../menuCliente.php';
+        include '../InterumtorDeMenus.php';
+        
         ?>
         <main>
         <section id="info">
