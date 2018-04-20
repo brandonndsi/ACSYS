@@ -30,14 +30,33 @@ function ActualizarPrecio() {
             id: id,
             precio: precio
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha actualizado el precio de la leche satisfactoriamente</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha actualizado el precio de la leche satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al actualizar el precio de la leche</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! No se actualizo el precio de la leche correctamente",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
 
             document.getElementById("precioactualizado").value = "";
             verPrecio();
