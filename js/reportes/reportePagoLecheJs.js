@@ -1,22 +1,24 @@
-function mostrarMontoLecheSemanalTotal(){
+function mostrarTotalPago(){
   $('#listaProductores').dataTable().fnDestroy();
   $(document).ready(function() {
-      $.post('../../business/reportes/actionReporteAhorro.php', {
-              action : 'verReporteAhorro',
+      $.post('../../business/reportes/actionReportePagoLeche.php', {
+              action : 'verReportePagoLeche',
               fechainicio:document.getElementById("fechainicial").value,
               fechafinal:document.getElementById("fechafinal").value,
       }, function(responseText) {
+
         json = JSON.parse(responseText);
         html = "";
 
         for(i = 0 ;i<json.length; i++){
-          fecha=json[i].fechaentregapago.split("-");
+          fecha=json[i].fechacompramateriaprima.split("-");
+
           html+="<tr>";
-          html+="<td>"+json[i].idahorro+"</td>";
+          html+="<td>"+json[i].idcompramateriaprima+"</td>";
           html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
-          html+="<td>"+json[i].litrosentregadosahorrosemanal+"</td>";
-          html+="<td>"+json[i].montoahorrosemanalporlitro+"</td>";
-          html+="<td>"+(json[i].montoahorrosemanalporlitro*json[i].litrosentregadosahorrosemanal)+"</td>";
+          html+="<td>"+json[i].cantidadlitroscompramateriaprima	+"</td>";
+          html+="<td>"+json[i].montopagolitro+"</td>";
+          html+="<td>"+json[i].totalpagarlitros+"</td>";
           html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
           html+='<td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
           

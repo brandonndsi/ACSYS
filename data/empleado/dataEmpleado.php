@@ -31,20 +31,17 @@ class dataEmpleado {
     }
 
     // registrar
-    function empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo) {
-        $manipulacion="../../image/empleado/manipulacion.jpg";
-        $cedula="../../image/empleado/cedula.jpg";
+    function empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo, $manipulacionalimentos, $identidad) {
+
         $con = $this->conexion->crearConexion();
         $con->set_charset("utf8");
-        /* registra la persona 
-SELECT `idpersonaempleado`, `passwordempleado`, `tipoempleado`, `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`, `estadoempleado` FROM `tbempleado` WHERE 1
-        */
+        /* registra la persona */
         $registrarEmpleado = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
         if ($registrarEmpleado == 1) {
             $conen = $this->conexion->crearConexion();
             $conen->set_charset("utf8");
             $pass = password_hash($clave, PASSWORD_DEFAULT);
-            $registrarEmpleado = $conen->query("CALL registrarempleado('$pass','$tipo','$manipulacion','$cedula')");
+            $registrarEmpleado = $conen->query("CALL registrarempleado('$pass','$tipo','$manipulacionalimentos', '$identidad')");
             return "true";
         } else {
             return "false";

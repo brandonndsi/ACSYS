@@ -11,7 +11,7 @@
         <script src="../../js/precioLeche/precioLecheJS.js"></script>
         <script src="../../js/menuJs.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="verPrecio()">
@@ -72,30 +72,6 @@
                 </div>    
             </div>
         </div>
-
-        <!--Modal de respuesta-->
-        <div id="modalRespuesta" class="modal fade in">
-            <div  class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
-                        <button type="button" class="close" data-dismiss='modal'>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <center>
-                            <div id="mensaje"></div>
-                        </center>
-                    </div>
-                    <div class="modal-footer">
-                        <p>
-                            <button data-dismiss='modal' class="btn btn-danger">Cerrar</button>
-                        </p>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dalog -->
-        </div><!-- /.modal -->
 
     </body>
 </html>

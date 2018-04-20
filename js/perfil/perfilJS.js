@@ -14,19 +14,38 @@ function modificarContrasenia() {
             password2: password2,
             password3: password3
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha modificado la Contraseña satisfactoriamente</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha modificado la contraseña satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al modificar la Contraseña</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Digite su contraseña y verigique que las contraseñas sean iguales",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
 
             document.getElementById("passwordempleadoa").value = "";
             document.getElementById("passwordempleadon").value = "";
             document.getElementById("passwordempleadoc").value = "";
-            
+
             $('#icon').hide();
         });
     }
@@ -35,7 +54,7 @@ function modificarContrasenia() {
 
 function modalModificarContrasenia() {
 
-    botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
+    botones = "<p><button data-dismiss='modal' onclick='Limpiar()' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button id='boton' onclick='modificarContrasenia()' data-dismiss='modal' class='btn btn-primary'>Cambiar</button></p>";
     $("#botonesEditar").html(botones);
     $('#boton').attr("disabled", true);
@@ -99,4 +118,14 @@ function validarContraNueva() {
         $('#icon').hide();
         $('#boton').attr("disabled", false);
     }
+}
+
+function Limpiar() {
+
+    document.getElementById("passwordempleadoa").value = "";
+    document.getElementById("passwordempleadon").value = "";
+    document.getElementById("passwordempleadoc").value = "";
+  
+    $('#icon').hide();
+
 }

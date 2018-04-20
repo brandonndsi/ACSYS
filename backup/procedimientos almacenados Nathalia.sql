@@ -293,7 +293,12 @@ END$$
 DELIMITER $$
 
 
-
+DELIMITER $$
+CREATE PROCEDURE  verReportePagoLeche(fechaInicio DATE, fechaFinal DATE)
+BEGIN
+  SELECT tbcompramateriaprima.idcompramateriaprima, tbcompramateriaprima.cantidadlitroscompramateriaprima,tbcompramateriaprima.montopagolitro,tbcompramateriaprima.totalpagarlitros,tbcompramateriaprima.fechacompramateriaprima,tbpersona.nombrepersona,tbpersona.apellido1persona,tbpersona.apellido2persona FROM tbcompramateriaprima INNER JOIN tbpersona ON tbcompramateriaprima.idpersona=tbpersona.idpersona WHERE tbcompramateriaprima.fechacompramateriaprima BETWEEN fechaInicio AND fechaFinal;
+END$$
+DELIMITER $$
 
 
 

@@ -27,10 +27,11 @@
               <ul>
                 <li><a href="../productor/verAhorro.php">Ver Monto de Ahorros</a></li>
                 <li><a href="../productor/verAhorroTotal.php">Ver Ahorros Totales</a></li>
-                <li class="dropdown"><a href="../productor/recepcionLeche.php" >Recepción de leche<span class="caret"></span></a>
+                <li class="dropdown"><a  >Recepción de leche<span class="caret"></span></a>
                    <ul class="dropdown-menu mega-dropdown-menu">
                      <li>
                        <ul>
+                          <li><a href="../productor/recepcionLeche.php">Recibir Leche</a></li>
                           <li><a href="../productor/verRecepcionLeche.php" >Ver </a></li>
                           <li><a href="../productor/verPagoLeche.php">Pago entrega de leche</a></li>
                         </ul>
