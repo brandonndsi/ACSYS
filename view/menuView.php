@@ -34,10 +34,11 @@
                 <li><a href="../productor/verProductorSocioView.php">Producto Socio</a></li>
                 <li><a href="../productor/verAhorro.php">Ver Monto de Ahorros</a></li>
                 <li><a href="../productor/verAhorroTotal.php">Ver Ahorros Totales</a></li>
-                <li class="dropdown"><a href="../productor/recepcionLeche.php" >Recepción de leche<span class="caret"></span></a>
+                <li class="dropdown"><a  >Recepción de leche<span class="caret"></span></a>
                    <ul class="dropdown-menu mega-dropdown-menu">
                      <li>
                        <ul>
+                          <li><a href="../productor/recepcionLeche.php">Recibir Leche</a></li>
                           <li><a href="../productor/verRecepcionLeche.php" >Ver </a></li>
                           <li><a href="../productor/verPagoLeche.php">Pago entrega de leche</a></li>
                         </ul>
@@ -96,7 +97,8 @@
         <li>
             <ul>
               <li><a href="../../view/reportes/ventas.php">Ventas</a></li>
-              <li><a href="../../view/reportes/pagos.php">Pagos</a></li>
+              <li><a href="../../view/reportes/pagos.php">Pagos de Préstamos</a></li>
+              <li><a href="../../view/reportes/pagoLeche.php">Pagos de Leche</a></li>
               <li><a href="../../view/reportes/prestamos.php">Préstamos</a></li>
               <li><a href="../../view/reportes/procesos.php">Procesos</a></li>
               <li><a href="../../view/reportes/ahorros.php">Ahorros</a></li>
