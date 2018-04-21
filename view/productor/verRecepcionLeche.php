@@ -48,7 +48,6 @@
                             <th>Peso Turno Mañana </th>
                             <th>Peso Turno Tarde </th>
                             <th>Peso Total</th>
-                            <th>Modificar</th>
                             
                         </tr>
                     </thead>

@@ -1,4 +1,4 @@
-function cargarTablaLacteos() {
+function cargarTablaLacteo() {
     $(document).ready(function () {
         $('#listaProductosLacteos').DataTable({
             "bDeferRender": true,
@@ -47,7 +47,7 @@ function consultarProductorCliente(html) {
         });
     });
 }
-function consultarProductor() {
+function consultaProductor() {
     $(document).ready(function () {
         $.post('../../business/productor/actionProductorSocio.php', {
             action: 'consultarproductores'
@@ -64,7 +64,7 @@ function consultarProductor() {
     });
 }
 
-function cargar() {
+function carga() {
     $('#buscarProductos').dataTable().fnDestroy();
     $('#datos1').html("");
     document.getElementById("productoBuscar").value = "";
@@ -194,7 +194,7 @@ function addCarrito() {
                 codigo = '"' + listaProductos[i].codigo + '"';
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
                 html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
-                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                html += "<td><button onClick='eliminarArticuloCarrito(" + codigo + ")'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";
                 total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
             }
@@ -257,139 +257,99 @@ function getRadioButtonSelectedValue(ctrl) {
             return ctrl[i].value;
 }
 
-/*function carry() {
-
-    var carrito = [];
-    var idCliente = document.getElementById('selectCliente').value;
-    var totalNeto = document.getElementById('totalPagar').value;
-    var totalBruto = document.getElementById('totalPagar').value;
-    var tipoVenta = "ventanilla";
-
-    $(document).ready(function () {
-        $.post('../../business/ventas/actionVentaVentanilla.php', {
-            action: 'procesarVenta',
-            idCliente: idCliente,
-            productos:localStorage.getItem("listaProductos"),
-            totalBruto: totalBruto,
-            totalNeto: totalNeto
-        }, function (responseText) {
-            datosTabla = "";
-            total = 0;
-            carrito = JSON.parse(localStorage.getItem("listaProductos"));
-            for (i = 0; i < carrito.length; i++) {
-                datosTabla += "<table>";
-                datosTabla += "<tr>";
-                datosTabla += "<td>" + carrito[i].codigo + "</td>";
-                datosTabla += "<td>" + carrito[i].nombre + "</td>";
-                datosTabla += "<td>" + carrito[i].precio + "</td>";
-                datosTabla += "<td>" + carrito[i].cantidad + "</td>";
-                datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</tr>";
-                datosTabla += "</table>";
-            }
-            $("#Re_ventaProductos").html(datosTabla);
-            document.getElementById("Re_recibo").value = responseText;
-            document.getElementById("Re_cliente").value = idCliente;
-            document.getElementById("Re_tipoVenta").value = tipoVenta;
-            $("#modalRecibo").modal();
-        });
-    });
-}*/
 /**
  * [eliminarArticuloCarrito descripción]
  * @param  {[entero]} code [Manda el id del articulo a eliminar del array de la lista del carrito]
  * @return {[arreglo]}      [Sobre escribe los datos de la tabla de carrito para poder mostra la nueva lista]
  */
-function eliminarArticuloCarrito(code){
+function eliminarArticuloCarrito(code) {
     //alert(code);
     $('#listaProductosLacteos').dataTable().fnDestroy();
-    if (localStorage.getItem("listaProductos") != null) {
-    listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
-    for (i = 0; i < listaProductos.length; i++) {
-                    if (listaProductos[i].codigo === code) {
-                        listaProductos.splice(i,1);
-                       //localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
-                    }
-                }
-localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
-}
-
-listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
-            html = "";
-            total = 0;
-            for (i = 0; i < listaProductos.length; i++) {
-                html += "<tr>";
-                html += "<td>" + listaProductos[i].codigo + "</td>";
-                html += "<td>" + listaProductos[i].nombre + "</td>";
-                html += "<td>" + listaProductos[i].precio + "</td>";
-                codigo = '"' + listaProductos[i].codigo + '"';
-                html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
-                html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
-                html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
-                html += "</tr>";
-                total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
+    if (localStorage.getItem("listaProductos") !== null) {
+        listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
+        for (i = 0; i < listaProductos.length; i++) {
+            if (listaProductos[i].codigo === code) {
+                listaProductos.splice(i, 1);
+                //localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
             }
-            document.getElementById('totalPagar').value = total;
-            $("#datos").html(html);
-           $(document).ready(function () {
-                $('#listaProductosLacteos').DataTable({
-                    "bDeferRender": true,
-                    "sordering": true,
-                    "responsive": true,
-                    "ordering": true,
-                    "sPaginationType": "full_numbers",
-                    "oLanguage": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Por favor espere - cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
-            });
+        }
+        localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
+    }
 
-    //alert(codigo+" y el codigo es: "+code);
-
+    listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
+    html = "";
+    total = 0;
+    for (i = 0; i < listaProductos.length; i++) {
+        html += "<tr>";
+        html += "<td>" + listaProductos[i].codigo + "</td>";
+        html += "<td>" + listaProductos[i].nombre + "</td>";
+        html += "<td>" + listaProductos[i].precio + "</td>";
+        codigo = '"' + listaProductos[i].codigo + '"';
+        html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
+        html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
+        html += "<td><button onClick='eliminarArticuloCarrito(" + codigo + ")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
+        html += "</tr>";
+        total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
+    }
+    document.getElementById('totalPagar').value = total;
+    $("#datos").html(html);
+    $(document).ready(function () {
+        $('#listaProductosLacteos').DataTable({
+            "bDeferRender": true,
+            "sordering": true,
+            "responsive": true,
+            "ordering": true,
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Por favor espere - cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+    });
 }
 
-function carry() {
+function llevar() {
 
     var carrito = [];
     var idCliente = document.getElementById('selectCliente').value;
-    //var d=llenarDatosCliente(idCliente);
     var totalNeto = document.getElementById('totalPagar').value;
     var totalBruto = document.getElementById('totalPagar').value;
     var tipoVenta = "Ventanilla";
 
     $(document).ready(function () {
-        $.post('../../business/ventas/actionVentaDistribuidor.php', {
+        $.post('../../business/ventas/actionVentaVentanilla.php', {
             action: 'procesarVenta',
             idCliente: idCliente,
-            productos:localStorage.getItem("listaProductos"),
+            productos: localStorage.getItem("listaProductos"),
             totalBruto: totalBruto,
             totalNeto: totalNeto
         }, function (responseText) {
+
             console.log(responseText);
             datosTabla = "";
             total = 0;
             carrito = JSON.parse(localStorage.getItem("listaProductos"));
+
             for (i = 0; i < carrito.length; i++) {
                 datosTabla += "<table>";
                 datosTabla += "<tr>";
@@ -397,55 +357,50 @@ function carry() {
                 datosTabla += "<td>" + carrito[i].nombre + "</td>";
                 datosTabla += "<td>" + carrito[i].precio + "</td>";
                 datosTabla += "<td>" + carrito[i].cantidad + "</td>";
-                //datosTabla += "<td>" + totalBruto + "</td>";
                 datosTabla += "</tr>";
             }
-                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
-                datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</table>";
+            datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
+            datosTabla += "<td>" + totalBruto + "</td>";
+            datosTabla += "</table>";
             $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
-           // document.getElementById("Re_recibo").value = responseText;
-            if(idCliente!=0){
-                $.post("../../business/ventas/actionVentaDistribuidor.php",{
+
+            if (idCliente !== 0) {
+                $.post("../../business/ventas/actionVentaDistribuidor.php", {
                     action: 'nombrecompleto',
                     idClient: idCliente
-                        },function (responseText){
-                             console.log(responseText);
-                                // alert(responseText);
-                             document.getElementById("Re_cliente").value =responseText;
+                }, function (responseText) {
+                    console.log(responseText);
+                    document.getElementById("Re_cliente").value = responseText;
                 });
-        
-            }else{
-                    document.getElementById("Re_cliente").value =idCliente;
+
+            } else {
+                document.getElementById("Re_cliente").value = idCliente;
             }
-            //alert(d);
-            //document.getElementById("Re_cliente").value =d;
-            //Re_recibo
 
             document.getElementById("Re_cliente").value = idCliente;
             document.getElementById("Re_tipoVenta").value = tipoVenta;
+
             
         });
     });
-    /*funcion para obtener lo que es el numero de faltura*/
+
+    /*funcion para obtener lo que es el numero de factura*/
     var dato;
-  $.post("../../business/ventas/actionVentaDistribuidor.php",{
-            action: 'idfactura'
-        },function (responseText){
-            console.log(responseText);
-            //alert(responseText);
-            dato=responseText;
-            dato++;
-            document.getElementById("Re_recibo").value =dato;
-            //alert(dato);
-        }); 
+    $.post("../../business/ventas/actionVentaVentanilla.php", {
+        action: 'idfactura'
+    }, function (responseText) {
+        console.log(responseText);
+        dato = responseText;
+        dato++;
+        document.getElementById("Re_recibo").value = dato;
+    });
     /*terminacion para poder optener el numero de factura.*/
     $("#modalRecibo").modal();
 }
 
-function ImprimirFactura(){
-numerofactura=document.getElementById("Re_recibo").value;
-totalBB = document.getElementById('totalPagar').value;
-id = document.getElementById('selectCliente').value;
-window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Ventanilla"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+function ImprimirFactura() {
+    numerofactura = document.getElementById("Re_recibo").value;
+    totalBB = document.getElementById('totalPagar').value;
+    id = document.getElementById('selectCliente').value;
+    window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura=" + numerofactura + "&&lista=" + localStorage.getItem("listaProductos") + "&&total=" + totalBB + "&&tipo=Ventanilla" + "&&id=" + id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }

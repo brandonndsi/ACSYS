@@ -57,7 +57,7 @@ function mostrarRecepcion(){
           tarde=json[i].pesoturno;
           fecha=json[i].fechaentregalechediario;
           id=json[i].idpesalechediario;
-          html+='<td><a href="javascript:modalModificarSocio('+id+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
+         //html+='<td><a href="javascript:modalModificarSocio('+id+')"><span class="glyphicon glyphicon-edit"></span></a></td>';
           
         }
         $("#datos").html(html);

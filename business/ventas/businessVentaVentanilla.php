@@ -17,6 +17,10 @@ class businessVentaVentanilla {
         return $this->dataVentaVentanilla->procesarVenta($productos, $idCliente, $totalNeto, $totalBruto);
     }
 
+    function idfactura() {
+        return $this->dataVentaVentanilla->idfactura();
+    }
+
 }
 
 ?>

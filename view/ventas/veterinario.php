@@ -66,7 +66,7 @@
              </table>
            </div>
            <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();procesarVenta();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
          <!--Modal buscar productos veterinarios-->
         <div id="modalProductosVeterinarioVenta" class="modal fade in">
