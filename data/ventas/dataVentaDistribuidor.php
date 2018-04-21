@@ -54,19 +54,9 @@
               //echo($producto->precio);
               $total = $producto->precio * $producto->cantidad;
               $con->query("CALL registrardetalleventadistribuidor('$producto->precio','$producto->cantidad','$total','$producto->codigo','0','$idVenta')");
-              return $productos;
-
-/*cantidad: 1
-​​
-codigo: "4390"
-​​
-nombre: "Queso Mozarrella"
-​​
-precio: "4000"
-              
-              INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
-               */
+           
           }
+           //return $productos;
       }
 
       function procesarVenta($productos, $idCliente, $totalNeto, $totalBruto) {
@@ -76,17 +66,11 @@ precio: "4000"
         $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
         if ($idVenta!= 0) {
             //return
-             $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
+         
+            $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } 
           return   $this->registrarProductosLacteos($productos, $idVenta);
-          //return $productos;
         
-        /*
-        double double double varchar double int int 
-         93
-        INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
-         
-        INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES ('10','10','2000','6790','22','94');*/
     }
 
 

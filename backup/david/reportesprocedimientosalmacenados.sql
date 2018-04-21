@@ -146,3 +146,14 @@ WHERE d.idventa=id;
 
 END$$
 DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrardetalleventadistribuidor`(IN `pre` DOUBLE, IN `can` DOUBLE, IN `sub` DOUBLE, IN `cod` VARCHAR(200), IN `des` DOUBLE, IN `id` INT)
+    NO SQL
+BEGIN
+INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES (pre,can,sub,cod,des,id);
+END$$
+DELIMITER ;
