@@ -184,6 +184,7 @@ function addCarrito() {
             code: code
         }, function (responseText) {
             json = JSON.parse(responseText);
+            console.log(json);
             if (localStorage.getItem("listaProductos") === null) {
                 var listaProductos = [];
                 listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1});
@@ -351,8 +352,8 @@ function llenarDatosCliente(idCliente){
             action: 'nombrecompleto',
             idClient: idCliente
         },function (responseText){
-            console.log(responseText);
-            alert(responseText);
+            //console.log(responseText);
+            //alert(responseText);
             nombreCompleto=responseText;
         });
         
@@ -370,20 +371,23 @@ function carry() {
     var totalNeto = document.getElementById('totalPagar').value;
     var totalBruto = document.getElementById('totalPagar').value;
     var tipoVenta = "Distribuidor";
+    carrito = JSON.parse(localStorage.getItem("listaProductos"));
+    console.log(carrito);
 
     $(document).ready(function () {
         $.post('../../business/ventas/actionVentaDistribuidor.php', {
             action: 'procesarVenta',
-            idCliente: idCliente,
+            idCliente:document.getElementById('selectCliente').value,
             productos:localStorage.getItem("listaProductos"),
-            totalBruto: totalBruto,
-            totalNeto: totalNeto
+            totalBruto:document.getElementById('totalPagar').value,
+            totalNeto: document.getElementById('totalPagar').value,
         }, function (responseText) {
+           console.log(responseText);
            
             datosTabla = "";
             total = 0;
             //console.log(listaProductos);
-            carrito = JSON.parse(localStorage.getItem("listaProductos"));
+            //carrito = JSON.parse(localStorage.getItem("listaProductos"));
             for (i = 0; i < carrito.length; i++) {
                 datosTabla += "<table>";
                 datosTabla += "<tr>";
@@ -404,7 +408,7 @@ function carry() {
                     action: 'nombrecompleto',
                     idClient: idCliente
                         },function (responseText){
-                             console.log(responseText);
+                             //console.log(responseText);
                                 // alert(responseText);
                              document.getElementById("Re_cliente").value =responseText;
                 });
@@ -418,7 +422,7 @@ function carry() {
 
             document.getElementById("Re_cliente").value = idCliente;
             document.getElementById("Re_tipoVenta").value = tipoVenta;
-            
+           
         });
     });
     /*funcion para obtener lo que es el numero de faltura*/
@@ -443,3 +447,17 @@ totalBB = document.getElementById('totalPagar').value;
 id = document.getElementById('selectCliente').value;
 window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
+
+
+function procesarVenta(){
+  $.post('../../business/ventas/actionVentaDistribuidor.php', {
+            action: 'procesarVenta',
+            productos:localStorage.getItem("listaProductos"),
+            idCliente:document.getElementById('selectCliente').value,
+            totalNeto:document.getElementById('totalPagar').value,
+            totalBruto:document.getElementById('totalPagar').value,
+      }, function(responseText) {
+
+          //alert(responseText);
+      });
+    }

@@ -126,7 +126,7 @@ function registrarDistribuidor() {
             if (responseText === "true") {
                 swal({
                     title: "Confirmación",
-                    text: "¡Se ha registrado el empleado satisfactoriamente!",
+                    text: "¡Se ha registrado el Distribuidor satisfactoriamente!",
                     icon: "success",
                     buttons: {
                         ok: {
@@ -139,7 +139,7 @@ function registrarDistribuidor() {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al registrar el empleado",
+                    text: "¡Opps! Ocurrió un error al registrar el distribuidor",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -196,7 +196,7 @@ function modificarDistribuidor(id) {
             if (responseText === "true") {
                 swal({
                     title: "Confirmación",
-                    text: "¡Se ha modificado el empleado satisfactoriamente!",
+                    text: "¡Se ha modificado el Dsitribuidor satisfactoriamente!",
                     icon: "success",
                     buttons: {
                         ok: {
@@ -209,7 +209,7 @@ function modificarDistribuidor(id) {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al modificar el empleado",
+                    text: "¡Opps! Ocurrió un error al modificar el Distribuidor",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -258,7 +258,7 @@ function eliminarDistribuidor(id) {
             if (responseText === "true") {
                 swal({
                     title: "Confirmación",
-                    text: "¡Se ha eliminado el empleado satisfactoriamente!",
+                    text: "¡Se ha eliminado el Distribuidor satisfactoriamente!",
                     icon: "success",
                     buttons: {
                         ok: {
@@ -271,7 +271,7 @@ function eliminarDistribuidor(id) {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al eliminar el empleado",
+                    text: "¡Opps! Ocurrió un error al eliminar el Distribuidor",
                     icon: "error",
                     buttons: {
                         ok: {

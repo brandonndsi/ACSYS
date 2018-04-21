@@ -254,7 +254,7 @@ $.post('../../business/reportes/reportesAccion.php', {
 
           json = JSON.parse(responseText);
           console.log(json);
-
+          
           for(i = 0 ;i<json.length; i++){
           
 
@@ -274,7 +274,7 @@ window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes
  
   }
                                         }
-
+                                      
         });
 }
 

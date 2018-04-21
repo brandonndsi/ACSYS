@@ -26,13 +26,13 @@
     }
 
     function registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta){
-        $con = $this->conexion->crearConexion();
-          $con->set_charset("UTF8");
-            $tipoVenta = "Distribuidor";
-              $fecha = date('Y-m-d');
-                $hora = date("g:i A");
-                 $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
-       return $sqlQuery->fetch_assoc()['idventa'];
+      $con = $this->conexion->crearConexion();
+      $con->set_charset("UTF8");
+      $tipoVenta = "Distribuidor";
+      $fecha = date('Y-m-d');
+      $hora = date("g:i A");
+      $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
+      return $sqlQuery->fetch_assoc()['idventa'];
     }
 
       function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
@@ -46,14 +46,26 @@
       }
     }
 
-      function registrarProductosLacteos($productos,$idVenta){
+      public function registrarProductosLacteos($productos,$idVenta){
           $con = $this->conexion->crearConexion();
           $con->set_charset("UTF8");
           $productos = json_decode($productos);
             foreach ($productos as $producto) {
               //echo($producto->precio);
               $total = $producto->precio * $producto->cantidad;
-              $con->query("CALL registrarDetalleVenta('".$producto->precio."','".$producto->cantidad."','".$total."','".$producto->codigo."','0','".$idVenta."');");
+              $con->query("CALL registrardetalleventadistribuidor('$producto->precio','$producto->cantidad','$total','$producto->codigo','0','$idVenta')");
+              return $productos;
+
+/*cantidad: 1
+​​
+codigo: "4390"
+​​
+nombre: "Queso Mozarrella"
+​​
+precio: "4000"
+              
+              INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
+               */
           }
       }
 
@@ -62,12 +74,19 @@
         $con->set_charset("UTF8");
         $facturaVenta = $this->getFactura();
         $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
-        if ($idCliente != 0) {
-            return $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
-        } else {
-            return   $this->registrarProductosLacteos($productos, $idVenta);
-        }
+        if ($idVenta!= 0) {
+            //return
+             $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
+        } 
+          return   $this->registrarProductosLacteos($productos, $idVenta);
+          //return $productos;
         
+        /*
+        double double double varchar double int int 
+         93
+        INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
+         
+        INSERT INTO tbdetalleventa(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa, codigoproductoslacteos,descuento,idventa) VALUES ('10','10','2000','6790','22','94');*/
     }
 
 

@@ -18,8 +18,9 @@ if ($action == "procesarVenta") {
     $idCliente = $_POST['idCliente'];
     $totalNeto = $_POST['totalNeto'];
     $totalBruto = $_POST['totalBruto'];
-    if (!empty($totalNeto) && !empty($totalBruto)) {
-        echo $businessVentaDist->procesarVenta($productos, $idCliente, $totalNeto, $totalBruto);
+    if (!empty($totalNeto) && !empty($totalBruto)){
+        echo  $businessVentaDist->procesarVenta($productos, $idCliente, $totalNeto, $totalBruto);
+        
     } else {
         echo "false";
     }

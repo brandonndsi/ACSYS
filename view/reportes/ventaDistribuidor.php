@@ -20,6 +20,7 @@
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
           <script type="text/javascript" src="../../js/reportes/reportesVentaDistribuidor.js"></script>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
          
         </script>
 </head>
@@ -34,7 +35,6 @@ include_once '../menuView.php';
  	<div id="contTitulo">
             <h4>Reporte de ventas Distribuidor</h4>
  	</div>
-
  	<div id="fechas">
  		<label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>"
     step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
