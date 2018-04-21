@@ -36,7 +36,7 @@ function cargarTablaDistribuidor(){
                         telefono + "," + direccion + "," + correo + ","+ id +"'";
 
                 html += '<td><a href="javascript:modalModificarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-                html += '<td><a href="javascript:modalimagen()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';
+               /* html += '<td><a href="javascript:modalimagen()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';*/
                 html += '<td><a href="javascript:modalEliminarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
             }
             $("#datos").html(html);
@@ -121,15 +121,35 @@ function registrarDistribuidor() {
             correo: correo
 
         }, function (responseText) {
-            respuesta = "";
+            //console.log(responseText);
+            
             if (responseText === "true") {
-                respuesta = "<h4>Se ha registrado el Distribuidor satisfactoriamente</h4>";
-                cargarTablaDistribuidor();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha registrado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al registrar el Distribuidor</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al registrar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
 
             document.getElementById("documentoidentidadr").value = "";
             document.getElementById("nombrer").value = "";
@@ -138,6 +158,7 @@ function registrarDistribuidor() {
             document.getElementById("telefonor").value = "";
             document.getElementById("direccionr").value = "";
             document.getElementById("correor").value = "";
+            cargarTablaDistribuidor();
         });
     });
 }
@@ -172,15 +193,35 @@ function modificarDistribuidor(id) {
             correo: correo,
             id: id
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha modificado el Distribuidor satisfactoriamente</h4>";
-                cargarTablaDistribuidor();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha modificado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al modificar el Distribuidor</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al modificar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
+                cargarTablaDistribuidor();
+
         });
     });
 }
@@ -214,15 +255,34 @@ function eliminarDistribuidor(id) {
             action: 'eliminarDistribuidor',
             id: id
         }, function (responseText) {
-            respuesta = "";
             if (responseText === "true") {
-                respuesta = "<h4>Se ha eliminado el Distribuidor satisfactoriamente</h4>";
-                cargarTablaDistribuidor();
+                swal({
+                    title: "Confirmación",
+                    text: "¡Se ha eliminado el empleado satisfactoriamente!",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             } else {
-                respuesta = "<h4>Ocurrió un error al eliminar el Distribuidor</h4>";
+                swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error al eliminar el empleado",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
             }
-            $("#mensaje").html(respuesta);
-            $("#modalRespuesta").modal();
+           cargarTablaDistribuidor();
         });
     });
 }

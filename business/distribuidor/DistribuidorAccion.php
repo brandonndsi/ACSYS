@@ -19,7 +19,7 @@
       	if(empty($cedula)||empty($nombre)||empty($apellido1)
             ||empty($apellido2)||empty($telefono)||empty($direccion)
             ||empty($correo) || empty($id)){
-                  echo("false");
+                  echo "false";
 
             }else{
                   if(empty($correo) || !is_numeric($telefono)
@@ -46,7 +46,7 @@
       	$direccion=htmlentities(strip_tags($_POST['direccion']));
       	$correo=htmlentities(strip_tags($_POST['correo']));
       	if(empty($cedula)||empty($nombre)||empty($apellido1)||empty($apellido2)||empty($telefono)||empty($direccion)){
-                  echo("false");
+                  echo "false";
 
             }else{
                   if(empty($correo)|| !is_numeric($telefono)

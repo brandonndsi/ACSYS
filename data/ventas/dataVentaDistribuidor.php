@@ -100,9 +100,8 @@
 
   }
   /*$d= new dataVentaDistribuidor();
-  $r=$d->nombreCompleto('10');
-  foreach( $r as $row) {
-    print_r($row['nombrepersona']);
-  }*/
- // print_r($d);
+  $p=[{"codigo":"445","nombre":"granos de leche","precio":"55","cantidad":1}];
+  $r=$d->registrarProductosLacteos($p,10);
+  
+  print_r($r);*/
  ?>

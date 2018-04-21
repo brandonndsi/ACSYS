@@ -22,7 +22,7 @@
         $con=$this->conexion->crearConexion();
         $modificarDistribuidor = $con->query("CALL modificarDistribuidor('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo','$id')");
         $con = $this->conexion->cerrarConexion();
-        if($modificarDistribuidor==1){
+        if($modificarDistribuidor == 1){
             return "true";
 
         }else{
@@ -52,7 +52,7 @@
         $clienteMayorista=$con->query("CALL nuevoclientemayorista('$idpersona','Activo');");
         $con=$this->conexion->cerrarConexion();
 
-        if($clienteMayorista==1){
+        if($clienteMayorista == 1){
             return "true";
 
         }else{
@@ -67,7 +67,7 @@
         $con=$this->conexion->crearConexion();
         $eliminarProductor = $con->query("CALL eliminarclientemayorista('$idpersona')");
         $con=$this->conexion->cerrarConexion();
-        if($eliminarProductor==1){
+        if($eliminarProductor == 1){
             return "true";
 
         }else{

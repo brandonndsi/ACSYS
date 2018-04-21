@@ -1,4 +1,9 @@
 
+window.onload=function(){
+cargarTablaLacteos();
+consultarProductor();
+};
+
 function cargarTablaLacteos() {
     $(document).ready(function () {
         $('#listaProductosLacteos').DataTable({
@@ -34,6 +39,19 @@ function cargarTablaLacteos() {
     });
 }
 
+function cargar_modal_tambien_llenar_dato1(){
+
+    $('#modalProductosVentanilla').modal();
+}
+function redireccionamiento_a_la_misma_clase(){
+    window.location.href = '../../view/ventas/distribuidor.php';
+}
+function acciones_de_los_botones_principales(){
+    
+    carry();
+    cargar();
+    $('#modalRecibo').modal();
+}
 function consultarProductorCliente(html) {
     $(document).ready(function () {
         $.post('../../business/distribuidor/DistribuidorAccion.php', {
@@ -361,9 +379,10 @@ function carry() {
             totalBruto: totalBruto,
             totalNeto: totalNeto
         }, function (responseText) {
-            console.log(responseText);
+           
             datosTabla = "";
             total = 0;
+            //console.log(listaProductos);
             carrito = JSON.parse(localStorage.getItem("listaProductos"));
             for (i = 0; i < carrito.length; i++) {
                 datosTabla += "<table>";

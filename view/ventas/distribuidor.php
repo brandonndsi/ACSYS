@@ -26,9 +26,9 @@
         </script>
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTablaLacteos();consultarProductor();">
+    <body background="../fondo.jpg">
         <?php
-        //include '../menuView.php';
+        
         include '../InterumtorDeMenus.php';
         ?>
         <div class="ventaVeterinaria">
@@ -38,7 +38,7 @@
             </select>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <button onclick="$('#modalProductosVentanilla').modal();cargar();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
+                    <button onclick="cargar_modal_tambien_llenar_dato1();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-sm-1">
                     <label>Total</label>
@@ -64,8 +64,8 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/distribuidor.php'" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-            <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+            <button class="btn btn-danger" onclick="redireccionamiento_a_la_misma_clase();" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-primary" onclick="acciones_de_los_botones_principales();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
         <div id="modalProductosVentanilla" class="modal fade in">
@@ -156,7 +156,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/distribuidor.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
+                            <button class="btn btn-danger" onclick="redireccionamiento_a_la_misma_clase();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
                             <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/distribuidor.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
                         </div>
                     </div>

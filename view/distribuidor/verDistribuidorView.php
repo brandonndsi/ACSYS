@@ -3,25 +3,33 @@
 <head>
 	<title>Distribuidor</title>
     <meta charset="utf-8">
-    <!-- JS  -->
+    
+    <!--CSS-->
+        <link rel="stylesheet" href="../../css/jquery.dataTables.css">
+        <link rel="stylesheet" href="../../css/menu.css">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+
+        <!--Javascript-->
+        <script src="../../js/jquery-3.2.1.js"></script>
+        <script src="../../js/jquery.dataTables.js"></script>
+         <script src="../../js/menuJs.js"></script>
+        
+         <script src="../../js/distribuidor/Distribuidor.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    
+    
+    <!-- CSS -->
 	
-    <script type="text/javascript" src="../../js/jquery-2.2.4.js"></script>
-	<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../../js/modalImagen/cargar.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/distribuidor/Distribuidor.js"></script>
-    <script type="text/javascript" language="javascript" src="../../js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
+	
+    
     <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]');
             });
     </script>
-    
-    <!-- CSS -->
-	<link rel="stylesheet" href="../../css/menu.css">
-    <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css" >
-    <link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.min.css">
           
 </head>
 <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
@@ -46,7 +54,7 @@
                         <th>Dirección</th>
                         <th>Correo</th>
                         <th>Modificar</th>
-                        <th>Ver Imágenes</th>
+                        <!--<th>Ver Imágenes</th>-->
                         <th>Eliminar</th>
 
 					</tr>
@@ -55,18 +63,7 @@
 
                 	</tbody>
                     <tfoot>
-                       <tr>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Primer Apellido </th>
-                        <th>Segundo Apellido</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Correo</th>
-                        <th>Modificar</th>
-                        <th>Ver Imágenes</th>
-                        <th>Eliminar</th>
-                    </tr>         
+                            
                     </tfoot>
 			</table>
 		</div>
