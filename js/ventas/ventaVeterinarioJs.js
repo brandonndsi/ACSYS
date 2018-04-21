@@ -264,12 +264,12 @@ function carry() {
     var tipoVenta = "Veterinario";
 
     $(document).ready(function () {
-        $.post('../../business/ventas/actionVentaDistribuidor.php', {
-            action: 'procesarVenta',
-            idCliente: idCliente,
+        $.post('../../business/ventas/actionVentaVeterinaria.php', {
+            action : 'procesarVenta',
             productos:localStorage.getItem("listaProductos"),
-            totalBruto: totalBruto,
-            totalNeto: totalNeto
+            idCliente:document.getElementById('selectCliente').value,
+            totalNeto:document.getElementById('totalPagar').value,
+            totalBruto:document.getElementById('totalPagar').value,
         }, function (responseText) {
             console.log(responseText);
             datosTabla = "";
