@@ -99,7 +99,7 @@
               <li><a href="../../view/reportes/ventas.php">Venta veterinaria</a></li>
               <li><a href="../../view/reportes/ventaDistribuidor.php">Venta Distribuidor</a></li>
               <li><a href="../../view/reportes/ventaVentanilla.php">Venta Ventanilla</a></li>
-              <li><a href="../../view/reportes/pagos.php">Pagos de Préstamos</a></li>
+              <li><a href="../../view/reportes/pagosPrestamos.php">Pagos de Préstamos</a></li>
               <li><a href="../../view/reportes/pagoLeche.php">Pagos de Leche</a></li>
               <li><a href="../../view/reportes/prestamos.php">Préstamos</a></li>
               <li><a href="../../view/reportes/procesos.php">Procesos</a></li>

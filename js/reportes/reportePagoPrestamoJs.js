@@ -1,0 +1,106 @@
+function mostrarPagosPrestamos(){
+
+  $('#listaAhorro').dataTable().fnDestroy();
+  idPrestamo = document.getElementById("selectPrestamos").value;
+  if(idPrestamo!=0){
+        $(document).ready(function() {
+          $.post('../../business/reportes/actionReportePagoPrestamo.php', {
+                  action : 'verPagosPrestamos',
+                  idPrestamo:idPrestamo,
+                  fechainicio:document.getElementById("fechainicial").value,
+                  fechafinal:document.getElementById("fechafinal").value,
+
+          }, function(responseText) {
+            json = JSON.parse(responseText);
+            html = "";
+
+            for(i = 0 ;i<json.length; i++){
+              fecha=json[i].fechapagoprestamo.split("-");
+              html+="<tr>";
+              html+="<td>"+json[i].idpagoprestamo+"</td>";
+              html+="<td>"+json[i].saldoanteriorpagopretsamo+"</td>";
+              html+="<td>"+json[i].saldoactualpagoprestamo+"</td>";
+              html+="<td>"+json[i].montocuotapagoprestamo+"</td>";
+              html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
+              html+="<td>"+json[i].horapagoprestamo+"</td>";
+              html+='<td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
+              
+            }
+            
+            $("#datos").html(html);
+            $(document).ready(function() {
+                $('#listaAhorro').DataTable({
+                    "bDeferRender": true,
+                    "sordering": true,
+                    "responsive": true,
+                    "sPaginationType": "full_numbers",
+
+                    "oLanguage": {
+                        "sProcessing": "Procesando...",
+                        "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
+                        "sZeroRecords": "No se encontraron resultados",
+                        "sEmptyTable": "Ningún dato disponible en esta tabla",
+                        "sInfo": "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix": "",
+                        "sSearch": "Buscar:",
+                        "sUrl": "",
+                        "sInfoThousands": ",",
+                        "sLoadingRecords": "Por favor espere - cargando...",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                      }
+                  });
+               });
+          });
+      });
+  }
+  
+}
+
+function obtenerPrestamosSocio(){
+  id=document.getElementById("selectCliente").value;
+  $(document).ready(function() {
+      $.post('../../business/reportes/actionReportePagoPrestamo.php', {
+              action : 'obtenerPrestamosSocio',
+              id:id,
+      }, function(responseText) {
+        json = JSON.parse(responseText);
+        html = "";
+        for(i = 0 ;i<json.length; i++){
+          html+="<option value="+json[i].idprestamo+">Adelanto N° "+json[i].idprestamo+" de "+json[i].montototalprestamo+"</option>";      
+        }
+        if(html==""){
+          html="<option value='0'>No posee adelanto</option>"
+        }
+        $("#selectPrestamos").html(html);
+    });
+  });  
+
+}
+
+function consultarProductorSocio(){
+  $(document).ready(function () {
+      $.post('../../business/productor/actionProductorSocio.php', {
+            action : 'consultarproductores'
+      }, function(responseText) {
+        json = JSON.parse(responseText);
+        html = "";
+        for(i = 0 ;i<json.length; i++){
+          idPersona = '"'+json[i].idpersona+'"';
+          html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
+        }
+        $("#selectCliente").html(html);
+        obtenerPrestamosSocio();
+      });
+    });
+}

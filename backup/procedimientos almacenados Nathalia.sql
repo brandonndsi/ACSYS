@@ -300,7 +300,12 @@ BEGIN
 END$$
 DELIMITER $$
 
-
+DELIMITER $$
+CREATE PROCEDURE  verReportePagoPrestramo(fechaInicio DATE, fechaFinal DATE, idPrestamo INT)
+BEGIN
+  SELECT  tbpagoprestamo.idpagoprestamo,tbpagoprestamo.saldoanteriorpagopretsamo,tbpagoprestamo.saldoactualpagoprestamo,tbpagoprestamo.montocuotapagoprestamo,tbpagoprestamo.fechapagoprestamo,tbpagoprestamo.horapagoprestamo FROM tbprestamosporcobrar INNER JOIN tbpagoprestamo ON tbpagoprestamo.idprestamoporcobrar=tbprestamosporcobrar.idprestamoporcobrar WHERE tbpagoprestamo.fechapagoprestamo BETWEEN fechaInicio AND fechaFinal AND tbprestamosporcobrar.idprestamo=idPrestamo;
+END$$
+DELIMITER $$
 
 
 
