@@ -19,6 +19,7 @@
         <script src="../../js/bootstrap.min.js"></script>
         <script src="../../js/ventas/ventaVentanillaJS.js"></script>
         <script src="../../js/autocomplete.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             localStorage.clear();
             $(document).ready(function () {
@@ -27,10 +28,9 @@
         </script>
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTablaLacteos();consultarProductor();">
+    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTablaLacteo();consultaProductor();">
         <?php
-        //include '../menuView.php';
-        include '../InterumtorDeMenus.php';
+        include '../menuView.php';
         ?>
         <div class="ventaVeterinaria">
             <h4>Ventas ventanilla</h4>
@@ -39,7 +39,7 @@
             </select>
             <div class="form-group">
                 <div class="col-sm-2">
-                    <button onclick="$('#modalProductosVentanilla').modal();cargar();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
+                    <button onclick="$('#modalProductosVentanilla').modal();carga();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-sm-1">
                     <label>Total</label>
@@ -66,7 +66,7 @@
                 </table>
             </div>
             <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/ventanilla.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-            <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+            <button class="btn btn-primary" onclick="$('#modalRecibo').modal();llevar();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
         <div id="modalProductosVentanilla" class="modal fade in">
@@ -101,69 +101,8 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
-        <!--<div id="modalRecibo" class="modal fade in">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="form-group">
-                            <div class="col-sm-1">
-                                <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                            <div class="col-sm-2">
-                                <h4 class="modal-title">Recibo</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <center>
-                                <h2>EL SAUCE TICO</h2>
-                                <img src="../../image/logo.png" width="100px" height="100px">
-                            </center>
-                        </div>
-                        <div class="form-group">
-                            <label  for="contrasena">Factura N°:</label>
-                            <input id="Re_recibo"  style="border: none; background: white" name="contrasenaNueva" type="text" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label  for="contrasena">Cliente:</label>
-                            <input id="Re_cliente"  style="border: none; background: white; padding-left: 4%" name="contrasenaNueva" type="text" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label style="" for="contrasena">Tipo venta:</label>
-                            <input id="Re_tipoVenta" style="border: none; background: white" name="contrasenaNueva" type="text" placeholder="">
-                        </div>
-                        <label>Productos:</label>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Codigo</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="Re_ventaProductos">
 
-                            </tbody>
-                            <tfoot id ="Re_totalPagar">
-
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btn-group">
-                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/ventanilla.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-                            <button class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            <!--</div><!-- /.modal-dalog -->
-       <!-- </div><!-- /.modal -->
-
-    <!--Metodos introducidos por david salas -->
-    <div id="modalRecibo" class="modal fade in">
+        <div id="modalRecibo" class="modal fade in">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -179,7 +118,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <div id="facLogoInfo">
-                               <h2>EL SAUCE TICO</h2>  
+                                <h2>EL SAUCE TICO</h2>  
                             </div>
                             <div id="faclogo">
                                 <img src="../../image/logo.png" width="100px" height="100px">
@@ -188,7 +127,7 @@
                         <div class="form-group">
                             <label  id="facNumero">Factura N°:</label>
                             <input id="Re_recibo" name="contrasenaNueva" 
-                            type="text" readonly>
+                                   type="text" readonly>
                         </div>
                         <div class="form-group">
                             <label  id="facCliente">Cliente:</label>
@@ -226,7 +165,27 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
-        <!--terminacion del metodo introducido por david salas -->
+
+        <div id="modalRespuesta" class="modal fade in">
+            <div  class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <center>
+                            <div id="mensaje"></div>
+                        </center>
+                    </div>
+                    <div class="modal-footer">
+
+                        <p><button data-dismiss='modal' class="btn btn-danger">Cerrar</button> </p>
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dalog -->
+        </div><!-- /.modal -->
+
     </body>
 </html>
 

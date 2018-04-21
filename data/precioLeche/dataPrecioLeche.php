@@ -26,7 +26,7 @@ class dataPrecioLeche {
         $fecha = date('Y-m-d');
         $actualizarPrecio = $con->query("CALL actualizarPrecioLeche('$precio','$fecha','$id')");
 
-        if ($actualizarPrecio == 1) {
+        if ($actualizarPrecio == 1 && $precio > 0) {
             return "true";
         } else {
             return "false";
