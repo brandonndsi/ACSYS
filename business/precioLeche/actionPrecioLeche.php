@@ -13,10 +13,10 @@ if ($action == "verprecioleche") {
     $id = htmlentities($_POST['id']);
     $precio = htmlentities($_POST['precio']);
 
-    if (empty($id) || empty($precio)) {
-        echo("false");
-    } else {
+    if ($precio > 0 || !empty($id) || !empty($precio)) {
         echo $businesPrecioLeche->actualizarPrecio($id, $precio);
+    } else {
+        echo("false");
     }
 }
 ?>

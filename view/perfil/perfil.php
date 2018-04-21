@@ -18,8 +18,7 @@
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
         <!-- Import the file menu.php -->
         <?php
-        //include '../menuView.php';
-        include '../InterumtorDeMenus.php';
+        include '../menuView.php';
         ?>
 
         <div class="container">

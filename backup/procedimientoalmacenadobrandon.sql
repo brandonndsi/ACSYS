@@ -154,7 +154,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarPrecioLeche`(IN `precio` DOUBLE, IN `fecha` DATE, IN `id` INT)
     NO SQL
-UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND estadopreciolitroleche = "activo"$$
+UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND precio > 0 AND estadopreciolitroleche = "activo"$$
 DELIMITER ;
 
 /* obtiene la lista de procesos entre un rango*/
@@ -172,4 +172,15 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarPersona`(IN `id` INT(30))
     NO SQL
 SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona` FROM `tbpersona` WHERE idpersona= id$$
+DELIMITER ;
+
+/* registra venta ventanilla*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaVentanilla`(IN `facturaVenta` INT(50), IN `fecha` DATE, IN `hora` TIME, IN `totalBruto` INT, IN `totalNeto` INT, IN `tipoVenta` TEXT, IN `idCliente` INT(50))
+    NO SQL
+BEGIN
+INSERT INTO tbventa(numerofactura, fechaventa, horaventa, totalbrutoventa, totalnetoventa, tipoventa, idpersonaventa) VALUES (facturaVenta,fecha,hora,totalBruto,totalNeto,tipoVenta,idCliente);
+UPDATE tbfacturero SET ultimafactura=facturaVenta+1;
+SELECT idventa FROM tbventa ORDER BY idventa DESC limit 1;
+END$$
 DELIMITER ;

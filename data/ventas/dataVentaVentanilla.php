@@ -21,13 +21,13 @@ class dataVentaVentanilla {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $facturaVenta = $this->getFactura();
-        $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
-        //$this->registrarProductosLacteos($productos, $idVenta);
+
+        $idVenta = $this->registrarVentaVentanilla($idCliente, $totalNeto, $totalBruto, $facturaVenta);
 
         if ($idCliente != 0) {
-            $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
+            $this->registrarDetalleVenta($productos, $idVenta);
         } else {
-            $this->registrarProductosLacteos($productos, $idVenta);
+            return false;
         }
     }
 
@@ -39,41 +39,40 @@ class dataVentaVentanilla {
         return $factura;
     }
 
-    function registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta) {
+    function registrarVentaVentanilla($idCliente, $totalNeto, $totalBruto, $facturaVenta) {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $tipoVenta = "Ventanilla";
         $fecha = date('Y-m-d');
         $hora = date("g:i A");
-        $sqlQuery = $con->query("CALL registrarVenta('$idCliente','$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta')");
-        if ($sqlQuery == 1) {
-            return true;
-        } else {
-            return false;
-        }
+
+        $sqlQuery = $con->query("CALL registrarVentaVentanilla('$facturaVenta','$fecha','$hora','$totalBruto','$totalNeto','$tipoVenta','$idCliente')");
+        return $sqlQuery->fetch_assoc()['idventa'];
     }
 
-    function registrarVentaPorCobrar($idCliente, $idVenta, $totalVenta) {
-        $con = $this->conexion->crearConexion();
-        $con->set_charset("UTF8");
-        $sqlQuery = $con->query("CALL registrarVentaPorCobrar('$idCliente','$idVenta','$totalVenta')");
-        if ($sqlQuery == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /*function registrarProductosLacteos($productos, $idVenta) {
+    function registrarDetalleVenta($productos, $idVenta) {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $productos = json_decode($productos);
+        
         foreach ($productos as $producto) {
             $total = $producto->precio * $producto->cantidad;
-            $descuento = $producto->precio;
-            $con->query("CALL registrarDetalleVenta('$producto->precio','$producto->cantidad','$total','$producto->codigo','$descuento','$idVenta')");
+            $con->query("CALL registrarDetalleVenta('" . $producto->precio . "','" . $producto->cantidad . "','" . $total . "','" . $producto->codigo . "','0','" . $idVenta . "');");
         }
-    }*/
+        
+    }
+
+    function idfactura() {
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $sqlQuery = $con->query("SELECT `ultimafactura` FROM `tbfacturero`;");
+        $array;
+        while ($row = $sqlQuery->fetch_assoc()) {
+            $array = $row['ultimafactura'];
+        }
+
+        return $array;
+    }
 
 }
 
