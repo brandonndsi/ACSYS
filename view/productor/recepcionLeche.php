@@ -57,7 +57,7 @@
            <input id="peso"   class="btn  caja labelCaja">
 
            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary" onclick="registrarLeche()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <button class="btn btn-primary" onclick="registrarLeche()">Procesar registro<span class="glyphicon glyphicon-cog"></span></button>
          </div>
              <!--Modal de respuesta socio-->
             <div id="modalRespuesta" class="modal fade in">

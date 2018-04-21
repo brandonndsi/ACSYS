@@ -106,7 +106,7 @@
                                             <label>Precio:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="precio" id="precio" placeholder="Descripción"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precio" id="precio" placeholder="Descripción"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -237,7 +237,7 @@
                                             <label>Precio:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="precior" id="precior" placeholder="Descripción"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precior" id="precior" placeholder="Descripción"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">

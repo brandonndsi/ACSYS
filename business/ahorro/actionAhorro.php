@@ -10,7 +10,7 @@
 		$id=$_POST['id'] ;
       	$ahorro=$_POST['ahorro'] ;
       	$tipo=$_POST['tipo'];
-      	if(!empty($ahorro)&&is_numeric($ahorro)&& $ahorro>=0){
+      	if(is_numeric($ahorro)&& $ahorro>-1){
       		echo $businessAhorro->ahorroMontoModificar($id,$ahorro,$tipo);
 
       	}else{

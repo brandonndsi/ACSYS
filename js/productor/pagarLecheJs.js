@@ -103,7 +103,7 @@ function pagarMontoLeche(productor){
 
       }, function(responseText) {
         alert(responseText);
-          if (responseText=='true') {
+          if (responseText==true) {
             swal("El pago se ha realizado satisfactoriamente", {
               icon: "success",
             });

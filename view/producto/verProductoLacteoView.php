@@ -97,7 +97,7 @@
                                             <label>Precio Unitario:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="precio" id="precio" placeholder="Precio"></p>
+                                            <p><input type="text" onkeypress="return soloNumeros(event);" class="span12" name="precio" id="precio" placeholder="Precio"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -202,7 +202,7 @@
                                             <label>Precio Unitario:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="precior" id="precior" placeholder="Precio"></p>
+                                            <p><input type="text" onkeypress="return soloNumeros(event);" class="span12" name="precior" id="precior" placeholder="Precio"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">

@@ -16,7 +16,6 @@
           <script src="../../js/jquery.dataTables.js"></script>
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
-          <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
           <script src="../../js/productor/prestamosJS.js"></script>
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -29,7 +28,7 @@
           </script>
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
+        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="consultarProductorSocio();">
         <?php
             //include '../menuView.php';
               include '../InterumtorDeMenus.php';
@@ -50,11 +49,11 @@
                 <option value="20">20%</option>
                 <option value="5">5%</option>
              </select>
-             <input type="text" class="btn caja labelCaja" id="montoPrestamo">
+             <input onkeypress="return soloNumeros(event)" type="text" class="btn caja labelCaja" id="montoPrestamo">
           </div>
           <label  class="caja labelCaja">Plazo:</label>
           <div class="caja">
-             <input type="text" class="btn" id="plazoNumero">
+             <input onkeypress="return soloNumeros(event)" type="text" class="btn" id="plazoNumero">
              <select type="text" id="plazoModo" class="btn" style="background:white">
                 <option value="semana">Semanal</option>
                 <option value="quincena">Quincenal</option>

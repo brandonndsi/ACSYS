@@ -76,7 +76,6 @@ function registrarPagoCuota(idprestamoporcobrar,cuota){
        },function(responseText) {
        
            if (responseText=="true") {
-            alert(responseText);
              swal({
                  title: "¡Se registró el pago correctamente!",
                  text: "¿Desea imprimir el comprobante de la cuota pagada?",

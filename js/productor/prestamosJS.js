@@ -43,6 +43,29 @@ function registrarSolicitudPrestamoConfirmacion(){
     }
   }
 
+  function soloNumeros(e) 
+  { 
+  var key = window.Event ? e.which : e.keyCode 
+  return ((key >= 48 && key <= 57) || (key==8)) 
+  }
+  
+  function consultarProductorSocio(){
+  $(document).ready(function () {
+      $.post('../../business/productor/actionProductorSocio.php', {
+            action : 'consultarproductores'
+      }, function(responseText) {
+        json = JSON.parse(responseText);
+        html = "";
+        for(i = 0 ;i<json.length; i++){
+          idPersona = '"'+json[i].idpersona+'"';
+          html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
+        }
+        $("#selectCliente").html(html);
+        obtenerPrestamosSocio();
+      });
+    });
+}
+
   function registrarSolicitudPrestamo(){
     idProductor = $("#selectCliente").val();
     interes = $("#interes").val();

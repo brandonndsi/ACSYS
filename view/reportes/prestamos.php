@@ -32,7 +32,7 @@ include '../InterumtorDeMenus.php';
  <div id="content">
 
  	<div id="contTitulo">
-            <h4>Reporte de Prestamos</h4>
+            <h4>Reporte de solicitudes de adelanto</h4>
  	</div>
 
  	<div id="fechas">
