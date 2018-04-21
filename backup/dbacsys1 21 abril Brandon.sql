@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 21-04-2018 a las 05:06:23
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-04-2018 a las 14:19:33
 -- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.1.1
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -25,7 +25,7 @@ DELIMITER $$
 -- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarPrecioLeche` (IN `precio` DOUBLE, IN `fecha` DATE, IN `id` INT)  NO SQL
-UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND estadopreciolitroleche = "activo"$$
+UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND precio > 0 AND estadopreciolitroleche = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aprobarSolicitud` (IN `idsolicitud` INT, IN `idpersonaprestamo` INT, IN `tasainteres` DOUBLE, IN `montototalprestamo` DOUBLE, IN `montocuota` DOUBLE, IN `fechaprestamo` DATE)  BEGIN
   INSERT INTO  tbprestamos(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo) VALUES(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo);
@@ -44,7 +44,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `compramateriaprima` (IN `idProducto
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `consultarRecepcion` (IN `fecha` DATE)  BEGIN
-SELECT  tbpersona.idpesona,tbpesalechediario.idpesalechediario, tbpesalechediario.fechaentregalechediario,tbpesalechediario.turnopesolechediario,tbpesalechediario.pesoturno ,tbpersona.nombrepersona, tbpersona.apellido1persona, tbpersona.apellido2persona FROM tbpesalechediario INNER JOIN tbpersona ON tbpesalechediario.idpersonalechediario=tbpersona.idpersona WHERE tbpesalechediario.estadopesalechediario="activo" AND tbpesalechediario.fechaentregalechediario=fecha ORDER BY tbpesalechediario.idpersonalechediario DESC;    
+SELECT  tbpersona.idpersona,tbpesalechediario.idpesalechediario, tbpesalechediario.fechaentregalechediario,tbpesalechediario.turnopesolechediario,tbpesalechediario.pesoturno ,tbpersona.nombrepersona, tbpersona.apellido1persona, tbpersona.apellido2persona FROM tbpesalechediario INNER JOIN tbpersona ON tbpesalechediario.idpersonalechediario=tbpersona.idpersona WHERE tbpesalechediario.estadopesalechediario="activo" AND tbpesalechediario.fechaentregalechediario=fecha ORDER BY tbpesalechediario.idpersonalechediario DESC;    
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminarclientemayorista` (IN `id` INT)  NO SQL
@@ -427,7 +427,7 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreportesventa` (IN `inicial` DATE, IN `final` DATE)  NO SQL
 BEGIN
 SELECT `idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa` FROM `tbventa` 
-WHERE fechaventa>=inicial AND fechaventa<=final;
+WHERE fechaventa>=inicial AND fechaventa<=final AND tipoventa="Veterinaria";
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sacarreporteventadistribuidor` (IN `inicial` DATE, IN `final` DATE)  NO SQL
@@ -471,6 +471,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `verReportePagoLeche` (`fechaInicio`
   SELECT tbcompramateriaprima.idcompramateriaprima, tbcompramateriaprima.cantidadlitroscompramateriaprima,tbcompramateriaprima.montopagolitro,tbcompramateriaprima.totalpagarlitros,tbcompramateriaprima.fechacompramateriaprima,tbpersona.nombrepersona,tbpersona.apellido1persona,tbpersona.apellido2persona FROM tbcompramateriaprima INNER JOIN tbpersona ON tbcompramateriaprima.idpersona=tbpersona.idpersona WHERE tbcompramateriaprima.fechacompramateriaprima BETWEEN fechaInicio AND fechaFinal;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verReportePagoPrestramo` (`fechaInicio` DATE, `fechaFinal` DATE, `idPrestamo` INT)  BEGIN
+  SELECT  tbpagoprestamo.idpagoprestamo,tbpagoprestamo.saldoanteriorpagopretsamo,tbpagoprestamo.saldoactualpagoprestamo,tbpagoprestamo.montocuotapagoprestamo,tbpagoprestamo.fechapagoprestamo,tbpagoprestamo.horapagoprestamo FROM tbprestamosporcobrar INNER JOIN tbpagoprestamo ON tbpagoprestamo.idprestamoporcobrar=tbprestamosporcobrar.idprestamoporcobrar WHERE tbpagoprestamo.fechapagoprestamo BETWEEN fechaInicio AND fechaFinal AND tbprestamosporcobrar.idprestamo=idPrestamo;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -487,6 +491,23 @@ CREATE TABLE `tbahorrosemanal` (
   `fechaentregapago` date NOT NULL,
   `estadoahorrosemanal` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbahorrosemanal`
+--
+
+INSERT INTO `tbahorrosemanal` (`idpersonaahorro`, `idahorro`, `montoahorrosemanalporlitro`, `litrosentregadosahorrosemanal`, `fechaentregapago`, `estadoahorrosemanal`) VALUES
+(5, 1, 50, 40, '2018-04-04', 'pagado'),
+(5, 2, 50, 40, '2018-04-04', 'pagado'),
+(1, 3, 10, 197.2, '2018-04-04', 'pagado'),
+(5, 4, 50, 40, '2018-04-04', 'pagado'),
+(5, 5, 50, 40, '2018-04-04', 'pagado'),
+(2, 6, 40, 290.7, '2018-03-01', 'activo'),
+(5, 7, 50, 40, '2018-04-11', 'pagado'),
+(1, 8, 10, 197.2, '2018-04-19', 'pagado'),
+(1, 9, 10, 13, '2018-04-21', 'activo'),
+(5, 10, 50, 120, '2018-04-21', 'activo'),
+(8, 11, 10, 565, '2018-04-21', 'activo');
 
 -- --------------------------------------------------------
 
@@ -509,6 +530,16 @@ CREATE TABLE `tbclientemayorista` (
   `idpersonamayorista` int(11) NOT NULL,
   `estadoclientemayorista` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbclientemayorista`
+--
+
+INSERT INTO `tbclientemayorista` (`idpersonamayorista`, `estadoclientemayorista`) VALUES
+(4, 'Inactivo'),
+(14, 'Activo'),
+(15, 'Activo'),
+(19, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -537,6 +568,58 @@ CREATE TABLE `tbcompramateriaprima` (
   `totalpagarlitros` double NOT NULL,
   `fechacompramateriaprima` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbcompramateriaprima`
+--
+
+INSERT INTO `tbcompramateriaprima` (`idpersona`, `idcompramateriaprima`, `cantidadlitroscompramateriaprima`, `montopagolitro`, `totalpagarlitros`, `fechacompramateriaprima`) VALUES
+(1, 1, 23, 280, 1000, '2017-01-01'),
+(5, 2, 40, 280, 160, '2018-04-04'),
+(5, 3, 40, 280, 160, '2018-04-04'),
+(5, 4, 40, 280, 160, '2018-04-04'),
+(5, 5, 40, 280, 160, '2018-04-04'),
+(5, 6, 40, 280, 160, '2018-04-04'),
+(5, 7, 40, 280, 160, '2018-04-04'),
+(5, 8, 40, 285, 160, '2018-04-04'),
+(5, 9, 40, 285, 160, '2018-04-04'),
+(5, 10, 40, 285, 160, '2018-04-04'),
+(5, 11, 40, 285, 11400, '2018-04-04'),
+(5, 12, 40, 285, 11400, '2018-04-04'),
+(5, 13, 40, 285, 11400, '2018-04-04'),
+(5, 14, 40, 285, 11400, '2018-04-04'),
+(5, 15, 40, 285, 11400, '2018-04-04'),
+(5, 16, 40, 285, 11400, '2018-04-04'),
+(5, 17, 40, 285, 11400, '2018-04-04'),
+(5, 18, 40, 285, 11400, '2018-04-04'),
+(5, 19, 40, 285, 11400, '2018-04-04'),
+(5, 20, 40, 285, 11400, '2018-04-04'),
+(5, 21, 40, 285, 11400, '2018-04-04'),
+(5, 22, 40, 285, 11400, '2018-04-04'),
+(5, 23, 40, 285, 11400, '2018-04-04'),
+(5, 24, 40, 285, 11400, '2018-04-04'),
+(5, 25, 50, 285, 14250, '2018-04-04'),
+(5, 26, 50, 285, 14250, '2018-04-04'),
+(5, 27, 40, 285, 11400, '2018-04-04'),
+(1, 28, 197.2, 285, 56202, '2018-04-04'),
+(5, 29, 40, 285, 11400, '2018-04-04'),
+(5, 30, 40, 285, 11400, '2018-04-04'),
+(5, 31, 40, 285, 11400, '2018-04-04'),
+(5, 32, 40, 285, 11400, '2018-04-04'),
+(5, 33, 40, 285, 11400, '2018-04-04'),
+(5, 34, 40, 285, 11400, '2018-04-04'),
+(5, 35, 40, 285, 11400, '2018-04-04'),
+(5, 36, 40, 285, 11400, '2018-04-04'),
+(1, 37, 197.2, 285, 56202, '2018-04-04'),
+(5, 38, 40, 285, 11400, '2018-04-04'),
+(5, 39, 40, 285, 11400, '2018-04-04'),
+(2, 40, 290.7, 285, 82849.5, '2018-04-04'),
+(2, 41, 290.7, 285, 82849.5, '2018-04-04'),
+(5, 42, 40, 285, 11400, '2018-04-11'),
+(1, 43, 197.2, 300, 59160, '2018-04-19'),
+(1, 44, 13, 300, 3900, '2018-04-21'),
+(5, 45, 120, 300, 36000, '2018-04-21'),
+(8, 46, 565, 300, 169500, '2018-04-21');
 
 -- --------------------------------------------------------
 
@@ -577,6 +660,16 @@ CREATE TABLE `tbdetalleventa` (
   `iddetalleventa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tbdetalleventa`
+--
+
+INSERT INTO `tbdetalleventa` (`preciounitariodetalleventa`, `cantidaddetalleventa`, `subtotaldetalleventa`, `codigoproductoslacteos`, `descuento`, `idventa`, `iddetalleventa`) VALUES
+(100, 4, 458, '1234', 5, 36, 2),
+(51651, 4, 4, '1234', 4, 36, 3),
+(4, 4, 2, '1234', 0, 35, 4),
+(4000, 1, 4000, '4390', 0, 96, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -591,6 +684,35 @@ CREATE TABLE `tbdetalleventaveterinaria` (
   `idventa` int(11) NOT NULL,
   `idproductoveterinario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbdetalleventaveterinaria`
+--
+
+INSERT INTO `tbdetalleventaveterinaria` (`iddetalleventa`, `preciounitariodetalleventa`, `cantidaddetalleventa`, `subtotaldetalleventa`, `idventa`, `idproductoveterinario`) VALUES
+(7, 400, 1, 400, 5, 2),
+(8, 5000, 1, 5000, 6, 1),
+(9, 2500, 1, 2500, 6, 7),
+(10, 2500, 1, 2500, 10, 7),
+(11, 5000, 1, 5000, 22, 1),
+(12, 5000, 1, 5000, 35, 1),
+(13, 5000, 1, 5000, 53, 1),
+(14, 5000, 1, 5000, 54, 1),
+(15, 5000, 1, 5000, 56, 1),
+(16, 5000, 1, 5000, 58, 1),
+(17, 2500, 1, 2500, 58, 7),
+(18, 5000, 1, 5000, 60, 1),
+(19, 2500, 1, 2500, 60, 7),
+(20, 5000, 1, 5000, 62, 1),
+(21, 2500, 1, 2500, 62, 7),
+(22, 5000, 1, 5000, 64, 1),
+(23, 5000, 1, 5000, 66, 1),
+(24, 5000, 1, 5000, 68, 1),
+(25, 5000, 1, 5000, 70, 1),
+(26, 5000, 1, 5000, 77, 1),
+(27, 5000, 1, 5000, 80, 1),
+(28, 2500, 1, 2500, 93, 8),
+(29, 2500, 1, 2500, 95, 7);
 
 -- --------------------------------------------------------
 
@@ -612,8 +734,10 @@ CREATE TABLE `tbempleado` (
 --
 
 INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado`, `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`, `estadoempleado`) VALUES
-(1, '$2y$10$jn8r0TfldNvzM7yya86QzOpX75AWud1fZTMCNsoejRLKDA0I2qg6W', 'Administrador', NULL, NULL, 'activo'),
-(10, '$2y$10$SdrxlHlOKbR9BywtBoFx2./.eiyk4FuZsp4cy/YnXt1TCkudXGn1.', 'Bodega', NULL, NULL, 'activo');
+(1, '$2y$10$PXqIWhFC1PlthoIhvJHL7.8da7cBhjdZg0jZh/KcfCrBxrx0J31jm', 'Administrador', '../../image/empleado/manipulacion.jpg', '../../image/empleado/cedula.jpg', 'activo'),
+(4, '$2y$10$RX3n3ojxl1yVeCHw8HMy1ucnCyaiyQKRI8moOHwQBWIkriesCWGNe', 'Bodega', NULL, NULL, 'activo'),
+(12, '$2y$10$rbKXQbZ.', 'Bodega', NULL, NULL, 'activo'),
+(13, '$2y$10$vsJ8arprXLru9k0hOZfQMu5EKJEwwLVBbkGkYDadLhpbNhQADQx9W', 'Administrador', NULL, NULL, 'activo');
 
 -- --------------------------------------------------------
 
@@ -624,6 +748,13 @@ INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado
 CREATE TABLE `tbfacturero` (
   `ultimafactura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbfacturero`
+--
+
+INSERT INTO `tbfacturero` (`ultimafactura`) VALUES
+(83);
 
 -- --------------------------------------------------------
 
@@ -658,6 +789,13 @@ CREATE TABLE `tbimagen` (
   `nombreimagen` varchar(60) NOT NULL,
   `rutaimagen` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbimagen`
+--
+
+INSERT INTO `tbimagen` (`idimagen`, `idpersona`, `nombreimagen`, `rutaimagen`) VALUES
+(1, 4, 'david', '../../image/distribuidor/david.jpg');
 
 -- --------------------------------------------------------
 
@@ -714,7 +852,8 @@ CREATE TABLE `tbjuntadirectiva` (
 --
 
 INSERT INTO `tbjuntadirectiva` (`idjuntadirectiva`, `fechainicioperiodo`, `fechafinalperiodo`, `presidente`, `vicepresidente`, `secretario`, `tesorero`, `fiscal`, `vocal1`, `vocal2`) VALUES
-(1, '2018-02-01', '2018-02-24', 'Kervn', 'Nathalia', 'Lilliam', 'Hector', 'Minor', 'Sergio', 'Olman');
+(1, '2018-02-01', '2018-02-24', 'Kervn', 'Nathalia', 'Lilliam', 'Hector', 'Minor', 'Sergio', 'Olman'),
+(2, '2018-03-06', '2018-03-06', 'a', 'a', 'a', 'a', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -747,7 +886,14 @@ INSERT INTO `tbpagoprestamo` (`idpagoprestamo`, `idprestamoporcobrar`, `saldoant
 (8, 2, 450000, 450000, 0, '2018-04-13', '12:22:00'),
 (9, 2, 450000, 450000, 0, '2018-04-13', '12:22:00'),
 (10, 2, 450000, 430000, 20000, '2018-04-14', '11:46:00'),
-(11, 3, 100000, 90000, 10000, '2018-04-14', '11:59:00');
+(11, 3, 100000, 90000, 10000, '2018-04-14', '11:59:00'),
+(12, 8, 150000, 140000, 10000, '2018-04-20', '11:21:00'),
+(13, 4, 100000, 85000, 15000, '2018-04-21', '12:41:00'),
+(14, 2, 430000, 430000, 0, '2018-04-21', '12:45:00'),
+(15, 2, 430000, 430000, 0, '2018-04-21', '12:46:00'),
+(16, 2, 430000, 430000, 0, '2018-04-21', '12:46:00'),
+(17, 2, 430000, 430000, 0, '2018-04-21', '12:46:00'),
+(18, 2, 430000, 410000, 20000, '2018-04-21', '12:46:00');
 
 -- --------------------------------------------------------
 
@@ -809,11 +955,22 @@ CREATE TABLE `tbpersona` (
 
 INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES
 (1, '402060267', 'Nathalia', 'Ovares', 'Vindas', '87539494', 'San Pablo', 'nathy@gmail.com'),
+(2, '305020820', 'Kervin', 'Araya', 'Romero', '22345678', 'El Sauce', 'kervin@gmail.com'),
 (4, '206990696', 'David', 'Salas', 'Lorente', '85479654', 'la virgen', 'david@gmail.com'),
+(5, '234567890', 'Giorno', 'Giovana', 'Giovana', '2345678', 'Vento', 'gg@gmail.com'),
+(6, '2345678934', 'nanita', 'ovarios', 'mevago', '1234567', 'La oruca', 'sdfgh@gmail.com'),
+(7, '900570431', 'Marlene', 'Vindas', 'Vindas', '84421444', 'San Pablo', 'N/A'),
 (8, '302640297', 'Hector', 'Araya', 'Cordero', '88888888', 'El Sauce', 'N/A'),
 (9, '473739927', 'Enrique', 'Albaro', 'Perez', '8667899', 'La Virgen', 'gga@hhd.com'),
 (10, '305020820', 'Kervin JosÃ©', 'Araya', 'Romero', '88776655', '', 'ker@gmail.com'),
-(13, '123', 'Brandon', 'Rodriguez', 'Mendez', '62091232', 'Sauce', 'brandon-ndsi@hotmail.com');
+(12, '33440667', 'Berny', 'Garro', 'Dur&aacute;n', '22768900', 'La Victoria', 'b@gmail.com'),
+(13, '207210905', 'Brandon', 'Rodriguez', 'Mendez', '62091232', 'Sauce', 'brandon-ndsi@hotmail.com'),
+(14, '25', 'lds', 'dd', 'dfdsf', '4324', 'dd', 'dddsa@gmail.com'),
+(15, '345365465', 're', 'rew', 'erw', '32433333', 'efefffv', 'ewq@gmail.com'),
+(16, '900570431', 'Ana', 'Vindas', 'Vindas', '22611985', 'Heredia', 'serevi@gmail.com'),
+(17, '1234567', 'Esteban', 'BolaÃ±os', 'Jimenez', '87878787', 'heredia', 'esteban@gmail.com'),
+(18, '1234567890', 'Jose', 'Perez', 'Zeledon', '22348907', 'Donde naci', 'N/A'),
+(19, '308760987', 'Garen', 'Duch', 'Contouch', '56566778', 'Demacia', 'garen@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -829,6 +986,29 @@ CREATE TABLE `tbpesalechediario` (
   `pesoturno` double NOT NULL,
   `estadopesalechediario` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbpesalechediario`
+--
+
+INSERT INTO `tbpesalechediario` (`idpersonalechediario`, `idpesalechediario`, `fechaentregalechediario`, `turnopesolechediario`, `pesoturno`, `estadopesalechediario`) VALUES
+(1, 6, '2018-02-21', 'Mañana', 40, 'inactivo'),
+(1, 7, '2018-02-21', 'Tarde', 40, 'inactivo'),
+(5, 8, '2018-02-21', 'Tarde', 40, 'inactivo'),
+(1, 9, '2018-02-22', 'Mañana', 40, 'inactivo'),
+(1, 10, '2018-03-12', 'Mañana', 38.6, 'inactivo'),
+(1, 11, '2018-03-12', 'Tarde', 38.6, 'inactivo'),
+(2, 12, '2018-04-01', 'Mañana', 50, 'inactivo'),
+(2, 13, '2018-04-01', 'Tarde', 45.8, 'inactivo'),
+(2, 14, '2018-04-02', 'Tarde', 45.8, 'inactivo'),
+(2, 15, '2018-04-02', 'Mañana', 53.1, 'inactivo'),
+(2, 16, '2018-04-03', 'Mañana', 53, 'inactivo'),
+(2, 17, '2018-04-03', 'Tarde', 43, 'inactivo'),
+(5, 18, '2018-04-18', 'Mañana', 60, 'inactivo'),
+(5, 19, '2018-04-18', 'Tarde', 60, 'inactivo'),
+(1, 20, '2018-04-20', 'Mañana', 13, 'inactivo'),
+(8, 21, '2018-04-19', 'Mañana', 565, 'inactivo'),
+(1, 22, '2018-04-21', 'Mañana', 11, 'activo');
 
 -- --------------------------------------------------------
 
@@ -848,7 +1028,7 @@ CREATE TABLE `tbpreciolitroleche` (
 --
 
 INSERT INTO `tbpreciolitroleche` (`idpreciolitroleche`, `preciolitroleche`, `fechainicio`, `estadopreciolitroleche`) VALUES
-(1, 300, '2018-04-14', 'activo');
+(1, 400, '2018-04-22', 'activo');
 
 -- --------------------------------------------------------
 
@@ -877,11 +1057,17 @@ INSERT INTO `tbprestamos` (`idprestamo`, `idpersonaprestamo`, `tasainteres`, `mo
 (5, 1, 15, 100000, 10000, '2018-04-05'),
 (6, 1, 15, 100000, 10000, '2018-04-05'),
 (7, 1, 15, 100000, 10000, '2018-04-05'),
-(8, 8, 10, 200000, 290909.09090909, '2018-04-05'),
+(8, 8, 10, 200000, 20000, '2018-04-05'),
 (9, 1, 10, 100000, 190909.09090909, '2018-04-05'),
 (10, 1, 10, 100000, 190909.09090909, '2018-04-05'),
 (11, 9, 10, 150000, 286363.63636364, '2018-04-05'),
-(12, 8, 10, 200000, 290909.09090909, '2018-04-05');
+(12, 8, 10, 200000, 290909.09090909, '2018-04-05'),
+(13, 16, 10, 130000, 13000, '2018-04-21'),
+(14, 9, 10, 130000, 248181.81818182, '2018-04-21'),
+(15, 6, 10, 50000, 133333.33333333, '2018-04-21'),
+(16, 1, 10, 11111, 21211.909090909, '2018-04-21'),
+(17, 16, 10, 150000, 150000, '2018-04-21'),
+(18, 16, 10, 125000, 125000, '2018-04-21');
 
 -- --------------------------------------------------------
 
@@ -902,14 +1088,20 @@ CREATE TABLE `tbprestamosporcobrar` (
 
 INSERT INTO `tbprestamosporcobrar` (`idprestamoporcobrar`, `idprestamo`, `saldoactualprestamoporcobrar`, `estadoprestamoporcobrar`) VALUES
 (1, 1, 0, 'pagado'),
-(2, 2, 430000, 'activo'),
+(2, 2, 410000, 'activo'),
 (3, 6, 90000, 'activo'),
-(4, 7, 100000, 'activo'),
+(4, 7, 85000, 'activo'),
 (5, 8, 200000, 'activo'),
 (6, 9, 100000, 'activo'),
 (7, 10, 100000, 'activo'),
-(8, 11, 150000, 'activo'),
-(9, 12, 200000, 'activo');
+(8, 11, 140000, 'activo'),
+(9, 12, 200000, 'activo'),
+(10, 13, 130000, 'activo'),
+(11, 14, 130000, 'activo'),
+(12, 15, 50000, 'activo'),
+(13, 16, 11111, 'activo'),
+(14, 17, 150000, 'activo'),
+(15, 18, 125000, 'activo');
 
 -- --------------------------------------------------------
 
@@ -939,6 +1131,14 @@ CREATE TABLE `tbproceso` (
   `estadoproceso` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tbproceso`
+--
+
+INSERT INTO `tbproceso` (`idproceso`, `productoproceso`, `cantidadproceso`, `porcentajegrasalecheproceso`, `lecheenteraproceso`, `lechedescremadaproceso`, `cuajoproceso`, `clorurdecalcioproceso`, `salproceso`, `cultivocodigoproceso`, `estabilizadorcodigo`, `colorateproceso`, `cremaproceso1`, `lecheproceso1`, `cremaproceso2`, `lecheproceso2`, `horaproceso`, `fechaproceso`, `estadoproceso`) VALUES
+(1, 'Queso Mozarrella', 4, 12, 111, 111, 11, 11, 11, 'aasss', 11, 11, 11, 11, 11, 11, '09:14:00', '2018-04-07', 'activo'),
+(2, 'Queso Mozarrella', 50, 11, 11, 11, 11, 11, 11, '11', 11, 11, 11, 11, 11, 11, '09:16:00', '2018-04-07', 'activo');
+
 -- --------------------------------------------------------
 
 --
@@ -964,7 +1164,10 @@ CREATE TABLE `tbproductorcliente` (
 --
 
 INSERT INTO `tbproductorcliente` (`idpersonacliente`, `ahorroporlitroproductorcliente`, `imagencboproductorcliente`, `imagenexamensangradoproductorcliente`, `imagenescrituraproductorcliente`, `imagenreciboluzproductorcliente`, `imagenrecibaguaproductorcliente`, `imagenexamensolidoproductorcliente`, `imagenplanofincaproductorcliente`, `imagendocumentoidentidadproductorcliente`, `estadoproductorcliente`) VALUES
-(8, 10, '../../image/productor/cliente/cbo.jpg', '../../image/productor/cliente/sangrado.jpg', '../../image/productor/cliente/escritura.jpg', '../../image/productor/cliente/luz.jpg', '../../image/productor/cliente/agua.jpg', '../../image/productor/cliente/solido.jpg', '../../image/productor/cliente/plano.jpg', '../../image/productor/cliente/cedula.jpg', 'activo');
+(2, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(7, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(8, 0, '../../image/productor/cliente/cbo.jpg', '../../image/productor/cliente/sangrado.jpg', '../../image/productor/cliente/escritura.jpg', '../../image/productor/cliente/luz.jpg', '../../image/productor/cliente/agua.jpg', '../../image/productor/cliente/solido.jpg', '../../image/productor/cliente/plano.jpg', '../../image/productor/cliente/cedula.jpg', 'activo'),
+(18, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -1005,7 +1208,13 @@ CREATE TABLE `tbproductorsocio` (
 --
 
 INSERT INTO `tbproductorsocio` (`idpersonasocio`, `ahorroporlitroproductorsocio`, `imagencboproductorsocio`, `imagenexamensangradoproductorsocio`, `imagenescrituraproductorsocio`, `imagenreciboluzproductorsocio`, `imagenrecibaguaproductorsocio`, `imagenexamensolidoproductorsocio`, `imagenplanofincaproductorsocio`, `imagendocumentoidentidadproductorsocio`, `estadoproductorsocio`) VALUES
-(1, 10, '../../image/productor/socio/cbo.jpg', '../../image/productor/socio/sangrado.jpg', '../../image/productor/socio/escritura.jpg', '../../image/productor/socio/luz.jpg', '../../image/productor/socio/agua.jpg', '../../image/productor/socio/solido.jpg', '../../image/productor/socio/plano.jpg', '../../image/productor/socio/cedula.jpg', 'activo');
+(1, 10, '../../image/productor/socio/cbo.jpg', '../../image/productor/socio/sangrado.jpg', '../../image/productor/socio/escritura.jpg', '../../image/productor/socio/luz.jpg', '../../image/productor/socio/agua.jpg', '../../image/productor/socio/solido.jpg', '../../image/productor/socio/plano.jpg', '../../image/productor/socio/cedula.jpg', 'activo'),
+(4, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'inactivo'),
+(5, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(6, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(9, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(16, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'activo'),
+(17, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -1027,9 +1236,10 @@ CREATE TABLE `tbproductoslacteos` (
 --
 
 INSERT INTO `tbproductoslacteos` (`unidadproductoslacteos`, `codigoproductoslacteos`, `nombreproductolacteo`, `preciounitarioproductolacteo`, `cantidadinventarioproductolacteo`, `estadoproductoslacteos`) VALUES
+(1, '1', 'Coca Cola de Leche', 1500, 10, 'inactivo'),
 (2, '1234', 'Yogurt PiÃ±a', 1000, 200, 'activo'),
 (1, '4390', 'Queso Mozarrella', 4000, 200, 'activo'),
-(1, '445', 'granos de leche', 55, 45, 'activo'),
+(1, '445', 'Coca Cola de Leche', 1500, 10, 'activo'),
 (2, '515466965', 'jffu', 78, 55, 'activo'),
 (1, '5156455', 'leche asteca', 78, 55, 'activo'),
 (2, '51574965', 'jffu', 78, 55, 'activo'),
@@ -1073,7 +1283,8 @@ INSERT INTO `tbproductosveterinarios` (`idproductoveterinario`, `codigoproductov
 (2, '3456789', 'lolita', 'sirve para curar', '2cc', 2, 2, 3, 400, 'activo'),
 (3, '345678', 'GG', 'dfghjk', '300', 0, 2, 2, 0, 'inactivo'),
 (7, '344567', 'Paracetamol', 'sirve para el dolor de cabeza', '22 cc', 7, 1, 1, 2500, 'activo'),
-(8, '10002', 'Agua Florida', 'Para dolor de nuca', '2 cc', 2, 1, 1, 2500, 'activo');
+(8, '10002', 'Agua Florida', 'Para dolor de nuca', '2 cc', 2, 1, 1, 2500, 'activo'),
+(9, '123456780', 'Ksksk', 'kmksdm', '1', 3, 1, 1, 29393, 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -1091,6 +1302,26 @@ CREATE TABLE `tbsolicitudprestamo` (
   `estado` text,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbsolicitudprestamo`
+--
+
+INSERT INTO `tbsolicitudprestamo` (`idsolicitud`, `idpersona`, `idinteres`, `cantidadsolicitud`, `plazo`, `idmodoplazo`, `estado`, `fecha`) VALUES
+(1, 1, 2, 100000, 11, 2, 'Aprobado', '2018-04-05'),
+(2, 6, 2, 150000, 12, 2, 'Rechazado', '2018-04-05'),
+(3, 1, 2, 150000, 11, 2, 'Rechazado', '2018-04-05'),
+(4, 9, 2, 150000, 11, 2, 'Aprobado', '2018-04-05'),
+(5, 2, 2, 125000, 11, 2, 'Solicitud', '2018-04-05'),
+(6, 8, 2, 200000, 22, 2, 'Aprobado', '2018-04-05'),
+(7, 1, 2, 100000, 15, 2, 'Rechazado', '2018-04-07'),
+(8, 7, 2, 10000, 5, 2, 'Rechazado', '2018-04-13'),
+(9, 16, 2, 130000, 11, 2, 'Aprobado', '2018-04-21'),
+(10, 9, 2, 130000, 11, 2, 'Aprobado', '2018-04-21'),
+(11, 6, 2, 50000, 6, 2, 'Aprobado', '2018-04-21'),
+(12, 1, 2, 11111, 11, 2, 'Aprobado', '2018-04-21'),
+(13, 16, 2, 150000, 11, 2, 'Aprobado', '2018-04-21'),
+(14, 16, 2, 125000, 11, 2, 'Aprobado', '2018-04-21');
 
 -- --------------------------------------------------------
 
@@ -1129,6 +1360,85 @@ CREATE TABLE `tbventa` (
   `idpersonaventa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tbventa`
+--
+
+INSERT INTO `tbventa` (`idventa`, `numerofactura`, `fechaventa`, `horaventa`, `totalbrutoventa`, `totalnetoventa`, `tipoventa`, `idpersonaventa`) VALUES
+(1, '0', '2018-03-16', '10:32:00', 400, 400, 'Veterinaria', 1),
+(2, '1', '2018-03-16', '10:35:00', 400, 400, 'Veterinaria', 1),
+(21, '20', '2018-03-17', '02:55:00', 0, 0, 'Ventanilla', 1),
+(22, '21', '2018-03-17', '02:57:00', 5000, 5000, 'Veterinaria', 8),
+(25, '24', '2018-03-17', '03:06:00', 0, 0, 'Ventanilla', 5),
+(26, '25', '2018-03-17', '03:15:00', 4000, 4000, 'Ventanilla', 6),
+(28, '26', '2018-03-17', '03:27:00', 1000, 1000, 'Ventanilla', 7),
+(30, '27', '2018-03-17', '03:58:00', 64000, 64000, 'Ventanilla', 8),
+(31, '28', '2018-03-17', '04:02:00', 2000000, 2000000, 'Ventanilla', 5),
+(32, '29', '2018-03-17', '04:05:00', 4000, 4000, 'Ventanilla', 5),
+(33, '30', '2018-03-22', '10:47:00', 4000, 4000, 'Distribuidor', 10),
+(34, '31', '2018-03-22', '10:48:00', 4000, 4000, 'Ventanilla', 6),
+(35, '32', '2018-03-23', '11:13:00', 5000, 5000, 'Veterinaria', 9),
+(36, '33', '2018-03-24', '12:22:00', 4000, 4000, 'Distribuidor', 4),
+(37, '34', '2018-03-24', '12:24:00', 1000, 1000, 'Distribuidor', 4),
+(38, '35', '2018-03-24', '12:28:00', 4000, 4000, 'Distribuidor', 4),
+(39, '36', '2018-03-24', '12:55:00', 4000, 4000, 'Distribuidor', 4),
+(40, '37', '2018-03-24', '08:38:00', 8000, 8000, 'Distribuidor', 4),
+(42, '38', '2018-03-24', '08:46:00', 1000, 1000, 'Distribuidor', 4),
+(43, '39', '2018-03-24', '09:22:00', 4000, 4000, 'Distribuidor', 4),
+(44, '40', '2018-03-24', '09:24:00', 4000, 4000, 'Distribuidor', 4),
+(45, '41', '2018-03-24', '09:30:00', 8000, 8000, 'Distribuidor', 4),
+(46, '42', '2018-03-24', '11:10:00', 4000, 4000, 'Distribuidor', 4),
+(47, '43', '2018-03-24', '11:11:00', 11000, 11000, 'Distribuidor', 4),
+(48, '44', '2018-03-24', '11:19:00', 6312, 6312, 'Distribuidor', 4),
+(49, '45', '2018-03-24', '04:52:00', 12000, 12000, 'Distribuidor', 4),
+(50, '46', '2018-03-25', '04:57:00', 8000, 8000, 'Distribuidor', 4),
+(51, '47', '2018-03-27', '12:15:00', 12000, 12000, 'Distribuidor', 1),
+(52, '48', '2018-03-27', '12:21:00', 4000, 4000, 'Distribuidor', 1),
+(53, '49', '2018-03-27', '12:32:00', 5000, 5000, 'Veterinaria', 1),
+(54, '50', '2018-03-27', '12:32:00', 5000, 5000, 'Veterinaria', 1),
+(55, '51', '2018-03-27', '12:36:00', 5000, 5000, 'Distribuidor', 1),
+(56, '51', '2018-03-27', '12:36:00', 5000, 5000, 'Veterinaria', 1),
+(57, '52', '2018-03-27', '02:00:00', 7500, 7500, 'Distribuidor', 7),
+(58, '52', '2018-03-27', '02:00:00', 7500, 7500, 'Veterinaria', 7),
+(59, '53', '2018-03-27', '02:01:00', 7500, 7500, 'Distribuidor', 7),
+(60, '53', '2018-03-27', '02:01:00', 7500, 7500, 'Veterinaria', 7),
+(61, '54', '2018-03-27', '02:02:00', 7500, 7500, 'Distribuidor', 7),
+(62, '54', '2018-03-27', '02:02:00', 7500, 7500, 'Veterinaria', 7),
+(63, '55', '2018-03-27', '02:13:00', 5000, 5000, 'Distribuidor', 1),
+(64, '55', '2018-03-27', '02:13:00', 5000, 5000, 'Veterinaria', 1),
+(65, '56', '2018-03-27', '02:54:00', 5000, 5000, 'Distribuidor', 1),
+(66, '56', '2018-03-27', '02:54:00', 5000, 5000, 'Veterinaria', 1),
+(67, '57', '2018-03-27', '02:55:00', 5000, 5000, 'Distribuidor', 1),
+(68, '57', '2018-03-27', '02:55:00', 5000, 5000, 'Veterinaria', 1),
+(69, '58', '2018-03-27', '02:58:00', 5000, 5000, 'Distribuidor', 1),
+(70, '58', '2018-03-27', '02:58:00', 5000, 5000, 'Veterinaria', 1),
+(71, '59', '2018-03-27', '03:05:00', 4000, 4000, 'Distribuidor', 5),
+(72, '60', '2018-03-27', '03:24:00', 4000, 4000, 'Distribuidor', 5),
+(73, '61', '2018-03-27', '03:24:00', 4000, 4000, 'Distribuidor', 6),
+(74, '62', '2018-03-27', '03:26:00', 4000, 4000, 'Distribuidor', 4),
+(75, '63', '2018-03-27', '03:27:00', 4000, 4000, 'Distribuidor', 4),
+(76, '64', '2018-03-27', '03:27:00', 5000, 5000, 'Distribuidor', 1),
+(77, '64', '2018-03-27', '03:27:00', 5000, 5000, 'Veterinaria', 1),
+(78, '65', '2018-03-27', '03:29:00', 4000, 4000, 'Distribuidor', 4),
+(79, '66', '2018-03-27', '03:37:00', 5000, 5000, 'Distribuidor', 1),
+(80, '66', '2018-03-27', '03:37:00', 5000, 5000, 'Veterinaria', 1),
+(81, '67', '2018-03-27', '05:49:00', 4000, 4000, 'Distribuidor', 7),
+(82, '68', '2018-04-04', '11:24:00', 6000, 6000, 'Distribuidor', 1),
+(83, '69', '2018-04-04', '11:25:00', 4000, 4000, 'Distribuidor', 5),
+(84, '70', '2018-04-04', '11:26:00', 4000, 4000, 'Distribuidor', 5),
+(85, '71', '2018-04-04', '11:28:00', 4000, 4000, 'Distribuidor', 5),
+(86, '72', '2018-04-04', '11:28:00', 1000, 1000, 'Distribuidor', 6),
+(87, '73', '2018-04-20', '05:20:00', 55, 55, 'Distribuidor', 4),
+(88, '74', '2018-04-20', '05:28:00', 55, 55, 'Distribuidor', 4),
+(89, '75', '2018-04-20', '05:38:00', 55, 55, 'Distribuidor', 4),
+(90, '76', '2018-04-20', '05:39:00', 55, 55, 'Distribuidor', 4),
+(91, '77', '2018-04-20', '05:41:00', 55, 55, 'Distribuidor', 4),
+(92, '78', '2018-04-20', '05:44:00', 55, 55, 'Distribuidor', 4),
+(93, '79', '2018-04-21', '12:47:00', 2500, 2500, 'Veterinaria', 1),
+(94, '80', '2018-04-21', '12:51:00', 15000, 15000, 'Distribuidor', 14),
+(95, '81', '2018-04-21', '01:00:00', 2500, 2500, 'Veterinaria', 1),
+(96, '82', '2018-04-22', '02:55:00', 4000, 4000, 'Ventanilla', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -1142,6 +1452,84 @@ CREATE TABLE `tbventaporcobrar` (
   `saldoactualventaporcobrar` double NOT NULL,
   `estadoventaporcobrar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tbventaporcobrar`
+--
+
+INSERT INTO `tbventaporcobrar` (`idventaporcobrar`, `idventa`, `idpersona`, `saldoactualventaporcobrar`, `estadoventaporcobrar`) VALUES
+(1, 1, 1, 400, 'activo'),
+(2, 2, 1, 400, 'activo'),
+(21, 1, 1, 0, 'activo'),
+(22, 22, 8, 5000, 'activo'),
+(25, 1, 5, 0, 'activo'),
+(26, 1, 6, 4000, 'activo'),
+(27, 1, 7, 1000, 'activo'),
+(28, 1, 8, 64000, 'activo'),
+(29, 1, 5, 2000000, 'activo'),
+(30, 1, 5, 4000, 'activo'),
+(31, 33, 10, 4000, 'activo'),
+(32, 1, 6, 4000, 'activo'),
+(33, 35, 9, 5000, 'activo'),
+(34, 36, 4, 4000, 'activo'),
+(35, 37, 4, 1000, 'activo'),
+(36, 38, 4, 4000, 'activo'),
+(37, 39, 4, 4000, 'activo'),
+(38, 40, 4, 8000, 'activo'),
+(39, 42, 4, 1000, 'activo'),
+(40, 43, 4, 4000, 'activo'),
+(41, 44, 4, 4000, 'activo'),
+(42, 45, 4, 8000, 'activo'),
+(43, 46, 4, 4000, 'activo'),
+(44, 47, 4, 11000, 'activo'),
+(45, 48, 4, 6312, 'activo'),
+(46, 49, 4, 12000, 'activo'),
+(47, 50, 4, 8000, 'activo'),
+(48, 51, 1, 12000, 'activo'),
+(49, 52, 1, 4000, 'activo'),
+(50, 53, 1, 5000, 'activo'),
+(51, 54, 1, 5000, 'activo'),
+(52, 56, 1, 5000, 'activo'),
+(53, 56, 1, 5000, 'activo'),
+(54, 58, 7, 7500, 'activo'),
+(55, 58, 7, 7500, 'activo'),
+(56, 60, 7, 7500, 'activo'),
+(57, 60, 7, 7500, 'activo'),
+(58, 62, 7, 7500, 'activo'),
+(59, 62, 7, 7500, 'activo'),
+(60, 64, 1, 5000, 'activo'),
+(61, 64, 1, 5000, 'activo'),
+(62, 66, 1, 5000, 'activo'),
+(63, 66, 1, 5000, 'activo'),
+(64, 68, 1, 5000, 'activo'),
+(65, 68, 1, 5000, 'activo'),
+(66, 70, 1, 5000, 'activo'),
+(67, 70, 1, 5000, 'activo'),
+(68, 71, 5, 4000, 'activo'),
+(69, 72, 5, 4000, 'activo'),
+(70, 73, 6, 4000, 'activo'),
+(71, 74, 4, 4000, 'activo'),
+(72, 75, 4, 4000, 'activo'),
+(73, 77, 1, 5000, 'activo'),
+(74, 77, 1, 5000, 'activo'),
+(75, 78, 4, 4000, 'activo'),
+(76, 80, 1, 5000, 'activo'),
+(77, 80, 1, 5000, 'activo'),
+(78, 81, 7, 4000, 'activo'),
+(79, 82, 1, 6000, 'activo'),
+(80, 83, 5, 4000, 'activo'),
+(81, 84, 5, 4000, 'activo'),
+(82, 85, 5, 4000, 'activo'),
+(83, 86, 6, 1000, 'activo'),
+(84, 87, 4, 55, 'activo'),
+(85, 88, 4, 55, 'activo'),
+(86, 89, 4, 55, 'activo'),
+(87, 90, 4, 55, 'activo'),
+(88, 91, 4, 55, 'activo'),
+(89, 92, 4, 55, 'activo'),
+(90, 93, 1, 2500, 'activo'),
+(91, 94, 14, 15000, 'activo'),
+(92, 95, 1, 2500, 'activo');
 
 -- --------------------------------------------------------
 
@@ -1409,7 +1797,7 @@ ALTER TABLE `tbviaaplicacion`
 -- AUTO_INCREMENT de la tabla `tbahorrosemanal`
 --
 ALTER TABLE `tbahorrosemanal`
-  MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `tbcobrovacaseca`
 --
@@ -1419,7 +1807,7 @@ ALTER TABLE `tbcobrovacaseca`
 -- AUTO_INCREMENT de la tabla `tbcompramateriaprima`
 --
 ALTER TABLE `tbcompramateriaprima`
-  MODIFY `idcompramateriaprima` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcompramateriaprima` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT de la tabla `tbcuotavacaseca`
 --
@@ -1429,12 +1817,12 @@ ALTER TABLE `tbcuotavacaseca`
 -- AUTO_INCREMENT de la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
-  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
-  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `tbfuncion`
 --
@@ -1444,7 +1832,7 @@ ALTER TABLE `tbfuncion`
 -- AUTO_INCREMENT de la tabla `tbimagen`
 --
 ALTER TABLE `tbimagen`
-  MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tbinteresprestamo`
 --
@@ -1459,7 +1847,7 @@ ALTER TABLE `tbjuntadirectiva`
 -- AUTO_INCREMENT de la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
-  MODIFY `idpagoprestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idpagoprestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `tbpagoventa`
 --
@@ -1474,12 +1862,12 @@ ALTER TABLE `tbperiodopagoprestamo`
 -- AUTO_INCREMENT de la tabla `tbpersona`
 --
 ALTER TABLE `tbpersona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
-  MODIFY `idpesalechediario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idpesalechediario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `tbpreciolitroleche`
 --
@@ -1489,12 +1877,12 @@ ALTER TABLE `tbpreciolitroleche`
 -- AUTO_INCREMENT de la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
-  MODIFY `idprestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idprestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
-  MODIFY `idprestamoporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idprestamoporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `tbproceso`
 --
@@ -1509,12 +1897,12 @@ ALTER TABLE `tbproductoresvacaseca`
 -- AUTO_INCREMENT de la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
-  MODIFY `idproductoveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idproductoveterinario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tbsolicitudprestamo`
 --
 ALTER TABLE `tbsolicitudprestamo`
-  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `tbunidades`
 --
@@ -1524,12 +1912,12 @@ ALTER TABLE `tbunidades`
 -- AUTO_INCREMENT de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
-  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT de la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
-  MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT de la tabla `tbviaaplicacion`
 --

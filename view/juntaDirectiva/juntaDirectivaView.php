@@ -27,7 +27,7 @@
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarJuntaDirectiva(); verProductor();">
         <!-- Import the file menu.php -->
         <?php
-        include '../menuView.php';
+        include '../InterumtorDeMenus.php';
         ?>
         <div class="col-md-8 col-md-offset-2">
             <h4>Lista de Juntas Directivas</h4>

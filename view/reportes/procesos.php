@@ -20,6 +20,7 @@
         <script src="../../js/menuJs.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../js/reportes/reportesProcesos.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     </script>
 </head>
@@ -51,7 +52,6 @@
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Estado</th>
-                        <th>Ver</th>
                         <th>Imprimir</th>
                     </tr>
                 </thead>
@@ -65,7 +65,6 @@
 
         </div>
         <?php
-        include_once '../modalimagen/modalRespuestas.php';
         include_once '../modalimagen/modalVerDetallesDeProcesos.php';
         ?>
     </div>

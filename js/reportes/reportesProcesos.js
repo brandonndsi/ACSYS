@@ -41,43 +41,34 @@ function CargarTablaPrincipal() {
         }
     });
 }
-/**
- * [buscarDatos Lo que hace es poder capturar los valores de los input ingresados por el usaurio]
- * @return {[type]} [procesa la informacion a las variables globales las cuales contienen la informacion]
- */
+
 function buscaDatos() {
     fechainicial = document.getElementById("fechainicial").value;
     fechaFinal = document.getElementById("fechafinal").value;
     validarLasFechas();
 }
-/**
- * [validarLasFechas Lo que hace es verificar que la fecha inicial sea igual o menor a la final para lo de la busqueda]
- * @return {[type]} [modal o el contenido a buscar en la base de datos si esat bien]
- */
+
 function validarLasFechas() {
-    informacion = "";
+
     if (fechainicial <= fechaFinal) {
         buscarPeticion();
     } else {
-        informacion = "la fecha inicial no debe ser menor a la fecha final.";
-        modalRespuestas(informacion);
+
+        swal({
+            title: "Confirmación",
+            text: "¡Opps! Ocurrió un error al mostrar los registros entre este rango de fechas",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
     }
 }
-/**
- * [modalRespuestas lo que hace es poder imprimir solo el mensaje de confirmacion de los datos de la validacion]
- * @param  {[type]} respuesta [Es el dato a mostrar en el modal]
- * @return {[type]}           [retorna el modal con el contenido enviado como parametro]
- */
-function modalRespuestas(respuesta) {
-    dato = "<h4>" + respuesta + "</h4>";
 
-    $("#mensaje").html(dato);
-    $("#modalRespuesta").modal();
-}
-/**
- * [buscarPeticion Lo que hace es traer los datos a buscar en la base de datos y los restorna  en la tabla.]
- * @return {[type]} [Actualiza la tabla inicial con los valores de la base de datos]
- */
 function buscarPeticion() {
     $.post('../../business/reportes/actionReporteProcesos.php', {
         action: 'ventaProcesos',
@@ -88,10 +79,7 @@ function buscarPeticion() {
         CargarNuevosDatosALaTablaInicial(json);
     });
 }
-/**
- * [CargarNuevosDatosALaTablaInicial Comnezamos a recorrer los datos de la busqueda y incorporarlos a la tabla principal]
- * @param {[array objeto ]} json [resive todos los datos de la busqueda en la base de datos]
- */
+
 function CargarNuevosDatosALaTablaInicial(json) {
     html = "";
     for (i = 0; i < json.length; i++) {
@@ -101,54 +89,65 @@ function CargarNuevosDatosALaTablaInicial(json) {
         html += "<td>" + json[i].fechaproceso + "</td>";
         html += "<td>" + json[i].horaproceso + "</td>";
         html += "<td>" + json[i].estadoproceso + "</td>";
-        
+
         id = json[i].idproceso;
         nombre = json[i].productoproceso;
+        cantidad = json[i].cantidadproceso;
+        porcentaje = json[i].porcentajegrasalecheproceso;
+        entera = json[i].lecheenteraproceso;
+        descremada = json[i].lechedescremadaproceso;
+        cuajo = json[i].cuajoproceso;
+        cloruro = json[i].clorurdecalcioproceso;
+        sal = json[i].salproceso;
+        cultivo = json[i].cultivocodigoproceso;
+        estabilizador = json[i].estabilizadorcodigo;
+        colorante = json[i].colorateproceso;
+        crema1 = json[i].cremaproceso1;
+        leche1 = json[i].lecheproceso1;
+        crema2 = json[i].cremaproceso2;
+        leche2 = json[i].lecheproceso2;
         fecha = json[i].fechaproceso;
         hora = json[i].horaproceso;
         estado = json[i].estadoproceso;
 
-        facturanueva = "'" + id + "," + nombre + "," + fecha + "," + hora + "," +
-                estado + "'";
+        proceso = "'" + id + "," + nombre + "," + cantidad + "," + porcentaje + "," + entera + "," + descremada +
+                "," + cuajo + "," + cloruro + "," + sal + "," + cultivo + "," + estabilizador + "," + colorante +
+                "," + crema1 + "," + leche1 + "," + crema2 + "," + leche2 + "," + fecha + "," + hora + "," + estado + "'";
 
-        html += '<td><a href="javascript:modalVer(' + facturanueva + ')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
-        html += '<td><a href="javascript:mostrarImprimir(' + facturanueva + ')"><span class="glyphicon glyphicon-file"></span></a></td>';
+        html += '<td><a href="javascript:mostrarImprimir(' + proceso + ')"><span class="glyphicon glyphicon-file"></span></a></td>';
         html += "</tr>";
     }
     destruirTablaPrincipal();
     $("#datos").html(html);
     CargarTablaPrincipal();
 }
-/**
- * [destruirTablaPrincipal lo que hace es destruir todos los atrinutos que se le dieron a la tabla principal]
- * @return {[type]} [la vuelve a su estado original]
- */
+
 function destruirTablaPrincipal() {
     $('#listaVentas').dataTable().fnDestroy();
 }
-/**
- * [mostrarImprimir la factura total con los datos]
- * @param  {[type]} facturanueva   [es un objeto de la factura nueva la cual se reutiliza]
- * @return {[type]}            [description]
- */
-function mostrarImprimir(facturanueva) {
-    ImprimirFactura(facturanueva);
-}
-/**
- * [llenarTablaDeVerDeTallesFactura lo que hace es llenar los datos de veterinario en el buscador]
- * @param  {[type]} json [Resibe el json de los datos que se mandaron por el post del servidor]
- * @return {[type]}      [Genera lo que es una tabla la cual luego sobre escribe la que tiene el modal de ver detalles]
- */
-function llenarTablaDeVerDeTallesFactura(json) {
-    html = "";
-    for (i = 0; i < json.length; i++) {
-        html += "<tr>";
-        html += "<td>" + json[i].idproceso + "</td>";
-        html += "<td>" + json[i].productoproceso + "</td>";
-        html += "<td>" + json[i].fechaproceso + "</td>";
-        html += "<td>" + json[i].horaproceso + "</td>";
-        html += "<tr>";
-    }
 
+function mostrarImprimir(proceso) {
 
+    string = proceso.split(",");
+    id = string[0];
+    nombre = string[1];
+    cantidad = string[2];
+    porcentaje = string[3];
+    entera = string[4];
+    descremada = string[5];
+    cuajo = string[6];
+    cloruro = string[7];
+    sal = string[8];
+    cultivo = string[9];
+    estabilizador = string[10];
+    colorante = string[11];
+    crema1 = string[12];
+    leche1 = string[13];
+    crema2 = string[14];
+    leche2 = string[15];
+    fecha = string[16];
+    hora = string[17];
+    estado = string[18];
+
+    window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDeProcesos.php?numeroProceso=" + id + "&&producto=" + nombre + "&&cantidad=" + cantidad + "&&porcentaje=" + porcentaje + "&&entera=" + entera + "&&descremada=" + descremada + "&&cuajo=" + cuajo + "&&cloruro=" + cloruro + "&&sal=" + sal + "&&cultivo=" + cultivo + "&&estabilizador=" + estabilizador + "&&colorante=" + colorante + "&&crema1=" + crema1 + "&&leche1=" + leche1 + "&&crema2=" + crema2 + "&&leche2=" + leche2 + "&&fecha=" + fecha + "&&hora=" + hora + "&&estado=" + estado, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
