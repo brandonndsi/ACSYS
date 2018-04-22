@@ -98,6 +98,7 @@ $(document).ready(function () {
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
 		    html = "";
+         var listaTodo = [];
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
           html+="<td>"+json[i].numerofactura+"</td>";
@@ -117,7 +118,8 @@ $(document).ready(function () {
         
           facturanueva = "'" + idv + "," + numfactura + "," + fecha + "," + hora + "," +
                         brut + "," + tol + "," + tipo + ","+ idpersona +"'";
-
+          listaTodo.push({"numerofactura":numfactura,"fecha":fecha,"hora":hora,"bruto":brut,"total":tol,"idpersona":idpersona});
+          localStorage.setItem("listaTodo", JSON.stringify(listaTodo));  
           html+='<td><a href="javascript:modalVer('+facturanueva+')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
           html+='<td><a href="javascript:mostrarImprimir('+facturanueva+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
@@ -278,3 +280,6 @@ window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes
         });
 }
 
+function imprimirTodo(){
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/inprimirTodoDistribuidor.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ventanilla", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}

@@ -74,7 +74,7 @@ include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  </div>
 <div id="reporte_pago_leche_imprimir">
     
-    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
 </div>
   
 

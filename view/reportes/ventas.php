@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Reporte venta</title>
+	<title>Reporte venta Veterinaria</title>
 
 			<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
@@ -32,7 +32,7 @@
  <div id="content">
 
  	<div id="contTitulo">
-            <h4>Reporte de ventas</h4>
+            <h4>Reporte de ventas Veterinaria</h4>
  	</div>
 
  	<div id="fechas">
@@ -74,7 +74,7 @@ include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  </div>
 <div id="reporte_pago_leche_imprimir">
     
-    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
 </div>
   
 
