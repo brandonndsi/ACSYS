@@ -259,14 +259,33 @@ document.getElementById("imagen").innerHTML=ruta;
  */
 $(document).ready(function(){
 	$('#btn_cancelar').on("click", function(evt){
-		evt.preventDefault();
-		//alert("sdsadsa");
+		evt.preventDefault();//Este metodo lo que se encarga es de que no se sobre cargue la pagina principal donde esta el metod en si.
+		//alert("Tocando el boton de Cerrar el modal.");//Alerta encargada de poder motrar el mensaje de la informacion de que se se se elcciono el modal de cerra.
 		po=document.getElementById("encriptado").value;
-		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		location.reload();
+		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";//Esta funcion lo que hace es ocultar de nuevo el modal de la imagen visualizada.
+		location.reload();//lo que hace es recargar la paguina de origen global y sin necesidad de la redireccionamiento.
 });
 });
-
+/*Finalización del metodo de la función de cancelar o cerrar el modal de la imagen a modificar.*/
+function fileProview(input){/*El metodo lo que resive como parametro es un input de tipo file para poder hacer la corrobacion de los datos.*/
+	if(input.files && input.files[0]){/*Este if es el encargado de poder corroborar que todos los datos esten bien osea que la imagen sea seleccionada y carge bien.*/
+		var reader= new FileReader();//Se crea una instancia de un archivo para poder cargar los datos en el mismo.
+		reader.readAsDataURL(input.files[0]);//Lo que hacemos es poder asignare el valor del input de la subida en la nueva imagen a poder visualizar.
+		reader.onload =function (e){//Esta funcion es la encargada de poder eliminar los datos del modal y cargar los nuevos datos del mismo.
+			//$('#imagen + img').remove();//Lo que hace es poder remover la imagen que sta
+			nuevaImagen='<img src="'+e.target.result+'" width="430" height="300" />';
+			$('#imagen').html(nuevaImagen);
+			//after('<img src="'+e.target.result+'" width="430" height="300" />');/*Se crea la instancia a utilizar la cual sera la nueva imagen que se visualizara en el modal que el usaurio esta biendo*/
+		}
+	}
+}
+/*terminacion del metodo de ensenar la imagen antes de poder subirla con el objetio de que el usuario pueda ver si esa imagen es la correcta a la hora de la subida.*/
+$(document).ready(function(){
+$("#filemage").change(function(){
+	console.log("Datos cargados bien");
+	fileProview(this);
+});
+});
 /*$(document).ready(function(){
 	$('#btn_cancelar').on("click", function(evt){
 		evt.preventDefault();

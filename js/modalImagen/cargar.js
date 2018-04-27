@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 		evt.preventDefault();
 
-		// declaro la variable formData e instancio el objeto nativo de javascript new FormData
+		//Declaro la variable formData e instancio el objeto nativo de javascript new FormData
 		var formData = new FormData(document.getElementById("frmSubir"));
 
 		// declaro la variable ruta
@@ -52,6 +52,7 @@ $(document).ready(function(){
 
 $('#btn_cancelar').on("click", function(evt){
 		id=document.getElementById("encriptado").value;
+		alert("Tocando el boton de Cancelar de la imagen");
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
 		location.href = '../../view/distribuidor/verDistribuidorView.php?id='+id;
 		});
