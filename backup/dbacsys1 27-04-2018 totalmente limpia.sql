@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-04-2018 a las 23:53:42
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.2
+-- Tiempo de generación: 28-04-2018 a las 23:16:34
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,7 +25,7 @@ DELIMITER $$
 -- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizarPrecioLeche` (IN `precio` DOUBLE, IN `fecha` DATE, IN `id` INT)  NO SQL
-UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND estadopreciolitroleche = "activo"$$
+UPDATE tbpreciolitroleche SET preciolitroleche= precio ,fechainicio= fecha WHERE idpreciolitroleche = id AND precio > 0 AND estadopreciolitroleche = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aprobarSolicitud` (IN `idsolicitud` INT, IN `idpersonaprestamo` INT, IN `tasainteres` DOUBLE, IN `montototalprestamo` DOUBLE, IN `montocuota` DOUBLE, IN `fechaprestamo` DATE)  BEGIN
   INSERT INTO  tbprestamos(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo) VALUES(idpersonaprestamo,tasainteres,montototalprestamo,montocuota,fechaprestamo);
@@ -38,6 +36,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarcliente` (IN `id` INT)  NO SQ
 BEGIN
 SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona` FROM `tbpersona` WHERE idpersona=id;
 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarprocesoporfecha` (IN `fecha` DATE)  NO SQL
+BEGIN
+SELECT * FROM tbproceso WHERE fechaproceso = fecha;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `compramateriaprima` (IN `idProductor` INT, IN `cantidadlitroscompramateriaprima` DOUBLE, IN `montopagolitro` DOUBLE, IN `totalpagarlitros` DOUBLE, IN `fechacompramateriaprima` DATE)  BEGIN
@@ -172,6 +175,9 @@ BEGIN
 SELECT tbjuntadirectiva.idjuntadirectiva,tbjuntadirectiva.fechainicioperiodo,tbjuntadirectiva.fechafinalperiodo,tbjuntadirectiva.presidente, tbjuntadirectiva.vicepresidente,tbjuntadirectiva.secretario,tbjuntadirectiva.tesorero,tbjuntadirectiva.fiscal, tbjuntadirectiva.vocal1, tbjuntadirectiva.vocal2 FROM tbjuntadirectiva;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarPersona` (IN `id` INT(30))  NO SQL
+SELECT `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona` FROM `tbpersona` WHERE idpersona= id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mostrarProcesos` ()  NO SQL
 BEGIN
 SELECT * FROM tbproceso WHERE estadoproceso = "activo";
@@ -241,8 +247,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarDetalleVentaVeterinaria` (
   INSERT INTO tbdetalleventaveterinaria(preciounitariodetalleventa,cantidaddetalleventa,subtotaldetalleventa,idproductoveterinario,idventa) VALUES(preciounitariodetalleventa,cantidaddetalleventa ,subtotaldetalleventa,(SELECT idproductoveterinario FROM tbproductosveterinarios WHERE codigoproductoveterinario=codigoproductoslacteos),idVenta);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado` (IN `clave` TEXT, IN `tipo` TEXT)  NO SQL
-INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,"activo")$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarempleado` (IN `clave` TEXT, IN `tipo` TEXT, IN `manipulacion` TEXT, IN `identidad` TEXT)  NO SQL
+INSERT INTO tbempleado(idpersonaempleado,passwordempleado,tipoempleado,   imagentitulomanipulacionalimentosempleado, imagendocumentoidentidadempleado,estadoempleado) VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),clave,tipo,manipulacion,identidad,"activo")$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarjuntadirectiva` (IN `presidente` TEXT, IN `vicepresidente` TEXT, IN `secretario` TEXT, IN `tesorero` TEXT, IN `fiscal` TEXT, IN `vocal1` TEXT, IN `vocal2` TEXT, IN `inicio` DATE, IN `final` DATE)  NO SQL
 INSERT INTO tbjuntadirectiva(presidente, vicepresidente, secretario, tesorero, fiscal, vocal1, vocal2,fechainicioperiodo, fechafinalperiodo) VALUES (presidente,vicepresidente,secretario,tesorero,fiscal,vocal1,vocal2,inicio,final)$$
@@ -293,8 +299,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaPorCobrar` (`idClient
   INSERT INTO tbventaporcobrar(idventa,idpersona,saldoactualventaporcobrar,estadoventaporcobrar) VALUES(idVenta,idCliente,totalVenta,"activo");
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarVentaVentanilla` (IN `facturaVenta` INT(50), IN `fecha` DATE, IN `hora` TIME, IN `totalBruto` INT, IN `totalNeto` INT, IN `tipoVenta` TEXT, IN `idCliente` INT(50))  NO SQL
+BEGIN
+INSERT INTO tbventa(numerofactura, fechaventa, horaventa, totalbrutoventa, totalnetoventa, tipoventa, idpersonaventa) VALUES (facturaVenta,fecha,hora,totalBruto,totalNeto,tipoVenta,idCliente);
+UPDATE tbfacturero SET ultimafactura=facturaVenta+1;
+SELECT idventa FROM tbventa ORDER BY idventa DESC limit 1;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `restastockproceso` (IN `cantidad` DOUBLE, IN `nombre` TEXT)  NO SQL
-UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad WHERE nombreproductolacteo = nombre AND estadoproductoslacteos = "activo"$$
+UPDATE tbproductoslacteos SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad WHERE nombreproductolacteo = nombre AND cantidadinventarioproductolacteo >= cantidad AND estadoproductoslacteos = "activo"$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `retornarMontoAhorroCliente` (IN `id` INT)  BEGIN
 SELECT tbproductorcliente.ahorroporlitroproductorcliente FROM tbproductorcliente WHERE idpersonacliente=id AND estadoproductorcliente="activo";
@@ -790,7 +803,8 @@ CREATE TABLE `tbpersona` (
 --
 
 INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES
-(1, '123456789', 'Administrador', 'Administrador', 'Administrador', '', 'Sauce', 'asoprolesa@gmail.com');
+(1, '123456789', 'Administrador', 'Administrador', 'Administrador', '', 'Sauce', 'asoprolesa@gmail.com'),
+(2, '207210905', 'Brandon Daniel', 'Rodriguez', 'N/A', 'N/A', 'Alajuela', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -1312,163 +1326,136 @@ ALTER TABLE `tbviaaplicacion`
 --
 ALTER TABLE `tbahorrosemanal`
   MODIFY `idahorro` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbcobrovacaseca`
 --
 ALTER TABLE `tbcobrovacaseca`
   MODIFY `idcobrovacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbcompramateriaprima`
 --
 ALTER TABLE `tbcompramateriaprima`
   MODIFY `idcompramateriaprima` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbcuotavacaseca`
 --
 ALTER TABLE `tbcuotavacaseca`
   MODIFY `idcuotavacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbdetalleventa`
 --
 ALTER TABLE `tbdetalleventa`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbdetalleventaveterinaria`
 --
 ALTER TABLE `tbdetalleventaveterinaria`
   MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbfacturero`
 --
 ALTER TABLE `tbfacturero`
   MODIFY `idultimafactura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `tbfuncion`
 --
 ALTER TABLE `tbfuncion`
   MODIFY `idfuncion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT de la tabla `tbimagen`
 --
 ALTER TABLE `tbimagen`
   MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbinteresprestamo`
 --
 ALTER TABLE `tbinteresprestamo`
   MODIFY `idinteres` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `tbjuntadirectiva`
 --
 ALTER TABLE `tbjuntadirectiva`
   MODIFY `idjuntadirectiva` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbpagoprestamo`
 --
 ALTER TABLE `tbpagoprestamo`
   MODIFY `idpagoprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbpagoventa`
 --
 ALTER TABLE `tbpagoventa`
   MODIFY `idpagoventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbperiodopagoprestamo`
 --
 ALTER TABLE `tbperiodopagoprestamo`
   MODIFY `idperiodopagoprestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT de la tabla `tbpersona`
 --
 ALTER TABLE `tbpersona`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `tbpesalechediario`
 --
 ALTER TABLE `tbpesalechediario`
   MODIFY `idpesalechediario` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbpreciolitroleche`
 --
 ALTER TABLE `tbpreciolitroleche`
   MODIFY `idpreciolitroleche` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `tbprestamos`
 --
 ALTER TABLE `tbprestamos`
   MODIFY `idprestamo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbprestamosporcobrar`
 --
 ALTER TABLE `tbprestamosporcobrar`
   MODIFY `idprestamoporcobrar` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbproceso`
 --
 ALTER TABLE `tbproceso`
   MODIFY `idproceso` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbproductoresvacaseca`
 --
 ALTER TABLE `tbproductoresvacaseca`
   MODIFY `idproductoresvacaseca` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbproductosveterinarios`
 --
 ALTER TABLE `tbproductosveterinarios`
   MODIFY `idproductoveterinario` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbsolicitudprestamo`
 --
 ALTER TABLE `tbsolicitudprestamo`
   MODIFY `idsolicitud` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbunidades`
 --
 ALTER TABLE `tbunidades`
   MODIFY `idunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `tbventa`
 --
 ALTER TABLE `tbventa`
   MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbventaporcobrar`
 --
 ALTER TABLE `tbventaporcobrar`
   MODIFY `idventaporcobrar` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `tbviaaplicacion`
 --
 ALTER TABLE `tbviaaplicacion`
   MODIFY `idviaaplicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -1603,7 +1590,6 @@ ALTER TABLE `tbventa`
 ALTER TABLE `tbventaporcobrar`
   ADD CONSTRAINT `tbventaporcobrar_ibfk_1` FOREIGN KEY (`idventa`) REFERENCES `tbventa` (`idventa`),
   ADD CONSTRAINT `tbventaporcobrar_ibfk_2` FOREIGN KEY (`idpersona`) REFERENCES `tbpersona` (`idpersona`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
