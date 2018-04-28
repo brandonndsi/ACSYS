@@ -27,10 +27,8 @@
     <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarEmpleados()">
         <!-- Import the file menu.php -->
         <?php
-
-       // include '../menuView.php';
-       include '../InterumtorDeMenus.php';
-
+        // include '../menuView.php';
+        include '../InterumtorDeMenus.php';
         ?>
         <div class="col-md-8 col-md-offset-2">
             <h4>Lista de Empleados</h4>
@@ -205,18 +203,20 @@
                                 <input type="hidden" name="idpersonaempleadom" ><!--este es el campo que está como llave primaria en la base de datos-->
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Cédula:</label>
+                                        <label>Cédula:
+                                        </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadm" id="documentoidentidadm" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadm" id="documentoidentidadm" placeholder="Cédula" onkeyup="validarCamposCedulam()" required pattern="[0-9]{9}"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Nombre:</label>
+                                        <label>Nombre:
+                                        </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text"  class="form-control" class="span12" name="nombrem"  id="nombrem" placeholder="Nombre" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})" /></p>
+                                        <p><input type="text"  class="form-control" class="span12" name="nombrem"  id="nombrem" placeholder="Nombre"  onkeyup="validarCamposNombrem()" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -224,7 +224,7 @@
                                         <label>1° Apellido:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="primerapellidom" id="primerapellidom" placeholder="1° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="primerapellidom" id="primerapellidom" placeholder="1° Apellido" onkeyup="validarCamposApellidom()" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -237,28 +237,31 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Email:</label>
+                                        <label>Email:
+                                        </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="email" class="form-control" class="span12" name="correom" id="correom" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
+                                        <p><input type="email" class="form-control" class="span12" name="correom" id="correom" placeholder="Email" onkeyup="validarCamposEmailm()" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
                                     </div>
                                 </div>
                             </div>
                             <div style="width:50%; float:left;">
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Teléfono:</label>
+                                        <label>Teléfono:
+                                        </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="telefonom" id="telefonom" placeholder="Teléfono" required pattern="[0-9]{8}" /></p>
+                                        <p><input type="text" class="form-control" class="span12" name="telefonom" id="telefonom" placeholder="Teléfono" onkeyup="validarCamposTelefonom()" required pattern="[0-9]{8}" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-4">
-                                        <label>Dirección:</label>
+                                        <label>Dirección:
+                                        </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="direccionm" id="direccionm" placeholder="Dirección" required /></p>
+                                        <p><input type="text" class="form-control" class="span12" name="direccionm" id="direccionm" onkeyup="validarCamposDireccionm()" placeholder="Dirección" required /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">

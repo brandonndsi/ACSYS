@@ -82,7 +82,7 @@ function registrarJunta() {
             && vicepresidente !== vocal1 && vicepresidente !== vocal2 && secretario !== tesorero && secretario !== fiscal
             && secretario !== vocal1 && secretario !== vocal2 && tesorero !== fiscal
             && tesorero !== vocal1 && tesorero !== vocal2 && fiscal !== vocal1 && fiscal !== vocal2 && vocal1 !== vocal2
-            && inicio !== "" && final !== "") {
+            && inicio !== "" && final !== "" && inicio < final) {
         $(document).ready(function () {
             $.post('../../business/juntaDirectiva/actionJuntaDirectiva.php', {
                 action: 'registrarjunta',
@@ -109,48 +109,16 @@ function registrarJunta() {
                         },
                         dangerMode: true
                     });
-                } else {
-                    swal({
-                        title: "Confirmación",
-                        text: "¡Opps! Ocurrió un error al registrar la junta",
-                        icon: "error",
-                        buttons: {
-                            ok: {
-                                text: "Aceptar",
-                                value: "ok"
-                            }
-                        },
-                        dangerMode: true
-                    });
                 }
-
-                document.getElementById("presidenter").value = "";
-                document.getElementById("vicepresidenter").value = "";
-                document.getElementById("secretarior").value = "";
-                document.getElementById("tesoreror").value = "";
-                document.getElementById("fiscalr").value = "";
-                document.getElementById("vocal1r").value = "";
-                document.getElementById("vocal2r").value = "";
-                document.getElementById("fechainicioperiodor").value = "";
-                document.getElementById("fechafinalperiodor").value = "";
-
-                $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-                
-                mostrarJuntaDirectiva();
             });
         });
     } else {
         swal({
             title: "Confirmación",
-            text: "¡Opps! Ocurrió un error al registrar la junta",
+            text: "¡Opps! Ocurrió un error al registrar la junta,\n\
+                    *No pueden repetirse Miembros, \n\
+                    *Verifique que la fecha inicial no sea posterior a la final, \n\
+                    Intente nuevamente",
             icon: "error",
             buttons: {
                 ok: {
@@ -160,8 +128,29 @@ function registrarJunta() {
             },
             dangerMode: true
         });
-    }
 
+        document.getElementById("presidenter").value = "";
+        document.getElementById("vicepresidenter").value = "";
+        document.getElementById("secretarior").value = "";
+        document.getElementById("tesoreror").value = "";
+        document.getElementById("fiscalr").value = "";
+        document.getElementById("vocal1r").value = "";
+        document.getElementById("vocal2r").value = "";
+        document.getElementById("fechainicioperiodor").value = "";
+        document.getElementById("fechafinalperiodor").value = "";
+
+        $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon5").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon6").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon7").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon8").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $("#icon9").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+
+    }
+    mostrarJuntaDirectiva();
 }
 
 function verProductor() {
@@ -198,7 +187,7 @@ function Limpiar() {
     document.getElementById("vocal2r").value = "";
     document.getElementById("fechainicioperiodor").value = "";
     document.getElementById("fechafinalperiodor").value = "";
-    
+
     $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
     $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
     $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
@@ -231,7 +220,7 @@ function modificarJunta(id) {
     vocal2 = $("#vocal2m").val();
     inicio = $("#fechainicioperiodom").val();
     final = $("#fechafinalperiodom").val();
-    
+
     $(document).ready(function () {
         $.post('../../business/juntaDirectiva/actionJuntaDirectiva.php', {
             action: 'modificarjunta',
@@ -262,7 +251,10 @@ function modificarJunta(id) {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al modificar la junta",
+                    text: "¡Opps! Ocurrió un error al modificar la junta,\n\
+                            *El formato debe ser el correcto \n\
+                            *Verifique que los campos no se encuentren vacios, \n\
+                            Intente nuevamente",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -272,7 +264,7 @@ function modificarJunta(id) {
                     },
                     dangerMode: true
                 });
-            }          
+            }
             mostrarJuntaDirectiva();
         });
     });
@@ -292,9 +284,9 @@ function modalModificarJunta(junta, miembros) {
     id = '"' + stringJunta[0] + '"';
     $("#fechainicioperiodom").val(stringJunta[1]);
     $("#fechafinalperiodom").val(stringJunta[2]);
-    
+
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarJunta(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
+    botones += "<button id='boton2' onclick='modificarJunta(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
     $("#modalModificar").modal();
 }
@@ -310,7 +302,7 @@ function modalVerJunta(miembros) {
     $("#fiscalv").val(string[4]);
     $("#vocal1v").val(string[5]);
     $("#vocal2v").val(string[6]);
-    
+
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     $("#botonesVer").html(botones);
     $("#modalVer").modal();
@@ -327,7 +319,7 @@ function validarCamposPresidente() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (presidente !== "") {
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
@@ -352,7 +344,7 @@ function validarVicepresidente() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (vicepresidente !== "") {
         $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon2').show();
@@ -377,7 +369,7 @@ function validarCamposSecretario() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (secretario !== "") {
         $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon3').show();
@@ -402,7 +394,7 @@ function validarCamposTesorero() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (tesorero !== "") {
         $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon4').show();
@@ -427,7 +419,7 @@ function validarCamposFiscal() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (fiscal !== "") {
         $("#icon5").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon5').show();
@@ -452,7 +444,7 @@ function validarCamposVocal1() {
     vocal2 = $("#vocal2r").val();
     inicio = $("#fechainicioperiodor").val();
     final = $("#fechafinalperiodor").val();
-    
+
     if (vocal1 !== "") {
         $("#icon6").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon6').show();
@@ -537,3 +529,101 @@ function validarCamposFinal() {
         $('#boton').attr("disabled", true);
     }
 }
+
+function validarCamposPresidentem() {
+
+    presidente = $("#presidentem").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (presidente !== "" && presidente.length >= 3 && presidente.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposVicePresidentem() {
+
+    vicepresidente = $("#vicepresidentem").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (vicepresidente !== "" && vicepresidente.length >= 3 && vicepresidente.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposSecretariom() {
+
+    secretario = $("#secretariom").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (secretario !== "" && secretario.length >= 3 && secretario.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposTesorerom() {
+
+    tesorero = $("#tesorerom").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (tesorero !== "" && tesorero.length >= 3 && tesorero.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposFiscalm() {
+
+    fiscal = $("#fiscalm").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (fiscal !== "" && fiscal.length >= 3 && fiscal.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposVocal1m() {
+
+    vocal1 = $("#vocal1m").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (vocal1 !== "" && vocal1.length >= 3 && vocal1.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+function validarCamposVocal2m() {
+
+    vocal2 = $("#vocal2m").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (vocal2 !== "" && vocal2.length >= 3 && vocal2.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposFecham() {
+
+    inicio = $("#fechainicioperiodom").val();
+    final = $("#fechafinalperiodom").val();
+
+    if (inicio < final) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+
+

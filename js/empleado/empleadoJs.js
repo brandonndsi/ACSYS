@@ -225,7 +225,11 @@ function modificarEmpleado(id, clave) {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al modificar el empleado",
+                    text: "¡Opps! Ocurrió un error al modificar el empleado, \n\
+                            *El formato debe ser el correcto \n\
+                            *Verifique que los campos no se encuentren vacios, \n\
+                            *La Cédula debe contener 9 dígitos, \n\
+                            Intente nuevamente",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -236,11 +240,11 @@ function modificarEmpleado(id, clave) {
                     dangerMode: true
                 });
             }
-
             mostrarEmpleados();
         });
     });
 }
+
 
 function modalModificarEmpleado(empleado) {
 
@@ -260,8 +264,9 @@ function modalModificarEmpleado(empleado) {
     document.ready = document.getElementById("tipoempleadom").value = string[8];
 
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarEmpleado(" + id + "," + clave + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
+    botones += "<button id='boton2' onclick='modificarEmpleado(" + id + "," + clave + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
     $("#botones").html(botones);
+    $('#boton2').attr("disabled", false);
     $("#modalModificar").modal();
 }
 
@@ -351,6 +356,7 @@ function validarCamposCedula() {
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            ;
             $('#boton').attr("disabled", false);
         }
     } else {
@@ -358,6 +364,19 @@ function validarCamposCedula() {
         $('#boton').attr("disabled", true);
     }
 }
+
+function validarCamposCedulam() {
+
+    cedula = $("#documentoidentidadm").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (cedula !== "" && cedula.length === 9 && !cedula.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
 function validarCamposNombre() {
 
     cedula = $("#documentoidentidadr").val();
@@ -367,7 +386,7 @@ function validarCamposNombre() {
     tipo = $("#tipoempleador").val();
     var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (nombre !== "" && nombre.length > 3 && nombre.match(caracteres)) {
+    if (nombre !== "" && nombre.length >= 3 && nombre.match(caracteres)) {
 
         $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon2').show();
@@ -377,9 +396,23 @@ function validarCamposNombre() {
 
     } else {
         $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#icon12').hide();
         $('#boton').attr("disabled", true);
     }
 }
+
+function validarCamposNombrem() {
+
+    nombre = $("#nombrem").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (nombre !== "" && nombre.length >= 3 && nombre.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
 function validarCamposApellido() {
 
     cedula = $("#documentoidentidadr").val();
@@ -402,6 +435,20 @@ function validarCamposApellido() {
         $('#boton').attr("disabled", true);
     }
 }
+
+function validarCamposApellidom() {
+
+    apellido = $("#primerapellidom").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (apellido !== "" && apellido.length >= 3 && apellido.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+    
+}
+
 function validarCamposDireccion() {
 
     cedula = $("#documentoidentidadr").val();
@@ -422,6 +469,42 @@ function validarCamposDireccion() {
     } else {
         $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
         $('#boton').attr("disabled", true);
+    }
+}
+
+function validarCamposDireccionm() {
+
+    direccion = $("#direccionm").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (direccion !== "" && direccion.length >= 3 && direccion.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposTelefonom() {
+
+    telefono = $("#telefonom").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (telefono !== "" && telefono.length === 8 && !telefono.match(caracteres)) {
+        $('#boton2').attr("disabled", false);
+    } else {
+        $('#boton2').attr("disabled", true);
+    }
+}
+
+function validarCamposEmailm() {
+
+    correo = $("#correom").val();
+    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+    if (caract.test(correo) === false) {
+        $('#boton2').attr("disabled", true);        
+    } else {
+        $('#boton2').attr("disabled", false);
     }
 }
 

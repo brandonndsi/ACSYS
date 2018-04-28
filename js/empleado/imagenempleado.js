@@ -154,25 +154,3 @@ function descaragarCedula(){
 	rutaimagen=document.getElementById("imagenCedula").value;
 	window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
-
-/*Esta es la funcion encargada de poder visualizar la imagen antes de enviarla al servidor y que el usuario la puede modificar si quiere o no dependiendo de lo que el mae visualiza..*/
- function fileProview(input){/*El metodo lo que resive como parametro es un input de tipo file para poder hacer la corrobacion de los datos.*/
-	if(input.files && input.files[0]){/*Este if es el encargado de poder corroborar que todos los datos esten bien osea que la imagen sea seleccionada y carge bien.*/
-		var reader= new FileReader();//Se crea una instancia de un archivo para poder cargar los datos en el mismo.
-		reader.readAsDataURL(input.files[0]);//Lo que hacemos es poder asignare el valor del input de la subida en la nueva imagen a poder visualizar.
-		reader.onload =function (e){//Esta funcion es la encargada de poder eliminar los datos del modal y cargar los nuevos datos del mismo.
-			//$('#imagen + img').remove();//Lo que hace es poder remover la imagen que sta
-			nuevaImagen='<img src="'+e.target.result+'" width="430" height="300" />';
-			$('#imagen').html(nuevaImagen);
-			//after('<img src="'+e.target.result+'" width="430" height="300" />');/*Se crea la instancia a utilizar la cual sera la nueva imagen que se visualizara en el modal que el usaurio esta biendo*/
-		}
-	}
-}
-/*terminacion del metodo de ensenar la imagen antes de poder subirla con el objetio de que el usuario pueda ver si esa imagen es la correcta a la hora de la subida.*/
-/*El metodo que le da la funcionalidad al input file para poder previsualizar los datos en el modal que esta viendo*/
-$(document).ready(function(){
-$("#filemage").change(function(){
-	console.log("Datos cargados bien");
-	fileProview(this);/*Se redirecciona la funcionalidad y el focus del file a el metodo de sobre escritura de la imagen en el input del modal.*/
-});
-});

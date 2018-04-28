@@ -207,7 +207,7 @@
                                         <label>Presidente:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="presidentem" id="presidentem" placeholder="Presidente"></p>
+                                        <p><input type="text" class="form-control" class="span12" name="presidentem" id="presidentem" onkeyup="validarCamposPresidentem()" placeholder="Presidente"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -215,7 +215,7 @@
                                         <label>Vicepresidente:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="vicepresidentem" id="vicepresidentem" placeholder="Vicepresidente" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="vicepresidentem" id="vicepresidentem" onkeyup="validarCamposVicePresidentem()" placeholder="Vicepresidente" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -223,7 +223,7 @@
                                         <label>Secretario:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="secretariom" id="secretariom" placeholder="Secretario" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="secretariom" id="secretariom" onkeyup="validarCamposSecretariom()" placeholder="Secretario" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -231,7 +231,7 @@
                                         <label>Tesorero:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="tesorerom" id="tesorerom" placeholder="Tesorero" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="tesorerom" id="tesorerom" onkeyup="validarCamposTesorerom()" placeholder="Tesorero" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -239,7 +239,7 @@
                                         <label>Fiscal:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="fiscalm" id="fiscalm" placeholder="Fiscal" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="fiscalm" id="fiscalm" onkeyup="validarCamposFiscalm()" placeholder="Fiscal" ></p>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                                         <label>Vocal 1:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="vocal1m" id="vocal1m" placeholder="Vocal 1" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="vocal1m" id="vocal1m" onkeyup="validarCamposVocal1m()" placeholder="Vocal 1" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -257,7 +257,7 @@
                                         <label>Vocal 2:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="vocal2m" id="vocal2m" placeholder="Vocal 2" ></p>
+                                        <p><input type="text" class="form-control" class="span12" name="vocal2m" id="vocal2m"  onkeyup="validarCamposVocal2m()" placeholder="Vocal 2" ></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -265,7 +265,7 @@
                                         <label>Inicio:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="date" class="form-control" class="span12" name="fechainicioperiodom" id="fechainicioperiodom"></p>
+                                        <p><input type="date" class="form-control" class="span12" name="fechainicioperiodom" id="fechainicioperiodom" onchange="validarCamposFecham(event);"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -273,7 +273,7 @@
                                         <label>Final:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="date" class="form-control" class="span12" name="fechafinalperiodom" id="fechafinalperiodom"></p>
+                                        <p><input type="date" class="form-control" class="span12" name="fechafinalperiodom" id="fechafinalperiodom" onchange="validarCamposFecham(event)"></p>
                                     </div>
                                 </div>
                             </div>

@@ -16,9 +16,11 @@ if ($action == "modificarperfil") {
     if (empty($id) || empty($password) || empty($password2) || empty($password3)) {
         echo("false");
     } else {
-        if ($password2 == $password3) {
+        if (strlen($password2) >= 4 && strlen($password3) >= 4 && $password2 == $password3) {
             $passwordfinal = $password2;
             echo $businessPerfil->perfilModificar($id, $passwordfinal,$password);
+        } else {
+            echo("false");
         }
     }
 }

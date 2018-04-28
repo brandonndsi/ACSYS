@@ -14,6 +14,7 @@ function mostrarProcesos() {
                 html += "<td>" + json[i].productoproceso + "</td>";
                 html += "<td>" + json[i].fechaproceso + "</td>";
                 html += "<td>" + json[i].horaproceso + "</td>";
+                html += "<td>" + json[i].estadoproceso + "</td>";
 
                 producto = json[i].productoproceso;
                 cantidad = json[i].cantidadproceso;
@@ -39,51 +40,53 @@ function mostrarProcesos() {
                         "," + estabilizador + "," + colorante + "," + cremaProce1 + "," + lecheProce1 + "," +
                         cremaProce2 + "," + lecheProce2 + "," + hora + "," + fecha + "," + id + "'";
 
-                html += '<td><a href="javascript:modalModificarProceso(' + proceso + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
                 html += '<td><a href="javascript:modalVerProceso(' + proceso + ')"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
                 html += '<td><a href="javascript:eliminarProceso(' + proceso + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
                 html += "</tr>";
             }
             $("#datos").html(html);
 
-            $(document).ready(function () {
-                $('#listaProcesos').DataTable({
-                    "bDeferRender": true,
-                    "sordering": true,
-                    "responsive": true,
-                    "sPaginationType": "full_numbers",
-
-                    "oLanguage": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Por favor espere - cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        }
-                    }
-                });
-            });
+            lenguajeTabla();
         });
     });
 }
 
+function lenguajeTabla() {
 
+    $(document).ready(function () {
+        $('#listaProcesos').DataTable({
+            "bDeferRender": true,
+            "sordering": true,
+            "responsive": true,
+            "sPaginationType": "full_numbers",
+
+            "oLanguage": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": 'Mostrar _MENU_ Registros por pagina',
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Por favor espere - cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+    });
+}
 function mostrarTabla() {
     $('#tabla').dataTable().fnDestroy();
     html = "";
@@ -281,114 +284,6 @@ function registrarProceso() {
     });
 }
 
-//modificar //
-function modificarProceso(id, cantidadVieja) {
-
-    nombre = $("#productom").val();
-    cantidadNueva = $("#cantidadm").val();
-    porcentaje = $("#porcentajem").val();
-    entera = $("#lecheEnteram").val();
-    descremada = $("#lecheDescremadam").val();
-    cuajo = $("#cuajom").val();
-    cloruro = $("#clorurom").val();
-    sal = $("#salm").val();
-    cultivo = $("#cultivoCodigom").val();
-    estabilizador = $("#estabilizadorCodigom").val();
-    colorante = $("#colorateprocesom").val();
-    crema1 = $("#cremaproceso1m").val();
-    leche1 = $("#lecheproceso1m").val();
-    crema2 = $("#cremaproceso2m").val();
-    leche2 = $("#lecheproceso2m").val();
-    hora = $("#horaprocesom").val();
-    fecha = $("#fechaprocesom").val();
-
-    $(document).ready(function () {
-        $.post('../../business/proceso/actionProceso.php', {
-            action: 'modificarproceso',
-            nombre: nombre,
-            cantidadNueva: cantidadNueva,
-            cantidadVieja: cantidadVieja,
-            porcentaje: porcentaje,
-            entera: entera,
-            descremada: descremada,
-            cuajo: cuajo,
-            cloruro: cloruro,
-            sal: sal,
-            cultivo: cultivo,
-            estabilizador: estabilizador,
-            colorante: colorante,
-            crema1: crema1,
-            leche1: leche1,
-            crema2: crema2,
-            leche2: leche2,
-            hora: hora,
-            fecha: fecha,
-            id: id
-        }, function (responseText) {
-            respuesta = "";
-            if (responseText === "true") {
-                swal({
-                    title: "Confirmación",
-                    text: "¡Se ha modificado el proceso satisfactoriamente!",
-                    icon: "success",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-                });
-            } else {
-                swal({
-                    title: "Confirmación",
-                    text: "¡Opps! Ocurrió un error al modificar el proceso",
-                    icon: "error",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-                });
-            }
-            mostrarProcesos();
-        });
-    });
-}
-
-function modalModificarProceso(proceso) {
-
-    string = proceso.split(",");
-
-    $("#productom").val(string[0]);
-    $("#cantidadm").val(string[1]);
-    $("#porcentajem").val(string[2]);
-    $("#lecheEnteram").val(string[3]);
-    $("#lecheDescremadam").val(string[4]);
-    $("#cuajom").val(string[5]);
-    $("#clorurom").val(string[6]);
-    $("#salm").val(string[7]);
-    $("#cultivoCodigom").val(string[8]);
-    $("#estabilizadorCodigom").val(string[9]);
-    $("#colorateprocesom").val(string[10]);
-    $("#cremaproceso1m").val(string[11]);
-    $("#lecheproceso1m").val(string[12]);
-    $("#cremaproceso2m").val(string[13]);
-    $("#lecheproceso2m").val(string[14]);
-    $("#horaprocesom").val(string[15]);
-    $("#fechaprocesom").val(string[16]);
-
-    id = '"' + string[17] + '"';
-    cantidadVieja = '"' + string[1] + '"';
-    
-    botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='modificarProceso(" + id + "," + cantidadVieja + ")' data-dismiss='modal' class='btn btn-primary'>Modificar</button></p>";
-    $("#botones").html(botones);
-    $("#modalModificar").modal();
-}
-
 // eliminar //
 function eliminarProceso(proceso) {
 
@@ -437,6 +332,65 @@ function eliminarProceso(proceso) {
     });
 }
 
+function buscarPorFecha() {
+
+    fecha = document.getElementById("fecha").value;
+
+    $.post('../../business/proceso/actionProceso.php', {
+        action: 'buscarfecha',
+        fechab: fecha
+    }, function (responseText) {
+
+        json = JSON.parse(responseText);
+        mostrarProcesosFecha(json);
+    });
+}
+
+//mostrar procesos por fecha de busqueda//
+function mostrarProcesosFecha(json) {
+
+    $('#listaProcesos').dataTable().fnDestroy();
+
+    html = "";
+    for (i = 0; i < json.length; i++) {
+        html += "<tr>";
+        html += "<td>" + json[i].idproceso + "</td>";
+        html += "<td>" + json[i].productoproceso + "</td>";
+        html += "<td>" + json[i].fechaproceso + "</td>";
+        html += "<td>" + json[i].horaproceso + "</td>";
+        html += "<td>" + json[i].estadoproceso + "</td>";
+
+        producto = json[i].productoproceso;
+        cantidad = json[i].cantidadproceso;
+        porcentaje = json[i].porcentajegrasalecheproceso;
+        lecheEntera = json[i].lecheenteraproceso;
+        lecheDescremada = json[i].lechedescremadaproceso;
+        cuajo = json[i].cuajoproceso;
+        clorurDeCalcio = json[i].clorurdecalcioproceso;
+        sal = json[i].salproceso;
+        cultivoCodigo = json[i].cultivocodigoproceso;
+        estabilizador = json[i].estabilizadorcodigo;
+        colorante = json[i].colorateproceso;
+        cremaProce1 = json[i].cremaproceso1;
+        lecheProce1 = json[i].lecheproceso1;
+        cremaProce2 = json[i].cremaproceso2;
+        lecheProce2 = json[i].lecheproceso2;
+        hora = json[i].horaproceso;
+        fecha = json[i].fechaproceso;
+        id = json[i].idproceso;
+
+        proceso = "'" + producto + "," + cantidad + "," + porcentaje + "," + lecheEntera + "," +
+                lecheDescremada + "," + cuajo + "," + clorurDeCalcio + "," + sal + "," + cultivoCodigo +
+                "," + estabilizador + "," + colorante + "," + cremaProce1 + "," + lecheProce1 + "," +
+                cremaProce2 + "," + lecheProce2 + "," + hora + "," + fecha + "," + id + "'";
+
+        html += '<td><a href="javascript:modalVerProceso(' + proceso + ')"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
+        html += '<td><a href="javascript:eliminarProceso(' + proceso + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
+        html += "</tr>";
+    }
+    $("#datos").html(html);
+    lenguajeTabla();
+}
 
 function consultarProduct() {
     $(document).ready(function () {

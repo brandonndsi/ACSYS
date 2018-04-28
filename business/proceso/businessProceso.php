@@ -18,11 +18,6 @@ class businessProceso {
 
         return $this->dataProceso->procesoRegistrar($nombre, $cantidad, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2);
     }
-
-    public function procesoModificar($nombre, $nuevo, $viejo, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2, $hora, $fecha, $id) {
-
-        return $this->dataProceso->procesoModificar($nombre, $nuevo, $viejo, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2, $hora, $fecha, $id);
-    }
     
     public function consultarProducto() {
         return $this->dataProceso->consultarProducto();
@@ -31,6 +26,11 @@ class businessProceso {
     public function procesoEliminar($cantidad,$nombre,$id) {
 
         return $this->dataProceso->procesoEliminar($cantidad,$nombre,$id);
+    }
+    
+    public function buscarFecha($busquedafecha) {
+
+        return $this->dataProceso->buscarFecha($busquedafecha);
     }
 }
 

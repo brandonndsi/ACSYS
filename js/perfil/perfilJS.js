@@ -30,7 +30,8 @@ function modificarContrasenia() {
             } else {
                 swal({
                     title: "Confirmación",
-                    text: "¡Opps! Digite su contraseña y verigique que las contraseñas sean iguales",
+                    text: "¡Opps! Digite su contraseña y verigique que las contraseñas sean iguales,\n\
+                            *Los dígitos de la contraseña deben ser mayor a 4",
                     icon: "error",
                     buttons: {
                         ok: {

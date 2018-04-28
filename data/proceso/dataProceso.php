@@ -38,7 +38,7 @@ class dataProceso {
 
         $con = $this->conexion->crearConexion();
         $fecha = date('Y-m-d');
-        $hora = date("g:i A");
+        $hora = date("G:i A");
         $registrarProceso = $con->query("CALL registrarProceso('$nombre','$cantidad','$porcentaje','$entera','$descremada','$cuajo','$cloruro','$sal','$cultivo','$estabilizador','$colorante','$crema1','$leche1','$crema2','$leche2','$hora','$fecha')");
 
         if ($registrarProceso == 1) {
@@ -55,7 +55,7 @@ class dataProceso {
         $cox = $this->conexion->crearConexion();
         $cox->set_charset("utf8");
         $restatock = $cox->query("CALL restastockproceso('$cantidad','$nombre')");
-        
+
         if ($restatock == 1) {
             $con = $this->conexion->crearConexion();
             $eliminarProceso = $con->query("CALL eliminarproceso('$id')");
@@ -65,34 +65,15 @@ class dataProceso {
         }
     }
 
-    // modifica
-    function procesoModificar($nombre, $nuevo, $viejo, $porcentaje, $entera, $descremada, $cuajo, $cloruro, $sal, $cultivo, $estabilizador, $colorante, $crema1, $leche1, $crema2, $leche2, $hora, $fecha, $id) {
+    public function buscarFecha($busquedafecha) {
 
         $con = $this->conexion->crearConexion();
-        /* modifica */
-        $registrarProceso = $con->query("CALL modificarProceso('$nombre','$nuevo','$porcentaje','$entera','$descremada','$cuajo','$cloruro','$sal','$cultivo','$estabilizador','$colorante','$crema1','$leche1','$crema2','$leche2','$hora','$fecha','$id')");
-
-        if ($registrarProceso == 1) {
-            if ($nuevo > $viejo) {
-
-                $cantidad = $nuevo - $viejo;
-                $cox = $this->conexion->crearConexion();
-                $cox->set_charset("utf8");
-                $sumastock = $cox->query("CALL sumastockproceso('$cantidad','$nombre')");
-
-                return "true";
-            } else {
-
-                $cantidad = $viejo - $nuevo;
-                $cox = $this->conexion->crearConexion();
-                $cox->set_charset("utf8");
-                $restatock = $cox->query("CALL restastockproceso('$cantidad','$nombre')");
-
-                return "true";
-            }
-        } else {
-            return "false";
+        $buscarfecha = $con->query("CALL buscarprocesoporfecha('$busquedafecha');");
+        $datos = array();
+        while ($result = $buscarfecha->fetch_assoc()) {
+            array_push($datos, $result);
         }
+        echo json_encode($datos);
     }
 
 }

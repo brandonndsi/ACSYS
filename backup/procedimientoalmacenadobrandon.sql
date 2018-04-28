@@ -184,3 +184,12 @@ UPDATE tbfacturero SET ultimafactura=facturaVenta+1;
 SELECT idventa FROM tbventa ORDER BY idventa DESC limit 1;
 END$$
 DELIMITER ;
+
+/* busca procesos por fecha*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarprocesoporfecha`(IN `fecha` DATE)
+    NO SQL
+BEGIN
+SELECT * FROM tbproceso WHERE fechaproceso = fecha;
+END$$
+DELIMITER ;

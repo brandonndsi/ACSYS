@@ -10,15 +10,16 @@ if ($action == "consultarempleados") {
     echo $businessEmpleado->empleadoMostrar();
 } else if ($action == "registrarempleado") {
 
-    $cedula = htmlentities($_POST['cedula']);
-    $nombre = htmlentities($_POST['nombre']);
-    $apellido1 = htmlentities($_POST['apellido1']);
-    $apellido2 = htmlentities($_POST['apellido2']);
-    $telefono = htmlentities($_POST['telefono']);
-    $direccion = htmlentities($_POST['direccion']);
-    $correo = htmlentities($_POST['correo']);
-    $clave = htmlentities($_POST['clave']);
-    $tipo = htmlentities($_POST['tipo']);
+    $cedula = htmlentities(strip_tags($_POST['cedula']));
+    $nombre = htmlentities(strip_tags($_POST['nombre']));
+    $apellido1 = htmlentities(strip_tags($_POST['apellido1']));
+    $apellido2 = htmlentities(strip_tags($_POST['apellido2']));
+    $telefono = htmlentities(strip_tags($_POST['telefono']));
+    $direccion = htmlentities(strip_tags($_POST['direccion']));
+    $correo = htmlentities(strip_tags($_POST['correo']));
+    $id = htmlentities(strip_tags($_POST['id']));
+    $clave = htmlentities(strip_tags($_POST['clave']));
+    $tipo = htmlentities(strip_tags($_POST['tipo']));
     $manipulacionalimentos = htmlentities($_POST['manipulacionalimentos']);
     $identidad = htmlentities($_POST['identidad']);
 
@@ -39,16 +40,16 @@ if ($action == "consultarempleados") {
     }
 } else if ($action == "modificarempleado") {
 
-    $cedula = htmlentities($_POST['cedula']);
-    $nombre = htmlentities($_POST['nombre']);
-    $apellido1 = htmlentities($_POST['apellido1']);
-    $apellido2 = htmlentities($_POST['apellido2']);
-    $telefono = htmlentities($_POST['telefono']);
-    $direccion = htmlentities($_POST['direccion']);
-    $correo = htmlentities($_POST['correo']);
-    $id = htmlentities($_POST['id']);
-    $clave = htmlentities($_POST['clave']);
-    $tipo = htmlentities($_POST['tipo']);
+    $cedula = htmlentities(strip_tags($_POST['cedula']));
+    $nombre = htmlentities(strip_tags($_POST['nombre']));
+    $apellido1 = htmlentities(strip_tags($_POST['apellido1']));
+    $apellido2 = htmlentities(strip_tags($_POST['apellido2']));
+    $telefono = htmlentities(strip_tags($_POST['telefono']));
+    $direccion = htmlentities(strip_tags($_POST['direccion']));
+    $correo = htmlentities(strip_tags($_POST['correo']));
+    $id = htmlentities(strip_tags($_POST['id']));
+    $clave = htmlentities(strip_tags($_POST['clave']));
+    $tipo = htmlentities(strip_tags($_POST['tipo']));
 
     if (empty($cedula) || empty($nombre) || empty($apellido1) || empty($direccion) || empty($id)) {
         echo("false");
@@ -62,9 +63,10 @@ if ($action == "consultarempleados") {
         if (empty($telefono)) {
             $telefono = "N/A";
         }
-        if (!is_numeric($nombre)) {
+        if (!is_numeric($nombre) && is_numeric($cedula) && strlen($cedula)==9) {
             echo $businessEmpleado->empleadoModificar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $id, $clave, $tipo);
         }
+        
     }
 } else if ($action == "eliminarempleado") {
 
