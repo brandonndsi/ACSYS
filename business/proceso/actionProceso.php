@@ -27,9 +27,7 @@ if ($action == "consultarprocesos") {
     $crema2 = htmlentities($_POST['crema2']);
     $leche2 = htmlentities($_POST['leche2']);
 
-    if (empty($nombre) || empty($cantidad) || empty($porcentaje) || empty($entera) ||
-            empty($descremada) || empty($cuajo) || empty($cloruro) || empty($sal) || empty($cultivo) ||
-            empty($estabilizador) || empty($colorante)) {
+    if (empty($nombre) || empty($cantidad)) {
 
         echo("false");
     } else {
