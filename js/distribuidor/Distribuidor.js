@@ -108,7 +108,8 @@ function registrarDistribuidor() {
     telefono = $("#telefonor").val();
     direccion = $("#direccionr").val();
     correo = $("#correor").val();
-
+   /*verificando que los campos no esten vacios a la hora de enviarlos*/
+   if(cedula!="" && nombre!="" && apellido1!="" && apellido2!="" && telefono!="" && direccion!="" && correo!=""){
     $(document).ready(function () {
         $.post('../../business/distribuidor/DistribuidorAccion.php', {
             action: 'registrarDistribuidor',
@@ -161,13 +162,45 @@ function registrarDistribuidor() {
             cargarTablaDistribuidor();
         });
     });
+}else{
+    swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Ocurrió un error datos vacios",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+/*este else es por si algun dato esta vacio que lo marque como tal
+        cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido1 = $("#primerapellidor").val();
+    apellido2 = $("#segundoapellidor").val();
+    telefono = $("#telefonor").val();
+    direccion = $("#direccionr").val();
+    correo = $("#correor").val();
+    */
+   if(cedula == ""){
+    alert("hla cedula");
+ document.getElementById(documentoidentidadr).style.border="1px solid red";
+ }else if(nombre == ""){
+    document.getElementById(nombrer).style.border="1px solid red";
+ } 
+
+     $("#modalRegistrar").modal("show");//veta para ver que no se cierre el modal definitivamente 
+
+}
 }
 
 function modalRegistrarDistribuidor() {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button onclick='registrarDistribuidor()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
     $("#botonesRegistrar").html(botones);
-    $("#modalRegistrar").modal();
+    $("#modalRegistrar").modal({backdrop: 'static', keyboard: false});
 }
 
 //modificar empleado//
@@ -296,4 +329,56 @@ function modalEliminarDistribuidor(distribuidor) {
     botones += "<button onclick='eliminarDistribuidor(" + id + ")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
     $("#botonesEliminar").html(botones);
     $("#modalEliminar").modal();
+}
+
+/*funcion que se encarga de verificar que lo que se ingrese sea solo letras*/
+function textonly(e){
+var code;
+if (!e) var e = window.event;
+if (e.keyCode) code = e.keyCode;
+else if (e.which) code = e.which;
+var character = String.fromCharCode(code);
+
+    var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+    if (AllowRegex.test(character)) return true;
+    return false;
+
+}
+/*esto lo que hace es preguntar si esta basio o no*/
+function verifyOnChange(id){
+
+    if(document.getElementById(id).value.length>0){
+      document.getElementById(id).className = "form-control input";
+    }else{
+      document.getElementById(id).className = "form-control input error";
+    }
+}
+
+function validarEspaciosEnBlancoInput(e,id) {
+ if (e.target.value.trim() == ""){
+    swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Error Espacios en blanco no aceptable",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+  limpiarCampoInput(id);
+ }
+}
+function limpiarCampoInput(id){
+    document.getElementById(id).value="";
+     /*document.getElementById(id).style.border="1px solid red"; */ 
+}
+
+function soloNumeros(e){
+  var key = window.event ? e.which : e.keyCode;
+  if (key < 48 || key > 57) {
+    e.preventDefault();
+  }
 }

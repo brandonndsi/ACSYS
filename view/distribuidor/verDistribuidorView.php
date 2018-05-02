@@ -90,7 +90,7 @@
                                         <label>Cédula:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" required pattern="[0-9]{9}"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" onchange="validarEspaciosEnBlancoInput(event,this.id);" title="C&eacute;dula, debe incluir 9 d&iacute;gitos" placeholder="C&eacute;dula" required></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -98,7 +98,7 @@
                                         <label>Nombre:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text"  class="form-control" class="span12" name="nombrer"  id="nombrer" placeholder="Nombre" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})" /></p>
+                                        <p><input type="text"  class="form-control" class="span12" name="nombrer"  id="nombrer" onkeypress="return textonly(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Nombre" placeholder="Nombre" required/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -106,7 +106,7 @@
                                         <label>1° Apellido:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="primerapellidor" id="primerapellidor" placeholder="1° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="primerapellidor" id="primerapellidor" onkeypress="return textonly(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Primer Apellido" placeholder="Primer Apellido" required/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -114,7 +114,7 @@
                                         <label>2° Apellido:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="segundoapellidor" id="segundoapellidor" placeholder="2° Apellido" required pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]{2,25})"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="segundoapellidor" id="segundoapellidor" onkeypress="return textonly(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Segundo Apellido" placeholder="Segundo Apellido" required/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -132,7 +132,7 @@
                                         <label>Teléfono:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" placeholder="Teléfono" required pattern="[0-9]{8}" /></p>
+                                        <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" onkeypress="return soloNumeros(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Tel&eacute;fono, debe incluir 9 d&iacute;gitos" placeholder="Tel&eacute;fono" required/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
