@@ -353,7 +353,25 @@ function verifyOnChange(id){
       document.getElementById(id).className = "form-control input error";
     }
 }
-
+function verificarQueSeanNueveDijitos(id){
+    if(document.getElementById(id).value.length>9){
+      document.getElementById(id).className = "form-control input";
+    }else{
+        swal({
+                    title: "Confirmación",
+                    text: "¡Opps! Error Debe tener solo 9 digìtos",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+        document.getElementById(id).style.border="1px solid red";
+    }
+}
 function validarEspaciosEnBlancoInput(e,id) {
  if (e.target.value.trim() == ""){
     swal({
