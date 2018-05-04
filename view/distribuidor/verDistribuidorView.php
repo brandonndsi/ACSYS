@@ -90,7 +90,8 @@
                                         <label>Cédula:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" onchange="validarEspaciosEnBlancoInput(event,this.id);" title="C&eacute;dula, debe incluir 9 d&iacute;gitos" placeholder="C&eacute;dula" required></p>
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" onkeypress="return soloNumeros(event);" onchange="soloNumeros(event);validarEspaciosEnBlancoInput(event,this.id); 
+                                        verificarQueSeanNueveDijitos(this.id);" title="C&eacute;dula, debe incluir 9 d&iacute;gitos" placeholder="C&eacute;dula" required maxlength="9"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -122,7 +123,8 @@
                                         <label>Email:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required /></p>
+                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required title="Correo, debe tener un @ y .com como minimo" onchange="verificarCorreo(this);"
+                                         /></p>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +134,8 @@
                                         <label>Teléfono:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" onkeypress="return soloNumeros(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);verificarQueSeanNueveDijitos(this.id);" data-toggle="tooltip" data-placement="top" title="Tel&eacute;fono, debe incluir 9 d&iacute;gitos" placeholder="Tel&eacute;fono" required/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" onkeypress="return soloNumeros(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id); 
+                                            verificarQueSeanOchoDijitos(this.id);" data-toggle="tooltip" data-placement="top" title="Tel&eacute;fono, debe incluir 8 d&iacute;gitos" placeholder="Tel&eacute;fono" required maxlength="8" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">

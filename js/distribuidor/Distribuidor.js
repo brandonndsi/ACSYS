@@ -164,7 +164,7 @@ function registrarDistribuidor() {
     });
 }else{
     swal({
-                    title: "Confirmación",
+                    title: "Datos vacios",
                     text: "¡Opps! Ocurrió un error datos vacios",
                     icon: "error",
                     buttons: {
@@ -175,27 +175,31 @@ function registrarDistribuidor() {
                     },
                     dangerMode: true
                 });
-/*este else es por si algun dato esta vacio que lo marque como tal
-        cedula = $("#documentoidentidadr").val();
-    nombre = $("#nombrer").val();
-    apellido1 = $("#primerapellidor").val();
-    apellido2 = $("#segundoapellidor").val();
-    telefono = $("#telefonor").val();
-    direccion = $("#direccionr").val();
-    correo = $("#correor").val();
-    */
-   if(cedula == ""){
-    alert("hla cedula");
- document.getElementById(documentoidentidadr).style.border="1px solid red";
- }else if(nombre == ""){
-    document.getElementById(nombrer).style.border="1px solid red";
- } 
-
-     $("#modalRegistrar").modal("show");//veta para ver que no se cierre el modal definitivamente 
-
 }
 }
+function verificarCorreo(valor){
+emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(valor.value)) {
+      alert("válido");
+       document.getElementById(valor.id).className = "form-control input";//.style.border="1px solid green";
+    } else {
+      document.getElementById(valor.id).style.border="1px solid red";
+      swal({
+                    title: "Correo No vàlido",
+                    text: "Ejemplo  de correo: andres@gmail.com",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+            });
+    }
 
+}
 function modalRegistrarDistribuidor() {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button onclick='registrarDistribuidor()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
@@ -348,18 +352,42 @@ var character = String.fromCharCode(code);
 function verifyOnChange(id){
 
     if(document.getElementById(id).value.length>0){
-      document.getElementById(id).className = "form-control input";
+      document.getElementById(id).style.border="1px solid green";
     }else{
-      document.getElementById(id).className = "form-control input error";
+      //document.getElementById(id).className = "form-control input error";
+      document.getElementById(id).style.border="1px solid red";
     }
 }
 function verificarQueSeanNueveDijitos(id){
-    if(document.getElementById(id).value.length>9){
-      document.getElementById(id).className = "form-control input";
+    if(document.getElementById(id).value.length>=9){
+
+      document.getElementById(id).style.border="1px solid green";
+
     }else{
         swal({
-                    title: "Confirmación",
-                    text: "¡Opps! Error Debe tener solo 9 digìtos",
+                    title: "Cèdula",
+                    text: "¡Opps! La Cèdula debe de  tener solo 9 digìtos",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+        document.getElementById(id).style.border="1px solid red";
+    }
+}
+function verificarQueSeanOchoDijitos(id){
+    if(document.getElementById(id).value.length>=8){
+
+      document.getElementById(id).style.border="1px solid green";
+
+    }else{
+        swal({
+                    title: "Telèfono",
+                    text: "¡Opps! El telèfono debe tener solo 8 digìtos",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -375,8 +403,8 @@ function verificarQueSeanNueveDijitos(id){
 function validarEspaciosEnBlancoInput(e,id) {
  if (e.target.value.trim() == ""){
     swal({
-                    title: "Confirmación",
-                    text: "¡Opps! Error Espacios en blanco no aceptable",
+                    title: "Datos incorrectos",
+                    text: "¡Opps! Error en los datos ingresados",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -387,16 +415,18 @@ function validarEspaciosEnBlancoInput(e,id) {
                     dangerMode: true
                 });
   limpiarCampoInput(id);
+ }else{
+    document.getElementById(id).className = "form-control input";
  }
 }
 function limpiarCampoInput(id){
     document.getElementById(id).value="";
+    document.getElementById(id).style.border="1px solid red";
      /*document.getElementById(id).style.border="1px solid red"; */ 
 }
 
 function soloNumeros(e){
-  var key = window.event ? e.which : e.keyCode;
-  if (key < 48 || key > 57) {
-    e.preventDefault();
-  }
+    var key = e.charCode;
+    console.log(key);
+    return key >= 48 && key <= 57;
 }
