@@ -15,6 +15,7 @@
   <script src="../../js/bootstrap.min.js"></script>
     
     <script type="text/javascript" src="../../js/empleado/imagenempleado.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
           <?php 

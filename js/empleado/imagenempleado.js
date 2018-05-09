@@ -138,7 +138,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		//alert("sdsadsa");
 		//po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		location.reload();
+		window.location.reload();
 });
 });
 	/*$('#btn_cancelar').on("click", function(evt){
@@ -171,6 +171,41 @@ function descaragarCedula(){
 $(document).ready(function(){
 $("#filemage").change(function(){
 	console.log("Datos cargados bien");
-	fileProview(this);/*Se redirecciona la funcionalidad y el focus del file a el metodo de sobre escritura de la imagen en el input del modal.*/
+	var datooo=control(this);
+	if(datooo==true){
+		fileProview(this);/*Se redirecciona la funcionalidad y el focus del file a el metodo de sobre escritura de la imagen en el input del modal.*/
+	}else{
+		swal({
+                    title: "Imagen",
+                    text: "Error, estenciones validas .JPG, .JPEG, .PNG",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+		//alert("Extencion no valida.");
+		this.value="";
+	}
+	
 });
 });
+	
+function control(f){
+	var bandera=false;
+    var ext=['gif','jpg','jpeg','png'];
+    var v=f.value.split('.').pop().toLowerCase();
+    for(var i=0,n;n=ext[i];i++){
+        if(n.toLowerCase()==v){
+            bandera=true;
+        }
+    }
+    return bandera;
+    /*var t=f.cloneNode(true);
+    t.value='';
+    f.parentNode.replaceChild(t,f);
+    alert('extensión no válida');*/
+}

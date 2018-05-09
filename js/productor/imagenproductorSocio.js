@@ -263,7 +263,9 @@ $(document).ready(function(){
 		//alert("Tocando el boton de Cerrar el modal.");//Alerta encargada de poder motrar el mensaje de la informacion de que se se se elcciono el modal de cerra.
 		po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";//Esta funcion lo que hace es ocultar de nuevo el modal de la imagen visualizada.
-		location.reload();//lo que hace es recargar la paguina de origen global y sin necesidad de la redireccionamiento.
+		window.location.reload();//lo que hace es recargar la paguina de origen global y sin necesidad de la redireccionamiento.
+		//id=document.getElementById("encriptado").value;
+		//window.location.href = '../../view/productor/verImagenProductorSocioView.php?id='+id;
 });
 });
 /*Finalización del metodo de la función de cancelar o cerrar el modal de la imagen a modificar.*/
@@ -283,17 +285,41 @@ function fileProview(input){/*El metodo lo que resive como parametro es un input
 $(document).ready(function(){
 $("#filemage").change(function(){
 	console.log("Datos cargados bien");
-	fileProview(this);
-});
-});
-/*$(document).ready(function(){
-	$('#btn_cancelar').on("click", function(evt){
-		evt.preventDefault();
-		alert("kjjjjnnj");
-		po=document.getElementById("encriptado").value;
-		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		buscarImagenes();
-	});
-
-});*/
+	var datooo=control(this);
+	if(datooo==true){
+		fileProview(this);/*Se redirecciona la funcionalidad y el focus del file a el metodo de sobre escritura de la imagen en el input del modal.*/
+	}else{
+		swal({
+                    title: "Imagen",
+                    text: "Error, estenciones validas .JPG, .JPEG, .PNG",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+		//alert("Extencion no valida.");
+		this.value="";
+	}
 	
+});
+});
+	
+function control(f){
+	var bandera=false;
+    var ext=['gif','jpg','jpeg','png'];
+    var v=f.value.split('.').pop().toLowerCase();
+    for(var i=0,n;n=ext[i];i++){
+        if(n.toLowerCase()==v){
+            bandera=true;
+        }
+    }
+    return bandera;
+    /*var t=f.cloneNode(true);
+    t.value='';
+    f.parentNode.replaceChild(t,f);
+    alert('extensión no válida');*/
+}
