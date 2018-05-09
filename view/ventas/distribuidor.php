@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- para los modales de notificaciones -->
 
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/menu.css">
@@ -156,13 +157,41 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-danger" onclick="redireccionamiento_a_la_misma_clase();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-                            <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/distribuidor.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
+                            <button class="btn btn-danger" onclick="redireccionamiento_a_la_pagina_sin_factura();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No factura</button>
+                            <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/distribuidor.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span>Factura</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
+
+        <!-- modal que verifica si de verdad desea eliminar todo del carrito de compras -->
+          <div id="modalEliminar" class="modal" role="dialog">
+            <div  class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title glyphicon glyphicon glyphicon-warning-sign" > Advertencia</h4>
+                        <button type="button" class="close" data-dismiss='modal'>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div>
+                                <h4>¿Desea eliminar el carrito de compras totalmente?</h4>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div id="botonesEliminar">
+
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dalog -->
+        </div><!-- /.modal -->
+        <!-- terminacion del carrito  pero de la eliminacion del todo del mismo-->
+
     </body>
 </html>
 

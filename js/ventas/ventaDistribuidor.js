@@ -43,14 +43,56 @@ function cargar_modal_tambien_llenar_dato1(){
 
     $('#modalProductosVentanilla').modal();
 }
+function redireccionamiento_a_la_pagina_sin_factura(){
+    confirmacion_sin_factura();
+}
 function redireccionamiento_a_la_misma_clase(){
-    window.location.href = '../../view/ventas/distribuidor.php';
+    //window.location.href = '../../view/ventas/distribuidor.php';
+    modalConfirmar_La_Limpieza_del_Carrito();
+}
+function confirmacion_sin_factura(){
+    swal({
+                    title: "Sin factura",
+                    text: "Venta procesada sin factura exitozamente.",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+     window.location.href = '../../view/ventas/distribuidor.php';
+}
+function confirmacion_redireccionamiento(){
+     swal({
+                    title: "Carrito",
+                    text: "El carrito de compras fue eliminado.",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+     window.location.href = '../../view/ventas/distribuidor.php';
+}
+function modalConfirmar_La_Limpieza_del_Carrito(){
+    botones = "<p><button data-dismiss='modal' id='arreglo' class='btn btn-danger'>Cancelar</button> ";
+    botones += "<button onclick='confirmacion_redireccionamiento();' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
+    $("#botonesEliminar").html(botones);
+    $("#modalEliminar").modal();
 }
 function acciones_de_los_botones_principales(){
     
     carry();
     cargar();
-    $('#modalRecibo').modal();
+   /* $('#modalRecibo').modal();*/
 }
 function consultarProductorCliente(html) {
     $(document).ready(function () {
@@ -373,7 +415,7 @@ function carry() {
     var tipoVenta = "Distribuidor";
     carrito = JSON.parse(localStorage.getItem("listaProductos"));
     console.log(carrito);
-
+if (carrito != null) {
     $(document).ready(function () {
         $.post('../../business/ventas/actionVentaDistribuidor.php', {
             action: 'procesarVenta',
@@ -439,6 +481,22 @@ function carry() {
         }); 
     /*terminacion para poder optener el numero de factura.*/
     $("#modalRecibo").modal();
+}else{
+     swal({
+                    title: "Venta Distribuidor",
+                    text: "El carrito esta vacio. Favor ingresar un articulo minimo.",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+    //Mensaje de que no hay ningun articulo en el carrito de compras.
+}
 }
 
 function ImprimirFactura(){
@@ -446,6 +504,19 @@ numerofactura=document.getElementById("Re_recibo").value;
 totalBB = document.getElementById('totalPagar').value;
 id = document.getElementById('selectCliente').value;
 window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+swal({
+                    title: "Factura",
+                    text: "La factura se descargo exitozamente.",
+                    icon: "success",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
 }
 
 

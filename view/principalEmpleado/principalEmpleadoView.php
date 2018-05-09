@@ -68,26 +68,6 @@
                 </div>
             </section>
             <!-- Terminacion del carrucel-->
-                <!--<div class="contenedor">
-                    <div class="info-repuesto">
-                        <a href="#"><img src="../../image/prin/venta.jpg"></a>
-                        <h4>Venta</h4>
-                    </div>
-
-                    <div class="info-repuesto">
-                        <a href="#"><img src="../../image/prin/procesos.jpg"></a> 
-                        <h4>procesos</h4>
-                    </div>
-
-                    <div class="info-repuesto">
-                        <a href="#"><img src="../../image/prin/productos.jpg"></a>
-                        <h4>Producto</h4>
-                    </div>
-                    <div class="info-repuesto">
-                        <a href="#pro"><img src="../../image/prin/perfil.png"></a>
-                        <h4>Productores</h4>
-                    </div>
-                </div>-->
             </section>
         </main>
     </body>
