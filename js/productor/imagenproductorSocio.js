@@ -122,6 +122,7 @@ $(document).ready(function(){
 		});
 
 	});
+	document.getElementById("filemage").value="";
 //location.href = '../../view/productor/pedo.php';
 });
 /**
