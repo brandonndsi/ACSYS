@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-        <link rel="stylesheet" href="../../css/info.css";
+        <!--<link rel="stylesheet" href="../../css/info.css">-->
+        <link rel="stylesheet" href="../../css/carrucel/carrucel.css">
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -33,8 +34,41 @@
         ?>
         <main>
         <section id="info">
-                <h3>Asoprolesa productos que se ofresen.</h3>
-                <div class="contenedor">
+                <h3>Bienvenidos  a ASOPROLESA.</h3>
+                <!--Carrucel-->
+            <section id="bienvenidos">
+
+                <div id="contenedor_carrucel">
+                    <ul id="carrucel" >
+                        <li data-target="#contenedor_carrucel">
+                            <a style="color:white;" href="#">
+                                <strong style="color:black;">Animales</strong>
+                                <img src="../../image/prin/venta.jpg" id="carru">
+                            </a>
+                        </li>
+                        <li data-target="#contenedor_carrucel">
+                            <a style="color:white;" href="#">
+                                <strong style="color:black;">Productos</strong>
+                                <img src="../../image/prin/procesos.jpg" id="carru">
+                            </a>
+                        </li>
+                        <li data-target="#contenedor_carrucel">
+                            <a style="color:white;" href="#">
+                                <strong style="color:black;">Productos</strong>
+                                <img src="../../image/prin/productos.jpg" id="carru">
+                            </a>
+                        </li>
+                        <li data-target="#contenedor_carrucel">
+                            <a style="color:white;" href="#">
+                                <strong style="color:black;">Productos</strong>
+                                <img src="../../image/prin/lacteos.jpg" id="carru">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- Terminacion del carrucel-->
+                <!--<div class="contenedor">
                     <div class="info-repuesto">
                         <a href="#"><img src="../../image/prin/venta.jpg"></a>
                         <h4>Venta</h4>
@@ -53,7 +87,7 @@
                         <a href="#pro"><img src="../../image/prin/perfil.png"></a>
                         <h4>Productores</h4>
                     </div>
-                </div>
+                </div>-->
             </section>
         </main>
     </body>

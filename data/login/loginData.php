@@ -44,7 +44,7 @@ class loginData {
             if($dato!='Administrador'){
             header('Location: ../../view/principalEmpleado/principalEmpleadoView.php'); 
             }else{
-            header('Location: ../../view/productor/verProductorSocioView.php'); 
+            header('Location: ../../view/principalEmpleado/principalEmpleadoView.php'); 
                 
             }
             
