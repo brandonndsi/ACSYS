@@ -626,6 +626,7 @@ CREATE TABLE `tbempleado` (
 INSERT INTO `tbempleado` (`idpersonaempleado`, `passwordempleado`, `tipoempleado`, `imagentitulomanipulacionalimentosempleado`, `imagendocumentoidentidadempleado`, `estadoempleado`) VALUES
 (1, '$2y$10$zz898MQlTAmcUtDGrA6OKui5mzCg26Ofa8sGTwhaRu5P8yTlm.J6i', 'Administrador', '../../image/empleado/manipulacion.jpg', '../../image/empleado/cedula.jpg', 'activo');
 
+
 -- --------------------------------------------------------
 
 --
@@ -804,8 +805,8 @@ CREATE TABLE `tbpersona` (
 
 INSERT INTO `tbpersona` (`idpersona`, `documentoidentidadpersona`, `nombrepersona`, `apellido1persona`, `apellido2persona`, `telefonopersona`, `direccionpersona`, `correopersona`) VALUES
 (1, '123456789', 'Administrador', 'Administrador', 'Administrador', '', 'Sauce', 'asoprolesa@gmail.com'),
-(2, '207210905', 'Brandon Daniel', 'Rodriguez', 'N/A', 'N/A', 'Alajuela', 'N/A');
-
+(2, '207210905', 'Brandon Daniel', 'Rodriguez', 'N/A', 'N/A', 'Alajuela', 'N/A'),
+(3, '206990696', 'David', 'Salas', 'Lorente', '85479654', 'la virgen', 'david@gmail.com');
 -- --------------------------------------------------------
 
 --
