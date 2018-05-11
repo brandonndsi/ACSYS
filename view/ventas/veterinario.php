@@ -9,7 +9,6 @@
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/menu.css">
           <link rel="stylesheet" href="../../css/bootstrap.min.css" >
           <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
           <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css">
@@ -28,12 +27,12 @@
             </script>
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
+        <body background="../fondo.jpg"  onload="cargarTabla();consultarProductorSocio();">
         <?php
            // include '../menuView.php';
            include '../InterumtorDeMenus.php';
         ?>
-         <div class="ventaVeterinaria">
+         <div class="ventaVeterinaria contenedor">
            <h4>Ventas veterinarios</h4>
            <label id="selectlabel">Cliente:</label>
            <select id="selectCliente"  class="btn btn-info selectCliente">
