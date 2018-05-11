@@ -109,15 +109,16 @@
 </div>
 		<div class="contenedor">
              <div class="boton" id="Registrar">
-                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button></p>
+                <center><h1>Distribuidor</h1></center>
+                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button>
+
+                 </p>
             </div>
 			<table id="listaDistribuidor" class="display" cellspacing="0">
 				<thead>
 					<tr>
 						<th>Cédula</th>
-						<th>Nombre</th>
-						<th>Apellido 1</th>
-						<th>Apellido 2</th>
+						<th>Nombre completo</th>
 						<th>Teléfono</th>
                         <th>Dirección</th>
                         <th>Correo</th>
