@@ -24,7 +24,7 @@
 
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarEmpleados()">
+    <body background="../fondo.jpg" onload="mostrarEmpleados()">
         <!-- Import the file menu.php -->
         <?php
         // include '../menuView.php';
@@ -34,7 +34,7 @@
             <h4>Lista de Empleados</h4>
         </div>
 
-        <div>
+        <div class="contenedor">
             <table id="listaEmpleados" class="display" cellspacing="0" >
                 <thead>
                     <tr>

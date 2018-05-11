@@ -6,24 +6,28 @@
     
     <!--CSS-->
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-        <link rel="stylesheet" href="../../css/menu.css">
+        
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
 
         <!--Javascript-->
         <script src="../../js/jquery-3.2.1.js"></script>
         <script src="../../js/jquery.dataTables.js"></script>
-         <script src="../../js/menuJs.js"></script>
+
         
          <script src="../../js/distribuidor/Distribuidor.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+         <link href="../../css/me.css" rel="stylesheet">
     
     
     
-    <!-- CSS -->
+    <!-- CSS 
 	
     <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
-	
+	-->
+
     
     <script>
             $(document).ready(function () {
@@ -32,24 +36,25 @@
     </script>
           
 </head>
-<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+<body background="../fondo.jpg" >
 	 <!-- Import the file menu.php -->
           <?php
-           // include '../menuView.php';
             include '../InterumtorDeMenus.php';
            ?>
 
-        <div class="col-md-8 col-md-offset-2">
-            <h4>Lista de Distribuidor</h4>
-        </div>
-		<div>
+           
+		<div class="contenedor">
+             <div class="boton" id="Registrar">
+                <center><h1>Distribuidor</h1></center>
+                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button>
+
+                 </p>
+            </div>
 			<table id="listaDistribuidor" class="display" cellspacing="0">
 				<thead>
 					<tr>
 						<th>Cédula</th>
-						<th>Nombre</th>
-						<th>Apellido 1</th>
-						<th>Apellido 2</th>
+						<th>Nombre completo</th>
 						<th>Teléfono</th>
                         <th>Dirección</th>
                         <th>Correo</th>
@@ -69,9 +74,7 @@
 		</div>
 		
         <!--Comienzan los modales-->
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button></p>
-            </div>
+           
                 <!--Modal Registrar-->
         <div id="modalRegistrar" class="modal" role="dialog">
             <div  class="modal-dialog" role="document">
@@ -272,18 +275,7 @@
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
 <!-- Modal de la imagen del distribuidor. -->
-<div id="contenedorImagen">
-    <div id=contImagen>
-        <div id="imagen">
-           <img src="" id="recibir-imagene"> 
-        </div>
-        <div id="formImagen">
-            <?php 
-                include_once '../modalimagen/modalImagen.php';
-             ?>
-        </div>
-    </div>
-</div>
+
 <!-- terminando el modal de la imagen del distribuidor.--> 
         <!--Modal de respuesta empleado-->
         <div id="modalRespuesta" class="modal fade in">

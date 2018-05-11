@@ -9,9 +9,9 @@ if (@!$_SESSION['user']) {
         } else {
            $dato=$_SESSION['tipo'];
             if($dato!='Administrador'){
-           	include_once 'menuCliente.php'; 
+           	   include_once 'menuView.php';
             }else{
-               include_once 'menuView.php';
+               include_once 'menuCliente.php'; 
             }
         }
  
