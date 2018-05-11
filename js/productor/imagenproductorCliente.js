@@ -301,8 +301,8 @@ $("#filemage").change(function(){
                     },
                     dangerMode: true
                 });
-		//alert("Extencion no valida.");
-		this.value="";
+		
+		this.value="";//lo que hace es hacer que el input de tip file se le asigne un valor de vacio.
 	}
 	
 });
@@ -318,8 +318,4 @@ function control(f){
         }
     }
     return bandera;
-    /*var t=f.cloneNode(true);
-    t.value='';
-    f.parentNode.replaceChild(t,f);
-    alert('extensión no válida');*/
 }

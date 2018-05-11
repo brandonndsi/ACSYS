@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
     <html lang="es">
         <head>
            <meta charset="UTF-8">
@@ -89,7 +89,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" id="nombre" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" name="nombre" pattern="[a-zA-Z]*" id="nombre" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -97,7 +97,7 @@
                                             <label>1° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="primerapellido" id="primerapellido" placeholder="Primer Apellido"></p>
+                                            <p><input type="text" class="span12" name="primerapellido" pattern="[a-zA-Z]*" id="primerapellido" placeholder="Primer Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -105,7 +105,7 @@
                                             <label>2° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="segundoapellido" id="segundoapellido" placeholder="Segundo Apellido"></p>
+                                            <p><input type="text" class="span12" name="segundoapellido" pattern="[a-zA-Z]*" id="segundoapellido" placeholder="Segundo Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -113,7 +113,7 @@
                                             <label>Teléfono:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="telefono" id="telefono" placeholder="Teléfono"></p>
+                                            <p><input type="text" class="span12" name="telefono" pattern="[0-9]{9}" id="telefono" placeholder="Teléfono" ></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -129,7 +129,7 @@
                                             <label>Email:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="correo" id="correo" placeholder="Email"></p>
+                                            <p><input type="text" class="span12" name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="correo" placeholder="Email"></p>
                                         </div>
                                     </div>
                                         
@@ -251,7 +251,7 @@
                                             <label>Email:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="correo" id="correor" placeholder="Email"></p>
+                                            <p><input type="text" class="span12" name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="correor" placeholder="Email"></p>
                                         </div>
                                     </div>
                                         

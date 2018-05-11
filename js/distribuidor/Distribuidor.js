@@ -1,47 +1,14 @@
-var rutaimagen;
+var rutaimagen;//variable global apr poder intanciar la nueva ruta al modal de la imagen
 window.onload=function(){
 cargarTablaDistribuidor();
-//mostrarDistribuidor();
 };
-
-function cargarTablaDistribuidor(){
-  $('#listaDistribuidor').dataTable().fnDestroy();
-    $(document).ready(function () {
-        $.post('../../business/distribuidor/DistribuidorAccion.php', {
-            action: 'consultarDistribuidor'
-        }, function (responseText) {
-            json = JSON.parse(responseText);
-            html = "";
-
-            for (i = 0; i < json.length; i++) {
-                html += "<tr>";
-                html += "<td>" + json[i].documentoidentidadpersona + "</td>";
-                html += "<td>" + json[i].nombrepersona + "</td>";
-                html += "<td>" + json[i].apellido1persona + "</td>";
-                html += "<td>" + json[i].apellido2persona + "</td>";
-                html += "<td>" + json[i].telefonopersona + "</td>";
-                html += "<td>" + json[i].direccionpersona + "</td>";
-                html += "<td>" + json[i].correopersona + "</td>";
-
-                documentoidentidad = json[i].documentoidentidadpersona;
-                nombre = json[i].nombrepersona;
-                primerapellido = json[i].apellido1persona;
-                segundoapellido = json[i].apellido2persona;
-                telefono = json[i].telefonopersona;
-                direccion = json[i].direccionpersona;
-                correo = json[i].correopersona;
-                id = json[i].idpersona;
-                rutaimagen=json[i].rutaimagen;
-                distribuidor = "'" + documentoidentidad + "," + nombre + "," + primerapellido + "," + segundoapellido + "," +
-                        telefono + "," + direccion + "," + correo + ","+ id +"'";
-
-                html += '<td><a href="javascript:modalModificarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
-               /* html += '<td><a href="javascript:modalimagen()"><span class="glyphicon glyphicon-paperclip"></span></a></td>';*/
-                html += '<td><a href="javascript:modalEliminarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
-            }
-            $("#datos").html(html);
-
-            $(document).ready(function () {
+/*Esta funcion es la encargada de poder destruir las cualidades que se le habian dado a la tabla con datatable*/
+function destruir_Tabla(){
+     $('#listaDistribuidor').dataTable().fnDestroy();
+}
+/*Esta function es la encargada de poder darles las cualidades del data table a una tabla estandar en php*/
+function Cartar_Tabla_usando_Data_Table(){
+     $(document).ready(function () {
                 $('#listaDistribuidor').DataTable({
                     "bDeferRender": true,
                     "sordering": true,
@@ -74,6 +41,43 @@ function cargarTablaDistribuidor(){
                     }
                 });
             });
+}
+function cargarTablaDistribuidor(){
+    destruir_Tabla();
+    $(document).ready(function () {
+        $.post('../../business/distribuidor/DistribuidorAccion.php', {
+            action: 'consultarDistribuidor'
+        }, function (responseText) {
+            json = JSON.parse(responseText);
+            html = "";
+
+            for (i = 0; i < json.length; i++) {
+                html += "<tr>";
+                html += "<td>" + json[i].documentoidentidadpersona + "</td>";
+                html += "<td>" + json[i].nombrepersona + "</td>";
+                html += "<td>" + json[i].apellido1persona + "</td>";
+                html += "<td>" + json[i].apellido2persona + "</td>";
+                html += "<td>" + json[i].telefonopersona + "</td>";
+                html += "<td>" + json[i].direccionpersona + "</td>";
+                html += "<td>" + json[i].correopersona + "</td>";
+
+                documentoidentidad = json[i].documentoidentidadpersona;
+                nombre = json[i].nombrepersona;
+                primerapellido = json[i].apellido1persona;
+                segundoapellido = json[i].apellido2persona;
+                telefono = json[i].telefonopersona;
+                direccion = json[i].direccionpersona;
+                correo = json[i].correopersona;
+                id = json[i].idpersona;
+                rutaimagen=json[i].rutaimagen;
+                distribuidor = "'" + documentoidentidad + "," + nombre + "," + primerapellido + "," + segundoapellido + "," +
+                        telefono + "," + direccion + "," + correo + ","+ id +"'";
+
+                html += '<td><a href="javascript:modalModificarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-edit"></span></a></td>';
+                html += '<td><a href="javascript:modalEliminarDistribuidor(' + distribuidor + ')"><span class="glyphicon glyphicon-trash"></span></a></td>';
+            }
+            $("#datos").html(html);
+            Cartar_Tabla_usando_Data_Table();
         });
     });
  }
@@ -122,7 +126,6 @@ function registrarDistribuidor() {
             correo: correo
 
         }, function (responseText) {
-            //console.log(responseText);
             
             if (responseText === "true") {
                 swal({
@@ -151,14 +154,7 @@ function registrarDistribuidor() {
                     dangerMode: true
                 });
             }
-
-            document.getElementById("documentoidentidadr").value = "";
-            document.getElementById("nombrer").value = "";
-            document.getElementById("primerapellidor").value = "";
-            document.getElementById("segundoapellidor").value = "";
-            document.getElementById("telefonor").value = "";
-            document.getElementById("direccionr").value = "";
-            document.getElementById("correor").value = "";
+            limpiar_datos_del_formulario();
             cargarTablaDistribuidor();
         });
     });
@@ -175,8 +171,20 @@ function registrarDistribuidor() {
                     },
                     dangerMode: true
                 });
+    }
 }
-}
+
+/*funcion encargada de poder limpiar los campos del formulario*/
+function limpiar_datos_del_formulario(){
+            document.getElementById("documentoidentidadr").value = "";
+            document.getElementById("nombrer").value = "";
+            document.getElementById("primerapellidor").value = "";
+            document.getElementById("segundoapellidor").value = "";
+            document.getElementById("telefonor").value = "";
+            document.getElementById("direccionr").value = "";
+            document.getElementById("correor").value = "";
+    }
+/*Funcion de verifiacion del correo que los datos sean correctos.*/
 function verificarCorreo(valor){
 emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
@@ -184,7 +192,7 @@ emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^
       alert("válido");
        document.getElementById(valor.id).className = "form-control input";//.style.border="1px solid green";
     } else {
-      document.getElementById(valor.id).style.border="1px solid red";
+    document.getElementById(valor.id).style.border="1px solid red";
       swal({
                     title: "Correo No vàlido",
                     text: "Ejemplo  de correo: andres@gmail.com",
@@ -197,9 +205,11 @@ emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^
                     },
                     dangerMode: true
             });
+      
     }
 
 }
+
 function modalRegistrarDistribuidor() {
     botones = "<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
     botones += "<button onclick='registrarDistribuidor()' data-dismiss='modal' class='btn btn-primary'>Registrar</button></p>";
