@@ -16,7 +16,7 @@
 			$conn->set_charset("utf8");
 			$data = array();
 			if($searchTerm != ""){
-				$query = $conn->query("SELECT nombreproductoveterinario,codigoproductoveterinario, descripcionproductoveterinario,precioproductoveterinario FROM tbproductosveterinarios WHERE nombreproductoveterinario LIKE '%".$searchTerm."%' limit 3");
+				$query = $conn->query("SELECT nombreproductoveterinario,codigoproductoveterinario, descripcionproductoveterinario,precioproductoveterinario FROM tbproductosveterinarios WHERE nombreproductoveterinario LIKE '%".$searchTerm."%' AND estadoproductoveterinario='activo' limit 3");
 				while ($row = $query->fetch_assoc()) {
 				    $data[] = $row;
 				}
