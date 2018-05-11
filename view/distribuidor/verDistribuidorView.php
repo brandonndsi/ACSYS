@@ -39,75 +39,10 @@
 <body background="../fondo.jpg" >
 	 <!-- Import the file menu.php -->
           <?php
-           // include '../menuView.php';
-           // include '../InterumtorDeMenus.php';
+            include '../InterumtorDeMenus.php';
            ?>
 
-           <div class="nav-side-menu">
-    <div class="brand">Brand Logo</div>
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
-        <div class="menu-list">
-  
-            <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                  <a href="#">
-                  <i class="fa fa-dashboard fa-lg"></i> Escritorio
-                  </a>
-                </li>
-
-                 <li>
-                  <a href="#">
-                  <i class="fa fa-user fa-lg"></i> Empleados
-                  </a>
-                  </li>
-                <li>
-                  <a href="#">
-                  <i class="fa fa-user fa-lg"></i> Distribuidor
-                  </a>
-                </li>
-
-                <li  data-toggle="collapse" data-target="#productores" class="collapsed ">
-                  <a href="#"><i class="fa fa-gift fa-lg"></i>Productor <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="productores">
-                    <li class="active"><a href="#">Productor Socio</a></li>
-                    <li><a href="#">Productor Cliente</a></li>
-                    <li><a href="#">Ver cantidad ahorro x litro</a></li>
-                    <li><a href="#">Total ahorro</a></li>
-                </ul>
-
-                <li  data-toggle="collapse" data-target="#leche" class="collapsed ">
-                  <a href="#"><i class="fa fa-gift fa-lg"></i>Recepción de leche <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="leche">
-                    <li class="active"><a href="#">Ver</a></li>
-                    <li><a href="#">Recibir leche</a></li>
-                    <li><a href="#">Pagar leche</a></li>
-                </ul>
-
-
-
-                <li data-toggle="collapse" data-target="#productos" class="collapsed">
-                  <a href="#"><i class="fa fa-globe fa-lg"></i> Productos <span class="arrow"></span></a>
-                </li>  
-                <ul class="sub-menu collapse" id="productos">
-                  <li>Producto Veterinario</li>
-                  <li>Producto Lácteo</li>
-                </ul>
-
-
-                <li data-toggle="collapse" data-target="#new" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="new">
-                  <li>New New 1</li>
-                  <li>New New 2</li>
-                  <li>New New 3</li>
-                </ul>
-            </ul>
-     </div>
-</div>
+           
 		<div class="contenedor">
              <div class="boton" id="Registrar">
                 <center><h1>Distribuidor</h1></center>

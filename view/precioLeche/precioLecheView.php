@@ -14,13 +14,13 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="verPrecio()">
+    <body background="../fondo.jpg" onload="verPrecio()">
         <!-- Import the file menu.php -->
         <?php
         include '../InterumtorDeMenus.php';
         ?>
 
-        <div class="container">
+        <div class="contenedor container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
                     <form method="post">        
