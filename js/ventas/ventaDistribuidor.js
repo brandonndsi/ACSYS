@@ -92,7 +92,7 @@ function acciones_de_los_botones_principales(){
     
     carry();
     cargar();
-   /* $('#modalRecibo').modal();*/
+   
 }
 function consultarProductorCliente(html) {
     $(document).ready(function () {
