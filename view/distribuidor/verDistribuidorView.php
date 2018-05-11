@@ -6,24 +6,28 @@
     
     <!--CSS-->
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-        <link rel="stylesheet" href="../../css/menu.css">
+        
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
 
         <!--Javascript-->
         <script src="../../js/jquery-3.2.1.js"></script>
         <script src="../../js/jquery.dataTables.js"></script>
-         <script src="../../js/menuJs.js"></script>
+
         
          <script src="../../js/distribuidor/Distribuidor.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+         <link href="../../css/me.css" rel="stylesheet">
     
     
     
-    <!-- CSS -->
+    <!-- CSS 
 	
     <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
-	
+	-->
+
     
     <script>
             $(document).ready(function () {
@@ -32,17 +36,81 @@
     </script>
           
 </head>
-<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+<body background="../fondo.jpg" >
 	 <!-- Import the file menu.php -->
           <?php
            // include '../menuView.php';
-            include '../InterumtorDeMenus.php';
+           // include '../InterumtorDeMenus.php';
            ?>
 
-        <div class="col-md-8 col-md-offset-2">
-            <h4>Lista de Distribuidor</h4>
-        </div>
-		<div>
+           <div class="nav-side-menu">
+    <div class="brand">Brand Logo</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  
+        <div class="menu-list">
+  
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                  <a href="#">
+                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  </a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="products">
+                    <li class="active"><a href="#">CSS3 Animation</a></li>
+                    <li><a href="#">General</a></li>
+                    <li><a href="#">Buttons</a></li>
+                    <li><a href="#">Tabs & Accordions</a></li>
+                    <li><a href="#">Typography</a></li>
+                    <li><a href="#">FontAwesome</a></li>
+                    <li><a href="#">Slider</a></li>
+                    <li><a href="#">Panels</a></li>
+                    <li><a href="#">Widgets</a></li>
+                    <li><a href="#">Bootstrap Model</a></li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#service" class="collapsed">
+                  <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+                </li>  
+                <ul class="sub-menu collapse" id="service">
+                  <li>New Service 1</li>
+                  <li>New Service 2</li>
+                  <li>New Service 3</li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#new" class="collapsed">
+                  <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="new">
+                  <li>New New 1</li>
+                  <li>New New 2</li>
+                  <li>New New 3</li>
+                </ul>
+
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-user fa-lg"></i> Profile
+                  </a>
+                  </li>
+
+                 <li>
+                  <a href="#">
+                  <i class="fa fa-users fa-lg"></i> Users
+                  </a>
+                </li>
+            </ul>
+     </div>
+</div>
+		<div class="contenedor">
+             <div class="boton" id="Registrar">
+                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button></p>
+            </div>
 			<table id="listaDistribuidor" class="display" cellspacing="0">
 				<thead>
 					<tr>
@@ -69,9 +137,7 @@
 		</div>
 		
         <!--Comienzan los modales-->
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarDistribuidor()" class="btn btn-primary">Registrar Distribuidor</button></p>
-            </div>
+           
                 <!--Modal Registrar-->
         <div id="modalRegistrar" class="modal" role="dialog">
             <div  class="modal-dialog" role="document">
@@ -272,18 +338,7 @@
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
 <!-- Modal de la imagen del distribuidor. -->
-<div id="contenedorImagen">
-    <div id=contImagen>
-        <div id="imagen">
-           <img src="" id="recibir-imagene"> 
-        </div>
-        <div id="formImagen">
-            <?php 
-                include_once '../modalimagen/modalImagen.php';
-             ?>
-        </div>
-    </div>
-</div>
+
 <!-- terminando el modal de la imagen del distribuidor.--> 
         <!--Modal de respuesta empleado-->
         <div id="modalRespuesta" class="modal fade in">
