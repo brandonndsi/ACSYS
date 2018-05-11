@@ -30,8 +30,11 @@
           $plazo=$datos['plazo'];
           $montoTotal=(double)$datos['cantidadsolicitud'];
           $montoCuota=(double)$montoTotal*(double)$interes;
+          $montoCuota=(double)$montoCuota/100;
           $montoCuota=(double)$montoCuota+(double)$montoTotal;
+          $montoTotal=(double)$montoCuota;
           $montoCuota = (double)$montoCuota/(double)$plazo;
+          
           $fecha=$datos['fecha'];
 
           $resultado=$this->consultas("CALL aprobarSolicitud('$idSolicitud','$idPersona','$interes','$montoTotal','$montoCuota','$fecha')");
