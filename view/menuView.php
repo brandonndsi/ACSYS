@@ -9,13 +9,13 @@
   
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                  <a href="#">
+                  <a href="./principalEmpleadoView.php">
                   <i class="fa fa-dashboard fa-lg"></i> Escritorio
                   </a>
                 </li>
 
                  <li>
-                  <a href="#">
+                  <a href="./empleado/verEmpleadoView.php">
                   <i class="fa fa-user fa-lg"></i> Empleados
                   </a>
                   </li>
