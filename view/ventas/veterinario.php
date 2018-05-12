@@ -9,16 +9,16 @@
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/menu.css">
           <link rel="stylesheet" href="../../css/bootstrap.min.css" >
           <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
-          <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css">
+          <!--<link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css">-->
           <!--Javascript-->
           <script src="../../js/jquery.dataTables.js"></script>
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
           <script src="../../js/autocomplete.js"></script>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script>
                 localStorage.clear();
                 $(document).ready(function () {
@@ -27,12 +27,12 @@
             </script>
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
+        <body background="../fondo.jpg"  onload="cargarTabla();consultarProductorSocio();">
         <?php
            // include '../menuView.php';
            include '../InterumtorDeMenus.php';
         ?>
-         <div class="ventaVeterinaria">
+         <div class="ventaVeterinaria contenedor">
            <h4>Ventas veterinarios</h4>
            <label id="selectlabel">Cliente:</label>
            <select id="selectCliente"  class="btn btn-info selectCliente">
@@ -66,7 +66,7 @@
              </table>
            </div>
            <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-           <button class="btn btn-primary" onclick="$('#modalRecibo').modal();carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+           <button class="btn btn-primary" onclick="carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
          <!--Modal buscar productos veterinarios-->
         <div id="modalProductosVeterinarioVenta" class="modal fade in">

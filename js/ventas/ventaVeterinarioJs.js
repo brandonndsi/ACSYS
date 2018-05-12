@@ -66,7 +66,24 @@ function consultarProductorSocio(){
 }
 
 function procesarVenta(){
-  $(document).ready(function () {
+  alert("hola");
+  if(localStorage.getItem("listaProductos")==null){
+       swal({
+         title: "Confirmación",
+         text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
+         icon: "error",
+         buttons: {
+           
+           ok:{
+             text:"Aceptar",
+             value:"ok",
+           }
+         },
+         dangerMode: true,
+     });
+
+  }else{
+       $(document).ready(function () {
       $.post('../../business/ventas/actionVentaVeterinaria.php', {
             action : 'procesarVenta',
             productos:localStorage.getItem("listaProductos"),
@@ -78,6 +95,9 @@ function procesarVenta(){
           //alert(responseText);
       });
     });
+
+  }
+ 
 }
 
 function agregarProductoCarritoBuscar(){
@@ -255,6 +275,22 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
 }
 
 function carry() {
+    if(localStorage.getItem("listaProductos")==null){
+       swal({
+         title: "Error",
+         text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
+         icon: "error",
+         buttons: {
+           
+           ok:{
+             text:"Aceptar",
+             value:"ok",
+           }
+         },
+         dangerMode: true,
+     });
+
+  }else{
 
     var carrito = [];
     var idCliente = document.getElementById('selectCliente').value;
@@ -326,6 +362,7 @@ function carry() {
         }); 
     /*terminacion para poder optener el numero de factura.*/
     $("#modalRecibo").modal();
+  }
 }
 
 function ImprimirFactura(){
