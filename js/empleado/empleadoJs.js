@@ -13,9 +13,9 @@ function mostrarEmpleados() {
             for (i = 0; i < json.length; i++) {
                 html += "<tr>";
                 html += "<td>" + json[i].documentoidentidadpersona + "</td>";
-                html += "<td>" + json[i].nombrepersona + "</td>";
-                html += "<td>" + json[i].apellido1persona + "</td>";
-                html += "<td>" + json[i].apellido2persona + "</td>";
+                html += "<td>" + json[i].nombrepersona +" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
+                /*html += "<td>" + json[i].apellido1persona + "</td>";
+                html += "<td>" + json[i].apellido2persona + "</td>";*/
                 html += "<td>" + json[i].telefonopersona + "</td>";
                 html += "<td>" + json[i].direccionpersona + "</td>";
                 html += "<td>" + json[i].correopersona + "</td>";
@@ -352,19 +352,43 @@ function validarCamposCedula() {
     tipo = $("#tipoempleador").val();
     var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (cedula !== "" && cedula.length === 9 && !cedula.match(caracteres)) {
+    if (cedula !== ""&& cedula.length >=9 && !cedula.match(caracteres)) {
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
-            ;
+            
             $('#boton').attr("disabled", false);
         }
     } else {
+
         $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
         $('#boton').attr("disabled", true);
+        //alert("mayor que 15");
+       //verificarQueSeanQuinceDijitos($("#documentoidentidadr").val());
     }
 }
+function verificarQueSeanQuinceDijitos(id){
+    if(document.getElementById(id).value.length>=9){
 
+      document.getElementById(id).style.border="1px solid green";
+
+    }else{
+        
+        swal({
+                    title: "Cedula",
+                    text: "¡Opps! Debe de tener minimo 9 o maximo 15 letras",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+        document.getElementById(id).style.border="1px solid red";
+    }
+}
 function validarCamposCedulam() {
 
     cedula = $("#documentoidentidadm").val();

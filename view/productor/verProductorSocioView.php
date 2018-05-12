@@ -40,9 +40,9 @@
                             <thead>
                                 <tr>
                                     <th>Cédula</th>
-                                    <th>Nombre</th>
-                                    <th>Primer Apellido </th>
-                                    <th>Segundo Apellido</th>
+                                    <th>Nombre Completo</th>
+                                    <!--<th>Primer Apellido </th>
+                                    <th>Segundo Apellido</th>-->
                                     <th>Teléfono</th>
                                     <th>Dirección</th>
                                     <th>Correo</th>

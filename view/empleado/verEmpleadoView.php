@@ -30,18 +30,20 @@
         // include '../menuView.php';
         include '../InterumtorDeMenus.php';
         ?>
-        <div class="col-md-8 col-md-offset-2">
-            <h4>Lista de Empleados</h4>
-        </div>
+        
 
         <div class="contenedor">
+            <div class="col-md-12 col-md-offset-2">
+            <h4>Lista de Empleados</h4>
+            </div>
+
             <table id="listaEmpleados" class="display" cellspacing="0" >
                 <thead>
                     <tr>
                         <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Primer Apellido </th>
-                        <th>Segundo Apellido</th>
+                        <th>Nombre completo</th>
+                        <!--<th>Primer Apellido </th>
+                        <th>Segundo Apellido</th>-->
                         <th>Teléfono</th>
                         <th>Dirección</th>
                         <th>Correo</th>
@@ -84,7 +86,9 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" onkeyup="validarCamposCedula()" required pattern="[0-9]{9}"/></p>
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" onkeyup="validarCamposCedula()" required pattern="[0-9]{9}"
+                                        onchange="verificarQueSeanQuinceDijitos(this.id);"
+                                        required maxlength="15"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">

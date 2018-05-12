@@ -4,9 +4,9 @@
             <meta charset="UTF-8">
           <!--CSS-->
             <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-            <link rel="stylesheet" href="../../css/menu.css">
+            <!--<link rel="stylesheet" href="../../css/menu.css">-->
             <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-
+                 <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
              <!--Javascript-->
              <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
             <script src="../../js/jquery-3.2.1.js"></script>
@@ -39,9 +39,9 @@
                     <thead>
                         <tr>
                             <th>Cédula</th>
-                            <th>Nombre</th>
-                            <th>Primer Apellido </th>
-                            <th>Segundo Apellido</th>
+                            <th>Nombre Completo</th>
+                            <!--<th>Primer Apellido </th>
+                            <th>Segundo Apellido</th>-->
                             <th>Teléfono</th>
                             <th>Dirección</th>
                             <th>Correo</th>

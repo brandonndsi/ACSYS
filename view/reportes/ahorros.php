@@ -44,7 +44,7 @@
 						<th>Monto de Ahorro por Litro</th>
 						<th>Total Ahorrado</th>
 						<th>Fecha</th>
-			            <th>Imprimir</th>
+			     <th>Imprimir</th>
 
 					</tr>
 					</thead>

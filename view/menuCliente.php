@@ -8,7 +8,7 @@
   
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                  <a href="./principalEmpleadoView.php">
+                  <a href="../principalEmpleado/principalEmpleadoView.php">
                   <i class="fa fa-dashboard fa-lg"></i> Escritorio
                   </a>
                 </li>

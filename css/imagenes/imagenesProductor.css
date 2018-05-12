@@ -28,6 +28,9 @@ img {
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
   /*border: 2px solid red;*/
+  width: 70%;
+  float: right;
+  right: 0;
 }
 
 .gallery #contentImagen {

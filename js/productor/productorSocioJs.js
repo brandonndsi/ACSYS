@@ -110,9 +110,9 @@ function mostrarProductores(){
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
           html+="<td>"+json[i].documentoidentidadpersona+"</td>";
-          html+="<td>"+json[i].nombrepersona+"</td>";
-          html+="<td>"+json[i].apellido1persona+"</td>";
-          html+="<td>"+json[i].apellido2persona+"</td>";
+          html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
+          /*html+="<td>"+json[i].apellido1persona+"</td>";
+          html+="<td>"+json[i].apellido2persona+"</td>";*/
           html+="<td>"+json[i].telefonopersona+"</td>";
           html+="<td>"+json[i].direccionpersona+"</td>";
           html+="<td>"+json[i].correopersona+"</td>";

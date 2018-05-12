@@ -189,8 +189,8 @@ function verificarCorreo(valor){
 emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     //Se muestra un texto a modo de ejemplo, luego va a ser un icono
     if (emailRegex.test(valor.value)) {
-      alert("válido");
-       document.getElementById(valor.id).className = "form-control input";//.style.border="1px solid green";
+     // alert("válido");
+       document.getElementById(valor.id).style.border="1px solid green";
     } else {
     document.getElementById(valor.id).style.border="1px solid red";
       swal({
