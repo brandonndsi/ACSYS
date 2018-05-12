@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
 
         <!--CSS-->
-        <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
         <!--Javascript-->
         <script src="../../js/jquery-3.2.1.js"></script>
@@ -15,13 +14,13 @@
 
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+    <body background="../fondo.jpg" >
         <!-- Import the file menu.php -->
         <?php
         include '../InterumtorDeMenus.php';
         ?>
 
-        <div class="container">
+        <div class="contenedor">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
                     <form method="post">        
