@@ -5,11 +5,7 @@
 
 			<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/menu.css">
-      	  <link rel="stylesheet" type="text/css" href="../../css/reportes/ventas.css">
-          <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-          <link rel="stylesheet" type="text/css" href="../../css/distribuidor/modalImagen.css">
-          <link rel="stylesheet" type="text/css" href="../../css/distribuidor/DistribuidorVenta.css">
+          <link rel="stylesheet" href="../../css/bootstrap.min.css" 
          
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
           <!--Javascript-->
@@ -24,13 +20,12 @@
          
         </script>
 </head>
-<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+<body background="../fondo.jpg">
 <?php 
-include_once '../menuView.php';
- //include '../InterumtorDeMenus.php';
+include_once '../InterumtorDeMenus.php';
  ?>
  
- <div id="content">
+ <div class="contenedor" id="content">
 
  	<div id="contTitulo">
             <h4>Reporte de ventas Distribuidor</h4>

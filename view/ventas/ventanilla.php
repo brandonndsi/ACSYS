@@ -9,10 +9,8 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-        <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
         <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
-        <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css">
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -28,24 +26,24 @@
         </script>
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTablaLacteo();consultaProductor();">
+    <body background="../fondo.jpg" onload="cargarTablaLacteo();consultaProductor();">
         <?php
-        include '../menuView.php';
+        include '../InterumtorDeMenus.php';
         ?>
-        <div class="ventaVeterinaria">
+        <div class="ventaVeterinaria contenedor">
             <h4>Ventas ventanilla</h4>
             <label id="selectlabel">Cliente:</label>
             <select id="selectCliente"  class="btn btn-info selectCliente">
             </select>
             <div class="form-group">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <button onclick="$('#modalProductosVentanilla').modal();carga();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-sm-1">
                     <label>Total</label>
                 </div>
                 <div class="col-sm-2">
-                    <p><input type="text" class="form-control"id="totalPagar"></p>
+                    <p><input type="text" class="form-control"id="totalPagar" readonly></p>
                 </div>
             </div>
             <div>
@@ -56,6 +54,7 @@
                             <th>Articulo</th>
                             <th>P. Venta</th>
                             <th>Cantidad</th>
+                            <th>Descuento</th>
                             <th>Total</th>
                             <th>Eliminar</th>
                         </tr>
@@ -65,8 +64,8 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/ventanilla.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-            <button class="btn btn-primary" onclick="$('#modalRecibo').modal();llevar();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
+            <button class="btn btn-danger" onclick="limpiaCarrito()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+            <button id="boton" class="btn btn-primary" onclick="accionPrincipal()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
         <div id="modalProductosVentanilla" class="modal fade in">
@@ -92,11 +91,10 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="modal-footer" id="foo">
-                        <p>
-                            <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar" onclick="location.href = '../../view/ventas/ventanilla.php'">Cancelar</button>
-                            <button data-dismiss='modal' onclick="addCarrito();" class="btn btn-primary" id="btn-enviar">Agregar</button>
-                        </p>
+                    <div class="modal-footer">
+                        <div id="foo">
+
+                        </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
@@ -158,33 +156,40 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group">
-                            <button class="btn btn-danger" onclick="location.href = '../../view/ventas/ventanilla.php'" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cerrar</button>
-                            <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/ventanilla.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span> Imprimir</button>
+                            <button class="btn btn-danger" onclick="sinFactura();" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No factura</button>
+                            <button class="btn btn-primary" onclick ="location.href = '../../view/ventas/ventanilla.php';ImprimirFactura();"><span class="glyphicon glyphicon-check"></span>Factura</button>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
 
-        <div id="modalRespuesta" class="modal fade in">
-            <div  class="modal-dialog">
+        <!-- modal que verifica si de verdad desea eliminar todo del carrito de compras -->
+        <div id="modalEliminar" class="modal" role="dialog">
+            <div  class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title glyphicon glyphicon-ok-circle" > Confirmación</h4>
+                        <h4 class="modal-title glyphicon glyphicon glyphicon-warning-sign" > Advertencia</h4>
+                        <button type="button" class="close" data-dismiss='modal'>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <center>
-                            <div id="mensaje"></div>
-                        </center>
+                        <form>
+                            <div>
+                                <h4>¿Desea eliminar el carrito de compras totalmente?</h4>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
+                        <div id="botonesEliminar">
 
-                        <p><button data-dismiss='modal' class="btn btn-danger">Cerrar</button> </p>
-
+                        </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
+        <!-- terminacion del carrito  pero de la eliminacion del todo del mismo-->
 
     </body>
 </html>

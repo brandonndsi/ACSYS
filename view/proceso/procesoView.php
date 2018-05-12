@@ -28,8 +28,7 @@
             <h5>EL SAUCE SANTA TERESITA</h5>
         </div>
         <div class='col-md-7' >
-            <h3> REGISTRO DE PROCESOS              
-                <button onclick="location.href = '../proceso/verProcesoView.php'" class="btn btn-primary">Ver Procesos </button> 
+            <h3> REGISTRO DE PROCESOS   
                 <button onclick="registrarProceso()" class="btn btn-primary">Registrar </button>
             </h3>
         </div>

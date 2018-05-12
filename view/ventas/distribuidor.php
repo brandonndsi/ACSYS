@@ -10,9 +10,15 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- para los modales de notificaciones -->
 
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-        <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-        <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css";
+        <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
+
+
+       <!-- <link rel="stylesheet" href="../../css/jquery.dataTables.css">
+        <link rel="stylesheet" href="../../css/menu.css">-->
+        <!--<link rel="stylesheet" href="../../css/ventaVeterinaria.css">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+        <link rel="stylesheet" href="../../css/distribuidor/DistribuidorVenta.css";-->
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -32,7 +38,7 @@
         
         include '../InterumtorDeMenus.php';
         ?>
-        <div class="ventaVeterinaria">
+        <div class="ventaVeterinaria contenedor">
             <h4>Ventas Distribuidor</h4>
             <label id="selectlabel">Cliente:</label>
             <select id="selectCliente"  class="btn btn-info selectCliente">

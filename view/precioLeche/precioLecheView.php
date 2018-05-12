@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 
         <!--CSS-->
-        <link rel="stylesheet" href="../../css/menu.css">
+
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
         <!--Javascript-->
         <script src="../../js/jquery-3.2.1.js"></script>

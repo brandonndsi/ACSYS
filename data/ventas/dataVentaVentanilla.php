@@ -25,7 +25,7 @@ class dataVentaVentanilla {
         $idVenta = $this->registrarVentaVentanilla($idCliente, $totalNeto, $totalBruto, $facturaVenta);
 
         if ($idCliente != 0) {
-            $this->registrarDetalleVenta($productos, $idVenta);
+            $this->registrarDetalleVenta($productos, $totalNeto, $idVenta);
         } else {
             return false;
         }
@@ -50,14 +50,13 @@ class dataVentaVentanilla {
         return $sqlQuery->fetch_assoc()['idventa'];
     }
 
-    function registrarDetalleVenta($productos, $idVenta) {
+    function registrarDetalleVenta($productos, $totalNeto, $idVenta) {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $productos = json_decode($productos);
         
         foreach ($productos as $producto) {
-            $total = $producto->precio * $producto->cantidad;
-            $con->query("CALL registrarDetalleVenta('" . $producto->precio . "','" . $producto->cantidad . "','" . $total . "','" . $producto->codigo . "','0','" . $idVenta . "');");
+            $con->query("CALL registrarDetalleVenta('" . $producto->precio . "','" . $producto->cantidad . "','" . $totalNeto . "','" . $producto->codigo . "','" . $producto->descuento . "','" . $idVenta . "');");
         }
         
     }
