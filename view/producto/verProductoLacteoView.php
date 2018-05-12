@@ -9,6 +9,7 @@
              <script src="../../js/unidadesJs.js"></script>          
              <script src="../../js/producto/productoLacteoJs.js"></script>  
              <script src="../../js/menuJs.js"></script> 
+             <script src="../../js/validacionesJs.js"></script> 
              <script type="text/javascript" language="javascript" src="../../js/jquery.dataTables.min.js"></script>
              <script>
                 $(document).ready(function () {
@@ -81,7 +82,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigo" id="codigo" placeholder="Código"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="codigo" id="codigo" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -89,7 +90,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" id="nombre" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="nombre" id="nombre" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -105,7 +106,7 @@
                                             <label>Cantidad:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="cantidad" id="cantidad" placeholder="Cantidad"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="cantidad" id="cantidad" placeholder="Cantidad"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -186,7 +187,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigor" id="codigor" placeholder="Código"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="codigor" id="codigor" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -194,7 +195,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombrer" id="nombrer" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="nombrer" id="nombrer" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -210,7 +211,7 @@
                                             <label>Cantidad:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="cantidadr" id="cantidadr" placeholder="Cantidad"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="cantidadr" id="cantidadr" placeholder="Cantidad"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">

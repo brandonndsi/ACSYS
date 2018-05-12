@@ -14,7 +14,8 @@
             <script src="../../js/unidadesJs.js"></script>   
             <script src="../../js/jquery.dataTables.min.js"></script>         
             <script src="../../js/producto/productoVeterinarioJs.js"></script>  
-            <script src="../../js/menuJs.js"></script>   
+            <script src="../../js/menuJs.js"></script>
+            <script src="../../js/validacionesJs.js"></script>     
 
             <script>
                 $(document).ready(function () {
@@ -82,7 +83,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigo" id="codigo" placeholder="Código"></p>
+                                            <p><input onkeypress="return soloNumeros(event)" type="text" class="span12" name="codigo" id="codigo" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -90,7 +91,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" id="nombre" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" onkeypress="return soloLetras(event)"name="nombre" id="nombre" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -106,7 +107,7 @@
                                             <label>Precio:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precio" id="precio" placeholder="Descripción"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precio" id="precio" placeholder="Precio"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -122,7 +123,7 @@
                                             <label>DRL:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="dias" id="dias" placeholder="Días"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="dias" id="dias" placeholder="Días"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -213,7 +214,7 @@
                                             <label>Código:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="codigor" id="codigor" placeholder="Código"></p>
+                                            <p><input type="text" onkeypress="return soloNumeros(event)" class="span12" name="codigor" id="codigor" placeholder="Código"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -221,7 +222,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombrer" id="nombrer" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="nombrer" id="nombrer" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -237,7 +238,7 @@
                                             <label>Precio:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precior" id="precior" placeholder="Descripción"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event);" name="precior" id="precior" placeholder="Precio"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -253,7 +254,7 @@
                                             <label>DRL:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="diasr" id="diasr" placeholder="Días"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="diasr" id="diasr" placeholder="Días"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">

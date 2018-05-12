@@ -12,7 +12,7 @@
             <script src="../../js/jquery.dataTables.js"></script>
             <script src="../../js/menuJs.js"></script>
             <script src="../../js/bootstrap.min.js"></script>
-                  
+            <script src="../../js/validacionesJs.js"></script>       
             <script src="../../js/productor/productorSocioJs.js"></script>
 
             <script>
@@ -81,7 +81,7 @@
                                             <label>Cédula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidad" placeholder="Documento de identidad"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="documentoidentidad" id="documentoidentidad" placeholder="Documento de identidad"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -89,7 +89,7 @@
                                             <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" pattern="[a-zA-Z]*" id="nombre" placeholder="Nombre"></p>
+                                           <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="nombre" onkeypress="return soloLetras(event)" id="nombre" placeholder="Nombre"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -97,7 +97,7 @@
                                             <label>1° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="primerapellido" pattern="[a-zA-Z]*" id="primerapellido" placeholder="Primer Apellido"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="primerapellido" onkeypress="return soloLetras(event)" id="primerapellido" placeholder="Primer Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -105,7 +105,7 @@
                                             <label>2° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="segundoapellido" pattern="[a-zA-Z]*" id="segundoapellido" placeholder="Segundo Apellido"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="segundoapellido" onkeypress="return soloLetras(event)" id="segundoapellido" placeholder="Segundo Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -113,7 +113,7 @@
                                             <label>Teléfono:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="telefono" pattern="[0-9]{9}" id="telefono" placeholder="Teléfono" ></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="telefono" pattern="[0-9]{9}" id="telefono" placeholder="Teléfono" ></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -129,7 +129,7 @@
                                             <label>Email:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="correo" placeholder="Email"></p>
+                                            <p><input type="text" class="span12" name="correo" onBlur="correoValidar(this)"  id="correo" placeholder="Email"></p>
                                         </div>
                                     </div>
                                         
@@ -203,7 +203,7 @@
                                             <label>Cédula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidadr" placeholder="Documento de identidad"></p>
+                                            <p><input type="text" class="span12" name="documentoidentidad" onkeypress="return soloNumeros(event)" id="documentoidentidadr" placeholder="Documento de identidad"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -219,7 +219,7 @@
                                             <label>1° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="primerapellido" id="primerapellidor" placeholder="Primer Apellido"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="primerapellido" id="primerapellidor" placeholder="Primer Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -227,7 +227,7 @@
                                             <label>2° Apellido:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="segundoapellido" id="segundoapellidor" placeholder="Segundo Apellido"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloLetras(event)" name="segundoapellido" id="segundoapellidor" placeholder="Segundo Apellido"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -235,7 +235,7 @@
                                             <label>Teléfono:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="telefono" id="telefonor" placeholder="Teléfono"></p>
+                                            <p><input type="text" class="span12" name="telefono" onkeypress="return soloNumeros(event)" id="telefonor" placeholder="Teléfono"></p>
                                         </div>
                                     </div>
                                      <div class="form-group">
@@ -251,7 +251,7 @@
                                             <label>Email:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="correor" placeholder="Email"></p>
+                                            <p><input type="text" class="span12" name="correo" onBlur="correoValidar(this)" id="correor" placeholder="Email"></p>
                                         </div>
                                     </div>
                                         

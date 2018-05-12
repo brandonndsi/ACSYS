@@ -180,6 +180,8 @@ function modalEliminarProducto(lacteo){
 
 }
 
+
+
 function registrarProducto(){
    
     $(document).ready(function() {
@@ -206,13 +208,13 @@ function registrarProducto(){
           }     
           $("#mensaje").html(respuesta);
           $("#modalRespuesta").modal();
-          document.getElementById("codigor").value;
-          document.getElementById("nombrer").value;
-          document.getElementById("descripcionr").value;
-          document.getElementById("precior").value;
-          document.getElementById("dosisr").value;
-          document.getElementById("diasr").value;
-          document.getElementById("viar").value;
+          document.getElementById("codigor").value="";
+          document.getElementById("nombrer").value="";
+          document.getElementById("descripcionr").value="";
+          document.getElementById("precior").value="";
+          document.getElementById("dosisr").value="";
+          document.getElementById("diasr").value="";
+          document.getElementById("viar").value="";
           document.getElementById("funcionr").selectedIndex=0;
       });
   });
