@@ -393,7 +393,7 @@ function verificarQueSeanQuinceDijitos(id){
 function validarEspaciosEnBlancoInput(e,id) {
  if (e.target.value.trim() == ""){
     swal({
-                    title: "Datos incorrectos",
+                    title: "Espacios vacios",
                     text: "¡Opps! Error en los datos ingresados vacios",
                     icon: "error",
                     buttons: {
