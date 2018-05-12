@@ -4,7 +4,7 @@
            <meta charset="UTF-8">
           <!--CSS-->
             <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-            <link rel="stylesheet" href="../../css/menu.css">
+            <!--<link rel="stylesheet" href="../../css/menu.css">-->
             <link rel="stylesheet" href="../../css/bootstrap.min.css" >
 
 
@@ -24,7 +24,7 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarMontoLecheSemanalTotal()">
+        <body background="../fondo.jpg" onload="mostrarMontoLecheSemanalTotal()">
 
             <!-- Import the file menu.php -->
           <?php
@@ -32,7 +32,7 @@
             include '../InterumtorDeMenus.php';
            ?>
              
-
+                     <div class="contenedor" id="contenedor">
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Pago de Leche</h4>  
                     </div>
@@ -103,5 +103,7 @@
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
          
+             </div>
+
     </body>
 </html>

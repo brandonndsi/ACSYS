@@ -22,14 +22,16 @@
           
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="consultarProductorSocio();">
+        <body background="../fondo.jpg" onload="consultarProductorSocio();">
         <?php
             //include '../menuView.php';
           include '../InterumtorDeMenus.php';
         ?>
+
+         <div class="contenedor" id="contenedor">
          <div class="ventaVeterinaria">
            <h4>Pago de Cuota de Adelanto de Pago</h4>
-           <center>
+           <!--<center>-->
              
              <label  class="caja labelCaja">Cliente:</label>
              
@@ -75,5 +77,6 @@
         
          -->
         </div>
+      </div>
     </body>
 </html>

@@ -22,14 +22,13 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductores()">
-
-            <!-- Import the file menu.php -->
+        <body background="../fondo.jpg" onload="mostrarProductores()">
+              <!-- Import the file menu.php -->
           <?php
             //include '../menuView.php';
             include '../InterumtorDeMenus.php';
            ?>
-             
+        <div class="contenedor" id="contenedor">
 
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Lista de Productores Socios</h4>  
@@ -266,6 +265,9 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
+
+        </div>
+
     </body>
 </html>
 

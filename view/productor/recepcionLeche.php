@@ -4,7 +4,7 @@
           <meta charset="UTF-8">
           <!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/menu.css">
+          <!--<link rel="stylesheet" href="../../css/menu.css">-->
           <link rel="stylesheet" href="../../css/recepcionLeche.css">
           <link rel="stylesheet" href="../../css/bootstrap.min.css" >
           <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
@@ -32,11 +32,12 @@
           </script>
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="cargarTabla();consultarProductorSocio();">
+        <body background="../fondo.jpg"  onload="cargarTabla();consultarProductorSocio();">
         <?php
             //include '../menuView.php';
           include '../InterumtorDeMenus.php';
         ?>
+         <div class="contenedor" id="contenedor">
          <div class="ventaVeterinaria">
            <h4>Recepción de Leche</h4>
            <div class="principal">
@@ -79,5 +80,8 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
+
+          </div>
+
     </body>
 </html>

@@ -28,11 +28,12 @@
           </script>
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="consultarProductorSocio();">
+        <body background="../fondo.jpg"  onload="consultarProductorSocio();">
         <?php
             //include '../menuView.php';
               include '../InterumtorDeMenus.php';
         ?>
+         <div class="contenedor" id="contenedor">
          <div class="ventaVeterinaria">
            <h4>Solicitud de préstamos</h4>
            <div class="principal">
@@ -64,5 +65,8 @@
            <button class="btn btn-danger" onclick="location.reload();">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
            <button class="btn btn-primary" onclick="registrarSolicitudPrestamoConfirmacion()">Ingresar solicitud <span class="glyphicon glyphicon-cog"></span></button>
          </div>
+
+</div>
+
     </body>
 </html>

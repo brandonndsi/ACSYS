@@ -24,11 +24,14 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductores()">
+        <body background="../fondo.jpg" onload="mostrarProductores()">
         <?php
             //include '../menuView.php';
             include '../InterumtorDeMenus.php';
-           ?>
+        ?>
+
+            <div class="contenedor" id="contenedor">
+
             <div class="col-md-8 col-md-offset-2">
                 <h4>Lista de Productores Clientes</h4>  
             </div>
@@ -262,5 +265,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
+
+        </div>
     </body>
 </html>

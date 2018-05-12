@@ -18,11 +18,11 @@
 
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarTabla();consultarProduct();">
+    <body background="../fondo.jpg"  onload="mostrarTabla();consultarProduct();">
         <?php
         include '../InterumtorDeMenus.php';
         ?>
-
+        <div class="contenedor" id="contenedor">
         <div class='col-md-3' >
             <h3>ASOPROLESA</h3>
             <h5>EL SAUCE SANTA TERESITA</h5>
@@ -46,6 +46,8 @@
                 </tbody>      
             </table>  
         </div>   
+
+</div>
 
     </body>
 </html>

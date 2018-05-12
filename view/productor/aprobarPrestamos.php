@@ -22,14 +22,16 @@
           
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarSolicitudes()">
+        <body background="../fondo.jpg"  onload="mostrarSolicitudes()">
         <?php
             //include '../menuView.php';
           include '../InterumtorDeMenus.php';
         ?>
+
+         <div class="contenedor" id="contenedor">
          <div class="ventaVeterinaria">
            <h4>Aprobación de  Adelanto de Pago</h4>
-           <center>
+          <!-- <center>-->
              
             
 
@@ -62,5 +64,8 @@
           </div>
        
         </div>
+
+</div>
+
     </body>
 </html>

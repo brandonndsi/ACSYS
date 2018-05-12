@@ -4,7 +4,7 @@
            <meta charset="UTF-8">
           <!--CSS-->
             <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-            <link rel="stylesheet" href="../../css/menu.css">
+            <!--<link rel="stylesheet" href="../../css/menu.css">-->
             <link rel="stylesheet" href="../../css/bootstrap.min.css" >
 
              <!--Javascript-->
@@ -22,7 +22,7 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarAhorroTotal()">
+        <body background="../fondo.jpg" onload="mostrarAhorroTotal()">
 
             <!-- Import the file menu.php -->
           <?php
@@ -30,7 +30,7 @@
             include '../InterumtorDeMenus.php';
            ?>
              
-
+             <div class="contenedor" id="contenedor">
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Ahorro Total de Productores</h4>  
                     </div>
@@ -100,6 +100,8 @@
                 </div><!-- /.modal-dalog -->
             </div><!-- /.modal -->
          
+         </div>
+
     </body>
 </html>
 
