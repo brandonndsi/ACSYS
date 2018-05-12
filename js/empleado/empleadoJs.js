@@ -367,6 +367,7 @@ function validarCamposCedula() {
        //verificarQueSeanQuinceDijitos($("#documentoidentidadr").val());
     }
 }
+/*validacion insertada por david salas para arreglar fallos de seguridad*/
 function verificarQueSeanQuinceDijitos(id){
     if(document.getElementById(id).value.length>=9){
 
@@ -389,6 +390,106 @@ function verificarQueSeanQuinceDijitos(id){
         document.getElementById(id).style.border="1px solid red";
     }
 }
+function validarEspaciosEnBlancoInput(e,id) {
+ if (e.target.value.trim() == ""){
+    swal({
+                    title: "Datos incorrectos",
+                    text: "¡Opps! Error en los datos ingresados vacios",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+  limpiarCampoInput(id);
+ }else{
+    document.getElementById(id).className = "form-control input";
+ }
+}
+function limpiarCampoInput(id){
+    document.getElementById(id).value="";
+    document.getElementById(id).style.border="1px solid red";
+     /*document.getElementById(id).style.border="1px solid red"; */ 
+}
+function textonly(e){
+var code;
+if (!e) var e = window.event;
+if (e.keyCode) code = e.keyCode;
+else if (e.which) code = e.which;
+var character = String.fromCharCode(code);
+
+    var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+    if (AllowRegex.test(character)) return true;
+    return false;
+
+}
+
+function verifyOnChange(id){
+
+    if(document.getElementById(id).value.length>0){
+      document.getElementById(id).style.border="1px solid green";
+    }else{
+      //document.getElementById(id).className = "form-control input error";
+      document.getElementById(id).style.border="1px solid red";
+    }
+}
+
+function verificarCorreo(valor){
+emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(valor.value)) {
+     // alert("válido");
+       document.getElementById(valor.id).style.border="1px solid green";
+    } else {
+    document.getElementById(valor.id).style.border="1px solid red";
+      swal({
+                    title: "Correo No vàlido",
+                    text: "Ejemplo  de correo: andres@gmail.com",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+            });
+      
+    }
+
+}
+function soloNumeros(e){
+    var key = e.charCode;
+    console.log(key);
+    return key >= 48 && key <= 57;
+}
+
+function verificarQueSeanOchoDijitos(id){
+    if(document.getElementById(id).value.length>=8){
+
+      document.getElementById(id).style.border="1px solid green";
+
+    }else{
+        swal({
+                    title: "Telèfono",
+                    text: "¡Opps! El telèfono debe tener solo 8 digìtos",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+                    },
+                    dangerMode: true
+                });
+        document.getElementById(id).style.border="1px solid red";
+    }
+}
+
+/*final de metodos metidos por david salas*/
 function validarCamposCedulam() {
 
     cedula = $("#documentoidentidadm").val();
@@ -488,6 +589,7 @@ function validarCamposDireccion() {
         $('#icon4').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
             $('#boton').attr("disabled", false);
+            document.getElementById("direccionr").style.border="1px solid green";
         }
 
     } else {
