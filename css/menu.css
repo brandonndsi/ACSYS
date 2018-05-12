@@ -105,3 +105,10 @@ input:focus{
   border: 2px solid black;
   background-color: lightgray;
 }
+#selectCliente{
+width: 40%;
+}
+
+#selectlabel{
+  width: 100%;
+}

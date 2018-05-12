@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+        <link rel="stylesheet" href="../../css/menu.css">
         <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
