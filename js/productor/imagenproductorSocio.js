@@ -264,9 +264,10 @@ $(document).ready(function(){
 		//alert("Tocando el boton de Cerrar el modal.");//Alerta encargada de poder motrar el mensaje de la informacion de que se se se elcciono el modal de cerra.
 		po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";//Esta funcion lo que hace es ocultar de nuevo el modal de la imagen visualizada.
-		window.location.reload();//lo que hace es recargar la paguina de origen global y sin necesidad de la redireccionamiento.
+		//window.location.reload();//lo que hace es recargar la paguina de origen global y sin necesidad de la redireccionamiento.
 		//id=document.getElementById("encriptado").value;
 		//window.location.href = '../../view/productor/verImagenProductorSocioView.php?id='+id;
+		location.reload(true);
 });
 });
 /*Finalización del metodo de la función de cancelar o cerrar el modal de la imagen a modificar.*/

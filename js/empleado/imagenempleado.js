@@ -139,13 +139,11 @@ document.getElementById("imagen").innerHTML=ruta;
 		//alert("sdsadsa");
 		//po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		window.location.reload();
+		//window.location.reload();
+		location.reload(true);
 });
 });
-	/*$('#btn_cancelar').on("click", function(evt){
-		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
-		window.location.href = '../../view/empleado/verImagenEmpleadoView.php';
-	});*/
+	
 function descaragarManipulacionAlimento(){
 	rutaimagen=document.getElementById("imagenManipulacionAlimento").value;
 	window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
