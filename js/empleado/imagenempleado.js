@@ -140,7 +140,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		//po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
 		//window.location.reload();
-		location.reload(true);
+		window.location.reload(true);
 });
 });
 	

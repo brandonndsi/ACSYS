@@ -263,9 +263,10 @@ document.getElementById("imagen").innerHTML=ruta;
 		po=document.getElementById("encriptado").value;
 		document.getElementById("contenedorImagen").style.transform="translateY(-150%)";
 		//window.location.reload();
-		//id=document.getElementById("encriptado").value;
-		//window.location.href = '../../view/productor/verImagenProductorClienteView.php?id='+id;
-		location.reload(true);
+		window.location.reload(true);
+		/*id=document.getElementById("encriptado").value;
+		window.location.href = '../../view/productor/verImagenProductorClienteView.php?id='+id;
+		*/
 });
 });
 /*Esta es la funcion encargada de poder visualizar la imagen antes de enviarla al servidor y que el usuario la puede modificar si quiere o no dependiendo de lo que el mae visualiza..*/
