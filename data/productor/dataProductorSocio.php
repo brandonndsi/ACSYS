@@ -49,14 +49,50 @@ class dataProductorSocio {
         $con=$this->conexion->crearConexion();
         $registrarProductor = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
         if($registrarProductor==1){
-            $registrarProductor = $con->query("CALL registrarproductorsocio()");
+              /*variables a utilizar para guardar la ruta de las imagenes correctamente*/
+            $identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
+            $cbo=$identificadorDeLaNuevaPersona."cbo.png";
+            $sangrado=$identificadorDeLaNuevaPersona."sangrado.png";
+            $escritura=$identificadorDeLaNuevaPersona."escritura.png";
+            $luz=$identificadorDeLaNuevaPersona."luz.png";
+            $agua=$identificadorDeLaNuevaPersona."agua.png";
+            $solido=$identificadorDeLaNuevaPersona."solido.png";
+            $plano=$identificadorDeLaNuevaPersona."plano.png";
+            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";
+        /*metodo de redireccionamiento de las imagenes quemadas por default a la carpeta de socio*/
+                    sobreEscribirImagen($cbo);
+                    sobreEscribirImagen($sangrado);
+                    sobreEscribirImagen($escritura);
+                    sobreEscribirImagen($luz);
+                    sobreEscribirImagen($agua);
+                    sobreEscribirImagen($solido);
+                    sobreEscribirImagen($plano);
+                    sobreEscribirImagen($docidentidad);
+        /*metodo que crea el socio final ya con las imagenes quemadas*/
+            $registrarProductor = $con->query("CALL registrarproductorsocio($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");
             return "true";
 
         }else{
             return "false";
 
         }
-
+        /*
+        DELIMITER $$
+        CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarproductorsocio`(IN `cbo` TEXT, IN `exasangrado` TEXT, IN `escritura` TEXT, IN `luz` TEXT, IN `agua` TEXT, IN `solido` TEXT, IN `plano` TEXT, IN `docidentidad` TEXT)
+        NO SQL
+        INSERT INTO tbproductorsocio(
+        idpersonasocio,
+        estadoproductorsocio,
+        ahorroporlitroproductorsocio,
+        imagencboproductorsocio,
+        imagenexamensangradoproductorsocio, imagenescrituraproductorsocio, imagenreciboluzproductorsocio,
+        imagenrecibaguaproductorsocio,
+        imagenexamensolidoproductorsocio, imagenplanofincaproductorsocio,
+        imagendocumentoidentidadproductorsocio)
+        VALUES ((SELECT idpersona FROM tbpersona order by idpersona DESC limit 1),
+        "activo",0,cbo,exasangrado,escritura,luz,agua,solido,plano,docidentidad)$$
+        DELIMITER ;
+         */
     }
 
     function productorEliminar($id){
