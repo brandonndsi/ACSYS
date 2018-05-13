@@ -18,7 +18,7 @@
     <script type="text/javascript" src="../../js/productor/imagenproductorCliente.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-<body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%">
+<body background="../fondo.jpg">
           <?php 
           //include '../menuView.php';
           include '../InterumtorDeMenus.php';

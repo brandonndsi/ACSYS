@@ -24,7 +24,7 @@
             </script>   
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductoVeterinario()">
+        <body background="../fondo.jpg" onload="mostrarProductoVeterinario()">
 
             <!-- Import the file menu.php -->
           <?php
@@ -36,7 +36,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Lista de Productor Veterinarios </h4>  
                     </div>
-                    <div>
+                    <div class="contenedor">
                         <table id="listaProductos" class="display" cellspacing="0" >
                        
                             <thead>
