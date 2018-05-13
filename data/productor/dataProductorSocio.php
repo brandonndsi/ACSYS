@@ -50,7 +50,7 @@ class dataProductorSocio {
         $registrarProductor = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
         if($registrarProductor==1){
               /*variables a utilizar para guardar la ruta de las imagenes correctamente*/
-            $identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
+            /*$identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
             $cbo=$identificadorDeLaNuevaPersona."cbo.png";
             $sangrado=$identificadorDeLaNuevaPersona."sangrado.png";
             $escritura=$identificadorDeLaNuevaPersona."escritura.png";
@@ -58,18 +58,20 @@ class dataProductorSocio {
             $agua=$identificadorDeLaNuevaPersona."agua.png";
             $solido=$identificadorDeLaNuevaPersona."solido.png";
             $plano=$identificadorDeLaNuevaPersona."plano.png";
-            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";
+            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";*/
         /*metodo de redireccionamiento de las imagenes quemadas por default a la carpeta de socio*/
-                    sobreEscribirImagen($cbo);
+                    /*sobreEscribirImagen($cbo);
                     sobreEscribirImagen($sangrado);
                     sobreEscribirImagen($escritura);
                     sobreEscribirImagen($luz);
                     sobreEscribirImagen($agua);
                     sobreEscribirImagen($solido);
                     sobreEscribirImagen($plano);
-                    sobreEscribirImagen($docidentidad);
+                    sobreEscribirImagen($docidentidad);*/
         /*metodo que crea el socio final ya con las imagenes quemadas*/
-            $registrarProductor = $con->query("CALL registrarproductorsocio($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");
+            /*$registrarProductor = $con->query("CALL registrarproductorsocio($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");*/
+
+            $registrarProductor = $con->query("CALL registrarproductorsocio()");
             return "true";
 
         }else{
@@ -95,6 +97,20 @@ class dataProductorSocio {
          */
     }
 
+        /*La function que le da la magia de crear una imagen y guardarla en la carpeta destino*/
+    function sobreEscribirImagen($ruta){
+        $fuente = @imagecreatefrompng("../../image/productor/cliente/blanco.jpg");
+        $imgAncho = imagesx ($fuente);
+        $imgAlto =imagesy($fuente);
+        $imagen = ImageCreate($imgAncho,$imgAlto);
+
+        ImageCopyResized($imagen,$fuente,0,0,0,0,$imgAncho,$imgAlto,$imgAncho,$imgAlto);
+
+        Header("Content-type: image/png");
+        imagepng($imagen,"../../image/productor/cliente/".$ruta);
+        imagedestroy($imagen);/*buffer encargado de limpiar el cache de la imagen despues de guardarla*/
+
+            }
     function productorEliminar($id){
         
         $con=$this->conexion->crearConexion();

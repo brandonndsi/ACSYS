@@ -50,7 +50,7 @@ class dataProductorCliente {
         $registrarProductor = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
         if($registrarProductor==1){
                 /*variables a utilizar para guardar la ruta de las imagenes correctamente*/
-            $identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
+           /* $identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
             $cbo=$identificadorDeLaNuevaPersona."cbo.png";
             $sangrado=$identificadorDeLaNuevaPersona."sangrado.png";
             $escritura=$identificadorDeLaNuevaPersona."escritura.png";
@@ -58,18 +58,20 @@ class dataProductorCliente {
             $agua=$identificadorDeLaNuevaPersona."agua.png";
             $solido=$identificadorDeLaNuevaPersona."solido.png";
             $plano=$identificadorDeLaNuevaPersona."plano.png";
-            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";
+            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";*/
         /*metodo de redireccionamiento de las imagenes quemadas por default a la carpeta de socio*/
-                    sobreEscribirImagen($cbo);
+                  /*  sobreEscribirImagen($cbo);
                     sobreEscribirImagen($sangrado);
                     sobreEscribirImagen($escritura);
                     sobreEscribirImagen($luz);
                     sobreEscribirImagen($agua);
                     sobreEscribirImagen($solido);
                     sobreEscribirImagen($plano);
-                    sobreEscribirImagen($docidentidad);
+                    sobreEscribirImagen($docidentidad);*/
         /*metodo que crea el socio final ya con las imagenes quemadas*/
-            $registrarProductor = $con->query("CALL registrarproductorcliente($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");
+           /* $registrarProductor = $con->query("CALL registrarproductorcliente($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");*/
+
+            $registrarProductor = $con->query("CALL registrarproductorcliente()");
 
             return "true";
 
