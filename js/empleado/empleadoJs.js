@@ -89,8 +89,8 @@ function registrarEmpleado() {
     correo = $("#correor").val();
     password = $("#passwordempleador").val();
     tipoEmpleado = $("#tipoempleador").val();
-    manipulacionalimentos = "../../image/empleado/vacioManipulacion.jpg";
-    identidad = "../../image/empleado/vacioCedula.jpg";
+    /*manipulacionalimentos = "../../image/empleado/vacioManipulacion.jpg";
+    identidad = "../../image/empleado/vacioCedula.jpg";*/
     manipulacionalimentos = "../../image/empleado/"+ cedula + "manipulacion.jpg";
     identidad = "../../image/empleado/"+ cedula + "cedula.jpg";
 

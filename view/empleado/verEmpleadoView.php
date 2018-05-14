@@ -86,10 +86,11 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" onkeyup="validarCamposCedula()"
+                                        <!--onkeyup="validarCamposCedula()" -->
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" placeholder="Cédula" 
                                         onchange="verificarQueSeanQuinceDijitos(this.id);validarEspaciosEnBlancoInput(event,this.id);"
                                         required maxlength="15"
-                                        title="C&eacute;dula, debe incluir 9 d&iacute;gitos" placeholder="C&eacute;dula"/></p>
+                                        title="C&eacute;dula, debe incluir 9 d&iacute;gitos minimo y maximo 15" placeholder="C&eacute;dula"/></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -101,7 +102,8 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text"  class="form-control" class="span12" name="nombrer"  id="nombrer" placeholder="Nombre" onkeyup="validarCamposNombre()" 
+                                        <!--onkeyup="validarCamposNombre()"-->
+                                        <p><input type="text"  class="form-control" class="span12" name="nombrer"  id="nombrer" placeholder="Nombre"  
                                         onkeypress="return textonly(event);" 
                                         onchange="validarEspaciosEnBlancoInput(event,this.id);verifyOnChange(this.id);"
                                         data-toggle="tooltip" data-placement="top" title="Nombre" placeholder="Nombre" required/></p>
@@ -116,7 +118,8 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="primerapellidor" id="primerapellidor" placeholder="1° Apellido" onkeyup="validarCamposApellido()"
+                                        <!-- onkeyup="validarCamposApellido()" -->
+                                        <p><input type="text" class="form-control" class="span12" name="primerapellidor" id="primerapellidor" placeholder="1° Apellido"
                                         onkeypress="return textonly(event);" 
                                         onchange="validarEspaciosEnBlancoInput(event,this.id);verifyOnChange(this.id);"
                                         data-toggle="tooltip" data-placement="top" title="Primer Apellido" placeholder="Primer Apellido" required/></p>
@@ -138,7 +141,8 @@
                                         <label>Email:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                                        <!--pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" -->
+                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email"
                                         required title="Correo, debe tener un @ y .com como minimo" onchange="verificarCorreo(this);" /></p>
                                     </div>
                                 </div>
@@ -163,7 +167,8 @@
                                         </label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <p><input type="text" class="form-control" class="span12" name="direccionr" id="direccionr" placeholder="Dirección" onkeyup="validarCamposDireccion()" 
+                                        <!--onkeyup="validarCamposDireccion()"  -->
+                                        <p><input type="text" class="form-control" class="span12" name="direccionr" id="direccionr" placeholder="Dirección" 
                                         onchange="validarEspaciosEnBlancoInput(event,this.id);"
                                         data-toggle="tooltip" data-placement="top" title="Direcciòn exacta" required/></p>
                                     </div>
