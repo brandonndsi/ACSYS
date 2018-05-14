@@ -29,7 +29,7 @@ class dataEmpleado {
         }
         return json_encode($datos);
     }
-
+     
     // registrar
     function empleadoRegistrar($cedula, $nombre, $apellido1, $apellido2, $telefono, $direccion, $correo, $clave, $tipo, $manipulacionalimentos, $identidad) {
 
@@ -37,11 +37,24 @@ class dataEmpleado {
         $con->set_charset("utf8");
         /* registra la persona */
         $registrarEmpleado = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
+        $con=$this->conexion->cerrarConexion();
+
         if ($registrarEmpleado == 1) {
-            $conen = $this->conexion->crearConexion();
-            $conen->set_charset("utf8");
+            $con = $this->conexion->crearConexion();
+            $con->set_charset("utf8");
             $pass = password_hash($clave, PASSWORD_DEFAULT);
-            $registrarEmpleado = $conen->query("CALL registrarempleado('$pass','$tipo','$manipulacionalimentos', '$identidad')");
+            
+            $registrarEmpleado = $con->query("CALL registrarempleado('$pass','$tipo','$manipulacionalimentos','$identidad');");
+
+        /*Metodo de la leche que crea la imagen y la manda a guardar en la carpeta.*/
+        $fuente = @imagecreatefrompng("../../image/da.png");//Creo la nueva instancia de la imagen 
+        $imgAncho = imagesx ($fuente);/*obtengo el ancho de la imagen original*/
+        $imgAlto =imagesy($fuente);/*obtengo el largo de la imagen original*/
+        $imagen = ImageCreate($imgAncho,$imgAlto);/*creamos la imagen copia para el brauser*/
+        ImageCopyResized($imagen,$fuente,0,0,0,0,100,100,$imgAncho,$imgAlto);/*hacemos la sobre escritura del original a la imagen del brauser con las dimenciones de 100 100*/
+        imagepng($imagen,$manipulacionalimentos);/*mandamos a guardar la imagen en el url del brouser a guardar a la ruta de la carpeta*/
+        imagepng($imagen,$identidad);/*mandamos a guardar la imagen en el url del brouser a guardar a la ruta de la carpeta*/  
+        $con=$this->conexion->cerrarConexion();/*cerramos la puta conexion*/
             return "true";
         } else {
             return "false";
@@ -113,9 +126,5 @@ class dataEmpleado {
     }
 
 }
-/*
-$dat=new dataEmpleado();
-$r=$dat->imagenesEmpleado('1');
-print_r($r);*/
 
 ?>
