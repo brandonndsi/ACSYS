@@ -121,6 +121,7 @@ class dataProductorCliente {
     }
 
 }
+/*
 $prueva= new dataProductorCliente();
 $cedula="77889966";
 $nombre="iam";
@@ -130,6 +131,6 @@ $telefono="12345678";
 $direccion="la virgen";
 $correo="mmm@gmail.com";
 $resultado=$prueva->productorRegistrar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo);
-print_r($resultado);
+print_r($resultado);*/
 
 ?>

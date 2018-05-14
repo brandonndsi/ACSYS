@@ -49,29 +49,41 @@ class dataProductorSocio {
         $con=$this->conexion->crearConexion();
         $registrarProductor = $con->query("CALL registrarpersona('$cedula','$nombre','$apellido1','$apellido2','$telefono','$direccion','$correo')");
         if($registrarProductor==1){
-              /*variables a utilizar para guardar la ruta de las imagenes correctamente*/
-            /*$identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
-            $cbo=$identificadorDeLaNuevaPersona."cbo.png";
-            $sangrado=$identificadorDeLaNuevaPersona."sangrado.png";
-            $escritura=$identificadorDeLaNuevaPersona."escritura.png";
-            $luz=$identificadorDeLaNuevaPersona."luz.png";
-            $agua=$identificadorDeLaNuevaPersona."agua.png";
-            $solido=$identificadorDeLaNuevaPersona."solido.png";
-            $plano=$identificadorDeLaNuevaPersona."plano.png";
-            $docidentidad=$identificadorDeLaNuevaPersona."docidentidad.png";*/
+              $con=$this->conexion->crearConexion();
+            $identificadorDeLaNuevaPersona=$con->query("CALL extraeridpersona($cedula);");
+            $con=$this->conexion->cerrarConexion();
+            $id="";/*variable a utilizar para poder transformar el dato*/
+            while($result=$identificadorDeLaNuevaPersona->fetch_assoc()){
+            $id=$result['idpersona'];  
+            }
+            /*variables a utilizar para guardar la ruta de las imagenes correctamente*/
+            $cbo="../../image/productor/socio/".$id."cbo.png";
+            $sangrado="../../image/productor/socio/".$id."sangrado.png";
+            $escritura="../../image/productor/socio/".$id."escritura.png";
+            $luz="../../image/productor/socio/".$id."luz.png";
+            $agua="../../image/productor/socio/".$id."agua.png";
+            $solido="../../image/productor/socio/".$id."solido.png";
+            $plano="../../image/productor/socio/".$id."plano.png";
+            $docidentidad="../../image/productor/socio/".$id."docidentidad.png";
         /*metodo de redireccionamiento de las imagenes quemadas por default a la carpeta de socio*/
-                    /*sobreEscribirImagen($cbo);
-                    sobreEscribirImagen($sangrado);
-                    sobreEscribirImagen($escritura);
-                    sobreEscribirImagen($luz);
-                    sobreEscribirImagen($agua);
-                    sobreEscribirImagen($solido);
-                    sobreEscribirImagen($plano);
-                    sobreEscribirImagen($docidentidad);*/
-        /*metodo que crea el socio final ya con las imagenes quemadas*/
-            /*$registrarProductor = $con->query("CALL registrarproductorsocio($cbo,$sangrado,$escritura,$luz,$agua,$solido,$plano,$docidentidad)");*/
+        $con=$this->conexion->crearConexion();
+            $registrarProductor = $con->query("CALL registrarproductorsocio('$cbo','$sangrado','$escritura','$luz','$agua','$solido','$plano','$docidentidad');");
 
-            $registrarProductor = $con->query("CALL registrarproductorsocio()");
+        /*Metodo de la leche que crea la imagen y la manda a guardar en la carpeta.*/
+        $fuente = @imagecreatefrompng("../../image/da.png");//Creo la nueva instancia de la imagen 
+        $imgAncho = imagesx ($fuente);/*obtengo el ancho de la imagen original*/
+        $imgAlto =imagesy($fuente);/*obtengo el largo de la imagen original*/
+        $imagen = ImageCreate($imgAncho,$imgAlto);/*creamos la imagen copia para el brauser*/
+        ImageCopyResized($imagen,$fuente,0,0,0,0,100,100,$imgAncho,$imgAlto);/*hacemos la sobre escritura del original a la imagen del brauser con las dimenciones de 100 100*/
+        imagepng($imagen,$cbo);/*mandamos a guardar la imagen en el url del brouser a guardar a la ruta de la carpeta*/
+        imagepng($imagen,$sangrado);
+        imagepng($imagen,$escritura);
+        imagepng($imagen,$luz);
+        imagepng($imagen,$agua);
+        imagepng($imagen,$solido);
+        imagepng($imagen,$plano);
+        imagepng($imagen,$docidentidad);
+        $con=$this->conexion->cerrarConexion();/*cerramos la puta conexion*/
             return "true";
 
         }else{
@@ -97,20 +109,6 @@ class dataProductorSocio {
          */
     }
 
-        /*La function que le da la magia de crear una imagen y guardarla en la carpeta destino*/
-    function sobreEscribirImagen($ruta){
-        $fuente = @imagecreatefrompng("../../image/productor/cliente/blanco.jpg");
-        $imgAncho = imagesx ($fuente);
-        $imgAlto =imagesy($fuente);
-        $imagen = ImageCreate($imgAncho,$imgAlto);
-
-        ImageCopyResized($imagen,$fuente,0,0,0,0,$imgAncho,$imgAlto,$imgAncho,$imgAlto);
-
-        Header("Content-type: image/png");
-        imagepng($imagen,"../../image/productor/cliente/".$ruta);
-        imagedestroy($imagen);/*buffer encargado de limpiar el cache de la imagen despues de guardarla*/
-
-            }
     function productorEliminar($id){
         
         $con=$this->conexion->crearConexion();
@@ -127,5 +125,14 @@ class dataProductorSocio {
     }
 
 }
-
+/*$prueva= new dataProductorSocio();
+$cedula="98754625";
+$nombre="bboooo";
+$apellido1="salas";
+$apellido2="salas";
+$telefono="12345678";
+$direccion="la virgen";
+$correo="mmm@gmail.com";
+$resultado=$prueva->productorRegistrar($cedula,$nombre,$apellido1,$apellido2,$telefono,$direccion,$correo);
+print_r($resultado);*/
 ?>
