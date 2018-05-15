@@ -86,7 +86,7 @@ function registrarCliente(){
               
 
       }, function(responseText) {
-         
+         console.log(responseText);
           respuesta="";
           if(responseText=="true"){
               respuesta="Se ha registrado el productor satisfactoriamente";
@@ -234,8 +234,7 @@ function modalEliminarCliente(cliente){
               
 
       }, function(responseText) {
-          alert(responseText);
-      
+          
           respuesta="";
           if(responseText=="true"){
               respuesta="Se ha eliminado el productor satisfactoriamente";

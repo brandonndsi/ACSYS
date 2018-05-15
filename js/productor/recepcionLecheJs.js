@@ -17,17 +17,25 @@ function registrarLeche(){
               
 
       }, function(responseText) {
-        alert(responseText);
-          
-          
-          respuesta="<h4>"+responseText+"</h4>";
+      
+          respuesta=responseText;
             
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
-         
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        })
+        document.getElementById("peso").value="";
       });
   });
-
+  
 }
 
 function mostrarRecepcion(){

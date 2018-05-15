@@ -18,6 +18,8 @@
           <script src="../../js/bootstrap.min.js"></script>
           <script src="../../js/ventas/ventaVeterinarioJs.js"></script>
           <script src="../../js/productor/recepcionLecheJs.js"></script>
+          <script src="../../js/validacionesJs.js"></script> 
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
           <script>
             $( function() {
@@ -55,7 +57,7 @@
               <option>Mañana</option>
               <option>Tarde</option>
            </select>
-           <input id="peso"   class="btn  caja labelCaja">
+           <input id="peso"   class="btn  caja labelCaja" onkeypress="return soloNumeros(event)">
 
            <button class="btn btn-danger">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
            <button class="btn btn-primary" onclick="registrarLeche()">Procesar registro<span class="glyphicon glyphicon-cog"></span></button>

@@ -14,7 +14,7 @@
             <script src="../../js/bootstrap.min.js"></script>
                   
             <script src="../../js/productor/ahorroJs.js"></script>
-
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
             <script>
                 $(document).ready(function () {
                 $('[data-toggle="tooltip"]');

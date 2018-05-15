@@ -6,14 +6,17 @@
             <link rel="stylesheet" href="../../css/jquery.dataTables.css">
             <!--<link rel="stylesheet" href="../../css/menu.css">-->
             <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+            
 
              <!--Javascript-->
             <script src="../../js/jquery-3.2.1.js"></script>
             <script src="../../js/jquery.dataTables.js"></script>
             <script src="../../js/menuJs.js"></script>
             <script src="../../js/bootstrap.min.js"></script>
-                  
+            <script src="../../js/validacionesJs.js"></script>      
             <script src="../../js/productor/ahorroJs.js"></script>
+
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 
             <script>
                 $(document).ready(function () {
@@ -71,34 +74,36 @@
                                <form method="post" action='' name="">
                                    <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Cédula:</label>
+                                            <label>Cedula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidad"></p>
+                                            <p><input type="text" class="span12" name="documentoidentidad" id="documentoidentidad" readonly="readonly"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Nombre Completo:</label>
+                                            <label>Nombre:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                           <p><input type="text" class="span12" name="nombre" id="nombre"></p>
+                                           <p><input type="text" class="span12" name="nombre" id="nombre"  readonly="readonly"></p>
                                         </div>
                                     </div>
+                                   
                                      <div class="form-group">
                                         <div class="col-sm-3">
-                                            <label>Monto de Ahorro:</label>
+                                            <label>Ahorro:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="ahorro" id="ahorro"></p>
+                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="ahorro" id="ahorro"></p>
                                         </div>
                                     </div>      
                                 </form>
                             </center>
                         </div>
                         <div class="modal-footer">
-                            <div class="col-sm-8" id="btn">
+                        <div class="" id="btn">
                             <div id="botones"></div>
+                            </div>
                         </div>
                         </div>
                     </div><!-- /.modal-content -->

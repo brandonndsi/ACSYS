@@ -102,8 +102,7 @@ function pagarMontoLeche(productor){
               litros:litros,
 
       }, function(responseText) {
-        alert(responseText);
-          if (responseText==true) {
+          if (responseText==1) {
             swal("El pago se ha realizado satisfactoriamente", {
               icon: "success",
             });

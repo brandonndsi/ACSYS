@@ -88,14 +88,24 @@ function modificarMontoAhorro(id,tipo){
       }, function(responseText) {
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha modificado el ahorro del productor satisfactoriamente</h4>";
+              respuesta="Se ha modificado el ahorro del productor satisfactoriamente";
               mostrarMontoAhorro();
 
           }else{
-              respuesta="<h4>Ocurrió un error al modificar el ahorro del productor</h4>";
+              respuesta="Ocurrió un error al modificar el ahorro del productor";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        })
       });
   });
 
@@ -168,10 +178,34 @@ function mostrarAhorroTotal(){
 }
 
 function modalPagarAhorro(productor){
-  html = "<p><button data-dismiss='modal' class='btn btn-danger'>Cerrar</button> </p>";
-  html+= "<p><button data-dismiss='modal' onclick='pagarAhorro("+productor+")' class='btn btn-primary'>Aceptar</button> </p>";
-  $("#botones").html(html);
-  $("#modalConfirmacion").modal();
+  
+  swal({
+    title: "Confirmación ",
+    text: "¿Desea pagar el ahorro total al productor?",
+    icon: "info",
+    buttons: {
+      cancelar:{
+        text:"Cancelar",
+        value:"cancel",
+      },
+      ok:{
+        text:"Aceptar",
+        value:"ok",
+      }
+    },
+    dangerMode: true,
+    })
+    .then((value) => {
+        switch(value){
+        case "ok":
+            pagarAhorro(productor);
+            
+            break;
+        case "cancel":
+            
+            break;
+        }
+    });
 }
 
 function pagarAhorro(idProductor){
@@ -183,14 +217,24 @@ function pagarAhorro(idProductor){
       }, function(responseText) {
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha realizado el pago del ahorro satisfactoriamente</h4>";
+              respuesta="Se ha realizado el pago del ahorro satisfactoriamente";
               mostrarAhorroTotal();
 
           }else{
-              respuesta="<h4>Ocurrió un error al realizar el pago del ahorro</h4>";
+              respuesta="Ocurrió un error al realizar el pago del ahorro";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        })
       });
   });
 }

@@ -88,9 +88,9 @@
            
             $respuestaDataAhorro=$this->registrarAhorroTotal($id,$tipo,$cantidadlitroscompramateriaprima,$fecha);
             if($pagar == 1 && $respuestaDataAhorro== true){
-                echo "true";
+                echo $pagar;
             }else{
-                echo "false";
+                echo $pagar;
             }
         }
 
