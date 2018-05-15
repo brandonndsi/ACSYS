@@ -118,16 +118,26 @@ function modificarProducto(codigo){
 
       }, function(responseText){
           respuesta="";
-          
           if(responseText=="true"){
-              respuesta="<h4>Se ha modificado el producto satisfactoriamente</h4>";
-              mostrarProductoVeterinario();
-          }else{
-              respuesta="<h4>Ocurrió un error al modificar el producto</h4>";
-              mostrarProductoVeterinario();
-          }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+            respuesta="Se ha modificado el producto satisfactoriamente";
+            mostrarProductoVeterinario();
+
+        }else{
+            respuesta="Ocurrió un error al modificar el producto";
+        }     
+        swal({
+          title: "Confirmación",
+          text: respuesta,
+          icon: "info",
+          buttons: {
+            
+            ok:{
+              text:"Aceptar",
+              value:"ok",
+            }
+          },
+          dangerMode: true,
+      });
       });
   });
 
@@ -136,12 +146,34 @@ function modificarProducto(codigo){
 
 function modalEliminarProducto(lacteo){
     string=lacteo.split('-');
-    codigo='"'+string[0]+'"';
+    codigo=string[0];
 
-    botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones+="<button onclick='eliminarProducto("+codigo+")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
-    $("#botonesEliminar").html(botones);
-    $("#modalEliminar").modal();
+    swal({
+        title: "Confirmación",
+        text: "¿Desea eliminar  este producto?",
+        icon: "info",
+        buttons: {
+          cancelar:{
+            text:"Cancelar",
+            value:"cancel",
+          },
+          ok:{
+            text:"Aceptar",
+            value:"ok",
+          }
+        },
+        dangerMode: true,
+    })
+    .then((value) => {
+        switch(value){
+          case "ok":
+          eliminarProducto(codigo);
+            break;
+           case "cancel":
+
+             break;
+        }
+      });
  }
 
  function eliminarProducto(codigo){
@@ -155,14 +187,25 @@ function modalEliminarProducto(lacteo){
          ;
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha eliminado el producto satisfactoriamente</h4>";
-              mostrarProductoVeterinario();
+            respuesta="Se ha eliminado el producto satisfactoriamente";
+            mostrarProductoVeterinario();
 
-          }else{
-              respuesta="<h4>Ocurrió un error al eliminar el producto</h4>";
-          }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+        }else{
+            respuesta="Ocurrió un error al eliminar el producto";
+        }     
+        swal({
+          title: "Confirmación",
+          text: respuesta,
+          icon: "info",
+          buttons: {
+            
+            ok:{
+              text:"Aceptar",
+              value:"ok",
+            }
+          },
+          dangerMode: true,
+      });
          
       });
    });
@@ -197,17 +240,27 @@ function registrarProducto(){
           funcion:document.getElementById("funcionr").selectedIndex+1,
 
       }, function(responseText) {
-          
+          alert(responseText);
           respuesta="";
           if(responseText=="true"){
-            respuesta="<h4>Se ha registrado el producto satisfactoriamente</h4>";
+            respuesta="Se ha registrado el producto satisfactoriamente";
             mostrarProductoVeterinario();
 
-          }else{
-              respuesta="<h4>Ocurrió un error al registrar el producto</h4>";
-          }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+        }else{
+            respuesta="Ocurrió un error al registrar el producto";
+        }     
+        swal({
+          title: "Confirmación",
+          text: respuesta,
+          icon: "info",
+          buttons: {
+            ok:{
+              text:"Aceptar",
+              value:"ok",
+            }
+          },
+          dangerMode: true,
+      });
           document.getElementById("codigor").value="";
           document.getElementById("nombrer").value="";
           document.getElementById("descripcionr").value="";

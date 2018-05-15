@@ -14,6 +14,7 @@
             <script src="../../js/bootstrap.min.js"></script>
             <script src="../../js/validacionesJs.js"></script>       
             <script src="../../js/productor/productorSocioJs.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
             <script>
                 $(document).ready(function () {
@@ -30,8 +31,10 @@
            ?>
         <div class="contenedor" id="contenedor">
 
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="row">
                         <h4>Lista de Productores Socios</h4>  
+                        
+                        <p><button onclick="modalRegistrarSocio()" class="btn btn-primary">Registrar Productor</button></p>
                     </div>
                     <div>
                         <table id="listaProductores" class="display" cellspacing="0" >
@@ -62,9 +65,7 @@
                       
                 
         <!--Comienzan los modales-->
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarSocio()" class="btn btn-primary">Registrar Productor</button></p>
-            </div>
+            
            <!--Modal de modificar socio-->
             <div id="modalModificar" class="modal fade in">
                 <div  class="modal-dialog">
@@ -80,7 +81,7 @@
                                             <label>Cédula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="documentoidentidad" id="documentoidentidad" placeholder="Documento de identidad"></p>
+                                            <p><input type="text" class="span12"  name="documentoidentidad" id="documentoidentidad" placeholder="Documento de identidad"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -202,7 +203,7 @@
                                             <label>Cédula:</label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <p><input type="text" class="span12" name="documentoidentidad" onkeypress="return soloNumeros(event)" id="documentoidentidadr" placeholder="Documento de identidad"></p>
+                                            <p><input type="text" class="span12" name="documentoidentidad"  id="documentoidentidadr" placeholder="Documento de identidad"></p>
                                         </div>
                                     </div>
                                     <div class="form-group">

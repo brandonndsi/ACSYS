@@ -30,10 +30,19 @@ function correoValidar(correo) {
 
     var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 
-    if (regex.test(correo.value.trim())) {
-        alert('Correo validado');
-
-    } else {
-        alert('La direccón de correo no es válida');
+    if (!regex.test(correo.value.trim())&& correo.value!="") {
+        
+        swal({
+            title: "Error",
+            text: "Correo ingresado no válido",
+            icon: "error",
+            buttons: {
+                ok:{
+                text:"Aceptar",
+                value:"ok",
+                }
+            },
+            dangerMode: true,
+        });
     }
 }

@@ -6,7 +6,6 @@
             <link rel="stylesheet" href="../../css/jquery.dataTables.css">
             <!--<link rel="stylesheet" href="../../css/menu.css">-->
             <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-                 <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
              <!--Javascript-->
              <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
             <script src="../../js/jquery-3.2.1.js"></script>
@@ -14,7 +13,7 @@
             <script src="../../js/menuJs.js"></script>
             <script src="../../js/validacionesJs.js"></script> 
             <script src="../../js/bootstrap.min.js"></script>
-                           
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                
             <script src="../../js/productor/productorClienteJs.js"></script>    
 
             <script>
@@ -32,10 +31,11 @@
 
             <div class="contenedor" id="contenedor">
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class=" row">
                 <h4>Lista de Productores Clientes</h4>  
-            </div>
             
+                 <p><button onclick="modalRegistrarCliente()" class="btn btn-primary">Registrar Productor</button></p>
+            </div>
             <div>
                 <table id="listaProductores" class="display" cellspacing="0" >
                
@@ -62,15 +62,13 @@
                 </table>  
                
             </div>
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarCliente()" class="btn btn-primary">Registrar Productor</button></p>
-            </div>
+            
            <!--Modal de modificar socio-->
             <div id="modalModificar" class="modal fade in">
                 <div  class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Modificar Socio</h4>
+                            <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Modificar Cliente</h4>
                         </div>
                         <div class="modal-body">
                             <center>
@@ -192,7 +190,7 @@
                 <div  class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Registrar Socio</h4>
+                            <h4 class="modal-title glyphicon glyphicon glyphicon-edit" > Registrar Cliente</h4>
                         </div>
                         <div class="modal-body">
                             <center>

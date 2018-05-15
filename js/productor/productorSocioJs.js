@@ -33,14 +33,25 @@ function modificarSocio(id){
       }, function(responseText) {
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha modificado el productor satisfactoriamente</h4>";
-              mostrarProductores();
+            respuesta="Se ha modificado el productor satisfactoriamente";
+            mostrarProductores();
 
-          }else{
-              respuesta="<h4>Ocurrió un error al modificar el productor</h4>";
-          }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+        }else{
+            respuesta="Ocurrió un error al modificar el productor";
+        }     
+        swal({
+          title: "Confirmación",
+          text: respuesta,
+          icon: "info",
+          buttons: {
+            
+            ok:{
+              text:"Aceptar",
+              value:"ok",
+            }
+          },
+          dangerMode: true,
+        });
       });
   });
 
@@ -78,14 +89,24 @@ function registrarSocio(){
       }, function(responseText) {
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha registrado el productor satisfactoriamente</h4>";
+              respuesta="Se ha registrado el productor satisfactoriamente";
               mostrarProductores();
 
           }else{
-              respuesta="<h4>Ocurrió un error al registrar el productor</h4>";
+              respuesta="Ocurrió un error al registrar el productor";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        })
           document.getElementById("documentoidentidadr").value="";
           document.getElementById("nombrer").value="";
           document.getElementById("primerapellidor").value="";
@@ -172,14 +193,36 @@ function mostrarProductores(){
   });
 }
 
-function modalEliminarSocio(socio){
+ function modalEliminarSocio(socio){
     string=socio.split('-');
-    id='"'+string[7]+'"';
+    id=string[7];     
+    swal({
+        title: "Confirmación",
+        text: "¿Desea eliminar  este productor socio?",
+        icon: "info",
+        buttons: {
+          cancelar:{
+            text:"Cancelar",
+            value:"cancel",
+          },
+          ok:{
+            text:"Aceptar",
+            value:"ok",
+          }
+        },
+        dangerMode: true,
+    })
+    .then((value) => {
+        switch(value){
+          case "ok":
+          eliminarSocio(id);
+            break;
+           case "cancel":
 
-    botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones+="<button onclick='eliminarSocio("+id+")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
-    $("#botonesEliminar").html(botones);
-    $("#modalEliminar").modal();
+             break;
+        }
+      });
+ 
  }
 
  function eliminarSocio(id){
@@ -193,14 +236,25 @@ function modalEliminarSocio(socio){
       
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha eliminado el productor satisfactoriamente</h4>";
+              respuesta="Se ha eliminado el productor satisfactoriamente";
               mostrarProductores();
 
           }else{
-              respuesta="<h4>Ocurrió un error al eliminar el productor</h4>";
+              respuesta="Ocurrió un error al eliminar el productor";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        });
          
       });
   });

@@ -32,14 +32,25 @@ function modificarCliente(id){
       }, function(responseText){
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha modificado el productor satisfactoriamente</h4>";
+              respuesta="Se ha modificado el productor satisfactoriamente";
               mostrarProductores();
 
           }else{
-              respuesta="<h4>Ocurrió un error al modificar el productor</h4>";
+              respuesta="Ocurrió un error al modificar el productor";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        });
       });
   });
 
@@ -75,16 +86,28 @@ function registrarCliente(){
               
 
       }, function(responseText) {
+         
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha registrado el productor satisfactoriamente</h4>";
+              respuesta="Se ha registrado el productor satisfactoriamente";
               mostrarProductores();
 
           }else{
-              respuesta="<h4>Ocurrió un error al registrar el productor</h4>";
+            respuesta="Ha ocurrido un error al registrar el productor ";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        })
+          
           document.getElementById("documentoidentidadr").value="";
           document.getElementById("nombrer").value="";
           document.getElementById("primerapellidor").value="";
@@ -172,13 +195,36 @@ function mostrarProductores(){
 
 function modalEliminarCliente(cliente){
     string=cliente.split('-');
-    id='"'+string[7]+'"';
+    id=string[7];     
+    swal({
+        title: "Confirmación",
+        text: "¿Desea eliminar  este productor cliente?",
+        icon: "info",
+        buttons: {
+          cancelar:{
+            text:"Cancelar",
+            value:"cancel",
+          },
+          ok:{
+            text:"Aceptar",
+            value:"ok",
+          }
+        },
+        dangerMode: true,
+    })
+    .then((value) => {
+        switch(value){
+          case "ok":
+           eliminarCliente(id);
+            break;
+           case "cancel":
 
-    botones="<p><button data-dismiss='modal' class='btn btn-danger'>Cancelar</button> ";
-    botones+="<button onclick='eliminarCliente("+id+")' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
-    $("#botonesEliminar").html(botones);
-    $("#modalEliminar").modal();
+             break;
+        }
+      });
+ 
  }
+
 
  function eliminarCliente(id){
     $(document).ready(function() {
@@ -188,17 +234,29 @@ function modalEliminarCliente(cliente){
               
 
       }, function(responseText) {
+          alert(responseText);
       
           respuesta="";
           if(responseText=="true"){
-              respuesta="<h4>Se ha eliminado el productor satisfactoriamente</h4>";
+              respuesta="Se ha eliminado el productor satisfactoriamente";
               mostrarProductores();
 
           }else{
-              respuesta="<h4>Ocurrió un error al eliminar el productor</h4>";
+              respuesta="Ocurrió un error al eliminar el productor";
           }     
-          $("#mensaje").html(respuesta);
-          $("#modalRespuesta").modal();
+          swal({
+            title: "Confirmación",
+            text: respuesta,
+            icon: "info",
+            buttons: {
+              
+              ok:{
+                text:"Aceptar",
+                value:"ok",
+              }
+            },
+            dangerMode: true,
+        });
          
       });
   });

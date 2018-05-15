@@ -10,6 +10,7 @@
              <script src="../../js/producto/productoLacteoJs.js"></script>  
              <script src="../../js/menuJs.js"></script> 
              <script src="../../js/validacionesJs.js"></script> 
+             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
              <script type="text/javascript" language="javascript" src="../../js/jquery.dataTables.min.js"></script>
              <script>
                 $(document).ready(function () {
@@ -27,17 +28,18 @@
      
         </head>
 
-        <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProductoLacteo()">
+        <body background="../fondo.jpg"  onload="mostrarProductoLacteo()">
 
             <!-- Import the file menu.php -->
           <?php
             //include '../menuView.php';
             include '../InterumtorDeMenus.php';
            ?>
-             
-
-                    <div class="col-md-8 col-md-offset-2">
+            <div class="contenedor">
+                    <div class="row">
                         <h4>Lista de Productos Lácteos</h4>  
+                        
+                        <p><button onclick="modalRegistrarProducto()" class="btn btn-primary">Registrar Producto</button></p>
                     </div>
                     <div>
                         <table id="listaProductos" class="display" cellspacing="0" >
@@ -61,11 +63,9 @@
                        
                     </div>
                       
-                
-        
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarProducto()" class="btn btn-primary">Registrar Producto</button></p>
             </div>
+        
+            
             <!--Comienzan los modales-->
            <!--Modal de modificar producto-->
             <div id="modalModificar" class="modal fade in">

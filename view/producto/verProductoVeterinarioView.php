@@ -15,6 +15,7 @@
             <script src="../../js/jquery.dataTables.min.js"></script>         
             <script src="../../js/producto/productoVeterinarioJs.js"></script>  
             <script src="../../js/menuJs.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
             <script src="../../js/validacionesJs.js"></script>     
 
             <script>
@@ -33,10 +34,13 @@
            ?>
              
 
-                    <div class="col-md-8 col-md-offset-2">
-                        <h4>Lista de Productor Veterinarios </h4>  
-                    </div>
+                    
                     <div class="contenedor">
+                    <div class="row">
+                        <h4>Lista de Productor Veterinarios </h4>  
+                        
+                    <p><button onclick="modalRegistrarProducto()" class="btn btn-primary">Registrar Producto</button></p>
+                    </div>
                         <table id="listaProductos" class="display" cellspacing="0" >
                        
                             <thead>
@@ -65,9 +69,7 @@
                       
                 
         <!--Comienzan los modales-->
-            <div class="modal-footer" id="Registrar">
-                 <p><button onclick="modalRegistrarProducto()" class="btn btn-primary">Registrar Producto</button></p>
-            </div>
+            
            <!--Modal de modificar socio-->
             <div id="modalModificar" class="modal fade in">
                 <div  class="modal-dialog">
