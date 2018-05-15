@@ -310,20 +310,7 @@ function carry() {
             console.log(responseText);
             datosTabla = "";
             total = 0;
-            carrito = JSON.parse(localStorage.getItem("listaProductos"));
-            for (i = 0; i < carrito.length; i++) {
-                datosTabla += "<table>";
-                datosTabla += "<tr>";
-                datosTabla += "<td>" + carrito[i].codigo + "</td>";
-                datosTabla += "<td>" + carrito[i].nombre + "</td>";
-                datosTabla += "<td>" + carrito[i].precio + "</td>";
-                datosTabla += "<td>" + carrito[i].cantidad + "</td>";
-                //datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</tr>";
-            }
-                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
-                datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</table>";
+            
             $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
            // document.getElementById("Re_recibo").value = responseText;
             if(idCliente!=0){
@@ -339,13 +326,12 @@ function carry() {
             }else{
                     document.getElementById("Re_cliente").value =idCliente;
             }
-            //alert(d);
-            //document.getElementById("Re_cliente").value =d;
-            //Re_recibo
+           
 
             document.getElementById("Re_cliente").value = idCliente;
             document.getElementById("Re_tipoVenta").value = tipoVenta;
-            
+
+
         });
     });
     /*funcion para obtener lo que es el numero de faltura*/
@@ -360,9 +346,12 @@ function carry() {
             document.getElementById("Re_recibo").value =dato;
             //alert(dato);
         }); 
-    /*terminacion para poder optener el numero de factura.*/
-    $("#modalRecibo").modal();
+    ///*terminacion para poder optener el numero de factura.*/
+    //$("#modalRecibo").modal();
+    redireccionamiento();
+  ImprimirFactura();
   }
+  
 }
 
 function ImprimirFactura(){

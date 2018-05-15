@@ -127,7 +127,11 @@ function registrarSolicitudPrestamoConfirmacion(){
     plazoNumero = $("#plazoNumero").val();
     plazoModo = $("#plazoModo").val();
     montoPrestamo = $("#montoPrestamo").val();
-    location.href="../../view/facturas/imprimirComprobanteSolicitudPrestamo.php?nombreCliente="+nombre+"&fecha="+fecha+"&interes="+interes+"&plazo="+plazoNumero+"&modoPlazo="+plazoModo+"&montoSolicitado="+montoPrestamo+"&cuota="+calcularCuota()+"&total="+calcularTotalPagar();
+    window.open(
+      "../../view/facturas/imprimirComprobanteSolicitudPrestamo.php?nombreCliente="+nombre+"&fecha="+fecha+"&interes="+interes+"&plazo="+plazoNumero+"&modoPlazo="+plazoModo+"&montoSolicitado="+montoPrestamo+"&cuota="+calcularCuota()+"&total="+calcularTotalPagar(),
+      '_blank' // <- This is what makes it open in a new window.
+    );
+    //location.href="../../view/facturas/imprimirComprobanteSolicitudPrestamo.php?nombreCliente="+nombre+"&fecha="+fecha+"&interes="+interes+"&plazo="+plazoNumero+"&modoPlazo="+plazoModo+"&montoSolicitado="+montoPrestamo+"&cuota="+calcularCuota()+"&total="+calcularTotalPagar();
   }
 
   function calcularCuota(){

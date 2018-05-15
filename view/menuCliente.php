@@ -9,7 +9,7 @@
             <ul id="menu-content" class="menu-content collapse out">
                 <li>
                   <a href="../principalEmpleado/principalEmpleadoView.php">
-                  <i class="fa fa-dashboard fa-lg"></i> Escritorio
+                  <i class="glyphicon glyphicon-pushpin"></i> Escritorio
                   </a>
                 </li>
 
@@ -20,12 +20,12 @@
                   </li>
                 <li>
                   <a href="../distribuidor/verDistribuidorView.php">
-                  <i class="fa fa-user fa-lg"></i> Distribuidor
+                  <i class="glyphicon glyphicon-user"></i> Distribuidor
                   </a>
                 </li>
 
                 <li  data-toggle="collapse" data-target="#productores" class="collapsed ">
-                  <a href="#"><i class="fa fa-gift fa-lg"></i>Productor <span class="arrow"></span></a>
+                  <a href="#"><i class="fa fa-user"></i>Productor <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="productores">
                     <li class="active"><a href="../productor/verProductorSocioView.php">Productor Socio</a></li>
@@ -35,7 +35,7 @@
                 </ul>
 
                 <li  data-toggle="collapse" data-target="#leche" class="collapsed ">
-                  <a href="#"><i class="fa fa-gift fa-lg"></i>Recepción de leche <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-import"></i>Recepción de leche <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="leche">
                     <li class="active"><a href="../productor/verRecepcionLeche.php">Ver</a></li>
@@ -46,7 +46,7 @@
 
 
                 <li data-toggle="collapse" data-target="#productos" class="collapsed">
-                  <a href="#"><i class="fa fa-globe fa-lg"></i> Productos <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-ice-lolly"></i> Productos <span class="arrow"></span></a>
                 </li>  
                 <ul class="sub-menu collapse" id="productos">
                   <li><a href="../producto/verProductoLacteoView.php"> Producto Lácteo</a></li>
@@ -55,7 +55,7 @@
 
 
                 <li data-toggle="collapse" data-target="#ventas" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i>Ventas <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-shopping-cart"></i>Ventas <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="ventas">
                   <li><a href="../ventas/ventanilla.php">Ventanilla</a></li>
@@ -64,7 +64,7 @@
                 </ul>
 
                 <li data-toggle="collapse" data-target="#adelanto" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i>Adelanto de pago <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-credit-card"></i>Adelanto de pago <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="adelanto">
                   <li><a href="../productor/registrarPrestamo.php">Solicitud de adelanto</a></li>
@@ -72,14 +72,14 @@
                   <li><a href="../productor/pagarCuotaPrestamo.php">Pagar cuota</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#proceso" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i>Procesos <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-tasks"></i>Procesos <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="proceso">
                   <li><a href="../../view/proceso/procesoView.php">Ver proceso</a></li>
                   <li><a href="">Agregar proceso</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#reportes" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i>Reportes <span class="arrow"></span></a>
+                  <a href="#"><i class="glyphicon glyphicon-folder-open"></i>Reportes <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="reportes">
                   <li><a href="../../view/reportes/ventas.php">Venta veterinaria</a></li>
@@ -92,7 +92,7 @@
                   <li><a href="../../view/reportes/procesos.php">Procesos</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#perfil" class="collapsed">
-                  <a href="#"><i class="fa fa-car fa-lg"></i><?php  echo @$_SESSION['nombreUsuario'] ?><span class="arrow"></span></a>
+                  <a href="#"><i class="	glyphicon glyphicon-asterisk"></i><?php  echo @$_SESSION['nombreUsuario'] ?><span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="perfil">
                   <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>

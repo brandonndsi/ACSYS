@@ -430,21 +430,7 @@ if (carrito != null) {
             total = 0;
             //console.log(listaProductos);
             //carrito = JSON.parse(localStorage.getItem("listaProductos"));
-            for (i = 0; i < carrito.length; i++) {
-                datosTabla += "<table>";
-                datosTabla += "<tr>";
-                datosTabla += "<td>" + carrito[i].codigo + "</td>";
-                datosTabla += "<td>" + carrito[i].nombre + "</td>";
-                datosTabla += "<td>" + carrito[i].precio + "</td>";
-                datosTabla += "<td>" + carrito[i].cantidad + "</td>";
-                //datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</tr>";
-            }
-                datosTabla += "<td colspan='3'><b>TOTAL: </b></td>";
-                datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</table>";
-            $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
-           // document.getElementById("Re_recibo").value = responseText;
+            // document.getElementById("Re_recibo").value = responseText;
             if(idCliente!=0){
                 $.post("../../business/ventas/actionVentaDistribuidor.php",{
                     action: 'nombrecompleto',
@@ -480,11 +466,12 @@ if (carrito != null) {
             //alert(dato);
         }); 
     /*terminacion para poder optener el numero de factura.*/
-    $("#modalRecibo").modal();
+    ImprimirFactura();
+    redireccionamiento();
 }else{
      swal({
-                    title: "Venta Distribuidor",
-                    text: "El carrito esta vacio. Favor ingresar un articulo minimo.",
+                    title: "Error",
+                    text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -533,3 +520,7 @@ function procesarVenta(){
           console.log(responseText);
       });
     }
+
+    function redireccionamiento(){
+        location.href = '../../view/ventas/ventanilla.php';
+      }
