@@ -4,7 +4,8 @@
         private $conexion;
         private $lista;
         private $precioLeche;
-
+        private $montoAhorroTotalColones;
+        private $montoAhorro;
         function dataPagarLeche(){
 
             include '../../data/conexion/conexion.php';
@@ -84,11 +85,12 @@
             $con1->set_charset("UTF8");
             
             $pagar=$con1->query("CALL compramateriaprima('$id','$cantidadlitroscompramateriaprima','$precioLeche','$totalPagarLitros','$fecha')");
-            
-           
+
             $respuestaDataAhorro=$this->registrarAhorroTotal($id,$tipo,$cantidadlitroscompramateriaprima,$fecha);
+            $montoTotalPagar=(double)$totalPagarLitros-(double)$this->montoAhorroTotalColones;
+            $json=array('precioleche'=>$precioLeche,'fecha'=>$fecha,'totallitros'=>$cantidadlitroscompramateriaprima,'montototalcolonesahorro'=>$this->montoAhorroTotalColones,'montototalpagarlitros'=>$montoTotalPagar,'montoahorro'=>$this->montoAhorro,'id'=>$id);
             if($pagar == 1 && $respuestaDataAhorro== true){
-                echo $pagar;
+                echo json_encode($json);
             }else{
                 echo $pagar;
             }
@@ -98,16 +100,16 @@
         function registrarAhorroTotal($id,$tipo,$litrosEntregados,$fecha){
             $con=$this->conexion->crearConexion();
             $con->set_charset("UTF8");
-            $montoAhorro=0;
+            $this->montoAhorro=0;
             if($tipo=="cliente"){
 
-                $montoAhorro=$this->montoAhorroCliente($id);
+                $this->montoAhorro=$this->montoAhorroCliente($id);
             }else{
 
-                $montoAhorro=$this->montoAhorroSocio($id);
+                $this->montoAhorro=$this->montoAhorroSocio($id);
             }
-            
-            $registrar=$con->query("CALL registrarAhorroTotalSemanal('$id','$montoAhorro','$litrosEntregados','$fecha')");
+            $this->montoAhorroTotalColones=(double)$this->montoAhorro*(double)$litrosEntregados;
+            $registrar=$con->query("CALL registrarAhorroTotalSemanal('$id','$this->montoAhorro','$litrosEntregados','$fecha')");
             if($registrar==1){
                 return true;
 

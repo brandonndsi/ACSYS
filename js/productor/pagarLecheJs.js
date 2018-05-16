@@ -102,18 +102,20 @@ function pagarMontoLeche(productor){
               litros:litros,
 
       }, function(responseText) {
-          if (responseText==1) {
-            swal("El pago se ha realizado satisfactoriamente", {
-              icon: "success",
-            });
-          } else {
-            swal("El pago no se ha realizado satisfactoriamente",{
-              icon: "error",
-            });
-          }
-          mostrarMontoLecheSemanalTotal();
+        alert(responseText);
+        json=JSON.parse(responseText);
+        imprimirFactura(json);
+            
+        mostrarMontoLecheSemanalTotal();
 
       });
   });
 
+}
+
+
+function imprimirFactura(json){
+  
+  //window.location.replace("view/ventas/veterinario.php");
+  window.open("../../view/facturas/imprimirPagoLechePDF.php?precioleche="+json.precioleche+"&&totallitros="+json.totallitros+"&&montototalcolonesahorro="+json.montototalcolonesahorro+"&&id="+json.id+"&&montototalpagarlitros="+json.montototalpagarlitros+"&&montoahorro="+json.montoahorro+"&&fecha="+json.fecha, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }

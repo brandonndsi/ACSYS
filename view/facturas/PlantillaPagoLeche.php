@@ -13,7 +13,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,'Facturación ASOPROLESA',0,0,'C');
+    $this->Cell(30,10,'Pago de compra leche',0,0,'C');
     // Line break
     $this->Ln(20);
 }

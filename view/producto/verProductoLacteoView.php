@@ -206,14 +206,7 @@
                                             <p><input type="text" onkeypress="return soloNumeros(event);" class="span12" name="precior" id="precior" placeholder="Precio"></p>
                                         </div>
                                     </div>
-                                     <div class="form-group">
-                                        <div class="col-sm-3">
-                                            <label>Cantidad:</label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <p><input type="text" class="span12" onkeypress="return soloNumeros(event)" name="cantidadr" id="cantidadr" placeholder="Cantidad"></p>
-                                        </div>
-                                    </div>
+                                     
                                      <div class="form-group">
                                         <div class="col-sm-3">
                                             <label>Unidad:</label>

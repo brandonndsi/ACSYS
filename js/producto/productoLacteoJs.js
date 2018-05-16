@@ -213,7 +213,6 @@ function registrarProducto(){
           codigo: document.getElementById("codigor").value,
           nombre: document.getElementById("nombrer").value,
           precio: document.getElementById("precior").value,
-          cantidad: document.getElementById("cantidadr").value,
           unidad: document.getElementById("registrarunidad").selectedIndex+1,
           
               
@@ -243,7 +242,6 @@ function registrarProducto(){
           document.getElementById("codigor").value="";
           document.getElementById("nombrer").value="";
           document.getElementById("precior").value="";
-          document.getElementById("cantidadr").value="";
           document.getElementById("registrarunidad").selectedIndex=0;
       });
   });

@@ -25,14 +25,13 @@
 	      $codigo=$_POST['codigo'] ;
             $nombre=$_POST['nombre'] ;
             $precio=$_POST['precio'];
-            $cantidad=$_POST['cantidad'] ;
             $unidad=$_POST['unidad'] ;
 
-      	if(empty($codigo)||empty($nombre)||empty($precio)||empty($cantidad)||empty($unidad)){
+      	if(empty($codigo)||empty($nombre)||empty($precio)||empty($unidad)){
       		echo("false");
 
       	}else{
-      		echo $businessProductoLacteo->productoRegistrar($codigo,$nombre,$precio,$cantidad,$unidad);
+      		echo $businessProductoLacteo->productoRegistrar($codigo,$nombre,$precio,$unidad);
       	}
 
 

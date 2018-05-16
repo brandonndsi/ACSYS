@@ -36,9 +36,9 @@ class dataProductoLacteo {
 
     }
 
-    function productoRegistrar($codigo,$nombre,$precio,$cantidad,$unidad){
+    function productoRegistrar($codigo,$nombre,$precio,$unidad){
         $con=$this->conexion->crearConexion();
-        $registrarProducto = $con->query("CALL registrarproductolacteo('$codigo','$nombre','$precio','$cantidad','$unidad')");
+        $registrarProducto = $con->query("CALL registrarproductolacteo('$codigo','$nombre','$precio','0','$unidad')");
         if($registrarProducto==1){
             return "true";
 
