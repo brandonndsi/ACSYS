@@ -522,5 +522,5 @@ function procesarVenta(){
     }
 
     function redireccionamiento(){
-        location.href = '../../view/ventas/ventanilla.php';
+        location.href = '../../view/ventas/distribuidor.php';
       }
