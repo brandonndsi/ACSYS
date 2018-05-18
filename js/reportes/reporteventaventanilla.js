@@ -281,5 +281,27 @@ window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes
 }
 
 function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
   window.open("http://localhost/ACSYSIIIsemestre/view/facturas/inprimirTodoDistribuidor.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ventanilla", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
 }
+}
+/*
+function imprimirTodo(){
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/inprimirTodoDistribuidor.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ventanilla", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+}*/

@@ -6,7 +6,7 @@ consultarProductor();
 
 function cargarTablaLacteos() {
     $(document).ready(function () {
-        $('#listaProductosLacteos').DataTable({
+        $('#listaProductosLacteos').DataTable({ ////////////////////////////////////////////////////////
             "bDeferRender": true,
             "sordering": true,
             "responsive": true,
@@ -229,7 +229,7 @@ function addCarrito() {
             console.log(json);
             if (localStorage.getItem("listaProductos") === null) {
                 var listaProductos = [];
-                listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1});
+                listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1,"descuento":0});
                 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
             } else {
                 listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
@@ -241,7 +241,7 @@ function addCarrito() {
                     }
                 }
                 if (!bandera) {
-                    listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1});
+                    listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1,"descuento": 0});
                 }
                 localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
             }
@@ -255,10 +255,12 @@ function addCarrito() {
                 html += "<td>" + listaProductos[i].precio + "</td>";
                 codigo = '"' + listaProductos[i].codigo + '"';
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
+                html += "<td><input id='descuento" + listaProductos[i].codigo + "' onblur='descuentoSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].descuento + "'> </td>";
                 html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
                 html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";
-                total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
+               
+                total = total + (listaProductos[i].precio * listaProductos[i].cantidad)-listaProductos[i].descuento;/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             }
             document.getElementById('totalPagar').value = total;
             $("#datos").html(html);
@@ -299,7 +301,37 @@ function addCarrito() {
         });
     });
 }
+function descuentoSubTotal(descuento, codigoProducto) {
 
+    listaProducto = JSON.parse(localStorage.getItem("listaProductos"));
+
+    total = 0;
+    for (i = 0; i < listaProducto.length; i++) {
+        if (listaProducto[i].codigo === codigoProducto) {
+
+            cantidad = listaProducto[i].cantidad;
+            listaProducto[i].descuento = document.getElementById("descuento"+codigoProducto).value;
+            descuento = listaProducto[i].descuento;
+            descuento = descuento * cantidad;
+            bruto = listaProducto[i].cantidad * listaProducto[i].precio;
+            neto = bruto - descuento;
+            total = total + neto;
+
+            $("#subtotal" + codigoProducto).val(neto);
+            $("#totalPagar").val(total);
+        } else {
+            cantidad = lista[i].cantidad;
+            descuento = lista[i].descuento;
+            descuento = descuento * cantidad;
+            bruto = lista[i].cantidad * lista[i].precio;
+            neto = bruto - descuento;
+            total = total + neto;
+
+            $("#totalPagar").val(total);
+        }
+    }
+    localStorage.setItem("listaProductos", JSON.stringify(listaProducto));
+}
 function calcularSubTotal(cantidad, codigoProducto) {
     listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
     for (i = 0; i < listaProductos.length; i++) {
@@ -430,7 +462,21 @@ if (carrito != null) {
             total = 0;
             //console.log(listaProductos);
             //carrito = JSON.parse(localStorage.getItem("listaProductos"));
-            // document.getElementById("Re_recibo").value = responseText;
+            for (i = 0; i < carrito.length; i++) {
+                datosTabla += "<table>";
+                datosTabla += "<tr>";
+                datosTabla += "<td>" + carrito[i].codigo + "</td>";
+                datosTabla += "<td>" + carrito[i].nombre + "</td>";
+                datosTabla += "<td>" + carrito[i].precio + "</td>";
+                datosTabla += "<td>" + carrito[i].cantidad + "</td>";
+                //datosTabla += "<td>" + totalBruto + "</td>";
+                datosTabla += "</tr>";
+            }
+                datosTabla += "<td colspan='3'><b>TOTAL: </b></td>";
+                datosTabla += "<td>" + totalBruto + "</td>";
+                datosTabla += "</table>";
+            $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
+           // document.getElementById("Re_recibo").value = responseText;
             if(idCliente!=0){
                 $.post("../../business/ventas/actionVentaDistribuidor.php",{
                     action: 'nombrecompleto',
@@ -458,20 +504,21 @@ if (carrito != null) {
   $.post("../../business/ventas/actionVentaDistribuidor.php",{
             action: 'idfactura'
         },function (responseText){
-            console.log(responseText);
+            console.log(responseText);/////////////////////////////////////
             //alert(responseText);
             dato=responseText;
-            dato++;
+            //dato++;
             document.getElementById("Re_recibo").value =dato;
             //alert(dato);
         }); 
     /*terminacion para poder optener el numero de factura.*/
-    ImprimirFactura();
-    redireccionamiento();
+    $("#modalRecibo").modal();
+    //redireccionamiento();
+  //ImprimirFactura();
 }else{
      swal({
-                    title: "Error",
-                    text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
+                    title: "Venta Distribuidor",
+                    text: "El carrito esta vacio. Favor ingresar un articulo minimo.",
                     icon: "error",
                     buttons: {
                         ok: {
@@ -491,20 +538,7 @@ numerofactura=document.getElementById("Re_recibo").value;
 totalBB = document.getElementById('totalPagar').value;
 id = document.getElementById('selectCliente').value;
 window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-//localStorage.setItem("listaProductos",null);
-/*swal({
-                    title: "Factura",
-                    text: "La factura se descargo exitozamente.",
-                    icon: "success",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
 
-                    },
-                    dangerMode: true
-                });*/
 }
 
 
@@ -521,6 +555,7 @@ function procesarVenta(){
       });
     }
 
-    function redireccionamiento(){
-        location.href = '../../view/ventas/distribuidor.php';
-      }
+function redireccionamiento(){
+ window.location.href = '../../view/ventas/distribuidor.php';
+}
+//window.location.href = '../../view/ventas/distribuidor.php';

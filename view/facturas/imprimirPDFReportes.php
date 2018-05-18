@@ -11,7 +11,7 @@ $fecha =$_GET['fecha'];
 $hora = $_GET['hora'];
 
 $data= new dataFactura();
-$op=$data->numeroFactura();
+//$op=$data->numeroFactura();
 $d=$data->imprimirCliente($id);/*sacando de la base de datos los
 datos del cliente*/
 

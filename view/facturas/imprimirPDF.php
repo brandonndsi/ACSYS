@@ -11,7 +11,7 @@ $fecha = date('Y-m-d');
 $hora = date("g:i A");
 
 $data= new dataFactura();
-$op=$data->numeroFactura();
+//$op=$data->numeroFactura();
 $d=$data->imprimirCliente($id);/*sacando de la base de datos los
 datos del cliente*/
 /*cedula juridica: 3-002-397122

@@ -3,9 +3,9 @@
 <head>
 	<title>Reporte Venta Distribuidor</title>
 
-			<!--CSS-->
+		<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/bootstrap.min.css" 
+          <link rel="stylesheet" href="../../css/bootstrap.min.css" >
          
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
           <!--Javascript-->
@@ -17,8 +17,10 @@
           <script src="../../js/bootstrap.min.js"></script>
           <script type="text/javascript" src="../../js/reportes/reportesVentaDistribuidor.js"></script>
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
          
-        </script>
+        <!--</script>-->
 </head>
 <body background="../fondo.jpg">
 <?php 
@@ -65,12 +67,12 @@ include_once '../InterumtorDeMenus.php';
 include_once '../modalimagen/modalRespuestas.php';
 include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  ?>
-
- </div>
 <div id="reporte_pago_leche_imprimir">
     
     <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
 </div>
+ </div>
+
   
 
 </body>
