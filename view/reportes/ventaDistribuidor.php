@@ -49,7 +49,7 @@ include_once '../InterumtorDeMenus.php';
 						<th>Total Bruto</th>
 						<th>Total Neto</th>
             <th>Tipo venta</th>
-            <th>Ver</th>
+            <!--<th>Ver</th>-->
             <th>Imprimir</th>
 
 					</tr>

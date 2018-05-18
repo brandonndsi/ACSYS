@@ -434,7 +434,7 @@ function numeroFactura() {
     }, function (responseText) {
         console.log(responseText);
         dato = responseText;
-        dato++;
+       // dato++;
         document.getElementById("Re_recibo").value = dato;
     });
     /*terminacion para poder optener el numero de factura.*/
