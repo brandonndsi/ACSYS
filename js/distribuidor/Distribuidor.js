@@ -194,7 +194,7 @@ emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^
     } else {
     document.getElementById(valor.id).style.border="1px solid red";
       swal({
-                    title: "Correo No vàlido",
+                    title: "Correo No válido",
                     text: "Ejemplo  de correo: andres@gmail.com",
                     icon: "error",
                     buttons: {

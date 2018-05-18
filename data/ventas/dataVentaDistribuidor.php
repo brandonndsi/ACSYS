@@ -15,7 +15,20 @@
       $query = $con->query("CALL searchproductlacteo('$code')");
       return json_encode($query->fetch_assoc());
     }
+/*
+procedimiento almacenado modificado
 
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `searchproductlacteo`(IN `codigo` TEXT)
+    NO SQL
+    DETERMINISTIC
+BEGIN
+  SELECT nombreproductolacteo,preciounitarioproductolacteo
+  FROM tbproductoslacteos
+  WHERE codigoproductoslacteos=codigo AND   cantidadinventarioproductolacteo > 0 LIMIT 1;
+END$$
+DELIMITER ;
+ */
 
     function getFactura(){
       $con = $this->conexion->crearConexion();

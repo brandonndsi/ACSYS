@@ -133,19 +133,19 @@
                             </div>
                             <div>
                                 <div class="form-group">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5" >
                                         <label>Teléfono:</label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <p><input type="text" class="form-control" class="span12" name="telefonor" id="telefonor" onkeypress="return soloNumeros(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id); 
                                             verificarQueSeanOchoDijitos(this.id);" data-toggle="tooltip" data-placement="top" title="Tel&eacute;fono, debe incluir 8 d&iacute;gitos" placeholder="Tel&eacute;fono" required maxlength="8" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <label>Dirección:</label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <p><input type="text" class="form-control" class="span12" name="direccionr" id="direccionr" onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Direcci&oacute;n, Direcci&oacute;n exacta" placeholder="Direcci&oacute;n" required/></p>
                                     </div>
                                 </div>
@@ -219,19 +219,19 @@
                                 </div>
                             
                                 <div class="form-group">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <label>Teléfono:</label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <p><input type="text" class="form-control" class="span12" name="telefonom" id="telefonom" onkeypress="return soloNumeros(event);"  onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id); 
                                             verificarQueSeanOchoDijitos(this.id);" data-toggle="tooltip" data-placement="top" title="Tel&eacute;fono, debe incluir 8 d&iacute;gitos" placeholder="Tel&eacute;fono" required maxlength="8" /></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <label>Dirección:</label>
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-7">
                                         <p><input type="text" class="form-control" class="span12" name="direccionm" id="direccionm" onchange="verifyOnChange(this.id);validarEspaciosEnBlancoInput(event,this.id);" data-toggle="tooltip" data-placement="top" title="Direcci&oacute;n, Direcci&oacute;n exacta" placeholder="Direcci&oacute;n" required/></p>
                                     </div>
                                 </div>
