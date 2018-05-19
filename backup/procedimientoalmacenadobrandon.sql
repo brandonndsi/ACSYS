@@ -203,3 +203,14 @@ BEGIN
 INSERT INTO tbdetalleventa(preciounitariodetalleventa, cantidaddetalleventa, subtotaldetalleventa, codigoproductoslacteos, descuento, idventa) VALUES (precio,cantidad,total,codigo,descuento,idventa);
 END$$
 DELIMITER ;
+
+/* resta de productos lacteos cuando se hace una venta ventanilla*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `restarStockProductos`(IN `codigo` VARCHAR(30), IN `cantidad` INT(50))
+    NO SQL
+UPDATE tbproductoslacteos 
+SET cantidadinventarioproductolacteo = cantidadinventarioproductolacteo - cantidad 
+WHERE codigoproductoslacteos = codigo 
+AND cantidadinventarioproductolacteo >= cantidad 
+AND estadoproductoslacteos = "activo"$$
+DELIMITER ;
