@@ -93,8 +93,8 @@
                                         <label>Cédula:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" onkeypress="return soloNumeros(event);" onchange="soloNumeros(event);validarEspaciosEnBlancoInput(event,this.id); 
-                                        verificarQueSeanNueveDijitos(this.id);" title="C&eacute;dula, debe incluir 9 d&iacute;gitos" placeholder="C&eacute;dula" required maxlength="9"></p>
+                                        <p><input type="text" class="form-control" class="span12" name="documentoidentidadr" id="documentoidentidadr" onchange=" 
+                                        verificarQueSeanNueveDijitos(this.id);" title="C&eacute;dula, debe incluir 9 d&iacute;gitos como minimo y maximo 15" placeholder="C&eacute;dula" required maxlength="15"></p>
                                     </div>
                                 </div>
                                 <div class="form-group">
