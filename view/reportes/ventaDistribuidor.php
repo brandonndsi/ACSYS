@@ -3,9 +3,9 @@
 <head>
 	<title>Reporte Venta Distribuidor</title>
 
-			<!--CSS-->
+		<!--CSS-->
           <link rel="stylesheet" href="../../css/jquery.dataTables.css">
-          <link rel="stylesheet" href="../../css/bootstrap.min.css" 
+          <link rel="stylesheet" href="../../css/bootstrap.min.css" >
          
           <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
           <!--Javascript-->
@@ -17,8 +17,10 @@
           <script src="../../js/bootstrap.min.js"></script>
           <script type="text/javascript" src="../../js/reportes/reportesVentaDistribuidor.js"></script>
           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
          
-        </script>
+        <!--</script>-->
 </head>
 <body background="../fondo.jpg">
 <?php 
@@ -26,17 +28,18 @@ include_once '../InterumtorDeMenus.php';
  ?>
  
  <div class="contenedor" id="content">
-
+  <br>
  	<div id="contTitulo">
-            <h4>Reporte de ventas Distribuidor</h4>
+            <h4 align="center">Reporte de ventas Distribuidor</h4>
  	</div>
+  <br>
  	<div id="fechas">
  		<label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>"
     step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<label id="lblfil">Fecha Final</label><input type="date" id="fechafinal" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>" step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<input type="submit" id="procesar" value="Cargar Busqueda" onclick="buscarDatos();">
  	</div>
-
+<br>
  	<div id="tablaPrincipal">
  		<table id="listaVentas" class="display" cellspacing="0">
 				<thead>
@@ -47,7 +50,7 @@ include_once '../InterumtorDeMenus.php';
 						<th>Total Bruto</th>
 						<th>Total Neto</th>
             <th>Tipo venta</th>
-            <th>Ver</th>
+            <!--<th>Ver</th>-->
             <th>Imprimir</th>
 
 					</tr>
@@ -65,12 +68,12 @@ include_once '../InterumtorDeMenus.php';
 include_once '../modalimagen/modalRespuestas.php';
 include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  ?>
-
- </div>
 <div id="reporte_pago_leche_imprimir">
     
     <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
 </div>
+ </div>
+
   
 
 </body>

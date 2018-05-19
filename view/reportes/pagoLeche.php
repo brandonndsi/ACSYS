@@ -62,12 +62,12 @@ include_once '../InterumtorDeMenus.php';
 
   </div>
 
-
- </div>
-  <div id="reporte_pago_leche_imprimir">
+<div id="reporte_pago_leche_imprimir">
     
     <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirReporte();">
-  </div>
+</div>
+ </div>
+  
   
 
 </body>

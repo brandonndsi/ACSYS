@@ -23,31 +23,28 @@
         include '../InterumtorDeMenus.php';
         ?>
         <div class="contenedor" id="contenedor">
-        <div class='col-md-3' >
-            <h3>ASOPROLESA</h3>
-            <h5>EL SAUCE SANTA TERESITA</h5>
+            <div class='col-md-3' >
+                <h3>ASOPROLESA</h3>
+                <h5>EL SAUCE SANTA TERESITA</h5>
+            </div>
+            <div class='col-md-7' >
+                <h3> REGISTRO DE PROCESOS </h3>
+            </div>
+
+            <div>
+                <table id="tabla" class="table" cellspacing="0" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos">
+
+                    </tbody>  
+                </table>  
+            </div>    
         </div>
-        <div class='col-md-7' >
-            <h3> REGISTRO DE PROCESOS   
-                <button onclick="registrarProceso()" class="btn btn-primary">Registrar </button>
-            </h3>
-        </div>
-
-        <div>
-            <table id="tabla" class="table" cellspacing="0" >
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="datos">
-
-                </tbody>      
-            </table>  
-        </div>   
-
-</div>
 
     </body>
 </html>

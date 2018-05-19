@@ -16,8 +16,11 @@
           <script src="../../js/menuJs.js"></script>
           <script src="../../js/bootstrap.min.js"></script>
           <script type="text/javascript" src="../../js/reportes/reporteventaventanilla.js"></script>
+
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
          
-        </script>
+        <!--</script>-->
 </head>
 <body background="../fondo.jpg">
 <?php 
@@ -25,18 +28,18 @@
  ?>
  
  <div class="contenedor" id="content">
-
+<br>
  	<div id="contTitulo">
-            <h4>Reporte de ventas Ventanilla</h4>
+            <h4 align="center">Reporte de ventas Ventanilla</h4>
  	</div>
-
+  <br>
  	<div id="fechas">
  		<label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>"
     step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<label id="lblfil">Fecha Final</label><input type="date" id="fechafinal" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>" step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<input type="submit" id="procesar" value="Cargar Busqueda" onclick="buscarDatos();">
  	</div>
-
+  <br><br>
  	<div id="tablaPrincipal">
  		<table id="listaVentas" class="display" cellspacing="0">
 				<thead>
@@ -65,12 +68,12 @@
 include_once '../modalimagen/modalRespuestas.php';
 include_once '../modalimagen/modalVerDetallesDeFacturas.php';
  ?>
-
- </div>
 <div id="reporte_pago_leche_imprimir">
     
     <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
 </div>
+ </div>
+
   
 
 </body>

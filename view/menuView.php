@@ -58,8 +58,8 @@
                   <a href="#"><i class="glyphicon glyphicon-tasks"></i>Procesos <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="proceso">
-                  <li><a href="../../view/proceso/procesoView.php">Ver proceso</a></li>
-                  <li>Agregar proceso</li>
+                  <li><a href="../../view/proceso/verProcesoView.php">Ver proceso</a></li>
+                  <li><a href="../../view/proceso/procesoView.php">Agregar proceso</a></li>
                 </ul>
             </ul>
      </div>

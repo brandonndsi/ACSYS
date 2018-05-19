@@ -121,7 +121,7 @@ $(document).ready(function () {
                         brut + "," + tol + "," + tipo + ","+ idpersona +"'";
           listaTodo.push({"numerofactura":numfactura,"fecha":fecha,"hora":hora,"bruto":brut,"total":tol,"idpersona":idpersona});
           localStorage.setItem("listaTodo", JSON.stringify(listaTodo));    
-          html+='<td><a href="javascript:modalVer('+facturanueva+')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
+          /*html+='<td><a href="javascript:modalVer('+facturanueva+')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';*/
           html+='<td><a href="javascript:mostrarImprimir('+facturanueva+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
         }
@@ -282,5 +282,24 @@ window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes
 }
 
 function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
   window.open("http://localhost/ACSYSIIIsemestre/view/facturas/inprimirTodoDistribuidor.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Distribuidor", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/ventaDistribuidor.php';
+}
 }

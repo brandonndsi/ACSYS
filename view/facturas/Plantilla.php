@@ -13,9 +13,19 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,'Facturación ASOPROLESA',0,0,'C');
+    $this->Cell(30,10,utf8_decode('Facturación ASOPROLESA'),0,0,'C');
     // Line break
-    $this->Ln(20);
+    $this->Ln(20); 
+    //Arial bold 12
+    $this->SetFont('Arial','B',12);
+    $this->Cell(40,10,utf8_decode('Cedula juridica : '),0,0,'c',0);   
+    $this->Cell(43,10,utf8_decode('3-002-397122'),0,0,'c',0); 
+    //Parte del telefono 
+    $this->Cell(40,10,utf8_decode('Telefono : '),0,0,'c',0);   
+    $this->Cell(43,10,utf8_decode('2559-0179'),0,0,'c',0);
+    $this->Ln();//salto de linea de la factura 
+    $this->Cell(40,10,utf8_decode('Ubicación : '),0,0,'c',0);   
+    $this->Cell(43,10,utf8_decode('El Sauce, Santa Teresita de Turialba.'),0,0,'c',0);
 }
 
 // Page footer

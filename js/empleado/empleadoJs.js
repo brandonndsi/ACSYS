@@ -13,9 +13,9 @@ function mostrarEmpleados() {
             for (i = 0; i < json.length; i++) {
                 html += "<tr>";
                 html += "<td>" + json[i].documentoidentidadpersona + "</td>";
-                html += "<td>" + json[i].nombrepersona +" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
+                html += "<td>" + json[i].nombrepersona + " " + json[i].apellido1persona + " " + json[i].apellido2persona + "</td>";
                 /*html += "<td>" + json[i].apellido1persona + "</td>";
-                html += "<td>" + json[i].apellido2persona + "</td>";*/
+                 html += "<td>" + json[i].apellido2persona + "</td>";*/
                 html += "<td>" + json[i].telefonopersona + "</td>";
                 html += "<td>" + json[i].direccionpersona + "</td>";
                 html += "<td>" + json[i].correopersona + "</td>";
@@ -90,9 +90,9 @@ function registrarEmpleado() {
     password = $("#passwordempleador").val();
     tipoEmpleado = $("#tipoempleador").val();
     /*manipulacionalimentos = "../../image/empleado/vacioManipulacion.jpg";
-    identidad = "../../image/empleado/vacioCedula.jpg";*/
-    manipulacionalimentos = "../../image/empleado/"+ cedula + "manipulacion.jpg";
-    identidad = "../../image/empleado/"+ cedula + "cedula.jpg";
+     identidad = "../../image/empleado/vacioCedula.jpg";*/
+    manipulacionalimentos = "../../image/empleado/" + cedula + "manipulacion.jpg";
+    identidad = "../../image/empleado/" + cedula + "cedula.jpg";
 
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {
@@ -343,166 +343,90 @@ function modalEliminarEmpleado(empleado) {
             });
 }
 
-function validarCamposCedula() {
-
+function verificarQueSeanQuinceDijitos(id) {
     cedula = $("#documentoidentidadr").val();
     nombre = $("#nombrer").val();
     apellido = $("#primerapellidor").val();
     direccion = $("#direccionr").val();
     tipo = $("#tipoempleador").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (cedula !== ""&& cedula.length >=9 && !cedula.match(caracteres)) {
+    if (cedula !== "" && cedula.length >= 9) {
+        document.getElementById(id).style.border = "1px solid green";
         $("#icon").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
-            
             $('#boton').attr("disabled", false);
         }
     } else {
-
+        swal({
+            title: "Cedula",
+            text: "¡Opps! Debe de tener minimo 9 o maximo 15 letras",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
+        document.getElementById(id).style.border = "1px solid red";
         $("#icon").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
         $('#boton').attr("disabled", true);
-        //alert("mayor que 15");
-       //verificarQueSeanQuinceDijitos($("#documentoidentidadr").val());
     }
 }
-/*validacion insertada por david salas para arreglar fallos de seguridad*/
-function verificarQueSeanQuinceDijitos(id){
-    if(document.getElementById(id).value.length>=9){
 
-      document.getElementById(id).style.border="1px solid green";
-
-    }else{
-        
+function validarEspaciosEnBlancoInput(e, id) {
+    if (e.target.value.trim() == "") {
         swal({
-                    title: "Cedula",
-                    text: "¡Opps! Debe de tener minimo 9 o maximo 15 letras",
-                    icon: "error",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-                });
-        document.getElementById(id).style.border="1px solid red";
+            title: "Espacios vacios",
+            text: "¡Opps! Error en los datos ingresados vacios",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
+        limpiarCampoInput(id);
+    } else {
+        document.getElementById(id).className = "form-control input";
     }
 }
-function validarEspaciosEnBlancoInput(e,id) {
- if (e.target.value.trim() == ""){
-    swal({
-                    title: "Espacios vacios",
-                    text: "¡Opps! Error en los datos ingresados vacios",
-                    icon: "error",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-                });
-  limpiarCampoInput(id);
- }else{
-    document.getElementById(id).className = "form-control input";
- }
+function limpiarCampoInput(id) {
+    document.getElementById(id).value = "";
+    document.getElementById(id).style.border = "1px solid red";
 }
-function limpiarCampoInput(id){
-    document.getElementById(id).value="";
-    document.getElementById(id).style.border="1px solid red";
-     /*document.getElementById(id).style.border="1px solid red"; */ 
-}
-function textonly(e){
-var code;
-if (!e) var e = window.event;
-if (e.keyCode) code = e.keyCode;
-else if (e.which) code = e.which;
-var character = String.fromCharCode(code);
 
-    var AllowRegex  = /^[\ba-zA-Z\s-]$/;
-    if (AllowRegex.test(character)) return true;
+function textonly(e) {
+    var code;
+    if (!e)
+        var e = window.event;
+    if (e.keyCode)
+        code = e.keyCode;
+    else if (e.which)
+        code = e.which;
+    var character = String.fromCharCode(code);
+
+    var AllowRegex = /^[\ba-zA-Z\s-]$/;
+    if (AllowRegex.test(character))
+        return true;
     return false;
 
 }
 
-function verifyOnChange(id){
+function verifyOnChange(id) {
 
-    if(document.getElementById(id).value.length>0){
-      document.getElementById(id).style.border="1px solid green";
-    }else{
-      //document.getElementById(id).className = "form-control input error";
-      document.getElementById(id).style.border="1px solid red";
-    }
-}
-
-function verificarCorreo(valor){
-emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (emailRegex.test(valor.value)) {
-     // alert("válido");
-       document.getElementById(valor.id).style.border="1px solid green";
+    if (document.getElementById(id).value.length > 0) {
+        document.getElementById(id).style.border = "1px solid green";
     } else {
-    document.getElementById(valor.id).style.border="1px solid red";
-      swal({
-                    title: "Correo No vàlido",
-                    text: "Ejemplo  de correo: andres@gmail.com",
-                    icon: "error",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-            });
-      
-    }
-
-}
-function soloNumeros(e){
-    var key = e.charCode;
-    console.log(key);
-    return key >= 48 && key <= 57;
-}
-
-function verificarQueSeanOchoDijitos(id){
-    if(document.getElementById(id).value.length>=8){
-
-      document.getElementById(id).style.border="1px solid green";
-
-    }else{
-        swal({
-                    title: "Telèfono",
-                    text: "¡Opps! El telèfono debe tener solo 8 digìtos",
-                    icon: "error",
-                    buttons: {
-                        ok: {
-                            text: "Aceptar",
-                            value: "ok"
-                        }
-                    },
-                    dangerMode: true
-                });
-        document.getElementById(id).style.border="1px solid red";
+        document.getElementById(id).style.border = "1px solid red";
     }
 }
 
-/*final de metodos metidos por david salas*/
-function validarCamposCedulam() {
-
-    cedula = $("#documentoidentidadm").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (cedula !== "" && cedula.length === 9 && !cedula.match(caracteres)) {
-        $('#boton2').attr("disabled", false);
-    } else {
-        $('#boton2').attr("disabled", true);
-    }
-}
-
-function validarCamposNombre() {
+function verifyOnChangeDire(id) {
 
     cedula = $("#documentoidentidadr").val();
     nombre = $("#nombrer").val();
@@ -511,53 +435,116 @@ function validarCamposNombre() {
     tipo = $("#tipoempleador").val();
     var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
 
-    if (nombre !== "" && nombre.length >= 3 && nombre.match(caracteres)) {
+    if (document.getElementById(id).value.length >= 3 && direccion.match(caracteres)) {
+        document.getElementById(id).style.border = "1px solid green";
+                $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon4').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+            document.getElementById("direccionr").style.border = "1px solid green";
+        }
+    } else {
+        document.getElementById(id).style.border = "1px solid red";
+        $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
 
+function verifyOnChangeApe(id) {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (document.getElementById(id).value.length >= 3 && apellido.match(caracteres)) {
+        document.getElementById(id).style.border = "1px solid green";
+        $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $('#icon3').show();
+        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
+            $('#boton').attr("disabled", false);
+        }
+    } else {
+        document.getElementById(id).style.border = "1px solid red";
+        $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
+        $('#boton').attr("disabled", true);
+    }
+}
+
+function verifyOnChangeNom(id) {
+
+    cedula = $("#documentoidentidadr").val();
+    nombre = $("#nombrer").val();
+    apellido = $("#primerapellidor").val();
+    direccion = $("#direccionr").val();
+    tipo = $("#tipoempleador").val();
+    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
+
+    if (document.getElementById(id).value.length >= 3 && nombre.match(caracteres)) {
+        document.getElementById(id).style.border = "1px solid green";
         $("#icon2").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon2').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
             $('#boton').attr("disabled", false);
         }
-
     } else {
+        document.getElementById(id).style.border = "1px solid red";
         $("#icon2").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
         $('#icon12').hide();
         $('#boton').attr("disabled", true);
     }
 }
 
-function validarCamposNombrem() {
 
-    nombre = $("#nombrem").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (nombre !== "" && nombre.length >= 3 && nombre.match(caracteres)) {
-        $('#boton2').attr("disabled", false);
+function verificarCorreo(valor) {
+    emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (emailRegex.test(valor.value)) {
+        document.getElementById(valor.id).style.border = "1px solid green";
     } else {
-        $('#boton2').attr("disabled", true);
+        document.getElementById(valor.id).style.border = "1px solid red";
+        swal({
+            title: "Correo No vàlido",
+            text: "Ejemplo  de correo: andres@gmail.com",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
     }
+
+}
+function soloNumeros(e) {
+    var key = e.charCode;
+    console.log(key);
+    return key >= 48 && key <= 57;
 }
 
-function validarCamposApellido() {
+function verificarQueSeanOchoDijitos(id) {
+    if (document.getElementById(id).value.length >= 8) {
 
-    cedula = $("#documentoidentidadr").val();
-    nombre = $("#nombrer").val();
-    apellido = $("#primerapellidor").val();
-    direccion = $("#direccionr").val();
-    tipo = $("#tipoempleador").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (apellido !== "" && apellido.length > 3 && apellido.match(caracteres)) {
-
-        $("#icon3").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
-        $('#icon3').show();
-        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
-            $('#boton').attr("disabled", false);
-        }
+        document.getElementById(id).style.border = "1px solid green";
 
     } else {
-        $("#icon3").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-        $('#boton').attr("disabled", true);
+        swal({
+            title: "Telèfono",
+            text: "¡Opps! El telèfono debe tener solo 8 digìtos",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
+        document.getElementById(id).style.border = "1px solid red";
     }
 }
 
@@ -571,31 +558,7 @@ function validarCamposApellidom() {
     } else {
         $('#boton2').attr("disabled", true);
     }
-    
-}
 
-function validarCamposDireccion() {
-
-    cedula = $("#documentoidentidadr").val();
-    nombre = $("#nombrer").val();
-    apellido = $("#primerapellidor").val();
-    direccion = $("#direccionr").val();
-    tipo = $("#tipoempleador").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (direccion !== "" && direccion.length > 3 && direccion.match(caracteres)) {
-
-        $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
-        $('#icon4').show();
-        if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
-            $('#boton').attr("disabled", false);
-            document.getElementById("direccionr").style.border="1px solid green";
-        }
-
-    } else {
-        $("#icon4").html("<span class=' glyphicon-asterisk' style= 'color:red'>");
-        $('#boton').attr("disabled", true);
-    }
 }
 
 function validarCamposDireccionm() {
@@ -628,7 +591,7 @@ function validarCamposEmailm() {
     var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
 
     if (caract.test(correo) === false) {
-        $('#boton2').attr("disabled", true);        
+        $('#boton2').attr("disabled", true);
     } else {
         $('#boton2').attr("disabled", false);
     }
@@ -660,7 +623,5 @@ function validarCamposTipo() {
 function mostrarImagenes(id) {
     var dato = "";
     dato = btoa(id);/*encripta la palabra en base 68*/
-    //alert(dato);
-    //alert(atob(dato));/*desencripta la balabra en base 68*/
     location.href = "../../view/empleado/verImagenEmpleadoView.php?id=" + dato;
 }
