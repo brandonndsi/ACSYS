@@ -23,12 +23,8 @@ class dataVentaVentanilla {
         $facturaVenta = $this->getFactura();
 
         $idVenta = $this->registrarVentaVentanilla($idCliente, $totalNeto, $totalBruto, $facturaVenta);
-
-        if ($idCliente != 0) {
-            $this->registrarDetalleVenta($productos, $totalNeto, $idVenta);
-        } else {
-            return false;
-        }
+        $this->registrarDetalleVenta($productos, $totalNeto, $idVenta);
+        $this->restarStockProductos($productos);
     }
 
     function getFactura() {
@@ -54,13 +50,22 @@ class dataVentaVentanilla {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $productos = json_decode($productos);
-        
+
         foreach ($productos as $producto) {
             $con->query("CALL registrarDetalleVenta('" . $producto->precio . "','" . $producto->cantidad . "','" . $totalNeto . "','" . $producto->codigo . "','" . $producto->descuento . "','" . $idVenta . "');");
         }
-        
     }
+    
+    function restarStockProductos($productos) {
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $productos = json_decode($productos);
 
+        foreach ($productos as $producto) {
+            $con->query("CALL restarStockProductos('" . $producto->codigo . "','". $producto->cantidad . "');");
+        }
+    }
+    
     function idfactura() {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");

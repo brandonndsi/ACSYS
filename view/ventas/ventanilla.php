@@ -11,7 +11,8 @@
         <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
         <link rel="stylesheet" href="../../css/menu.css">
-        <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
+        <link rel="stylesheet" href="../../css/ventaVentanilla.css">
+
         <!--Javascript-->
         <script src="../../js/jquery.dataTables.js"></script>
         <script src="../../js/menuJs.js"></script>
@@ -19,6 +20,7 @@
         <script src="../../js/ventas/ventaVentanillaJS.js"></script>
         <script src="../../js/autocomplete.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <script>
             localStorage.clear();
             $(document).ready(function () {

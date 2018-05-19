@@ -24,38 +24,37 @@
 
     </head>
 
-    <body background="../fondo.jpg" style="width:90%;margin-left:5%;margin-top:2%" onload="mostrarProcesos();">
+    <body background="../fondo.jpg" onload="mostrarProcesos();">
         <!-- Import the file menu.php -->
         <?php
         include '../InterumtorDeMenus.php';
         ?>
-        <div class="col-md-8">
-            <h4>Lista de Procesos</h4>
-            <div id="fechas">
+        <div class="contenedor">
+            <div class="row">
+                <h4>Lista de Procesos</h4> 
                 <label>Buscar por Fecha </label> <input type="date" id="fecha" class="form-control-static" autocomplete="on" value="<?PHP echo date('Y-m-d'); ?>"step="1" min="2017-12-30" max="<?PHP echo date('Y-m-d'); ?>">
                 <input type="submit" id="procesar" class="btn btn-primary" value="Cargar Busqueda" onclick="buscarPorFecha();">
                 <input type="submit" id="todo" class="btn btn-primary" value="Mostrar Todo" onclick="mostrarProcesos();">
             </div>
+            <div>
+                <table id="listaProcesos" class="display" cellspacing="0" >
+                    <thead>
+                        <tr>
+                            <th>Numero de Proceso </th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora </th>                     
+                            <th>Estado</th>
+                            <th>Ver Proceso</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <div>
-            <table id="listaProcesos" class="display" cellspacing="0" >
-                <thead>
-                    <tr>
-                        <th>Numero de Proceso </th>
-                        <th>Nombre</th>
-                        <th>Fecha</th>
-                        <th>Hora </th>                     
-                        <th>Estado</th>
-                        <th>Ver Proceso</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody id="datos">
-
-                </tbody>
-            </table>
-        </div> 
 
         <!--Modal de ver procesos-->
         <div id="modalVer" class="modal fade in">
@@ -221,6 +220,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dalog -->
         </div><!-- /.modal -->
+
 
     </body>
 </html>

@@ -75,8 +75,8 @@
                   <a href="#"><i class="glyphicon glyphicon-tasks"></i>Procesos <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="proceso">
-                  <li><a href="../../view/proceso/procesoView.php">Ver proceso</a></li>
-                  <li><a href="">Agregar proceso</a></li>
+                  <li><a href="../../view/proceso/verProcesoView.php">Ver proceso</a></li>
+                  <li><a href="../../view/proceso/procesoView.php">Agregar proceso</a></li>
                 </ul>
                 <li data-toggle="collapse" data-target="#reportes" class="collapsed">
                   <a href="#"><i class="glyphicon glyphicon-folder-open"></i>Reportes <span class="arrow"></span></a>
@@ -96,6 +96,8 @@
                 </li>
                 <ul class="sub-menu collapse" id="perfil">
                   <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>
+                  <li><a href="../../view/precioLeche/precioLecheView.php">Actualizar precio de la leche</a></li>
+                  <li><a href="../../view/juntaDirectiva/juntaDirectivaView.php">Junta Directiva</a></li>
                   <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>
                 </ul>
             </ul>

@@ -144,7 +144,7 @@ function mensajeCarritoEliminado() {
 function sinFactura() {
     swal({
         title: "Sin factura",
-        text: "Venta procesada sin factura exitosamente.",
+        text: "Venta procesada sin factura exitozamente.",
         icon: "success",
         buttons: {
             ok: {
@@ -375,14 +375,26 @@ function procesa() {
                 totalBruto: totalBruto,
                 totalNeto: totalNeto
             }, function (responseText) {
-                ImprimirFactura();
 
                 console.log(responseText);
                 datosTabla = "";
                 total = 0;
                 carrito = JSON.parse(localStorage.getItem("listaProductos"));
 
-               
+                for (i = 0; i < carrito.length; i++) {
+                    datosTabla += "<table>";
+                    datosTabla += "<tr>";
+                    datosTabla += "<td>" + carrito[i].codigo + "</td>";
+                    datosTabla += "<td>" + carrito[i].nombre + "</td>";
+                    datosTabla += "<td>" + carrito[i].precio + "</td>";
+                    datosTabla += "<td>" + carrito[i].cantidad + "</td>";
+                    datosTabla += "</tr>";
+                }
+                datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
+                datosTabla += "<td>" + totalBruto + "</td>";
+                datosTabla += "</table>";
+                $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
+
                 var cliente = idCliente;
                 if (cliente == 0) {
                     cliente = "Contado";
@@ -395,14 +407,12 @@ function procesa() {
             });
         });
         numeroFactura();
-        ImprimirFactura();
-        redireccionamiento();
-       
-    
+        $("#modalRecibo").modal();
+
     } else {
         swal({
-            title: "Error",
-            text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
+            title: "Venta Distribuidor",
+            text: "El carrito esta vacio. Favor ingresar un articulo minimo.",
             icon: "error",
             buttons: {
                 ok: {
@@ -434,7 +444,7 @@ function numeroFactura() {
     }, function (responseText) {
         console.log(responseText);
         dato = responseText;
-       // dato++;
+        dato++;
         document.getElementById("Re_recibo").value = dato;
     });
     /*terminacion para poder optener el numero de factura.*/
@@ -447,7 +457,3 @@ function ImprimirFactura() {
     id = document.getElementById('selectCliente').value;
     window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDF.php?numerofactura=" + numerofactura + "&&lista=" + localStorage.getItem("listaProductos") + "&&total=" + totalBB + "&&tipo=Ventanilla" + "&&id=" + id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
-
-function redireccionamiento(){
-    location.href = '../../view/ventas/ventanilla.php';
-  }
