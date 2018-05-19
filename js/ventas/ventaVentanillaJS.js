@@ -117,11 +117,32 @@ function carga() {
 
 }
 
-function limpiaCarrito() {
-    botones = "<p><button data-dismiss='modal' id='arreglo' class='btn btn-danger'>Cancelar</button> ";
-    botones += "<button onclick='mensajeCarritoEliminado();' data-dismiss='modal' class='btn btn-primary'>Aceptar</button></p>";
-    $("#botonesEliminar").html(botones);
-    $("#modalEliminar").modal();
+function modalCancelarVenta() {
+    swal({
+        title: "Confirmación",
+        text: "¿Desea aprobar la solicitud?",
+        icon: "warning",
+        buttons: {
+            cancelar: {
+                text: "Cancelar",
+                value: "cancel"
+            },
+            ok: {
+                text: "Aceptar",
+                value: "ok"
+            }
+        },
+        dangerMode: true
+    })
+            .then((value) => {
+                switch (value) {
+                    case "ok":
+                        mensajeCarritoEliminado();
+                        break;
+                    case "cancel":
+                        break;
+                }
+            });
 }
 
 function mensajeCarritoEliminado() {
@@ -238,10 +259,10 @@ function addCarrito() {
                 html += "<td>" + listaProductos[i].precio + "</td>";
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'></td>";
                 html += "<td><input id='descuento" + listaProductos[i].codigo + "' onblur='calcularDescuentoSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].descuento + "'></td>";
-                html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + ((listaProductos[i].precio * listaProductos[i].cantidad)-listaProductos[i].descuento) + "'></td>";
+                html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + ((listaProductos[i].precio * listaProductos[i].cantidad) - listaProductos[i].descuento) + "'></td>";
                 html += "<td><button onClick='eliminarArticuloCarrito(" + codigo + ")'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";
-                bruto = bruto + (listaProductos[i].precio * listaProductos[i].cantidad)-listaProductos[i].descuento;
+                bruto = bruto + (listaProductos[i].precio * listaProductos[i].cantidad) - listaProductos[i].descuento;
             }
 
             document.getElementById('totalPagar').value = bruto;
@@ -260,7 +281,7 @@ function calcularSubTotal(cantidad, codigoProducto) {
     for (i = 0; i < lista.length; i++) {
         if (lista[i].codigo === codigoProducto) {
 
-            lista[i].cantidad = document.getElementById("cantidad"+codigoProducto).value;
+            lista[i].cantidad = document.getElementById("cantidad" + codigoProducto).value;
             cantidad = lista[i].cantidad;
             descuento = lista[i].descuento;
             descuento = descuento * cantidad;
@@ -293,7 +314,7 @@ function calcularDescuentoSubTotal(descuento, codigoProducto) {
         if (listaProducto[i].codigo === codigoProducto) {
 
             cantidad = listaProducto[i].cantidad;
-            listaProducto[i].descuento = document.getElementById("descuento"+codigoProducto).value;
+            listaProducto[i].descuento = document.getElementById("descuento" + codigoProducto).value;
             descuento = listaProducto[i].descuento;
             descuento = descuento * cantidad;
             bruto = listaProducto[i].cantidad * listaProducto[i].precio;

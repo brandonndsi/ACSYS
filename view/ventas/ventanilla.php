@@ -67,7 +67,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-danger" onclick="limpiaCarrito()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-danger" onclick="modalCancelarVenta()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
             <button id="boton" class="btn btn-primary" onclick="accionPrincipal()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
