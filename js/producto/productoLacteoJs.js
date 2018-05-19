@@ -104,7 +104,7 @@ function modificarProducto(codigo){
           respuesta="";
           if(responseText=="true"){
             respuesta="Se ha modificado el producto satisfactoriamente";
-            mostrarProductores();
+            mostrarProductoLacteo();
 
         }else{
             respuesta="Ocurrió un error al modificar el producto";

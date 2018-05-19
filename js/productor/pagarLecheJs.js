@@ -102,7 +102,7 @@ function pagarMontoLeche(productor){
               litros:litros,
 
       }, function(responseText) {
-        alert(responseText);
+        
         json=JSON.parse(responseText);
         imprimirFactura(json);
             
