@@ -411,8 +411,8 @@ function procesa() {
 
     } else {
         swal({
-            title: "Venta Distribuidor",
-            text: "El carrito esta vacio. Favor ingresar un articulo minimo.",
+            title: "Error",
+            text: "¡Opps! No se realizó la venta ya que no hay productos para vender",
             icon: "error",
             buttons: {
                 ok: {
