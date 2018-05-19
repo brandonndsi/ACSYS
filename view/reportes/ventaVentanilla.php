@@ -28,18 +28,18 @@
  ?>
  
  <div class="contenedor" id="content">
-
+<br>
  	<div id="contTitulo">
-            <h4>Reporte de ventas Ventanilla</h4>
+            <h4 align="center">Reporte de ventas Ventanilla</h4>
  	</div>
-
+  <br>
  	<div id="fechas">
  		<label>Fecha Inicial</label><input type="date" id="fechainicial" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>"
     step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<label id="lblfil">Fecha Final</label><input type="date" id="fechafinal" autocomplete="on" value="<?PHP  echo date('Y-m-d'); ?>" step="1" min="2017-12-30" max="<?PHP  echo date('Y-m-d'); ?>">
  		<input type="submit" id="procesar" value="Cargar Busqueda" onclick="buscarDatos();">
  	</div>
-
+  <br><br>
  	<div id="tablaPrincipal">
  		<table id="listaVentas" class="display" cellspacing="0">
 				<thead>
