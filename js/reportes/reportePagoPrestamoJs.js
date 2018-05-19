@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 function mostrarPagosPrestamos(){
-
+  var listaTodo = [];
   $('#listaAhorro').dataTable().fnDestroy();
   idPrestamo = document.getElementById("selectPrestamos").value;
   if(idPrestamo!=0){
@@ -28,7 +28,8 @@ function mostrarPagosPrestamos(){
               html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
               html+="<td>"+json[i].horapagoprestamo+"</td>";
               html+='<td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
-              
+              listaTodo.push({"fecha":json[i].fechapagoprestamo,"saldoanterior":json[i].saldoanteriorpagopretsamo,"saldoactual":json[i].saldoactualpagoprestamo,"cuotas":json[i].montocuotapagoprestamo,"horapago":json[i].horapagoprestamo});
+              localStorage.setItem("listaTodo", JSON.stringify(listaTodo)); 
             }
             
             $("#datos").html(html);
@@ -144,3 +145,28 @@ function consultarProductorSocio(){
                     }
                 });
   }
+
+
+  function imprimirReporte(){
+  if (localStorage.getItem("listaTodo") === null) {//cambiar por la validacion de la consulta de los datos para poder ver lo que es la lista llena.
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
+  //listaTodo.push({"fecha":json[i].fechapagoprestamo,"saldoanterior":json[i].saldoanteriorpagopretsamo,"saldoactual":json[i].saldoactualpagoprestamo,"cuotas":json[i].montocuotapagoprestamo,"horapago":json[i].horapagoprestamo});
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFAdelantoPago.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Pago Adelantado", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/pagosPrestamos.php';
+}
+}
