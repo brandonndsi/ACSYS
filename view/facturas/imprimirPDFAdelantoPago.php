@@ -18,7 +18,7 @@ $pdf->AddPage();
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->Ln();
-$pdf->Cell(150,6,'Reporte Todo '.$tipo,0,0,'C',0);
+$pdf->Cell(150,6,'Reporte '.$tipo,0,0,'C',0);
 $pdf->Ln(10);
 $pdf->Cell(25,6,'Fecha',1,0,'C',1);
 //$pdf->Cell(30,6,'Pago Prestamo',1,0,'C',1);

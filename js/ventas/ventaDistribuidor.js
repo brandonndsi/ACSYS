@@ -375,6 +375,7 @@ listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                 html += "<td>" + listaProductos[i].precio + "</td>";
                 codigo = '"' + listaProductos[i].codigo + '"';
                 html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
+                html += "<td><input id='descuento" + listaProductos[i].codigo + "' onblur='descuentoSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].descuento + "'> </td>";
                 html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
                 html += "<td><button onClick='eliminarArticuloCarrito("+codigo+")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
                 html += "</tr>";

@@ -164,7 +164,7 @@ function consultarProductorSocio(){
                 });
 
 }else{
-  //listaTodo.push({"fecha":json[i].fechapagoprestamo,"saldoanterior":json[i].saldoanteriorpagopretsamo,"saldoactual":json[i].saldoactualpagoprestamo,"cuotas":json[i].montocuotapagoprestamo,"horapago":json[i].horapagoprestamo});
+  
   window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFAdelantoPago.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Pago Adelantado", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
   localStorage.removeItem("listaTodo");
   window.location.href = '../../view/reportes/pagosPrestamos.php';
