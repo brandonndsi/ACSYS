@@ -151,3 +151,27 @@ function mostrarImprimir(proceso) {
 
     window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDeProcesos.php?numeroProceso=" + id + "&&producto=" + nombre + "&&cantidad=" + cantidad + "&&porcentaje=" + porcentaje + "&&entera=" + entera + "&&descremada=" + descremada + "&&cuajo=" + cuajo + "&&cloruro=" + cloruro + "&&sal=" + sal + "&&cultivo=" + cultivo + "&&estabilizador=" + estabilizador + "&&colorante=" + colorante + "&&crema1=" + crema1 + "&&leche1=" + leche1 + "&&crema2=" + crema2 + "&&leche2=" + leche2 + "&&fecha=" + fecha + "&&hora=" + hora + "&&estado=" + estado, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
+
+
+function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReporteAhorro.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ahorros", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/ventaDistribuidor.php';
+}
+}

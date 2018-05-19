@@ -115,6 +115,7 @@ $(document).ready(function () {
 	 */
 	function CargarNuevosDatosALaTablaInicial(json){
 		    html = "";
+        var listaTodo = [];
         for(i = 0 ;i<json.length; i++){
           html+="<tr>";
           html+="<td>"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</td>";
@@ -129,6 +130,9 @@ $(document).ready(function () {
                         json[i].fecha+","+json[i].estado+"'";
           html+='<td><a href="javascript:mostrarImprimir('+prestamo+')"><span class="glyphicon glyphicon-file"></span></a></td>';
           html+="</tr>";
+          listaTodo.push({"nombre":json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona,"cantidad":json[i].cantidadsolicitud,"plazo":json[i].plazo,"porcentage":json[i].porcentaje,"estado":json[i].estado,"fecha":json[i].fecha});
+          localStorage.setItem("listaTodo", JSON.stringify(listaTodo)); 
+
         }
         destruirTablaPrincipal();
         $("#datos").html(html);
@@ -155,4 +159,27 @@ total = tot+tol;
     //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
     //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
 	}
+
+  function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportePrestamos.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Solicitud Adelanto", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/ventaDistribuidor.php';
+}
+}
 

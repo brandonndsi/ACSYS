@@ -17,7 +17,10 @@
         <script type="text/javascript" src="../../js/reportes/reportesProcesos.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    </script>
+
+         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--</script>-->
 </head>
 <body background="../fondo.jpg">
     <?php

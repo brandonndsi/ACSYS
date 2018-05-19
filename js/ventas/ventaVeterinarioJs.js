@@ -342,7 +342,7 @@ function carry() {
             console.log(responseText);
             //alert(responseText);
             dato=responseText;
-            //dato++;
+            dato++;
             document.getElementById("Re_recibo").value =dato;
             //alert(dato);
         }); 

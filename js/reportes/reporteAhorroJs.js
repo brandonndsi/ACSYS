@@ -5,6 +5,7 @@ $(document).ready(function () {
 
 
 function mostrarMontoLecheSemanalTotal(){
+  var listaTodo = [];
   $('#listaAhorro').dataTable().fnDestroy();
   $(document).ready(function() {
       $.post('../../business/reportes/actionReporteAhorro.php', {
@@ -26,6 +27,8 @@ function mostrarMontoLecheSemanalTotal(){
           html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
           html+='<td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
           
+          listaTodo.push({"nombre":json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona,"litros":json[i].litrosentregadosahorrosemanal,"ahorro":json[i].montoahorrosemanalporlitro,"totalahorro":(json[i].montoahorrosemanalporlitro*json[i].litrosentregadosahorrosemanal),"fecha":json[i].fechaentregapago});
+          localStorage.setItem("listaTodo", JSON.stringify(listaTodo)); 
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -109,3 +112,26 @@ function mostrarMontoLecheSemanalTotal(){
                     }
                 });
   }
+
+  function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReporteAhorro.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ahorros", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/ventaDistribuidor.php';
+}
+}
