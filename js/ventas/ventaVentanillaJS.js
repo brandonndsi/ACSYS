@@ -236,14 +236,13 @@ function addCarrito() {
                 for (i = 0; i < listaProductos.length; i++) {
                     if (listaProductos[i].codigo === code) {
                         listaProductos[i].cantidad = listaProductos[i].cantidad + 1;
-                        listaProductos[i].descuento = listaProductos[i].descuento + 0;
                         bandera = true;
                     }
                 }
                 if (!bandera) {
                     listaProductos.push({"codigo": code, "nombre": json.nombreproductolacteo, "precio": json.preciounitarioproductolacteo, "cantidad": 1, "descuento": 0});
-                    localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
                 }
+                localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
             }
             listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
             html = "";
@@ -267,7 +266,6 @@ function addCarrito() {
 
             document.getElementById('totalPagar').value = bruto;
             $("#datos").html(html);
-            $('#boton').attr("disabled", false);
             cargarTablaLacteo();
         });
     });
@@ -276,33 +274,37 @@ function addCarrito() {
 function calcularSubTotal(cantidad, codigoProducto) {
 
     lista = JSON.parse(localStorage.getItem("listaProductos"));
-
+    condicionCantidad = document.getElementById("cantidad" + codigoProducto).value;
     total = 0;
-    for (i = 0; i < lista.length; i++) {
-        if (lista[i].codigo === codigoProducto) {
+    if (condicionCantidad === "" || condicionCantidad == 0) {
+        eliminarArticuloCarrito(codigoProducto);
+    } else {
+        for (i = 0; i < lista.length; i++) {
+            if (lista[i].codigo === codigoProducto) {
 
-            lista[i].cantidad = document.getElementById("cantidad" + codigoProducto).value;
-            cantidad = lista[i].cantidad;
-            descuento = lista[i].descuento;
-            descuento = descuento * cantidad;
-            bruto = lista[i].cantidad * lista[i].precio;
-            neto = bruto - descuento;
-            total = total + neto;
+                lista[i].cantidad = document.getElementById("cantidad" + codigoProducto).value;
+                cantidad = lista[i].cantidad;
+                descuento = lista[i].descuento;
+                descuento = descuento * cantidad;
+                bruto = lista[i].cantidad * lista[i].precio;
+                neto = bruto - descuento;
+                total = total + neto;
 
-            $("#subtotal" + codigoProducto).val(neto);
-            $("#totalPagar").val(total);
-        } else {
-            cantidad = lista[i].cantidad;
-            descuento = lista[i].descuento;
-            descuento = descuento * cantidad;
-            bruto = lista[i].cantidad * lista[i].precio;
-            neto = bruto - descuento;
-            total = total + neto;
+                $("#subtotal" + codigoProducto).val(neto);
+                $("#totalPagar").val(total);
+            } else {
+                cantidad = lista[i].cantidad;
+                descuento = lista[i].descuento;
+                descuento = descuento * cantidad;
+                bruto = lista[i].cantidad * lista[i].precio;
+                neto = bruto - descuento;
+                total = total + neto;
 
-            $("#totalPagar").val(total);
+                $("#totalPagar").val(total);
+            }
         }
+        localStorage.setItem("listaProductos", JSON.stringify(lista));
     }
-    localStorage.setItem("listaProductos", JSON.stringify(lista));
 }
 
 function calcularDescuentoSubTotal(descuento, codigoProducto) {
@@ -324,10 +326,10 @@ function calcularDescuentoSubTotal(descuento, codigoProducto) {
             $("#subtotal" + codigoProducto).val(neto);
             $("#totalPagar").val(total);
         } else {
-            cantidad = lista[i].cantidad;
-            descuento = lista[i].descuento;
+            cantidad = listaProducto[i].cantidad;
+            descuento = listaProducto[i].descuento;
             descuento = descuento * cantidad;
-            bruto = lista[i].cantidad * lista[i].precio;
+            bruto = listaProducto[i].cantidad * listaProducto[i].precio;
             neto = bruto - descuento;
             total = total + neto;
 
@@ -365,13 +367,13 @@ function eliminarArticuloCarrito(code) {
         html += "<td>" + listaProductos[i].precio + "</td>";
         codigo = '"' + listaProductos[i].codigo + '"';
         html += "<td><input id='cantidad" + listaProductos[i].codigo + "' onblur='calcularSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].cantidad + "'> </td>";
+        html += "<td><input id='descuento" + listaProductos[i].codigo + "' onblur='calcularDescuentoSubTotal(this," + codigo + ")' type='text' style='border:none;' value='" + listaProductos[i].descuento + "'></td>";
         html += "<td><input id='subtotal" + listaProductos[i].codigo + "' type='text'style='border:none;' readonly='readonly' value='" + (listaProductos[i].precio * listaProductos[i].cantidad) + "'></td>";
         html += "<td><button onClick='eliminarArticuloCarrito(" + codigo + ")' id='btnEliminarCar'><span class='glyphicon glyphicon-remove'></span></button></td>";
         html += "</tr>";
         total = total + (listaProductos[i].precio * listaProductos[i].cantidad);
     }
     document.getElementById('totalPagar').value = total;
-    $('#boton').attr("disabled", true);
     $("#datos").html(html);
     cargarTablaLacteo();
 }
@@ -384,8 +386,13 @@ function procesa() {
     var totalBruto = document.getElementById('totalPagar').value;
     var tipoVenta = "Ventanilla";
 
-    carrito = JSON.parse(localStorage.getItem("listaProductos"));
-    console.log(carrito);
+    var carrito = JSON.parse(localStorage.getItem("listaProductos"));
+
+    if ($.isEmptyObject(carrito)) {
+        carrito = null;
+    } else {
+        console.log(carrito);
+    }
 
     if (carrito !== null) {
         $(document).ready(function () {
@@ -424,7 +431,6 @@ function procesa() {
                 }
                 document.getElementById("Re_cliente").value = cliente;
                 document.getElementById("Re_tipoVenta").value = tipoVenta;
-
             });
         });
         numeroFactura();
