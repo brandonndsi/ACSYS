@@ -234,8 +234,10 @@ function addCarrito() {
                 listaProductos = JSON.parse(localStorage.getItem("listaProductos"));
                 bandera = false;
                 for (i = 0; i < listaProductos.length; i++) {
-                    if (listaProductos[i].codigo === code) {
-                        listaProductos[i].cantidad = listaProductos[i].cantidad + 1;
+                    if (listaProductos[i].codigo == code) {
+                        var cantidad = listaProductos[i].cantidad;
+                        cantidad = parseInt(cantidad)+1;
+                        listaProductos[i].cantidad = cantidad;
                         bandera = true;
                     }
                 }
