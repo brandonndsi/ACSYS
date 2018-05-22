@@ -1,5 +1,5 @@
 <?php 
-include_once 'Plantilla.php';
+include_once 'PlantillaP.php';
 include_once '../../data/factura/dataFactura.php';
 
 $lista = json_decode($_GET['lista']);
@@ -15,11 +15,10 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 /*El menu de la tabla de los productos*/
-// listaTodo.push({"nombre":json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona,"cantidad":json[i].cantidadsolicitud,"plazo":json[i].plazo,"porcentage":json[i].porcentaje,"estado":json[i].estado,"fecha":json[i].fecha});
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->Ln();
-$pdf->Cell(150,6,'Reporte '.$tipo,0,0,'C',0);
+//$pdf->Cell(150,6,'Reporte '.$tipo,0,0,'C',0);
 $pdf->Ln(10);
 $pdf->Cell(35,6,'Nombre',1,0,'C',1);
 $pdf->Cell(35,6,'Cantidad',1,0,'C',1);
