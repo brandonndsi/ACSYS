@@ -13,7 +13,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,utf8_decode('Reporte de ASOPROLESA'),0,0,'C');
+    $this->Cell(30,10,utf8_decode('Reporte de Pago de Leche'),0,0,'C');
     // Line break
     $this->Ln(20); 
     //Arial bold 12

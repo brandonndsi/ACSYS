@@ -24,7 +24,7 @@ $pdf->SetFont('Arial','B',15);
 $pdf->Cell(80);
 
 // Title
-$pdf->Cell(30,10,utf8_decode('Reporte pago leche'),0,0,'C');
+$pdf->Cell(30,10,utf8_decode('Solicitud de adelanto de pago'),0,0,'C');
 // Line break
 $pdf->Ln(20);
 $pdf->AliasNbPages();

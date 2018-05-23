@@ -220,6 +220,7 @@ function Auto() {
 function addCarrito() {
     $('#listaProductosLacteos').dataTable().fnDestroy();
     var code = $('input:radio[name=radios]:checked').val();
+    
     $(document).ready(function () {
         $.post('../../business/ventas/actionVentaDistribuidor.php', {
             action: 'searchDairyProduct',
@@ -300,6 +301,7 @@ function addCarrito() {
 
         });
     });
+
 }
 function descuentoSubTotal(descuento, codigoProducto) {
 

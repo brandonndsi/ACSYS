@@ -1,5 +1,5 @@
 <?php 
-include_once 'Plantilla.php';
+include_once 'PlantillaAho.php';
 include_once '../../data/factura/dataFactura.php';
 
 $lista = json_decode($_GET['lista']);

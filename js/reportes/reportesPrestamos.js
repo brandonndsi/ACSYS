@@ -179,7 +179,7 @@ total = tot+tol;
 }else{
   window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportePrestamos.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Solicitud Adelanto", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
   localStorage.removeItem("listaTodo");
-  window.location.href = '../../view/reportes/ventaDistribuidor.php';
+  window.location.href = '../../view/reportes/prestamos.php';
 }
 }
 
