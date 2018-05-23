@@ -25,7 +25,7 @@ class dataProductoLacteo {
 
     function productoModificar($codigo,$nombre,$precio,$unidad){
         $con=$this->conexion->crearConexion();
-        $modificarProducto = $con->query("CALL modificarproductolacteo('$codigo','$nombre','$precio','0','$unidad')");
+        $modificarProducto = $con->query("CALL modificarproductolacteo('$codigo','$nombre','$precio','$unidad')");
         if($modificarProducto==1){
             return "true";
 

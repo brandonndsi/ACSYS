@@ -119,7 +119,7 @@ function CargarNuevosDatosALaTablaInicial(json) {
                 brut + "," + tol + "," + tipo + "," + idpersona + "'";
         listaTodo.push({"numerofactura": numfactura, "fecha": fecha, "hora": hora, "bruto": brut, "total": tol, "idpersona": idpersona});
         localStorage.setItem("listaTodo", JSON.stringify(listaTodo));
-        html += '<td><a href="javascript:modalVer(' + facturanueva + ')"><span class="glyphicon glyphicon-eye-open"></span></a></td>';
+        
         html += '<td><a href="javascript:mostrarImprimir(' + facturanueva + ')"><span class="glyphicon glyphicon-file"></span></a></td>';
         html += "</tr>";
     }

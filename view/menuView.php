@@ -13,20 +13,7 @@
                   <i class="glyphicon glyphicon-pushpin"></i> Escritorio
                   </a>
                 </li>
-                <li>
-                  <a href="../distribuidor/verDistribuidorView.php">
-                  <i class="glyphicon glyphicon-user"></i> Distribuidor
-                  </a>
-                </li>
-
-                <li  data-toggle="collapse" data-target="#productores" class="collapsed ">
-                  <a href="#"><i class="fa fa-user"></i>Productor <span class="arrow"></span></a>
-                </li>
-                <ul class="sub-menu collapse" id="productores">
-                    <li class="active"><a href="../productor/verProductorSocioView.php">Productor Socio</a></li>
-                    <li><a href="../productor/verProductorClienteView.php">Productor Cliente</a></li>
-                </ul>
-
+                
                 <li  data-toggle="collapse" data-target="#leche" class="collapsed ">
                   <a href="#"><i class="glyphicon glyphicon-import"></i>Recepción de leche <span class="arrow"></span></a>
                 </li>
@@ -62,12 +49,15 @@
                   <li><a href="../../view/proceso/verProcesoView.php">Ver proceso</a></li>
                   <li><a href="../../view/proceso/procesoView.php">Agregar proceso</a></li>
                 </ul>
+                <li data-toggle="collapse" data-target="#perfil" class="collapsed">
+                  <a href="#"><i class="	glyphicon glyphicon-asterisk"></i><?php  echo @$_SESSION['nombreUsuario'] ?><span class="arrow"></span></a>
+                </li>
                 <ul class="sub-menu collapse" id="perfil">
                   <li><a href="../../view/perfil/perfil.php">Mi perfil</a></li>
-                  <li><a href="../../view/precioLeche/precioLecheView.php">Actualizar precio de la leche</a></li>
-                  <li><a href="../../view/juntaDirectiva/juntaDirectivaView.php">Junta Directiva</a></li>
+                  
                   <li><a href="../../data/login/cerrarSesionData.php">Salir</a></li>
                 </ul>
             </ul>
+            
      </div>
 </div>

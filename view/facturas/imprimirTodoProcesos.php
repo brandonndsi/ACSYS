@@ -15,8 +15,8 @@ $pdf->SetFont('Arial', 'B', 12);
 $pdf->Ln();
 $pdf->Cell(150, 6, 'Reporte Todo ', 0, 0, 'C', 0);
 $pdf->Ln(10);
-$pdf->Cell(25, 6, 'Nombre', 1, 0, 'C', 1);
-$pdf->Cell(30, 6, 'Cantidad', 1, 0, 'C', 1);
+$pdf->Cell(50, 6, 'Nombre', 1, 0, 'C', 1);
+$pdf->Cell(20, 6, 'Cantidad', 1, 0, 'C', 1);
 $pdf->Cell(30, 6, 'Fecha', 1, 0, 'C', 1);
 $pdf->Cell(30, 6, 'Hora', 1, 0, 'C', 1);
 $pdf->Cell(40, 6, 'Id', 1, 0, 'C', 1);
@@ -25,8 +25,8 @@ $pdf->SetFont('Arial', '', 12);
 /* sacando los productos detalles de la factura */
 foreach ($lista as $proceso) {
     $pdf->Ln();
-    $pdf->Cell(25, 6, utf8_decode($proceso->nombre), 1, 0, 'C', 0);
-    $pdf->Cell(30, 6, utf8_decode($proceso->cantidad), 1, 0, 'C', 0);
+    $pdf->Cell(50, 6, utf8_decode($proceso->nombre), 1, 0, 'C', 0);
+    $pdf->Cell(20, 6, utf8_decode($proceso->cantidad), 1, 0, 'C', 0);
     $pdf->Cell(30, 6, utf8_decode($proceso->fecha), 1, 0, 'C', 0);
     $pdf->Cell(30, 6, utf8_decode($proceso->hora), 1, 0, 'C', 0);
     $pdf->Cell(40, 6, utf8_decode($proceso->id), 1, 0, 'C', 0);
