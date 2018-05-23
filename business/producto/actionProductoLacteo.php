@@ -9,16 +9,15 @@
 		$codigo=$_POST['codigo'] ;
       	$nombre=$_POST['nombre'] ;
       	$precio=$_POST['precio'];
-      	$cantidad=$_POST['cantidad'] ;
       	$unidad=$_POST['unidad'] ;
       	
 
-      	if(empty($codigo)||empty($nombre)||empty($precio)||empty($cantidad)||empty($unidad)){
+      	if(empty($codigo)||empty($nombre)||empty($precio)||empty($unidad)){
       		echo("false");
 
       	}else{
                   
-      		echo $businessProductoLacteo->productoModificar($codigo,$nombre,$precio,$cantidad,$unidad);
+      		echo $businessProductoLacteo->productoModificar($codigo,$nombre,$precio,$unidad);
       	}
 
 	}else if($action=="registrarproducto") {

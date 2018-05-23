@@ -112,8 +112,11 @@ function registrarDistribuidor() {
     telefono = $("#telefonor").val();
     direccion = $("#direccionr").val();
     correo = $("#correor").val();
+    if(correo==""){
+        correo="N/A";
+    }
    /*verificando que los campos no esten vacios a la hora de enviarlos*/
-   if(cedula!="" && nombre!="" && apellido1!="" && apellido2!="" && telefono!="" && direccion!="" && correo!=""){
+   if(cedula!="" && nombre!="" && apellido1!="" && apellido2!="" && telefono!="" && direccion!="" ){
     $(document).ready(function () {
         $.post('../../business/distribuidor/DistribuidorAccion.php', {
             action: 'registrarDistribuidor',

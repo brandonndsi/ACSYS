@@ -240,7 +240,7 @@ function registrarProducto(){
           funcion:document.getElementById("funcionr").selectedIndex+1,
 
       }, function(responseText) {
-          alert(responseText);
+         
           respuesta="";
           if(responseText=="true"){
             respuesta="Se ha registrado el producto satisfactoriamente";
