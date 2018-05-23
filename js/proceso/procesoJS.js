@@ -128,7 +128,7 @@ function mostrarTabla() {
     html += "</tr>";
     html += "<tr>";
     html += "<td><div class='form-group'><div class='col-sm-3'><label>Colorante:</label></div><div class='col-sm-9'><input type = 'number' step = 'any' min='0' class='form-control' name='colorateprocesor' id='colorateprocesor' placeholder='Colorante n' required></div></div></td>";
-    html += "<td><div class='form-group'><div class='col-sm-3'><button onclick='registrarProceso()' class='btn btn-primary'>Registrar </button></div></div></td>";
+    html += "<td><div class='form-group'><div class='col-lg-offset-9'><button onclick='registrarProceso()' class='btn btn-primary'>Registrar </button></div></div></td>";
     html += "</tr>";
     $("#datos").html(html);
 

@@ -66,7 +66,8 @@
                  </tbody>
              </table>
            </div>
-           <button class="btn btn-danger" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+           <!--onclick=" location.href = '../../view/ventas/veterinario.php'"-->
+           <button class="btn btn-danger" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
            <button class="btn btn-primary" onclick="carry();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
          </div>
          <!--Modal buscar productos veterinarios-->

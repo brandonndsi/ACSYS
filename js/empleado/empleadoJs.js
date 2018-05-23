@@ -376,6 +376,27 @@ function verificarQueSeanQuinceDijitos(id) {
     }
 }
 
+function verificarQueSeanQuinceDijitosm(id) {
+    cedula = $("#documentoidentidadm").val();
+    if (cedula !== "" && cedula.length >= 9) {
+        document.getElementById(id).style.border = "1px solid green";
+    } else {
+        swal({
+            title: "Cedula",
+            text: "¡Opps! Debe de tener minimo 9 o maximo 15 letras",
+            icon: "error",
+            buttons: {
+                ok: {
+                    text: "Aceptar",
+                    value: "ok"
+                }
+            },
+            dangerMode: true
+        });
+        document.getElementById(id).style.border = "1px solid red";
+    }
+}
+
 function validarEspaciosEnBlancoInput(e, id) {
     if (e.target.value.trim() == "") {
         swal({
@@ -437,7 +458,7 @@ function verifyOnChangeDire(id) {
 
     if (document.getElementById(id).value.length >= 3 && direccion.match(caracteres)) {
         document.getElementById(id).style.border = "1px solid green";
-                $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
+        $("#icon4").html("<span class='glyphicon glyphicon-ok' style= 'color:green'>");
         $('#icon4').show();
         if (cedula !== "" && nombre !== "" && apellido !== "" && direccion !== "" && tipo !== "") {
             $('#boton').attr("disabled", false);
@@ -545,55 +566,6 @@ function verificarQueSeanOchoDijitos(id) {
             dangerMode: true
         });
         document.getElementById(id).style.border = "1px solid red";
-    }
-}
-
-function validarCamposApellidom() {
-
-    apellido = $("#primerapellidom").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (apellido !== "" && apellido.length >= 3 && apellido.match(caracteres)) {
-        $('#boton2').attr("disabled", false);
-    } else {
-        $('#boton2').attr("disabled", true);
-    }
-
-}
-
-function validarCamposDireccionm() {
-
-    direccion = $("#direccionm").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (direccion !== "" && direccion.length >= 3 && direccion.match(caracteres)) {
-        $('#boton2').attr("disabled", false);
-    } else {
-        $('#boton2').attr("disabled", true);
-    }
-}
-
-function validarCamposTelefonom() {
-
-    telefono = $("#telefonom").val();
-    var caracteres = /[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]/;
-
-    if (telefono !== "" && telefono.length === 8 && !telefono.match(caracteres)) {
-        $('#boton2').attr("disabled", false);
-    } else {
-        $('#boton2').attr("disabled", true);
-    }
-}
-
-function validarCamposEmailm() {
-
-    correo = $("#correom").val();
-    var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-
-    if (caract.test(correo) === false) {
-        $('#boton2').attr("disabled", true);
-    } else {
-        $('#boton2').attr("disabled", false);
     }
 }
 

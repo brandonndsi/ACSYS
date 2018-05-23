@@ -4,6 +4,7 @@ $(document).ready(function () {
 });
 
 function mostrarTotalPago(){
+  var listaTodo = [];
   $('#listaAhorro').dataTable().fnDestroy();
   $(document).ready(function() {
       $.post('../../business/reportes/actionReportePagoLeche.php', {
@@ -26,7 +27,8 @@ function mostrarTotalPago(){
           html+="<td>"+json[i].totalpagarlitros+"</td>";
           html+="<td>"+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+"</td>";
           html+='<td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>';
-          
+          listaTodo.push({"nombre":json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona,"litros":json[i].cantidadlitroscompramateriaprima,"pagolitro":json[i].montopagolitro,"total":json[i].totalpagarlitros,"fecha":json[i].fechacompramateriaprima});
+          localStorage.setItem("listaTodo", JSON.stringify(listaTodo)); 
         }
         $("#datos").html(html);
         $(document).ready(function() {
@@ -98,3 +100,26 @@ function CargarTablaPrincipal(){
                     }
                 });
   }
+
+  function imprimirTodo(){
+  if (localStorage.getItem("listaTodo") === null) {
+  swal({
+                    title: "Reportes.",
+                    text: "La lista de reportes esta vacía",
+                    icon: "error",
+                    buttons: {
+                        ok: {
+                            text: "Aceptar",
+                            value: "ok"
+                        }
+
+                    },
+                    dangerMode: true
+                });
+
+}else{
+  window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportePagoLeche.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Pago leche", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  localStorage.removeItem("listaTodo");
+  window.location.href = '../../view/reportes/pagoLeche.php';
+}
+}

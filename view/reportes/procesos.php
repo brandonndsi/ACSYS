@@ -64,7 +64,7 @@
         ?>
         <div id="reporte_pago_leche_imprimir">
     
-    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="imprimirTodo();">
+    <input type="submit" id="imprimir" value="Imprimir Todo" class="btn btn-primary" onclick="TodoProceso();">
 </div>
     </div>
 

@@ -39,7 +39,7 @@
             <select id="selectCliente"  class="btn btn-info selectCliente">
             </select>
             <div class="form-group">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <button onclick="$('#modalProductosVentanilla').modal();carga();" class="btn btn-primary">Buscar producto <span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-sm-1">
@@ -67,7 +67,7 @@
                     </tbody>
                 </table>
             </div>
-            <button class="btn btn-danger" onclick="limpiaCarrito()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-danger" onclick="modalCancelarVenta()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
             <button id="boton" class="btn btn-primary" onclick="accionPrincipal()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
         </div>
 
@@ -119,7 +119,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <div id="facLogoInfo">
-                                <h2>EL SAUCE TICO</h2>  
+                                <h2>EL SAUCE TICO</h2>
                             </div>
                             <div id="faclogo">
                                 <img src="../../image/logo.png" width="100px" height="100px">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group">
                             <label  id="facNumero">Factura N°:</label>
-                            <input id="Re_recibo" name="contrasenaNueva" 
+                            <input id="Re_recibo" name="contrasenaNueva"
                                    type="text" readonly>
                         </div>
                         <div class="form-group">
@@ -196,4 +196,3 @@
 
     </body>
 </html>
-

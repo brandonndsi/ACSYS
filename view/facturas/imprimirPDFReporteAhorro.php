@@ -1,5 +1,5 @@
 <?php 
-include_once 'PlantillaAdePa.php';
+include_once 'PlantillaAho.php';
 include_once '../../data/factura/dataFactura.php';
 
 $lista = json_decode($_GET['lista']);
@@ -20,22 +20,21 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Ln();
 $pdf->Cell(150,6,'Reporte '.$tipo,0,0,'C',0);
 $pdf->Ln(10);
-$pdf->Cell(25,6,'Fecha',1,0,'C',1);
-//$pdf->Cell(30,6,'Pago Prestamo',1,0,'C',1);
-$pdf->Cell(35,6,'Saldo Actual',1,0,'C',1);
-$pdf->Cell(35,6,'Saldo Anterior',1,0,'C',1);
-$pdf->Cell(35,6,'Cuota',1,0,'C',1);
-$pdf->Cell(40,6,'Hora Pago',1,0,'C',1);
+$pdf->Cell(35,6,'Nombre',1,0,'C',1);
+$pdf->Cell(35,6,'Litros',1,0,'C',1);
+$pdf->Cell(35,6,'Ahorro',1,0,'C',1);
+$pdf->Cell(35,6,'Total Ahorro',1,0,'C',1);
+$pdf->Cell(40,6,'Fecha',1,0,'C',1);
 
 $pdf->SetFont('Arial','',12);
 /*sacando los productos detalles de la factura*/
 foreach ($lista as $producto) {
 $pdf->Ln();
-$pdf->Cell(25,6,utf8_decode($producto->fecha),1,0,'C',0);
-$pdf->Cell(35,6,utf8_decode('¢'.$producto->saldoanterior),1,0,'C',0);
-$pdf->Cell(35,6,utf8_decode('¢'.$producto->saldoactual),1,0,'C',0);
-$pdf->Cell(35,6,utf8_decode('¢'.$producto->cuotas),1,0,'C',0);
-$pdf->Cell(40,6,utf8_decode($producto->horapago),1,0,'C',0);
+$pdf->Cell(35,6,utf8_decode($producto->nombre),1,0,'C',0);
+$pdf->Cell(35,6,utf8_decode($producto->litros),1,0,'C',0);
+$pdf->Cell(35,6,utf8_decode('¢'.$producto->ahorro),1,0,'C',0);
+$pdf->Cell(35,6,utf8_decode('¢'.$producto->totalahorro),1,0,'C',0);
+$pdf->Cell(40,6,utf8_decode($producto->fecha),1,0,'C',0);
 }
 
 
