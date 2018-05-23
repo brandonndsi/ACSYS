@@ -19,7 +19,7 @@
 </head>
 <body background="../fondo.jpg" >
           <?php 
-          include '../menuView.php';
+          include '../InterumtorDeMenus.php';
           $id;
            if(isset($_GET['id']) && !empty($_GET['id'])){
           //$dato=$_GET['id'];

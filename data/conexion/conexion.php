@@ -6,7 +6,7 @@
 		private $db;
 		private  $link;
 		function __construct(){
-			$hostName = gethostname();
+		$hostName = gethostname();
       switch ($hostName) {
           case "nana":
               $this->server = "localhost";
@@ -14,18 +14,25 @@
               $this->pass = "";
               $this->db = "dbacsys1";
               break;
-          case "PC": //laptop's PC
+          case "kervin": //laptop's PC
 				$this->server = "localhost";
 				$this->user = "root";
 				$this->pass = "";
 				$this->db = "dbacsys1";
                 break;
           default: //Hosting
-			  $this->server = "localhost";
-              $this->user = "root";
-              $this->pass = "";
-              $this->db = "dbacsys1";
-              break;
+				$this->server = "localhost";
+				$this->user = "root";
+				$this->pass = "";
+				$this->db = "dbacsys1";
+				break;
+			  
+/*  default: //Hosting
+			  $this->server = "db739060145.db.1and1.com";
+              $this->user = "dbo739060145";
+              $this->pass = "S@ucetico123";
+              $this->db = "db739060145";
+              break;*/
       }
 			date_default_timezone_set("America/Costa_Rica");
 		}
