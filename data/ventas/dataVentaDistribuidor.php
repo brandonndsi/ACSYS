@@ -72,17 +72,29 @@ DELIMITER ;
            //return $productos;
       }
 
+
+      function restarStockProductos($productos) {
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $productos = json_decode($productos);
+
+        foreach ($productos as $producto) {
+            $con->query("CALL restarStockProductos('" . $producto->codigo . "','". $producto->cantidad . "');");
+        }
+    }
+
       function procesarVenta($productos, $idCliente, $totalNeto, $totalBruto) {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $facturaVenta = $this->getFactura();
         $idVenta = $this->registrarVenta($idCliente, $totalNeto, $totalBruto, $facturaVenta);
-        if ($idVenta!= 0) {
+        if ($idCliente!= 0) {
             //return
          
             $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } 
-          return   $this->registrarProductosLacteos($productos, $idVenta);
+        $this->restarStockProductos($productos);
+        return   $this->registrarProductosLacteos($productos, $idVenta);
         
     }
 

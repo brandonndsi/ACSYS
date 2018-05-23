@@ -61,6 +61,7 @@
                   <li><a href="../ventas/ventanilla.php">Ventanilla</a></li>
                   <li><a href="../ventas/distribuidor.php">Distribuidor</a></li>
                   <li><a href="../ventas/veterinario.php">Veterinario</a></li>
+                  <li><a href="../ventas/pagarVentas.php">Pagar ventas</a></li>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#adelanto" class="collapsed">

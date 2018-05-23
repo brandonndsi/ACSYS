@@ -17,12 +17,26 @@ class dataVentaVentanilla {
         return json_encode($query->fetch_assoc());
     }
 
+
+    function registrarVentaPorCobrar($idCliente,$idVenta,$totalVenta){
+        $con = $this->conexion->crearConexion();
+        $con->set_charset("UTF8");
+        $sqlQuery = $con->query("CALL registrarVentaPorCobrar('$idCliente','$idVenta','$totalVenta')");
+        if($sqlQuery == 1){
+          return true;
+        }else{
+          return false;
+        }
+      }
+
     function procesarVenta($productos, $idCliente, $totalNeto, $totalBruto) {
         $con = $this->conexion->crearConexion();
         $con->set_charset("UTF8");
         $facturaVenta = $this->getFactura();
-
         $idVenta = $this->registrarVentaVentanilla($idCliente, $totalNeto, $totalBruto, $facturaVenta);
+        if($idCliente != 0){
+            $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
+        }
         $this->registrarDetalleVenta($productos, $totalNeto, $idVenta);
         $this->restarStockProductos($productos);
     }

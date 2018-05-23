@@ -59,7 +59,7 @@
     function procesarVenta($productos,$idCliente,$totalNeto,$totalBruto){
       $facturaVenta = $this->getFactura();
       $idVenta = $this->registrarVenta($idCliente,$totalNeto,$totalBruto,$facturaVenta);
-      if($idVenta != 0){
+      if($idCliente != 0){
         $this->registrarVentaPorCobrar($idCliente,$idVenta,$totalNeto);
       }
       $this->registrarProductosVentaVeterinaria($productos,$idVenta);

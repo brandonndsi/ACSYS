@@ -24,7 +24,7 @@ $pdf->AddPage();
 $pdf->SetFillColor(232,232,232);
 $pdf->SetFont('Arial','B',12);
 $pdf->Ln();
-$pdf->Cell(40,6,'N Factura',1,0,'C',0);
+$pdf->Cell(40,6,utf8_decode('N° Factura'),1,0,'C',0);
 $pdf->Cell(43,6,utf8_decode($op),0,0,'C',0);
 $pdf->Cell(55,6,'Fecha',1,0,'C',0);
 $pdf->Cell(30,6,$fecha,0,0,'C',0);
