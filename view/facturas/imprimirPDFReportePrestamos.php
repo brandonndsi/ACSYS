@@ -20,10 +20,10 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Ln();
 //$pdf->Cell(150,6,'Reporte '.$tipo,0,0,'C',0);
 $pdf->Ln(10);
-$pdf->Cell(35,6,'Nombre',1,0,'C',1);
+$pdf->Cell(50,6,'Nombre',1,0,'C',1);
 $pdf->Cell(35,6,'Cantidad',1,0,'C',1);
-$pdf->Cell(30,6,'Plazo',1,0,'C',1);
-$pdf->Cell(35,6,'Porcentage',1,0,'C',1);
+$pdf->Cell(20,6,'Plazo',1,0,'C',1);
+$pdf->Cell(25,6,'Porcentage',1,0,'C',1);
 $pdf->Cell(30,6,'Fecha',1,0,'C',1);
 $pdf->Cell(30,6,'estado',1,0,'c',1);
 
@@ -32,10 +32,10 @@ $pdf->SetFont('Arial','',12);
 
 foreach ($lista as $producto) {
 $pdf->Ln();
-$pdf->Cell(35,6,utf8_decode($producto->nombre),1,0,'C',0);
+$pdf->Cell(50,6,utf8_decode($producto->nombre),1,0,'C',0);
 $pdf->Cell(35,6,utf8_decode('¢'.$producto->cantidad),1,0,'C',0);
-$pdf->Cell(30,6,utf8_decode($producto->plazo),1,0,'C',0);
-$pdf->Cell(35,6,utf8_decode('%'.$producto->porcentage),1,0,'C',0);
+$pdf->Cell(20,6,utf8_decode($producto->plazo),1,0,'C',0);
+$pdf->Cell(25,6,utf8_decode($producto->porcentage.'%'),1,0,'C',0);
 $pdf->Cell(30,6,utf8_decode($producto->fecha),1,0,'C',0);
 $pdf->Cell(30,6,utf8_decode($producto->estado),1,0,'C',0);
 }
