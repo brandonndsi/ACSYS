@@ -309,6 +309,21 @@ DELIMITER $$
 
 
 
+DELIMITER $$
+CREATE PROCEDURE  consultarVentasPorCobrarCliente(idCliente INT)
+BEGIN
+  SELECT idventaporcobrar,numerofactura, fechaventa, totalbrutoventa, tipoventa FROM tbventaporcobrar INNER JOIN tbventa ON tbventaporcobrar.idventa = tbventa.idventa WHERE estadoventaporcobrar='activo' AND idpersona=idCliente; 
+END$$
+DELIMITER $$
+
+DELIMITER $$
+CREATE PROCEDURE  pagarVenta(idVentaPorCobrar INT,fecha DATE, hora TIME)
+BEGIN
+  UPDATE tbventaporcobrar SET estadoventaporcobrar = 'inactivo' WHERE idventaporcobrar=idVentaPorCobrar;
+  INSERT INTO tbpagoventa(idventaporcobrar,fechapagoventa,horapagoventa) VALUES(idVentaPorCobrar,fecha,hora);
+
+END$$
+DELIMITER $$
 
 
 

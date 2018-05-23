@@ -56,6 +56,7 @@ function consultarProductorSocio(){
       }, function(responseText) {
         json = JSON.parse(responseText);
         html = "";
+        html += "<option value='0'>Contado</option>";
         for(i = 0 ;i<json.length; i++){
           idPersona = '"'+json[i].idpersona+'"';
           html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
@@ -324,7 +325,7 @@ function carry() {
                 });
         
             }else{
-                    document.getElementById("Re_cliente").value =idCliente;
+                    document.getElementById("Re_cliente").value ="Contado";
             }
            
 
@@ -339,8 +340,7 @@ function carry() {
   $.post("../../business/ventas/actionVentaDistribuidor.php",{
             action: 'idfactura'
         },function (responseText){
-            console.log(responseText);
-            //alert(responseText);
+            //console.log(responseText);
             dato=responseText;
             dato++;
             document.getElementById("Re_recibo").value =dato;
@@ -348,7 +348,7 @@ function carry() {
         }); 
     ///*terminacion para poder optener el numero de factura.*/
     //$("#modalRecibo").modal();
-    redireccionamiento();
+   // redireccionamiento();
   ImprimirFactura();
   }
   
