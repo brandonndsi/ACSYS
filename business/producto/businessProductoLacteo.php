@@ -14,9 +14,9 @@ class businessProductoLacteo {
         return $this->dataProductoLacteo->productoMostrar();
     }
 
-    public function productoModificar($codigo,$nombre,$precio,$cantidad,$unidad){
+    public function productoModificar($codigo,$nombre,$precio,$unidad){
 
-    	return $this->dataProductoLacteo->productoModificar($codigo,$nombre,$precio,$cantidad,$unidad);
+    	return $this->dataProductoLacteo->productoModificar($codigo,$nombre,$precio,$unidad);
     }
 
      public function productoRegistrar($codigo,$nombre,$precio,$unidad){

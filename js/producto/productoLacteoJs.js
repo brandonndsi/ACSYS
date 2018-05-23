@@ -77,7 +77,6 @@ function modalModificarProducto(lacteo){
   document.getElementById("codigo").value=string[0];
   document.getElementById("nombre").value=string[1];
   document.getElementById("precio").value=string[2];
-  document.getElementById("cantidad").value=string[3];
   document.getElementById("unidad").value=string[4];
   mostrarUnidades("unidad");
   codigo='"'+string[0]+'"';
@@ -96,13 +95,13 @@ function modificarProducto(codigo){
               codigo: document.getElementById("codigo").value,
               nombre: document.getElementById("nombre").value,
               precio: document.getElementById("precio").value,
-              cantidad: document.getElementById("cantidad").value,
               unidad: document.getElementById("unidad").selectedIndex+1,
               
 
       }, function(responseText){
           respuesta="";
           if(responseText=="true"){
+            
             respuesta="Se ha modificado el producto satisfactoriamente";
             mostrarProductoLacteo();
 

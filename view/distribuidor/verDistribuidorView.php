@@ -126,7 +126,7 @@
                                         <label>Email:</label>
                                     </div>
                                     <div class="col-sm-7">
-                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required title="Correo, debe tener un @ y .com como minimo" onchange="verificarCorreo(this);"
+                                        <p><input type="email" class="form-control" class="span12" name="correor" id="correor" onkeypress="correoValidar(correo)"; placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required title="Correo, debe tener un @ y .com como minimo" onchange="verificarCorreo(this);"
                                          /></p>
                                     </div>
                                 </div>
