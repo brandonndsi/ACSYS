@@ -29,11 +29,13 @@
         <?php
         include '../InterumtorDeMenus.php';
         ?>
-        <div>
-            <center><h1>Junta Directiva</h4></center>
-        </div>
 
         <div class="contenedor">
+
+          <div class="boton" id="Registrar">
+              <h1>Junta Directiva</h4>
+              <p><button onclick="modalRegistrarJunta()" class="btn btn-primary">Nueva Junta </button></p>
+          </div>
             <table id="listaJuntas" class="display" cellspacing="0" >
                 <thead>
                     <tr>
@@ -50,9 +52,6 @@
         </div>
 
         <!--Comienzan los modales-->
-        <div id="Registrar" class="modal-footer">
-            <p><button onclick="modalRegistrarJunta()" class="btn btn-primary">Nueva Junta </button></p>
-        </div>
 
         <!--Modal Registrar-->
         <div id="modalRegistrar" class="modal" role="dialog">
