@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 	include 'businessAhorro.php';
-	$businessAhorro = new businessAhorro();  
+	$businessAhorro = new businessAhorro();
 	$action=$_POST['action'];
 	if ($action=="consultarMontoAhorro") {
 	    echo $businessAhorro->ahorroMontoMostrar();
@@ -14,7 +14,7 @@
       		echo $businessAhorro->ahorroMontoModificar($id,$ahorro,$tipo);
 
       	}else{
-                  
+
       		echo "false";
       	}
 
