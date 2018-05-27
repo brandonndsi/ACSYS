@@ -130,7 +130,7 @@ function mostrarMontoLecheSemanalTotal(){
                 });
 
 }else{
-  window.open("http://asoprolesa-saucetico/view/facturas/imprimirPDFReporteAhorro.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ahorros", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  window.open("../../view/facturas/imprimirPDFReporteAhorro.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Ahorros", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
   localStorage.removeItem("listaTodo");
   window.location.href = '../../view/reportes/ahorros.php';
 }

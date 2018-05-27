@@ -20,20 +20,20 @@
 				$this->pass = "";
 				$this->db = "dbacsys1";
 				break;
-				/*  
+				 
           default: //Hosting
 				$this->server = "localhost";
 				$this->user = "root";
 				$this->pass = "";
 				$this->db = "dbacsys1";
-				break;*/
+				break;
 			  
-default: //Hosting
+/*default: //Hosting
 			  $this->server = "db739060145.db.1and1.com";
               $this->user = "dbo739060145";
               $this->pass = "S@ucetico123";
               $this->db = "db739060145";
-              break;
+              break;*/
       }
 			date_default_timezone_set("America/Costa_Rica");
 		}

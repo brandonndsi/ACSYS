@@ -46,7 +46,7 @@ function descaragarCedula(){
 	mostrarImagenAntesDeImprimir();
 }
 function mostrarImagenAntesDeImprimir(){
-	window.open("http://asoprolesa-saucetico/view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+	window.open("../../view/facturas/imprimirMostrarImagenes.php?ruta="+rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
 /*estandar de las consultas ajax*/
 function datosAjax(mensaje,contenido){

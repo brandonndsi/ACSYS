@@ -154,12 +154,12 @@ $(document).ready(function() {
 
 function descaragarManipulacionAlimento() {
   rutaimagen = document.getElementById("imagenManipulacionAlimento").value;
-  window.open("http://asoprolesa-saucetico/view/facturas/imprimirMostrarImagenes.php?ruta=" + rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  window.open("../../view/facturas/imprimirMostrarImagenes.php?ruta=" + rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
 //descaragarCedula
 function descaragarCedula() {
   rutaimagen = document.getElementById("imagenCedula").value;
-  window.open("http://asoprolesa-saucetico/view/facturas/imprimirMostrarImagenes.php?ruta=" + rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  window.open("../../view/facturas/imprimirMostrarImagenes.php?ruta=" + rutaimagen, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
 
 /*Esta es la funcion encargada de poder visualizar la imagen antes de enviarla al servidor y que el usuario la puede modificar si quiere o no dependiendo de lo que el mae visualiza..*/

@@ -154,7 +154,7 @@ tot=string[4];
 total =0;
 total = tot+tol;
      
-    window.open("http://asoprolesa-saucetico/view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+    window.open("../../view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 		//console.log(cuota);
     //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
     //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
@@ -177,7 +177,7 @@ total = tot+tol;
                 });
 
 }else{
-  window.open("http://asoprolesa-saucetico/view/facturas/imprimirPDFReportePrestamos.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Solicitud Adelanto", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+  window.open("../../view/facturas/imprimirPDFReportePrestamos.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Solicitud Adelanto", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
   localStorage.removeItem("listaTodo");
   window.location.href = '../../view/reportes/prestamos.php';
 }
