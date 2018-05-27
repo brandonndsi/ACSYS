@@ -58,7 +58,7 @@ function datosAjax(mensaje,contenido){
 
     nuevo.onreadystatechange=function(){
         if(nuevo.readyState == 4 && nuevo.status == 200){
-           
+
             contenido.innerHTML=nuevo.responseText;
         }
     }
@@ -98,7 +98,7 @@ $(document).ready(function(){
 
 			processData: false,
 
-			beforeSend: function() 
+			beforeSend: function()
 			{
 			    //$('#mensaje').prepend('<img src="facebook.gif" width="30px" height="30px"/>');
 			    $('#mensaje').prepend('Procesando datos ....');
@@ -108,13 +108,21 @@ $(document).ready(function(){
 			{
 
 				$('#mensaje').fadeOut("fast",function(){
-					$('#mensaje').html(data);
+					//$('#mensaje').html(data);
+					var archivo=document.getElementById("filemage").value;
+					if(archivo!=""){
+						men='<h3 style=color:green;">Imagen guardada correctamente.</h3>';
+										$('#mensaje').html(men);
+					}else{
+						men='<h3 style="color:red;">Seleccione una IMAGEN.</h3>';
+										$('#mensaje').html(men);
+					}
 
 				});
 
 				$('#mensaje').fadeIn("slow");
-				
-			} 
+
+			}
 
 
 		});
@@ -142,7 +150,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -157,7 +165,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -172,7 +180,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -187,9 +195,9 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
-		//alert(rutaimagen);	
+		//alert(rutaimagen);
 	}
 		/**
  		* [abrirAgua Lo que hace es abrir el modal de las imagen para poder modificarla de acuerdo a la imagen del Agua]
@@ -202,7 +210,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -217,7 +225,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -232,7 +240,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -247,7 +255,7 @@ document.getElementById("imagen").innerHTML=ruta;
 		document.getElementById("nombre").value=rutaimagen;/*la variable global sobre escribe el hidden del modal de nombre*/
 
 		rutaImagenColocar();/*lo que hace es colocar la imagen al modal antes de la visualizacion de los datos*/
-		
+
 		document.getElementById("contenedorImagen").style.transform="translateY(0%)";
 		//alert(rutaimagen);
 	}
@@ -303,13 +311,13 @@ $("#filemage").change(function(){
                     },
                     dangerMode: true
                 });
-		
+
 		this.value="";//lo que hace es hacer que el input de tip file se le asigne un valor de vacio.
 	}
-	
+
 });
 });
-	
+
 function control(f){
 	var bandera=false;
     var ext=['gif','jpg','jpeg','png'];

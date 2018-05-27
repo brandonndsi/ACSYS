@@ -59,17 +59,20 @@ DELIMITER ;
       }
     }
 
-      public function registrarProductosLacteos($productos,$idVenta){
+      public function registrarProductosLacteos($productos,$totalNeto,$idVenta){
           $con = $this->conexion->crearConexion();
           $con->set_charset("UTF8");
           $productos = json_decode($productos);
-            foreach ($productos as $producto) {
+            /*foreach ($productos as $producto) {
               //echo($producto->precio);
               $total = $producto->precio * $producto->cantidad;
               $con->query("CALL registrardetalleventadistribuidor('$producto->precio','$producto->cantidad','$total','$producto->codigo','0','$idVenta')");
            
-          }
+          }*/
            //return $productos;
+          foreach ($productos as $producto) {
+            $con->query("CALL registrarDetalleVenta('" . $producto->precio . "','" . $producto->cantidad . "','" . $totalNeto . "','" . $producto->codigo . "','" . $producto->descuento . "','" . $idVenta . "');");
+        }
       }
 
 
@@ -94,7 +97,7 @@ DELIMITER ;
             $this->registrarVentaPorCobrar($idCliente, $idVenta, $totalNeto);
         } 
         $this->restarStockProductos($productos);
-        return   $this->registrarProductosLacteos($productos, $idVenta);
+        return   $this->registrarProductosLacteos($productos,$totalNeto, $idVenta);
         
     }
 

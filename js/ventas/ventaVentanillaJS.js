@@ -409,7 +409,7 @@ function procesa() {
                 console.log(responseText);
                 datosTabla = "";
                 total = 0;
-                carrito = JSON.parse(localStorage.getItem("listaProductos"));
+                /*carrito = JSON.parse(localStorage.getItem("listaProductos"));
 
                 for (i = 0; i < carrito.length; i++) {
                     datosTabla += "<table>";
@@ -422,7 +422,7 @@ function procesa() {
                 }
                 datosTabla += "<td colspan='3'><b>TOTAL: </d></td>";
                 datosTabla += "<td>" + totalBruto + "</td>";
-                datosTabla += "</table>";
+                datosTabla += "</table>";*/
                 $("#Re_ventaProductos").html(datosTabla);///modificar los datos para poder metre los datos.
 
                 var cliente = idCliente;
@@ -436,7 +436,7 @@ function procesa() {
             });
         });
         numeroFactura();
-        $("#modalRecibo").modal();
+        //$("#modalRecibo").modal();
 
     } else {
         swal({
@@ -474,15 +474,19 @@ function numeroFactura() {
         console.log(responseText);
         dato = responseText;
         dato++;
-        document.getElementById("Re_recibo").value = dato;
+        //document.getElementById("idfactura").value = dato;
+        $(idfactura).val(dato);
+        ImprimirFactura(dato);
     });
     /*terminacion para poder optener el numero de factura.*/
-    $("#modalRecibo").modal();
+    //$("#modalRecibo").modal();
 }
 
-function ImprimirFactura() {
-    numerofactura = document.getElementById("Re_recibo").value;
+function ImprimirFactura(dato) {
+    //numerofactura = document.getElementById('idfactura').value;
+    numerofactura = dato;
     totalBB = document.getElementById('totalPagar').value;
     id = document.getElementById('selectCliente').value;
     window.open("http://asoprolesa-saucetico/view/facturas/imprimirPDF.php?numerofactura=" + numerofactura + "&&lista=" + localStorage.getItem("listaProductos") + "&&total=" + totalBB + "&&tipo=Ventanilla" + "&&id=" + id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+    recargar();
 }

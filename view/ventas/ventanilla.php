@@ -68,8 +68,7 @@
                 </table>
             </div>
             <button class="btn btn-danger" onclick="modalCancelarVenta()" >Cancelar <span class="glyphicon glyphicon-remove"></span></button>
-            <button id="boton" class="btn btn-primary" onclick="accionPrincipal()">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
-        </div>
+            <button id="boton" class="btn btn-primary" onclick="accionPrincipal();">Procesar venta <span class="glyphicon glyphicon-cog"></span></button>
 
         <div id="modalProductosVentanilla" class="modal fade in">
             <div  class="modal-dialog">
@@ -127,7 +126,7 @@
                         </div>
                         <div class="form-group">
                             <label  id="facNumero">Factura N°:</label>
-                            <input id="Re_recibo" name="contrasenaNueva"
+                            <input id="idfactura" name="idfactura"
                                    type="text" readonly>
                         </div>
                         <div class="form-group">

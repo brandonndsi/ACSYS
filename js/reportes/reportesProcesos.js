@@ -151,7 +151,7 @@ function mostrarImprimir(proceso) {
     hora = string[17];
     estado = string[18];
 
-    window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirReporteDeProcesos.php?numeroProceso=" + id + "&&producto=" + nombre + "&&cantidad=" + cantidad + "&&porcentaje=" + porcentaje + "&&entera=" + entera + "&&descremada=" + descremada + "&&cuajo=" + cuajo + "&&cloruro=" + cloruro + "&&sal=" + sal + "&&cultivo=" + cultivo + "&&estabilizador=" + estabilizador + "&&colorante=" + colorante + "&&crema1=" + crema1 + "&&leche1=" + leche1 + "&&crema2=" + crema2 + "&&leche2=" + leche2 + "&&fecha=" + fecha + "&&hora=" + hora + "&&estado=" + estado, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+    window.open("http://asoprolesa-saucetico/view/facturas/imprimirReporteDeProcesos.php?numeroProceso=" + id + "&&producto=" + nombre + "&&cantidad=" + cantidad + "&&porcentaje=" + porcentaje + "&&entera=" + entera + "&&descremada=" + descremada + "&&cuajo=" + cuajo + "&&cloruro=" + cloruro + "&&sal=" + sal + "&&cultivo=" + cultivo + "&&estabilizador=" + estabilizador + "&&colorante=" + colorante + "&&crema1=" + crema1 + "&&leche1=" + leche1 + "&&crema2=" + crema2 + "&&leche2=" + leche2 + "&&fecha=" + fecha + "&&hora=" + hora + "&&estado=" + estado, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 }
 
 function TodoProceso() {
@@ -171,7 +171,7 @@ function TodoProceso() {
         });
 
     } else {
-        window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirTodoProcesos.php?listaTodo=" + localStorage.getItem("listaTodo"),"popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+        window.open("http://asoprolesa-saucetico/view/facturas/imprimirTodoProcesos.php?listaTodo=" + localStorage.getItem("listaTodo"),"popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
         localStorage.removeItem("listaTodo");
         window.location.href = '../../view/reportes/procesos.php';
 

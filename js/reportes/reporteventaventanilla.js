@@ -268,7 +268,7 @@ function ImprimirFactura(facturanueva) {
                     localStorage.setItem("listaProductos", JSON.stringify(listaProductos));
                 }
 
-                window.open("http://localhost/ACSYSIIIsemestre/view/facturas/imprimirPDFReportes.php?numerofactura=" + nomfactura + "&&lista=" + localStorage.getItem("listaProductos") + "&&total=" + total + "&&tipo=" + tipo + "&&id=" + idpersona + "&&fecha=" + fe + "&&hora=" + ho, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+                window.open("http://asoprolesa-saucetico/view/facturas/imprimirPDFReportes.php?numerofactura=" + nomfactura + "&&lista=" + localStorage.getItem("listaProductos") + "&&total=" + total + "&&tipo=" + tipo + "&&id=" + idpersona + "&&fecha=" + fe + "&&hora=" + ho, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
 
             }
         }
@@ -293,7 +293,7 @@ function imprimirTodo() {
         });
 
     } else {
-        window.open("http://localhost/ACSYSIIIsemestre/view/facturas/inprimirTodoDistribuidor.php?lista=" + localStorage.getItem("listaTodo") + "&tipo=Ventanilla", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+        window.open("http://asoprolesa-saucetico/view/facturas/inprimirTodoDistribuidor.php?lista=" + localStorage.getItem("listaTodo") + "&tipo=Ventanilla", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
         localStorage.removeItem("listaTodo");
         window.location.href = '../../view/reportes/ventaVentanilla.php';
 

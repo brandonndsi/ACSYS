@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="../../css/bootstrap.min.css" >
         <link rel="stylesheet" href="../../css/ventaVeterinaria.css">
         <link rel="stylesheet" href="../../css/menu.css">
+        <link rel="stylesheet" href="../../css/ventaDistribuidor.css">
 
        <!-- <link rel="stylesheet" href="../../css/jquery.dataTables.css">
         <link rel="stylesheet" href="../../css/menu.css">-->
@@ -25,6 +26,7 @@
         <script src="../../js/bootstrap.min.js"></script>
         <script src="../../js/ventas/ventaDistribuidor.js"></script>
         <script src="../../js/autocomplete.js"></script>
+
         <script>
             localStorage.clear();
             $(document).ready(function () {
