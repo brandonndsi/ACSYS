@@ -273,7 +273,7 @@ if(tipo=="Veterinaria"){
           }
 
 window.open("../../view/facturas/imprimirPDFReportes.php?numerofactura="+nomfactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+total+"&&tipo="+tipo+"&&id="+idpersona+"&&fecha="+fe+"&&hora="+ho, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
- 
+ localStorage.clear();
   }
                                         }
 
@@ -298,7 +298,7 @@ function imprimirTodo(){
 
 }else{
   window.open("../../view/facturas/inprimirTodoDistribuidor.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Veterinaria", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-  localStorage.removeItem("listaTodo");
+  localStorage.clear();
   window.location.href = '../../view/reportes/ventas.php';
 }
 }

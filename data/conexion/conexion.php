@@ -27,8 +27,8 @@
 				$this->pass = "";
 				$this->db = "dbacsys1";
 				break;
-			  
-/*default: //Hosting
+			  /*
+			default: //Hosting
 			  $this->server = "db739060145.db.1and1.com";
               $this->user = "dbo739060145";
               $this->pass = "S@ucetico123";

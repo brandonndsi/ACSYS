@@ -541,7 +541,8 @@ numerofactura=document.getElementById("Re_recibo").value;
 totalBB = document.getElementById('totalPagar').value;
 id = document.getElementById('selectCliente').value;
 window.open("../../view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Distribuidor"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-
+localStorage.clear();
+redireccionamiento();
 }
 
 

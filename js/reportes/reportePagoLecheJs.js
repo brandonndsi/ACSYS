@@ -119,7 +119,7 @@ function CargarTablaPrincipal(){
 
 }else{
   window.open("../../view/facturas/imprimirPDFReportePagoLeche.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Pago leche", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-  localStorage.removeItem("listaTodo");
+  localStorage.clear();
   window.location.href = '../../view/reportes/pagoLeche.php';
 }
 }

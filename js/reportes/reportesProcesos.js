@@ -172,7 +172,7 @@ function TodoProceso() {
 
     } else {
         window.open("../../view/facturas/imprimirTodoProcesos.php?listaTodo=" + localStorage.getItem("listaTodo"),"popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-        localStorage.removeItem("listaTodo");
+        localStorage.clear();
         window.location.href = '../../view/reportes/procesos.php';
 
     }

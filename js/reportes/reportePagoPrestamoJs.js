@@ -166,7 +166,7 @@ function consultarProductorSocio(){
 }else{
   
   window.open("../../view/facturas/imprimirPDFAdelantoPago.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Pago Adelantado", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-  localStorage.removeItem("listaTodo");
+  localStorage.clear();
   window.location.href = '../../view/reportes/pagosPrestamos.php';
 }
 }

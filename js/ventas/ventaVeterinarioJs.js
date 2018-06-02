@@ -360,6 +360,8 @@ function ImprimirFactura(){
     id = document.getElementById('selectCliente').value;
     //window.location.replace("view/ventas/veterinario.php");
     window.open("../../view/facturas/imprimirPDF.php?numerofactura="+numerofactura+"&&lista="+localStorage.getItem("listaProductos")+"&&total="+totalBB+"&&tipo=Veterinario"+"&&id="+id, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
+    localStorage.clear();
+    redireccionamiento();
 }
 function redireccionamiento(){
   location.href = '../../view/ventas/veterinario.php';

@@ -155,7 +155,8 @@ total =0;
 total = tot+tol;
      
     window.open("../../view/facturas/imprimirReporteDePrestamos.php?nombreCliente="+nombreCliente+"&&fecha="+fecha+"&&interes="+interes+"&&plazo="+plazo+"&&modoPlazo="+modoPlazo+"&&montoSolicitado="+montoSolicitado+"&&cuota="+cuota+"&&total="+total, "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-		//console.log(cuota);
+        //console.log(cuota);
+        localStorage.clear();
     //parseFloat(string[4])+parseFloat(string[4])*(parseFloat(string[7])/100))/parseFloat(string[6]);
     //parseFLoat(string[4])+(parseFloat(string[4])*(parseFloat(string[4])/100))/parseFloat(string[7]);
 	}
@@ -178,7 +179,7 @@ total = tot+tol;
 
 }else{
   window.open("../../view/facturas/imprimirPDFReportePrestamos.php?lista="+localStorage.getItem("listaTodo")+"&tipo=Solicitud Adelanto", "popupId", "location=center,menubar=no,titlebar=no,resizable=no,toolbar=no, menubar=no,width=1000,height=600");
-  localStorage.removeItem("listaTodo");
+  localStorage.clear();
   window.location.href = '../../view/reportes/prestamos.php';
 }
 }
