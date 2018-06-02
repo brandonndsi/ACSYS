@@ -35,7 +35,7 @@
             $via=$_POST['via'];
             $funcion=$_POST['funcion'] ;
 
-      	if(empty($codigo)||empty($nombre)||empty($descripcion)||empty($precio)||empty($dosis)||empty($dias)||empty($via)||empty($funcion)){
+      	if(empty($codigo)||empty($nombre)||empty($descripcion)||empty($precio)||empty($dosis)||empty($via)||empty($funcion)){
       		echo("false");
 
       	}else{

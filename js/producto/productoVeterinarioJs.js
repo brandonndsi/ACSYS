@@ -184,7 +184,7 @@ function modalEliminarProducto(lacteo){
               
 
       }, function(responseText) {
-         ;
+        
           respuesta="";
           if(responseText=="true"){
             respuesta="Se ha eliminado el producto satisfactoriamente";
@@ -240,7 +240,7 @@ function registrarProducto(){
           funcion:document.getElementById("funcionr").selectedIndex+1,
 
       }, function(responseText) {
-         
+        console.log(responseText);
           respuesta="";
           if(responseText=="true"){
             respuesta="Se ha registrado el producto satisfactoriamente";

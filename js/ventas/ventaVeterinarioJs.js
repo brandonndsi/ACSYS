@@ -67,7 +67,6 @@ function consultarProductorSocio(){
 }
 
 function procesarVenta(){
-  alert("hola");
   if(localStorage.getItem("listaProductos")==null){
        swal({
          title: "Confirmación",

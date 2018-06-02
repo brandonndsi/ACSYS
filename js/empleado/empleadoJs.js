@@ -91,8 +91,8 @@ function registrarEmpleado() {
     tipoEmpleado = $("#tipoempleador").val();
     /*manipulacionalimentos = "../../image/empleado/vacioManipulacion.jpg";
      identidad = "../../image/empleado/vacioCedula.jpg";*/
-    manipulacionalimentos = "../../image/empleado/" + cedula + "manipulacion.jpg";
-    identidad = "../../image/empleado/" + cedula + "cedula.jpg";
+    manipulacionalimentos = "../../image/empleado/" + cedula + "manipulacion.png";
+    identidad = "../../image/empleado/" + cedula + "cedula.png";
 
     $(document).ready(function () {
         $.post('../../business/empleado/actionEmpleado.php', {

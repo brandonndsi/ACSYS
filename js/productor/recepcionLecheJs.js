@@ -150,4 +150,32 @@ function modificarSocio(id){
 
 }
 
-
+function consultarProductorCliente(html){
+    $(document).ready(function () {
+        $.post('../../business/productor/actionProductorCliente.php', {
+                action : 'consultarproductores'
+        }, function(responseText) {
+          json = JSON.parse(responseText);
+          for(i = 0 ;i<json.length; i++){
+            idPersona = '"'+json[i].idpersona+'"';
+            html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
+          }
+          $("#selectCliente").html(html);
+        });
+      });
+  }
+  function consultarProductorSocio(){
+    $(document).ready(function () {
+        $.post('../../business/productor/actionProductorSocio.php', {
+              action : 'consultarproductores'
+        }, function(responseText) {
+          json = JSON.parse(responseText);
+          html = "";
+          for(i = 0 ;i<json.length; i++){
+            idPersona = '"'+json[i].idpersona+'"';
+            html+="<option value="+idPersona+">"+json[i].nombrepersona+" "+json[i].apellido1persona+" "+json[i].apellido2persona+"</option>";
+          }
+          consultarProductorCliente(html);
+        });
+      });
+  }

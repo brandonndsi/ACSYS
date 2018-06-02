@@ -97,7 +97,7 @@
                     </div>
                     <div class="modal-footer" id="foo">
                         <p>
-                          <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar" onclick=" location.href = '../../view/ventas/veterinario.php'">Cancelar</button>
+                          <button data-dismiss='modal' class="btn btn-danger" id="btn-cancelar" >Cancelar</button>
                           <button data-dismiss='modal' onclick="agregarProductoCarritoBuscar()" class="btn btn-primary" id="btn-enviar">Agregar</button>
                         </p>
                     </div>
